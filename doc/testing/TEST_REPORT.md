@@ -1,3 +1,53 @@
+# 2026-10-28 手势动画完整资源库 V2（本轮）
+
+完整ZIP新增GESTURE第9类，50份常规资源+4组透明图集动画；根library.json记录触发规则、预览、多语言与默认选择。Web已保存绑定随方案导出，导入可恢复；导出等待草稿恢复/保存。Android校验、安装、显式选择/删除、重开恢复及默认配置应用完成；旧独立手势包仍兼容。详细边界见resources/unified/library-v1/README.md。
+
+本次通过：Web53项、资源模块8项JVM；Pixel 8 Android16相关18项设备回归（17.793秒，零失败）；app debug/测试APK构建、lint、UI/i18n/架构门禁均通过，门禁零警告。设备类：GestureResourceLibraryDeviceTest 3、GestureEffectsDeviceTest 4、ResourceLibraryDeviceTest 5、ResourceDeliveryDeviceTest 3、ResourceCenterUiDeviceTest 3。验证完整新库/组合、篡改拒绝且未安装、卡片选择与重开、显式默认、删除、旧包和GL播放器。安装覆盖保留应用数据，配置与本轮新建资源测试后恢复。
+
+命令：`.\gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest :core:lib_beauty_resources:testDebugUnitTest :app:lintDebug`；使用adb显式Pixel8目标安装两个APK，AndroidJUnitRunner以-e class选择上述5类。Web npm test/npm run build/node scripts/export-library.mjs。首次新设备测试编译因跨模块访问internal辅助函数失败，改为测试侧ZIP枚举后最终构建通过；初轮日志保留，不作为功能失败或通过。
+
+浏览器实测本地完整包回读9类/50常规/4手势（3,845,015字节）；自定义绑定生成真实PNG封面，5组回读其中1默认组。交付页加载成功，仅已有favicon.ico 404。本地输出C:/work/AI/BeautyStickerWorkshop/build/resource_delivery.zip及library.json，未发布网站。新包内置手势均默认关闭。网络catalog.json仅覆盖常规资源，手势当前从完整ZIP安装。
+
+证据：[源码/制品摘要](evidence/gesture-library-20261028/summary.json)、[18项设备日志](evidence/gesture-library-20261028/device.txt)、[Web53项](evidence/gesture-library-20261028/web-tests.txt)、[最终构建](evidence/gesture-library-20261028/build-final.txt)。基线单独记录本轮GLIB用例指纹，不替换其他历史用例。源码仍未提交。
+
+未验证：iOS完整库读取、网站发布、真人识别准确率/动态观感、持续性能、直播厂商远端推流、横屏与大字体视觉验收。
+
+---
+
+## 2026-10-28 手势触发动画与定点贴纸（本轮增量）
+
+已实现独立手势效果包、一次动画/定点PNG、7种模型手势绑定；默认SDK仍不自动开启识别或安装素材。Android Demo资源中心导入仅暂存，明确应用后持久化，公共播放器在美颜与场景后合成视频纹理；播放中忽略、800ms冷却、结束消失、换源/原图/停用清理。22种固定支持示意保持只读，实验规则不接首版效果。Demo检测开关遵循现有新页面默认开启要求，可在更多菜单关闭。
+
+本次通过：核心124项、feature_app14项JVM零失败；assembleDebug/assembleDebugAndroidTest/lintDebug；UI/i18n各0 warning；Pixel 8 Android16相关19项（26.549秒）。设备包含GestureEffectsDeviceTest4项、SceneDeviceTest7项、ResourceDeliveryDeviceTest3项、GestureDeviceTest5项。新的真实ES3断言覆盖透明度、图集换帧/结束和4旋转×2镜像；实际网页ZIP覆盖动画与定点贴纸读取、非法配置拒绝和导入→应用→重开/清除。测试备份恢复宿主配置，不清空应用数据。
+
+命令：`.\gradlew.bat :core:lib_beauty:testDebugUnitTest :feature:feature_app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug --max-workers=1 --console=plain`；adb覆盖安装后，使用AndroidJUnitRunner显式选择上述4个设备类。最终宿主按钮busy门控后补跑app构建/lint，最新设备包复跑通过。
+
+初轮19项中的3失败分别是屏幕关闭导致两项UI不可见、旧用例仍断言Demo默认关闭；唤醒并按现有默认开启约定调整断言后19项通过。最终复跑曾两次被并行安装/另一轮instrumentation强制停止（系统日志明确start instr/installPackageLI），不计为通过；避开冲突后完整19项通过，原中断日志保留。
+
+Web使用隔离的本次提交快照验证45项Node与静态构建，避免混入并行资源目录改动。浏览器原50素材/14参数/背景模糊/跟随示意通过。线上 https://beautystickerworkshop.pages.dev/ 已实测7绑定、4动画、导出回读、导入图集保留、390px无横向溢出和无页面异常。功能提交d984a7f、检查等待修订df88b79已推送main，远端一致。SDK未提交，保留工作区其他任务改动。
+
+证据：[本轮目录](evidence/gesture-effects-2026-10-28/results.json)，含日志和源码/APK摘要。因SDK存在并行未提交源码变更，本轮不推进全局历史TEST_BASELINE，仅保留本次明确范围的证据，下轮按实际差异重新选择回归。
+
+未执行：真人手势准确率与动态观感、持续温升/帧率、厂商远端推流、iOS消费；Android完整横屏/大字体视觉未验收。设备夹具与网页插画不能代替上述验收。
+
+---
+
+# 2026-10-28：分类资源库、效果属性及多语言
+
+实现：Web完整资源下载按分类/名称__ID组织；根library.json定义分类、卡片展示、15项float滑杆属性及中英文回退。Android新公共BeautyResourceLibrary读取、校验及参数合并；Demo导入保存、返回刷新、JSON分类/名称/排序/滑杆/默认恢复。旧平铺交付包兼容；安装不自动应用默认效果。完整协议见resources/unified/library-v1/README.md。
+
+验证：Web `npm test` 48/48，`npm run build`；资源模块8/8 JVM；`:app:assembleDebug :app:assembleDebugAndroidTest`通过；UI、i18n、架构门禁零警告。Pixel 8（Android16 API36）相关回归12/12（16.136秒），新增实际相机用例后清单组5/5（4.513秒），合计13个不同设备用例。源码含其他未提交改动，实际文件指纹记录在证据，不以HEAD代替。
+
+命令：`adb -s <Pixel8> shell am instrument -w -r -e class com.beautysdk.demo.ResourceLibraryDeviceTest,com.beautysdk.demo.ResourceDeliveryDeviceTest,com.beautysdk.demo.ResourceCenterUiDeviceTest,com.beautysdk.demo.GpuPixelControlsDeviceTest,com.beautysdk.demo.SceneControlsDeviceTest com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`；新增相机用例后仅重跑ResourceLibraryDeviceTest。
+
+失败与修复：Web初轮两项旧平铺文件数量断言失败，改为新目录内容/摘要断言并新增3项协议测试。设备首轮7项2失败（测试的晚注册与系统ZipException类型）；中间10项1失败暴露LiveData同步观察时控件字段未初始化，移至init前修复。新相机测试初轮5项1失败（面板移入BottomSheet后从Activity查找），改为打开前持有真实面板引用；最终12项及5项零失败，未删除断言/关闭功能规避。
+
+证据：[摘要与源码指纹](evidence/resource-library-20261028/summary.json)、[设备回归](evidence/resource-library-20261028/device-regression.txt)、[清单与相机](evidence/resource-library-20261028/device-library.txt)、[Web](evidence/resource-library-20261028/web-tests.txt)。中间失败原始日志同目录保留。新参数UI截图来自无摄像头的合成宿主，仅作控件功能证据。
+
+限制：本轮为Web+Android；iOS无新清单消费实现；网页未发布。新控件字体缩放/横屏未验收，未做真人效果、持续性能或厂商推流测试。lint最终结果下文补记。
+
+---
+
 # 2026-10-28 轮廓融合与快速移动对照：跟随问题仍未验收通过
 
 保留的默认优化：连续软置信度过渡（0.08～0.92）、当前图颜色引导、不跨帧混合alpha；同尺寸R8蒙版glTexSubImage2D更新，减少纹理重分配。公开固定人像走真实MediaPipe+BeautySceneRenderer导出GL结果，人工查看静态轮廓；不能推断真人发丝抠图质量。

@@ -10,6 +10,9 @@
       <TextView android:id="@+id/resource_defaults" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_defaults" />
       <TextView android:id="@+id/resource_cancel" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@android:string/cancel" />
     </LinearLayout>
+    <TextView android:id="@+id/resource_gesture_info" style="@style/CameraLabel" android:visibility="gone" />
+    <TextView android:id="@+id/resource_gesture_apply" style="@style/CameraAction" android:text="@string/resources_gesture_apply" android:visibility="gone" />
+    <TextView android:id="@+id/resource_gesture_clear" style="@style/CameraAction" android:text="@string/resources_gesture_clear" android:visibility="gone" />
     <TextView android:id="@+id/resource_apply_delivery" style="@style/CameraAction" android:text="@string/resources_apply_delivery" android:visibility="gone" />
   </LinearLayout>
   <TextView android:id="@+id/resource_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:text="@string/resources_empty" android:textColor="@color/camera_muted" android:visibility="gone" />

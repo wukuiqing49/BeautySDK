@@ -12,15 +12,25 @@ import java.util.concurrent.Executors
 /** 实验室仅编排公共资源API，包解析、安装和组合均位于lib_beauty_resources。 */
 class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     data class Ui(val installed:List<InstalledResource> = emptyList(),val online:List<CatalogResource> = emptyList(),val settings:BeautySettings?=null,
-        val selection:Map<String,String?> = emptyMap(),val busy:Boolean=false,val progress:ResourceProgress?=null,val error:String?=null,val enabled:Boolean=true,val locale:String?=null,val order:List<ResourceCategory> = ResourceCategory.entries,val previews:Map<String,ByteArray> = emptyMap(),val deliveryDefaultsAvailable:Boolean=false)
+        val selection:Map<String,String?> = emptyMap(),val busy:Boolean=false,val progress:ResourceProgress?=null,val error:String?=null,val enabled:Boolean=true,val locale:String?=null,val order:List<ResourceCategory> = ResourceCategory.entries,val previews:Map<String,ByteArray> = emptyMap(),val deliveryDefaultsAvailable:Boolean=false,val gestureEffects:GestureEffectPack?=null,val pendingGestureEffects:Boolean=false,val library:BeautyResourceLibrary?=null,val gestureResources:List<InstalledGestureResource> = emptyList(),val gestureSelection:Set<String> = emptySet(),val gesturePreviews:Map<String,ByteArray> = emptyMap())
     val ui=MutableLiveData(Ui())
     // 多页面/重开共用串行队列，旧页面已接受的保存完成后，新页面才读取。
     private val io=resourceIo;private val main=Handler(Looper.getMainLooper())
     private val manager=BeautyResourceManager(File(app.filesDir,"beauty_resources"))
+    private val libraryFile=File(app.filesDir,"beauty_resources/library.json")
+    private var library:BeautyResourceLibrary?=null
     private val activeDefaults=File(app.filesDir,"beauty_resources/active-defaults.json")
     private val pendingDefaults=File(app.filesDir,"beauty_resources/pending-defaults.json")
     private val storage=BeautyResourceStateStore(File(app.filesDir,"beauty_resources/user-state.json"))
     private val sceneStorage=LabSceneStore(File(app.filesDir,"beauty_resources"))
+    private val gestureFile=File(app.filesDir,"beauty_resources/gesture-effects.zip")
+    private val pendingGestureFile=File(app.filesDir,"beauty_resources/pending-gesture-effects.zip")
+    private var gesturePack:GestureEffectPack?=null
+    private var gestureStamp:String?=null
+    private val gestureSelectionFile=File(app.filesDir,"beauty_resources/gesture-selection.json")
+    private var gestureResourcesSnapshot:List<InstalledGestureResource> = emptyList()
+    private var gestureSelectionSnapshot:Set<String> = emptySet()
+    private var gesturePreviewsSnapshot:Map<String,ByteArray> = emptyMap()
     private val composer=BeautyEffectComposer(manager,ResourceCapabilities.androidGpuPixel())
     private var backgroundOverride:BeautyScene?=null
     private var motionOverride:BeautyScene?=null
@@ -32,6 +42,14 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     private var installedSnapshot:List<InstalledResource>?=null
     private var previewSnapshot:Map<String,ByteArray> = emptyMap()
     private fun refreshResources() {
+        gestureResourcesSnapshot=manager.listGestureResources()
+        val selectionJson=gestureSelectionFile.takeIf{it.isFile}?.readText()
+        val stamp=selectionJson?.let{"selection:$it"}?:"archive:${gestureFile.lastModified()}:${gestureFile.length()}"
+        if(stamp!=gestureStamp){
+            gestureSelectionSnapshot=selectionJson?.let{json->val a=org.json.JSONArray(json);require(a.length()<=8);(0 until a.length()).map{a.getString(it)}.toSet()}?:emptySet()
+            gesturePack=if(selectionJson!=null)manager.prepareGestureSelection(gestureSelectionSnapshot)else if(gestureFile.isFile)gestureFile.inputStream().use(GestureEffectArchive::loadZip)else null;gestureStamp=stamp
+        }
+        gesturePreviewsSnapshot=gestureResourcesSnapshot.associate{it.hash to (gesturePreviewsSnapshot[it.hash]?:manager.gesturePreview(it.hash))}
         val installed=manager.list()
         val previews=installed.associate {it.hash to (previewSnapshot[it.hash]?:manager.preview(it.hash))}
         installedSnapshot=installed
@@ -44,6 +62,7 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     }
     init {task { token->
         manager.cleanTemporary()
+        library=if(libraryFile.isFile)BeautyResourceLibrary.parse(libraryFile.readBytes())else null
         defaults=BeautyResourceDefaults.parse(if(activeDefaults.isFile)activeDefaults.readBytes()else app.assets.open("resource_center/defaults.json").use{it.readBytes()})
         val restore=runCatching {storage.read()}.getOrElse {e->main.post {ui.value=ui.value?.copy(error="STATE_RESTORE: ${e.message}")};null}
         // 内置目录安装使用同一校验器；已安装文件按摘要复用。
@@ -72,6 +91,7 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
         publish(token,if(enableBeauty)selected.copy(enabled=true)else selected,true)
     }
     fun refresh()=task {token->
+        library=if(libraryFile.isFile)BeautyResourceLibrary.parse(libraryFile.readBytes())else null
         val saved=storage.read()
         // 返回页面时重新扫描，兼容另一个宿主/资源页安装或删除资源。
         refreshResources()
@@ -125,7 +145,7 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
             // 主题首次拆分会安装子资源；此时仍须刷新目录，不能只走参数快照。
             val materializing=state.selections["theme"]!=null
             val editable=composer.materialize(state)
-            publish(token,editable.copy(parameters=editable.parameters+input),true,reloadResources=materializing)
+            publish(token,library?.updateParameters(editable,input)?:editable.copy(parameters=editable.parameters+input),true,reloadResources=materializing)
         }
     }
     fun clearStickers()=task {token->
@@ -140,15 +160,45 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
             val out=java.io.ByteArrayOutputStream();val buffer=ByteArray(8192)
             while(true){cancel.check();val n=input.read(buffer);if(n<0)break;require(out.size().toLong()+n<=33554432){"PACKAGE_TOO_LARGE"};out.write(buffer,0,n)};out.toByteArray()
         }
+        val gesture=java.util.zip.ZipInputStream(data.inputStream()).use{zip->var found=false;while(true){val e=zip.nextEntry?:break;if(e.name=="gestures.json"){found=true;break}};found}
+        if(gesture){GestureEffectArchive.loadZip(data.inputStream());cancel.check();writeDefaults(pendingGestureFile,data);publish(token,state,false);return@task}
         val delivery=java.util.zip.ZipInputStream(data.inputStream()).use {zip->var found=false;while(true){val entry=zip.nextEntry?:break;if(entry.name=="catalog.json"){found=true;break}};found}
-        if(delivery){val result=manager.installDelivery(data.inputStream(),cancel);cancel.check();writeDefaults(pendingDefaults,result.defaultsJson)}else manager.install(data.inputStream(),cancel=cancel)
+        if(delivery){val result=manager.installDelivery(data.inputStream(),cancel);cancel.check();writeDefaults(pendingDefaults,result.defaultsJson);val importedLibrary=result.library;if(importedLibrary!=null){writeDefaults(libraryFile,importedLibrary.json);library=importedLibrary}else{libraryFile.delete();library=null}}else manager.install(data.inputStream(),cancel=cancel)
         publish(token,state,false)
+    }
+    fun applyGestureEffects()=task {token->
+        val bytes=pendingGestureFile.readBytes();val prepared=GestureEffectArchive.loadZip(bytes.inputStream())
+        writeDefaults(gestureFile,bytes);gestureSelectionFile.delete();gestureSelectionSnapshot=emptySet();gesturePack=prepared;gestureStamp="archive:${gestureFile.lastModified()}:${gestureFile.length()}"
+        pendingGestureFile.delete();publish(token,state,false,reloadResources=false)
+    }
+    fun clearGestureEffects()=task {token->gestureFile.delete();pendingGestureFile.delete();gestureSelectionFile.delete();gestureSelectionSnapshot=emptySet();gesturePack=null;gestureStamp=null;publish(token,state,false)}
+    /** 卡片点击显式启用/关闭；同手势的整组配置互斥，其他手势保持。 */
+    fun selectGesture(resource:InstalledGestureResource)=task {token->
+        val next=gestureSelectionSnapshot.toMutableSet()
+        if(!next.remove(resource.hash)){
+            fun triggers(r:InstalledGestureResource):Set<String>{val a=org.json.JSONArray(r.descriptor.rulesJson);return (0 until a.length()).map{a.getJSONObject(it).getString("gesture")}.toSet()}
+            val incoming=triggers(resource)
+            val conflicting=gestureResourcesSnapshot.filter{it.hash in next&&triggers(it).any(incoming::contains)}.map{it.hash}.toSet()
+            next.removeAll(conflicting);next.add(resource.hash)
+        }
+        activateGestureSelection(next);publish(token,state,false)
+    }
+    private fun activateGestureSelection(hashes:Collection<String>){
+        val prepared=manager.prepareGestureSelection(hashes)
+        val data=org.json.JSONArray(hashes.toList()).toString().toByteArray()
+        writeDefaults(gestureSelectionFile,data);gestureSelectionSnapshot=hashes.toSet();gesturePack=prepared;gestureStamp="selection:${data.toString(Charsets.UTF_8)}"
+    }
+    fun deleteGesture(resource:InstalledGestureResource)=task {token->
+        if(resource.hash in gestureSelectionSnapshot)activateGestureSelection(gestureSelectionSnapshot-resource.hash)
+        manager.deleteGestureResource(resource.hash);publish(token,state,false)
     }
     /** 用户显式采用后才替换默认语言/搭配；下次启动仍沿用同一默认JSON。 */
     fun applyDeliveryDefaults()=task {token->
         val bytes=pendingDefaults.readBytes();val next=BeautyResourceDefaults.parse(bytes)
         require(next.state.resolveInstalled(manager.list()).missingSlots.isEmpty()){"DELIVERY_DEFAULT_MISSING"}
         composer.prepare(next.state).close()
+        val defaultGestures=library?.gestureResources?.filter{it.defaultEnabled}?.map{it.sha256}
+        if(library?.gestureCategory!=null){manager.prepareGestureSelection(defaultGestures.orEmpty());activateGestureSelection(defaultGestures.orEmpty())}
         writeDefaults(activeDefaults,bytes);defaults=next;backgroundOverride=null;motionOverride=null
         publish(token,next.state,true)
     }
@@ -180,10 +230,11 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
         val old=current;current=composed;state=next;old?.close()
         val list=requireNotNull(installedSnapshot);val previews=previewSnapshot
         val locale=defaults?.takeUnless{it.followHost}?.locale
-        val order=defaults?.categoryOrder?:ResourceCategory.entries
+        val order=library?.categories?.map{it.id}?:defaults?.categoryOrder?:ResourceCategory.entries
         val deliveryAvailable=pendingDefaults.isFile
         val restoreError=sceneRestoreError
-        main.post {if(token==generation&&!closed)ui.value=Ui(list,ui.value?.online.orEmpty(),settings,next.selections,enabled=next.enabled,locale=locale,order=order,previews=mergePreviews(previews),deliveryDefaultsAvailable=deliveryAvailable,error=restoreError)}
+        val appliedGestures=gesturePack;val pendingGestures=pendingGestureFile.isFile
+        main.post {if(token==generation&&!closed)ui.value=Ui(list,ui.value?.online.orEmpty(),settings,next.selections,enabled=next.enabled,locale=locale,order=order,previews=mergePreviews(previews),deliveryDefaultsAvailable=deliveryAvailable,error=restoreError,gestureEffects=appliedGestures,pendingGestureEffects=pendingGestures,library=library,gestureResources=gestureResourcesSnapshot,gestureSelection=gestureSelectionSnapshot,gesturePreviews=gesturePreviewsSnapshot)}
     }
     private fun task(action:(Long)->Unit) {
         if(closed)return

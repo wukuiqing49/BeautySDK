@@ -4929,5 +4929,75 @@
         "rerunAfterWakePassed": true
       }
     }
+  },
+  "resourceLibrary20261028": {
+    "date": "2026-10-28",
+    "sourceFingerprint": "abb38e3ad895fe75832bf94f31ba1123deb1955cb5d55e42270f1a9c16873ad6",
+    "device": "Pixel 8 / Android 16 API 36",
+    "androidJvm": {
+      "tests": 8,
+      "failures": 0
+    },
+    "web": {
+      "tests": 49,
+      "failures": 0
+    },
+    "deviceRegression": {
+      "tests": 12,
+      "failures": 0,
+      "seconds": 16.136
+    },
+    "deviceLibraryFinal": {
+      "tests": 5,
+      "failures": 0,
+      "seconds": 4.513
+    },
+    "uniqueDeviceTests": 13,
+    "excluded": [
+      "iOS compiler/runtime",
+      "online publication",
+      "real human visual quality",
+      "sustained performance",
+      "font scaling and landscape for new controls"
+    ],
+    "sourceManifest": "evidence/resource-library-20261028/summary.json",
+    "webSourceFingerprint": "f361c8e5da84f17da0d48fe890d2e2fd15d1aa02b1d432033ce75576fc59db7a",
+    "lint": "passed"
+  },
+  "gestureLibrary20261028": {
+    "status": "passed",
+    "caseIds": [
+      "GLIB-01",
+      "GLIB-02",
+      "GLIB-03",
+      "GLIB-04"
+    ],
+    "commit": "50457555bee1d8022784701220104f8b0ae61d2d",
+    "sourceFingerprint": "1859902d557d6a5b9ba4d6ff502d01b56ce619fb6bb47c19c1c8c0b532aabb9d",
+    "webSourceFingerprint": "fa2dc3b6c2759c23473e06ad0de1bda69936f4b26188439346f536f31eeb186d",
+    "environment": "Pixel 8 Android16 API36",
+    "variant": "debug",
+    "results": {
+      "deviceTests": 18,
+      "deviceFailures": 0,
+      "deviceSeconds": 17.793,
+      "webTests": 53,
+      "webFailures": 0,
+      "resourceJvmTests": 8,
+      "resourceJvmFailures": 0,
+      "build": "passed",
+      "lint": "passed",
+      "uiWarnings": 0,
+      "i18nWarnings": 0,
+      "architectureWarnings": 0
+    },
+    "evidence": "evidence/gesture-library-20261028/summary.json",
+    "excluded": [
+      "iOS full-library support",
+      "web publication",
+      "human gesture accuracy and visual quality",
+      "sustained performance and vendor streaming",
+      "landscape/font-scaling visual acceptance"
+    ]
   }
 }

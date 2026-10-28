@@ -1,6 +1,6 @@
 # 手势识别与宿主事件接入
 
-Android 可选本地手势分析。继续使用固定 MediaPipe Tasks Vision 0.10.32 和 GPUPixel，不引入 ONNX、新的原生库或动画素材。SDK 只输出观测/事件，动画由宿主实现；不自动修改 BeautySettings、主题或视频内容。iOS/Web 未实现此手势模块。
+Android 可选本地手势分析。继续使用固定 MediaPipe Tasks Vision 0.10.32 和 GPUPixel，不引入 ONNX、新的原生库或动画素材。分析模块只输出观测/事件，不自动修改 BeautySettings 或主题。新增可选 GestureEffectPlayer/GestureEffectRenderer，宿主显式接入后可播放一次透明图集动画或定点贴纸，合成进入视频纹理；默认不安装素材或自动开启分析。Android Demo 已接入；iOS/Web 未实现摄像头手势分析。独立包与接入契约见 [手势效果包V1](../resources/gestures/v1/README.md)。
 
 ## 能力范围
 

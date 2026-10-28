@@ -38,6 +38,8 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
     var onImage: (GpuDemoStats) -> Unit = {}
     /** 主线程限频交付手势快照及一次性事件；只返回数据，不播放或修改视频特效。 */
     var onGestures: (GestureSnapshot, List<GestureEvent>) -> Unit = { _, _ -> }
+    @Volatile private var gestureEffects:GestureEffectPack?=null
+    fun setGestureEffects(pack:GestureEffectPack?) {gestureEffects=pack;requestRender()}
     /** 主线程诊断：背景是否请求、是否拿到当前有效蒙版。 */
     var onSceneStatus:(Boolean,Boolean)->Unit={_,_->}
     /** 主线程接收CameraX绑定状态；BOUND不代表已经显示第一帧。 */
@@ -257,6 +259,9 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
             override fun passthrough(frame: TextureFrame): Boolean { deliveredFrame=frame; return true }
         }
         private var sceneRenderer: BeautySceneRenderer?=null
+        private val gesturePlayer=GestureEffectPlayer()
+        private var gestureGeneration=-1L
+        private val gestureUiEvents=java.util.ArrayDeque<GestureEvent>()
         private var pipelineProcessor: BeautyRenderer? = null
         private var pipelineEpoch = -1L
         private var pipelineInfo: FrameInfo? = null
@@ -403,6 +408,13 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                     gpuPixel?.close(); gpuPixel = null; gpuPixelFailure = null
                     previousBeautyBackend = selected.beautyBackend
                 }
+                val gestureToken=gestures.generationToken()
+                if(gestureGeneration!=gestureToken || pipelineEpoch!=token){gesturePlayer.reset();gestureUiEvents.clear();gestureGeneration=gestureToken}
+                gesturePlayer.configure(if(original || !renderRequest.needsGestures)null else gestureEffects)
+                val gestureSnapshot=gestures.snapshot(info)
+                val frameGestureEvents=gestures.pollEvents(info)
+
+                for(event in frameGestureEvents){if(gestureUiEvents.size==32)gestureUiEvents.removeFirst();gestureUiEvents.addLast(event)}
                 // 相机与直播引擎复用同一入口；原图/后端失败也统一交回原始纹理。
                 val effect = try {
                     val latchedFailure=!original && selected.beautyBackend==DemoBeautyBackend.GPUPIXEL && gpuPixelFailure!=null
@@ -420,7 +432,7 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                                 processor.render(frame,settings,face)
                             override fun close() = Unit
                         },foreground).also { sceneRenderer=it }
-                        val active=BeautyEnginePipeline(renderer=composed,textureAnalysis=false,sharedAnalysis=analysis,onError={ report(it,token) })
+                        val active=BeautyEnginePipeline(renderer=GestureEffectRenderer(composed,gesturePlayer),textureAnalysis=false,sharedAnalysis=analysis,onError={ report(it,token) })
                         pipeline=active
                         connector=BeautyEngineConnector(cameraAdapter,active,onError={ report(it,token) }).also { it.start() }
                         pipelineProcessor=processor;pipelineInfo=null;pipelineEpoch=token
@@ -429,9 +441,12 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                     val entry=checkNotNull(connector)
                     val previous=pipelineInfo
                     if(pipelineEpoch!=token || previous!=null && (raw.info.timestampNs<previous.timestampNs ||
+                        raw.info.width!=previous.width || raw.info.height!=previous.height ||
+                        raw.info.rotationDegrees!=previous.rotationDegrees || raw.info.mirrored!=previous.mirrored ||
                         raw.info.timestampNs==previous.timestampNs && raw.info!=previous)) {
-                        entry.resetSource();sceneRenderer?.reset();pipelineInfo=null;pipelineEpoch=token
+                        entry.resetSource();sceneRenderer?.reset();gesturePlayer.reset();gestureUiEvents.clear();pipelineInfo=null;pipelineEpoch=token
                     }
+                    if(!original && renderRequest.needsGestures)gesturePlayer.accept(frameGestureEvents,info.timestampNs)
                     active.settings=if(original || latchedFailure) BeautySettings() else settings
                     deliveredFrame=null
                     val delivery=if(pipelineInfo==raw.info) entry.onRedraw(raw) else entry.onFrame(raw)
@@ -513,9 +528,7 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                             StickerAnchor.UPPER_LIP -> anchors.containsKey(FaceAnchor.UPPER_LIP) && anchors.containsKey(FaceAnchor.LEFT_MOUTH) && anchors.containsKey(FaceAnchor.RIGHT_MOUTH)
                         }
                     }
-                    val gestureToken=gestures.generationToken()
-                    val gestureSnapshot=gestures.snapshot(info)
-                    val gestureEvents=gestures.pollEvents(info)
+                    val gestureEvents=gestureUiEvents.toList();gestureUiEvents.clear()
                     val backgroundEnabled=!original && settings.scene.needsSegmentation
                     val backgroundReady=backgroundEnabled && foreground.snapshot(info)!=null
                     val publicationEpoch = token

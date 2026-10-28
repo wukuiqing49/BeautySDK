@@ -159,4 +159,13 @@
     <string name="camera_gesture_event">Gesture: %1$s · %2$s</string>
     <string-array name="gesture_names"><item>Closed fist</item><item>Open palm</item><item>Pointing up</item><item>Thumb down</item><item>Thumb up</item><item>Victory</item><item>I love you</item><item>OK</item><item>Finger count 0</item><item>Finger count 1</item><item>Finger count 2</item><item>Finger count 3</item><item>Finger count 4</item><item>Finger count 5</item><item>Finger heart</item><item>Two-hand heart</item><item>Prayer</item><item>Wave</item><item>Clap</item><item>Circle</item><item>Pinch / drag</item><item>Two-hand scale</item></string-array>
     <string-array name="gesture_phases"><item>Triggered</item><item>Started</item><item>Updated</item><item>Ended</item><item>Cancelled</item></string-array>
+    <string name="resources_gesture_apply">应用导入的手势效果</string>
+    <string name="resources_gesture_clear">清除手势效果</string>
+    <string name="resources_gesture_info">已配置 %1$d 种手势效果，在相机中开启手势识别后触发</string>
+    <string name="resource_parameter_defaults">Restore parameter defaults</string>
+    <string name="resource_parameter_value">%1$s · %2$s: %3$.2f</string>
+    <string name="resources_gesture_category">Gesture Effects</string>
+    <string name="resources_gesture_active">Enabled · %1$s</string>
+    <string name="resources_gesture_available">Tap to enable · %1$s</string>
+    <string name="resources_list_separator">, </string>
 </resources>

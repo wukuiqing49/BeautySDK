@@ -8,7 +8,7 @@ import java.io.File
 class LabSceneBackup:ExternalResource() {
     private val folder get()=File(InstrumentationRegistry.getInstrumentation().targetContext.filesDir,"beauty_resources")
     private var saved:Map<String,ByteArray> = emptyMap()
-    private fun files()=listOf(File(folder,"user-state.json"),File(folder,"scene-state.json"),File(folder,"scene-state.json.bak"))+
+    private fun files()=listOf(File(folder,"library.json"),File(folder,"gesture-selection.json"),File(folder,"user-state.json"),File(folder,"scene-state.json"),File(folder,"scene-state.json.bak"))+
         File(folder,"scene-images").listFiles().orEmpty().filter{it.isFile}
     private fun drain(){
         val queue=ResourceCenterModel::class.java.getDeclaredField("resourceIo").apply{isAccessible=true}.get(null) as java.util.concurrent.ExecutorService

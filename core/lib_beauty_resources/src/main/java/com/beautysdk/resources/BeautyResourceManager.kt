@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 class ResourceCancellation {private val flag=AtomicBoolean();fun cancel(){flag.set(true)};fun check(){check(!flag.get()&&!Thread.currentThread().isInterrupted){"CANCELLED"}}}
 enum class ResourceInstallStage { COPYING, DOWNLOADING, VERIFYING, INSTALLING, INSTALLED }
 data class ResourceProgress(val stage:ResourceInstallStage,val completed:Long=0,val total:Long?=null)
+data class InstalledGestureResource(val hash:String,val descriptor:LibraryGestureResource)
 data class InstalledResource(val hash:String,val descriptor:ResourceDescriptor)
 data class CatalogResource(val manifest:ResourceDescriptor,val url:String,val previewUrl:String,val bytes:Int,val sha256:String)
 /** HTTP流和连接由close负责释放；宿主可注入已有客户端，避免强依赖网络框架。 */
@@ -20,9 +21,9 @@ interface ResourceDownload:AutoCloseable {val input:InputStream;val length:Long?
 fun interface ResourceTransport {fun open(url:String):ResourceDownload}
 /** 统一内置/本地/网络安装器。目录私有、内容不可变、切包不覆盖；不持有相机或Activity。 */
 class BeautyResourceManager(private val folder:File,private val transport:ResourceTransport?=null) {
-    private val installed=File(folder,"installed");private val staging=File(folder,"staging");private val catalogs=File(folder,"catalogs")
+    private val gestureInstalled=File(folder,"gesture-installed");private val installed=File(folder,"installed");private val staging=File(folder,"staging");private val catalogs=File(folder,"catalogs")
     private val prepared=mutableMapOf<String,PreparedResource>();private val references=mutableMapOf<String,Int>()
-    init {listOf(folder,installed,staging,catalogs).forEach {check(it.isDirectory||it.mkdirs())}}
+    init {listOf(folder,installed,staging,catalogs,gestureInstalled).forEach {check(it.isDirectory||it.mkdirs())}}
     /** 统一复制输入、校验、提交；同一管理器串行化安装，重复内容直接复用。来源不参与文件名。 */
     @Synchronized fun install(input:InputStream,expected:CatalogResource?=null,cancel:ResourceCancellation=ResourceCancellation(),progress:(ResourceProgress)->Unit={}):InstalledResource {
         progress(ResourceProgress(if(expected==null)ResourceInstallStage.COPYING else ResourceInstallStage.DOWNLOADING))
@@ -52,12 +53,30 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
         val pack=ResourceDeliveryPack.read(input.use {bounded(it,33554432){cancel.check()}})
         val before=list();val known=before.associateBy {it.descriptor.id to it.descriptor.revision}
         for(item in pack.resources)known[item.entry.manifest.id to item.entry.manifest.revision]?.let {require(it.hash==item.entry.sha256){"REVISION_CONFLICT"}}
-        val added=mutableListOf<InstalledResource>()
+        val gestureBefore=listGestureResources()
+        for(item in pack.gestures)gestureBefore.firstOrNull{it.descriptor.id==item.descriptor.id&&it.descriptor.revision==item.descriptor.revision}?.let{require(it.hash==item.descriptor.sha256){"GESTURE_REVISION_CONFLICT"}}
+        val added=mutableListOf<InstalledResource>();val addedGestures=mutableListOf<String>()
         try {
             for(item in pack.resources){cancel.check();val r=install(item.bytes.inputStream(),item.entry,cancel);if(before.none{it.hash==r.hash})added+=r}
-            return ResourceDeliveryResult(pack.resources.map {InstalledResource(it.entry.sha256,it.entry.manifest)},pack.defaults,pack.defaultsJson)
-        } catch(t:Throwable){added.asReversed().forEach {uninstall(it.hash)};throw t}
+            for(item in pack.gestures){cancel.check();val hash=item.descriptor.sha256;val target=File(gestureInstalled,hash)
+                if(!target.isDirectory){val temp=File(staging,java.util.UUID.randomUUID().toString());check(temp.mkdir());try{File(temp,"package.zip").writeBytes(item.bytes);File(temp,"preview.png").writeBytes(item.preview);File(temp,"resource.json").writeBytes(item.descriptor.json);cancel.check();check(temp.renameTo(target));addedGestures+=hash}finally{temp.deleteRecursively()}}
+            }
+            return ResourceDeliveryResult(pack.resources.map {InstalledResource(it.entry.sha256,it.entry.manifest)},pack.defaults,pack.defaultsJson,pack.library,pack.gestures)
+        } catch(t:Throwable){addedGestures.forEach{File(gestureInstalled,it).deleteRecursively()};added.asReversed().forEach {uninstall(it.hash)};throw t}
     }
+    @Synchronized fun listGestureResources():List<InstalledGestureResource> = gestureInstalled.listFiles().orEmpty().filter{it.isDirectory&&it.name.matches(Regex("[0-9a-f]{64}"))}.map {dir->
+        val descriptor=LibraryGestureResource.parse(File(dir,"resource.json").readBytes());require(descriptor.sha256==dir.name);InstalledGestureResource(dir.name,descriptor)
+    }
+    @Synchronized fun gesturePreview(hash:String):ByteArray {val descriptor=listGestureResources().single{it.hash==hash}.descriptor;return File(gestureInstalled,"$hash/preview.png").readBytes().also{require(sha256(it)==descriptor.previewSha256)}}
+    /** IO配置阶段准备选择，拒绝重复手势和合计像素超限；从不自动开启检测。 */
+    @Synchronized fun prepareGestureSelection(hashes:Collection<String>):com.beautysdk.GestureEffectPack? {
+        require(hashes.size<=8&&hashes.toSet().size==hashes.size);if(hashes.isEmpty())return null
+        val available=listGestureResources().associateBy{it.hash}
+        val rules=hashes.flatMap {hash->val r=requireNotNull(available[hash]);val data=File(gestureInstalled,"$hash/package.zip").readBytes();require(sha256(data)==r.hash);com.beautysdk.GestureEffectArchive.loadZip(data.inputStream()).rules}
+        require(rules.sumOf{it.image.width.toLong()*it.image.height}<=8388608){"GESTURE_PIXEL_BUDGET"}
+        return com.beautysdk.GestureEffectPack(rules)
+    }
+    @Synchronized fun deleteGestureResource(hash:String){require(hash.matches(Regex("[0-9a-f]{64}")));check(File(gestureInstalled,hash).deleteRecursively())}
     fun download(entry:CatalogResource,cancel:ResourceCancellation=ResourceCancellation(),progress:(ResourceProgress)->Unit={}):InstalledResource {
         requireHttps(entry.url)
         return open(entry.url).use {connection->

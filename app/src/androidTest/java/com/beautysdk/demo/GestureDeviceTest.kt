@@ -126,6 +126,8 @@ class GestureDeviceTest {
         try {
             inst.runOnMainSync {
                 preview=activity.findViewById(R.id.camera_gpu_preview)
+                assertTrue(preview.options.gestureEnabled)
+                activity.findViewById<CheckBox>(R.id.camera_gesture_enabled).isChecked=false
                 assertFalse(preview.options.gestureEnabled)
                 val original=preview.onGestures
                 preview.onGestures={snapshot,events ->original(snapshot,events)

@@ -1,0 +1,11 @@
+{
+  "core/lib_beauty/src/main/java/com/beautysdk/GestureEffects.kt": "afaa202996223dfa838350a2ad30908f7dbb8ec15091429f10e728fe3a3bb21b",
+  "core/lib_beauty/src/main/java/com/beautysdk/GestureEffectArchive.kt": "6917fc4a3fb99987a0225b01992f0e25c67db2ba08a1c3296c859eee12f6017a",
+  "core/lib_beauty/src/main/java/com/beautysdk/GestureEffectRenderer.kt": "912aa2cccd80984e8063e418fa78f3934a8062f49863d8b5711651687352d375",
+  "core/lib_beauty/src/main/java/com/beautysdk/BeautySceneRenderer.kt": "b04805d969b91ef24df71ab74406e5bff464af2472459691fc4a1f30251d691b",
+  "core/lib_beauty/src/test/java/com/beautysdk/GestureEffectPlayerTest.kt": "a2d964c1a3167edd0179e614b4d2488271a6cbad02597a894be4fe844d9364a4",
+  "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "b84933e7b6ad0d26487fbd91aa6a87589e4a24d7097bd3c765af3ff7cfb3f45c",
+  "app/src/androidTest/java/com/beautysdk/demo/GestureEffectsDeviceTest.kt": "39fc4c33771c98774a5fca956a085c83ac6cd77a818013eb8c7ac5f585eb15af",
+  "app/src/androidTest/assets/gesture_effects.zip": "58f4592508389f5f6d5afd0e665494abf758fa58a8e61bfc5ec892692dd0465c",
+  "app/build/outputs/apk/debug/app-debug.apk": "84c271e3ff52cb605a4fecb5f1866f51892f16cd2b1b65ca2bac0a4f67642073"
+}

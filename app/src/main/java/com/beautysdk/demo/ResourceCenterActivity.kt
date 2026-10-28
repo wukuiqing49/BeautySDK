@@ -13,6 +13,8 @@ import com.wkq.base.activity.BaseActivity
 class ResourceCenterActivity : BaseActivity<ActivityResourceCenterBinding>() {
     private lateinit var center:ResourceCenterController
     private var category=ResourceCategory.BEAUTY
+    private var gestureSelected=false
+    private var renderedGesture=false
     override fun initView() {
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) {view,insets ->
@@ -23,9 +25,15 @@ class ResourceCenterActivity : BaseActivity<ActivityResourceCenterBinding>() {
         center=ResourceCenterController(this,binding.resourceCenter,management=true,orderChanged=::categories) {_,_->}
         categories(ResourceCategory.entries)
     }
+    private var renderedNames:List<String?> = emptyList()
     private var rendered:Pair<List<ResourceCategory>,ResourceCategory>?=null
     private fun categories(order:List<ResourceCategory>) {
-        if(rendered==(order to category))return
+        val hasGestures=::center.isInitialized&&center.hasGestureResources
+        if(!hasGestures&&gestureSelected){gestureSelected=false;center.category(category)}
+        val names=order.map{if(::center.isInitialized)center.categoryName(it)else null}+(if(hasGestures)listOf(center.gestureCategoryName())else emptyList())
+        if(rendered==(order to category)&&renderedNames==names&&renderedGesture==gestureSelected)return
+        renderedGesture=gestureSelected
+        renderedNames=names
         rendered=order to category
         val titles=listOf(R.string.effect_category_beauty,R.string.effect_category_reshape,R.string.effect_category_makeup,
             R.string.effect_category_color,R.string.effect_category_sticker,R.string.effect_category_background,
@@ -33,14 +41,19 @@ class ResourceCenterActivity : BaseActivity<ActivityResourceCenterBinding>() {
         binding.resourceCategories.removeAllViews()
         order.forEach {kind ->
             binding.resourceCategories.addView(TextView(this,null,0,R.style.CameraAction).apply {
-                setText(titles[kind.ordinal]);isSelected=kind==category
+                text=(if(::center.isInitialized)center.categoryName(kind)else null)?:getString(titles[kind.ordinal]);isSelected=!gestureSelected&&kind==category
                 alpha=if(isSelected)1f else .5f
                 val dp=resources.displayMetrics.density
                 layoutParams=android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,(48*dp).toInt())
                 setPadding((16*dp).toInt(),0,(16*dp).toInt(),0)
-                setOnClickListener {category=kind;center.category(kind);categories(order)}
+                setOnClickListener {gestureSelected=false;category=kind;center.category(kind);categories(order)}
             })
         }
+        if(hasGestures)binding.resourceCategories.addView(TextView(this,null,0,R.style.CameraAction).apply {
+            text=center.gestureCategoryName();tag="gesture_category";isSelected=gestureSelected;alpha=if(isSelected)1f else .5f
+            val dp=resources.displayMetrics.density;layoutParams=android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,(48*dp).toInt());setPadding((16*dp).toInt(),0,(16*dp).toInt(),0)
+            setOnClickListener{gestureSelected=true;center.gestureCategory();categories(order)}
+        })
     }
     override fun initData()=Unit
 }

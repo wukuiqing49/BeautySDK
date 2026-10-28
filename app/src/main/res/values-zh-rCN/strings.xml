@@ -156,4 +156,13 @@
     <string name="camera_gesture_event">手势：%1$s · %2$s</string>
     <string-array name="gesture_names"><item>握拳</item><item>张开手掌</item><item>食指向上</item><item>拇指向下</item><item>点赞</item><item>比耶</item><item>我爱你</item><item>OK</item><item>伸指数量 0</item><item>伸指数量 1</item><item>伸指数量 2</item><item>伸指数量 3</item><item>伸指数量 4</item><item>伸指数量 5</item><item>单手捏心</item><item>双手比心</item><item>合十</item><item>挥手</item><item>拍手</item><item>画圈</item><item>捏合 / 拖动</item><item>双手缩放</item></string-array>
     <string-array name="gesture_phases"><item>触发</item><item>开始</item><item>更新</item><item>结束</item><item>取消</item></string-array>
+    <string name="resources_gesture_apply">应用导入的手势效果</string>
+    <string name="resources_gesture_clear">清除手势效果</string>
+    <string name="resources_gesture_info">已配置 %1$d 种手势效果，在相机中开启手势识别后触发</string>
+    <string name="resource_parameter_defaults">恢复参数默认值</string>
+    <string name="resource_parameter_value">%1$s · %2$s：%3$.2f</string>
+    <string name="resources_gesture_category">手势动画</string>
+    <string name="resources_gesture_active">已启用 · %1$s</string>
+    <string name="resources_gesture_available">点击启用 · %1$s</string>
+    <string name="resources_list_separator">、</string>
 </resources>

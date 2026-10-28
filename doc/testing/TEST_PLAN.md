@@ -1,3 +1,13 @@
+# 2026-10-28：分类资源库与JSON参数配置
+
+- LIBRARY-01：Web全量50资源分类ZIP往返、展开文件与package.zip一致、目录摘要；关联delivery/library/pack/workspace-model。
+- LIBRARY-02：Android ResourceLibraryDeviceTest：分类导入、15属性、范围/步长/默认值、语言回退、篡改/穿越/缺翻译拒绝、旧包兼容。
+- LIBRARY-03：清单驱动控件调参、默认恢复、保存重开；真实Camera页自定义分类/效果名、参数提交到预览设置、背景专用控件保留。
+- 共享消费者：ResourceDeliveryDeviceTest、ResourceCenterUiDeviceTest、GpuPixelControlsDeviceTest、SceneControlsDeviceTest；资源模块8项JVM，Web49项、app编译/lint和UI/i18n/架构门禁。
+- 保护设备已有资源状态和场景文件；LabSceneBackup补充library.json。仅保存无相机图像的合成控件截图，不做真人画质、持续推流、iOS或线上发布结论。新控件横屏/字体缩放未验收。
+
+---
+
 # 2026-10-28：配置记忆专项
 
 变更宿主ResourceCenterModel的场景存档、跨页面IO顺序及退出时的已接受任务处理。新增ScenePersistenceDeviceTest，验证图片/焦点/虚化、运镜倍率周期/关键帧、参数和开关在清除ViewModel后重新创建恢复；不等待保存就退出、显式关闭持久化、新资源替换旧覆盖，最后检查真实相机渲染选项。LabSceneBackup在串行队列排空后恢复资源状态、场景JSON与图片，既有写状态的用例同步使用该Rule。
@@ -568,3 +578,24 @@ NativeMaskDeviceTest三项覆盖Kotlin参考逐像素等价、0/90/180/270旋转
 ## 2026-10-28 轮廓及运动对照增量
 
 SceneDeviceTest新增软置信度、同纹理更新、p-offset移出边界不复制旧前景和公开人像实际GL导出；MaskMotionDeviceTest验证已知公开人像±12/±24px位移、平坦/无前景、相反局部运动及场景切换拒绝；BeautySceneTest验证校正时刻之前拒绝、原始快照回退、缩放与原采样250ms过期。选原相关21项＋新增3个匹配用例＋2个场景用例，共26项设备功能；核心119、宿主13项JVM。横移测量在采样完成后计算IoU/CPU诊断图，减少测试自身干扰；同版本分别显式开/关补偿，测量执行通过与动态画质验收分开。GPU推理、温度/负载未严格控制，默认关闭未稳定获益的补偿。构建/Native/R8/配置恢复范围见报告。
+
+
+## 2026-10-28 手势效果绑定增量
+
+- GESTURE-EFFECT-PLAYER：GestureEffectPlayerTest，验证一次动画帧推进/到时清理、播放中忽略与冷却、重复ID、过期/未来事件、非TRIGGER、停用/reset/倒退时间线、非法配置。
+- GESTURE-EFFECT-ARCHIVE：GestureEffectsDeviceTest，使用官网实际导出的共同ZIP，读取动画与定点PNG、严格拒绝未知字段/伪数字/路径/重复绑定/图集不匹配。
+- GESTURE-EFFECT-GL：同设备类，真实ES3离屏蓝底+半透明红/绿图集，验证alpha、帧切换、结束旁路和4旋转×2镜像的显示位置。仅测试读回，生产管线不额外读回。
+- GESTURE-EFFECT-IMPORT：资源页导入仅暂存、明确应用、持久化重开及清除；备份恢复手势两个ZIP与原场景状态。设备唤醒解锁后执行，不清空用户数据。
+- 共享SceneGlPass选择SceneDeviceTest；公共导入口选择ResourceDeliveryDeviceTest；手势分支与默认开关选择GestureDeviceTest。默认开关断言与2026-10-28现有Demo要求一致（默认开启，支持显式关闭再启用）；SDK分析默认关闭保持不变。
+- Web：Node严格包往返、实际7绑定/4图集导出回读、原始图集保留、390px弹窗无横向溢出；复测原50素材与14参数预演。
+- 未覆盖真人手势准确率、持续运行温升、厂商远端推流、iOS和小屏Android横屏/大字体视觉。本轮不是发布性能验收。
+
+
+## GLIB：手势动画完整资源库 V2（2026-10-28）
+
+- GLIB-01 Web完整库：delivery/gesture-delivery/library/workspace-model及UI导出变更；4内置+保存绑定、9类、预览与规则往返、默认冲突/篡改拒绝，旧V1兼容。npm test及本地浏览器真实PNG封面回读。
+- GLIB-02 Android安装：BeautyResourceLibrary/LibraryGestureResource/ResourceDeliveryPack/Manager；真实Web交付夹具、4组组合、预览、多语言、篡改前置拒绝无安装。GestureResourceLibraryDeviceTest前2项。
+- GLIB-03 宿主配置：ResourceCenterModel/Controller/Activity；资源卡片点击启用两组、重开恢复、采用默认仅1组、删除取消；导入不启用。该类第3项；LabSceneBackup及额外配置/新增安装恢复，不清空应用。
+- GLIB-04 兼容回归：旧独立手势包导入/应用/重开、真实ES3动画、常规清单参数/默认、多资源安装和独立资源页。GestureEffects/ResourceLibrary/ResourceDelivery/ResourceCenterUiDeviceTest，并构建/lint、资源JVM8项及UI/i18n/架构门禁。
+
+排除：识别器/GL合成算法本轮未修改，未重跑模型准确率或持续性能；未实现iOS完整库、网络手势单项目录下载。字体缩放和横屏视觉仍待专门矩阵，设备功能通过不替代视觉验收。

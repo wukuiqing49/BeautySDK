@@ -50,7 +50,7 @@ internal class SceneGlPass : AutoCloseable {
     private var closed=false
     init { check(context!=EGL14.EGL_NO_CONTEXT) }
     private fun checkOwner() { check(!closed && owner===Thread.currentThread() && EGL14.eglGetCurrentContext()==context) }
-    fun render(frame:TextureFrame,scene:BeautyScene,mask:ForegroundMask?,crop:FloatArray):TextureFrame {
+    fun render(frame:TextureFrame,scene:BeautyScene,mask:ForegroundMask?,crop:FloatArray,overlay:GestureEffectFrame?=null):TextureFrame {
         checkOwner()
         require(frame.target!=TextureTarget.TEXTURE_2D || frame.textureId!=texture)
         val saved=State()
@@ -72,7 +72,7 @@ internal class SceneGlPass : AutoCloseable {
             GL.glUniform2f(uniform("maskOffset"),mask?.offsetX?:0f,mask?.offsetY?:0f)
             GL.glUniform1f(uniform("blurRadius"),scene.blurRadius)
             GL.glUniform2f(uniform("focus"),scene.backgroundFocusX,scene.backgroundFocusY)
-            GL.glUniform1i(uniform("mode"),if(mask==null) 0 else scene.background.ordinal)
+            GL.glUniform1i(uniform("mode"),if(overlay!=null) 4 else if(mask==null) 0 else scene.background.ordinal)
             GL.glUniform3f(uniform("backgroundColor"),((scene.backgroundColor ushr 16) and 255)/255f,
                 ((scene.backgroundColor ushr 8) and 255)/255f,(scene.backgroundColor and 255)/255f)
             val swap=frame.info.rotationDegrees==90 || frame.info.rotationDegrees==270
@@ -80,6 +80,14 @@ internal class SceneGlPass : AutoCloseable {
             GL.glUniform2f(uniform("aspects"),displayAspect,scene.backgroundImage?.let { it.width.toFloat()/it.height } ?: displayAspect)
             GL.glUniform1i(uniform("rotation"),frame.info.rotationDegrees/90)
             GL.glUniform1i(uniform("mirrored"),if(frame.info.mirrored) 1 else 0)
+            overlay?.let {
+                val r=it.rule
+                val h=r.width*displayAspect*r.frameHeight/r.frameWidth
+                GL.glUniform4f(uniform("overlayRect"),r.x-r.width/2,r.y-h/2,r.width,h)
+                val rows=(r.frameCount+r.columns-1)/r.columns
+                GL.glUniform4f(uniform("overlayUv"),(it.index%r.columns).toFloat()/r.columns,(it.index/r.columns).toFloat()/rows,1f/r.columns,1f/rows)
+                GL.glUniform2f(uniform("artSize"),r.image.width.toFloat(),r.image.height.toFloat())
+            }
             val initializeExtra=extra[0]==0
             if(initializeExtra) GL.glGenTextures(2,extra,0)
             GL.glBindBuffer(GL.GL_PIXEL_UNPACK_BUFFER,0)
@@ -109,7 +117,7 @@ internal class SceneGlPass : AutoCloseable {
             if(art!=null && art!==lastImage) {
                 val bytes=ByteBuffer.allocateDirect(art.width*art.height*4)
                 for(y in 0 until art.height) for(x in 0 until art.width) {
-                    val c=art.pixel(x,y);bytes.put((c ushr 16).toByte()).put((c ushr 8).toByte()).put(c.toByte()).put(255.toByte())
+                    val c=art.pixel(x,y);bytes.put((c ushr 16).toByte()).put((c ushr 8).toByte()).put(c.toByte()).put((if(overlay!=null)c ushr 24 else 255).toByte())
                 }
                 bytes.flip();GL.glTexImage2D(GL.GL_TEXTURE_2D,0,GL.GL_RGBA,art.width,art.height,0,GL.GL_RGBA,GL.GL_UNSIGNED_BYTE,bytes)
                 lastImage=art
@@ -236,7 +244,7 @@ internal class SceneGlPass : AutoCloseable {
         """.trimIndent()
         private val FRAGMENT="""
             in vec2 uv;out vec4 color;
-            uniform mat4 transform;uniform vec4 crop;uniform vec2 size,aspects,focus,maskSize,maskOffset;
+            uniform mat4 transform;uniform vec4 crop,overlayRect,overlayUv;uniform vec2 artSize;uniform vec2 size,aspects,focus,maskSize,maskOffset;
             uniform sampler2D maskImage,backgroundImage;
             uniform int mode,rotation,mirrored;uniform float blurRadius;uniform vec3 backgroundColor;
             vec4 sampleImage(vec2 p) { return texture(image,(transform*vec4(clamp(p,0.0,1.0),0.0,1.0)).xy); }
@@ -277,6 +285,15 @@ internal class SceneGlPass : AutoCloseable {
             }
             void main() {
                 vec2 p=crop.xy+uv*crop.zw;vec4 source=sampleImage(p);
+                if(mode==4) {
+                    vec2 q=(upright(p)-overlayRect.xy)/overlayRect.zw;
+                    if(any(lessThan(q,vec2(0.0)))||any(greaterThan(q,vec2(1.0)))) {color=source;return;}
+                    vec2 edge=0.5/artSize;
+                    vec2 artUv=clamp(overlayUv.xy+q*overlayUv.zw,overlayUv.xy+edge,overlayUv.xy+overlayUv.zw-edge);
+                    vec4 art=texture(backgroundImage,artUv);
+                    float alpha=art.a+source.a*(1.0-art.a);
+                    color=vec4((art.rgb*art.a+source.rgb*source.a*(1.0-art.a))/max(alpha,0.00001),alpha);return;
+                }
                 if(mode==0) { color=source;return; }
                 float a=foregroundAlpha(p,source.rgb);
                 // 完整前景无需执行背景虚化的25次采样。

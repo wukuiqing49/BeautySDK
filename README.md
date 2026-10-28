@@ -1,133 +1,189 @@
-# Demo入口与效果调整（2026-10-27）
-
-首页“资源中心”独立管理导入、HTTPS目录下载及已安装资源；下载/导入不自动启用。相机默认大屏显示处理结果、小窗显示原图，底部按分类选择已安装效果与调节参数，不混入网络或文件管理。背景小图的显式高清映射、配置状态和限制见[场景效果](doc/SDK_SCENE_EFFECTS.md)。
-
 # BeautySDK
 
-Android 直播视频帧美颜与挂件 SDK，API 24+，JDK 17。引擎提供帧 → SDK 处理 → 引擎编码推流；核心美颜 SDK 不接管摄像头、音频、编码或推流；可选 lib_camera 为功能测试提供采集输入。
+**面向直播与实时视频的 Android 美颜、贴纸和场景效果 SDK，配套可视化效果工坊。**
 
-## 模块与能力
+以 **MediaPipe + GPUPixel + OpenGL ES 3** 为主要处理链路，提供美颜、美型、美妆、调色、人脸贴纸、虚拟背景、数字运镜和手势事件能力。通过统一资源包，把素材制作、效果搭配、资源交付与 Android 加载连接起来。
+
+SDK 接收宿主提供的视频帧，处理后交回宿主；摄像头、音频、编码和推流由宿主或直播引擎管理。仓库附带 CameraX Demo，便于调试和验证。
+
+[效果工坊](https://beautystickerworkshop.pages.dev/) · [工坊源码](https://github.com/wukuiqing49/BeautyStickerWorkshop) · [SDK 接入文档](core/lib_beauty/README.md) · [资源协议](resources/unified/v1/README.md) · [测试报告](doc/testing/TEST_REPORT.md)
+
+> 当前处于原型与集成验证阶段。Android 已有构建、单元测试和 Pixel 8 设备夹具证据；真实直播引擎接入、真人动态画质与持续性能仍待验收。详细验证范围以测试报告为准。
+
+## SDK 能做什么
+
+### 美颜、美型与美妆
+
+| 能力 | 已实现内容 |
+| --- | --- |
+| 基础美颜 | 磨皮、美白，强度可调 |
+| 美型 | 实验性二维瘦脸、大眼，以及鼻、下巴、嘴部形变参数 |
+| 美妆 | 局部口红、腮红，透明 PNG 图片睫毛及绑定配置 |
+| 调色 | 红润、亮度、对比度、饱和度、锐化与暖冷色调 |
+| 参数组合 | 通过 `BeautySettings` 统一配置，支持预设、单类资源与完整主题 |
+
+Android 主线使用 GPUPixel 固定版本的 Shader/LUT 源码适配，由 C++/JNI 在宿主当前 EGL 上下文执行。它不包含完整上游运行时或其人脸检测器；人脸定位由 MediaPipe 提供。基础 CPU/OpenGL 实现保留作参考与对照。
+
+美型和美妆依赖有效的人脸关键点；无人脸、结果过期或关键点不足时跳过相关效果。二维美型不包含三维遮挡或侧脸透视保证。来源、实现与限制见 [GPUPixel 模块说明](core/lib_beauty_gpupixel/README.md)。
+
+### 人脸定位与 PNG 贴纸
+
+- 本地 MediaPipe Face Landmarker，支持单人脸 **478 个关键点**及语义锚点。
+- 程序化眼镜、胡子与帽子，以及最多三层的静态透明 PNG 贴纸包。
+- 支持眼镜、胡子、帽子等独立资源槽位，可组合佩戴；同槽位资源互斥。
+- 支持素材缩放、偏移、旋转和锚点布局；无有效人脸时隐藏人脸挂件。
+- 提供实验性帧间运动跟踪，允许关闭并与模型检测结果对照。
+
+贴纸制作规范见 [贴纸手册](doc/stickers/README.md)，跨端包格式见 [V1 贴纸协议](resources/stickers/v1/README.md)。当前资源执行器不包含动态序列帧贴纸或 3D 挂件。
+
+### 虚拟背景与数字运镜
+
+- 本地人像分割，支持背景虚化、纯色背景与静态图片背景。
+- 支持周期推近、水平摇移、人脸跟随和关键帧运镜。
+- 场景合成顺序：**背景 → 美颜与贴纸 → 数字运镜**，输出画面尺寸保持不变。
+- 分割独立异步运行，支持 CPU、GPU 与 GPU 优先策略；过期或无有效蒙版时恢复原背景。
+
+快速移动、转头、头发细节和遮挡边缘仍需优化与真人验收；实验性蒙版运动校正默认关闭。实现与接入见 [场景效果说明](doc/SDK_SCENE_EFFECTS.md)。
+
+### 手势识别与交互事件
+
+- 官方模型支持握拳、张掌、食指向上、点赞、倒赞、比耶与 I Love You 七种静态分类。
+- 提供每只手 21 个二维关键点、左右手分类及模型置信度。
+- 实验性规则支持 OK、伸指数量 0～5、单/双手比心、合十、挥手、拍手、画圈、捏合拖动及双手缩放。
+- 输出稳定触发及 `START / UPDATE / END / CANCEL` 等事件，供宿主连接动画、交互或业务逻辑。
+
+**SDK 输出识别结果和事件，动画播放由宿主实现。** 自定义手势是二维几何与时序规则，不是额外训练的模型。公共手势运行时默认关闭；相机 Demo 按体验需求默认开启。接入与事件去重见 [手势文档](doc/SDK_GESTURES.md)。
+
+### 统一资源管理
+
+可选的 `lib_beauty_resources` 将美颜、美型、美妆、调色、贴纸、背景、运镜和套装纳入统一管理：
+
+- 内置资源、本地 ZIP 和显式 HTTPS 下载共用校验与安装入口。
+- 支持名称、说明、封面、语言翻译、分类、作用域和能力声明。
+- 使用 SHA-256 固定资源内容，支持修订、默认配置、组合选择与用户状态恢复。
+- 支持安装、卸载、离线目录缓存、下载进度和取消；使用中的资源受引用保护。
+- 包读取校验路径、文件预算、PNG、摘要和能力，准备成功后发布完整配置。
+
+资源下载、安装与持久化不在视频帧处理回调中执行。核心美颜库不声明联网权限；网络资源组件由宿主显式使用。详见 [资源管理模块](core/lib_beauty_resources/README.md)。
+
+## 配套效果工坊
+
+[BeautyStickerWorkshop 效果工坊](https://beautystickerworkshop.pages.dev/) 是独立 Web 项目，面向素材制作、参数配置和资源交付。图片与方案在浏览器本地处理，不采集摄像头、不上传人像素材；SDK 仓库保留资源协议、Android 加载器和消费示例。
+
+### 制作、搭配与交付
+
+| 工坊能力 | 用途 |
+| --- | --- |
+| 八分类工作区 | 选择美颜、美型、美妆、调色、贴纸、背景、运镜与套装，调整当前搭配 |
+| 贴纸编辑 | 导入透明 PNG，配置图层、锚点与布局，制作人脸挂件 |
+| 图片睫毛编辑 | 导入 PNG，编辑九个根部绑定点，设置长度、强度与右眼镜像 |
+| 背景与运镜编辑 | 制作背景资源、运镜参数及关键帧时间线 |
+| 资源信息编辑 | 配置稳定 ID、修订号、封面、名称、说明与多语言文案 |
+| 方案管理 | 本机草稿保存与恢复、最近操作撤销/重做、资源包重新打开编辑 |
+| 导出交付 | 单项 ZIP、搭配套装、默认 JSON，以及包含目录、封面与资源包的交付 ZIP |
+
+工坊提供内置制作样例和专用编辑器，完整操作说明随独立项目维护：[工坊 README](https://github.com/wukuiqing49/BeautyStickerWorkshop#readme)。网页预演用于检查构图、素材定位与运镜，**不执行 Android SDK 的真实磨皮、美型或人像分割**，最终效果应在手机上验证。
+
+### 从工坊到手机
+
+1. 在工坊选择或制作资源，调整参数与搭配，填写名称、封面和版本信息。
+2. 导出单项资源、套装或统一资源库 ZIP；重要方案可导出备份。
+3. 在 Android Demo 首页的“资源中心”导入。导入和下载仅安装，不自动启用效果。
+4. 点击已安装资源启用；导入资源库后，也可显式应用包内默认配置。
+5. 回到相机预览，检查佩戴位置、叠加顺序、运动跟随与处理开销。
+
+需要网络分发时，在工坊填写最终 HTTPS 资源根地址，导出发布包，将资源与封面上传后再发布 `catalog.json`。Demo 中显式配置目录地址，即可下载、安装并使用离线缓存。导出操作本身不会自动上传或部署。
+
+### 手势动画素材
+
+工坊另提供比耶星光、点赞彩纸、开掌光波和爱意漂浮等动画的模拟触发与透明 PNG 图集下载。它们属于**宿主动画素材**，需要宿主播放器与 SDK 手势事件连接，不能直接导入当前 Android 统一资源中心，也不会自动合成进视频。
+
+工坊源码与线上部署独立更新；线上可用功能以实际部署版本为准。Web 修改不会自动同步 Android/iOS 内置资源。
+
+## Android Demo
+
+运行后从首页进入相机或独立资源中心：
+
+- **相机主画面**默认显示效果，MediaPipe + GPUPixel 为固定主线，隐藏基础 OpenGL 后端选择。
+- **效果面板**按八分类展示参数与已安装资源，支持单类重置及整体重置。
+- **长按查看原图**，松开立即恢复效果；长按期间暂停人脸和手势分析。
+- **诊断卡**在原图按钮下方显示人脸、手势、处理 FPS 与合成提交耗时，使用固定宽度避免文字更新撑动边框。
+- **更多菜单**提供人脸检测、手势检测、美化开关、调试、回调详情与可选原图小窗。人脸与手势在新相机页面默认开启，可独立关闭。
+- **资源中心**独立管理本地导入、HTTPS 目录、下载与删除，打开资源中心不会创建相机。
+- **配置记忆**保存资源选择、美颜参数及手动背景/运镜配置；整体重置保留已安装资源。
+
+诊断中的耗时是 CPU 处理/提交统计，FPS 是本地处理新采样帧的统计，不能视作 GPU 执行耗时或直播推流 FPS。静态图片页与旧 CPU 控制器仅作参考。
+
+## 处理链路与接入
+
+```text
+宿主相机 / 直播引擎采集帧
+    ├─ RGBA 分析小图 → 异步人脸 / 手势 / 人像分割
+    └─ OES / 2D 纹理 → 场景与美颜贴纸合成 → 输出纹理 → 宿主消费 / 编码推流
+```
+
+- **统一编排**：`BeautyEngineConnector` 负责取帧、处理与写回入口，`BeautyEnginePipeline` 组合 `BeautySession`、分析运行时与渲染器；厂商帧类型留在适配层。
+- **异步有界**：分析不阻塞渲染等待推理，使用最新有效快照；普通 Session 按效果需求分析，Demo 可显式开启人脸观察。
+- **输入支持**：RGBA8888、OES/2D 纹理；YUV420 提供到 RGBA 分析小图的兼容转换，不包含 YUV 输出管线。
+- **纯纹理分析**：可选 GPU 缩小与双 PBO/fence 后续轮询桥接，读回检测小图；纹理不会隐式成为零拷贝模型输入。
+- **资源所有权**：GL 创建、处理、释放须满足同线程及 EGL 上下文约束；默认输出纹理只在下一次处理或释放前有效。异步消费者需显式复制/租用并处理同步。
+- **坐标契约**：旋转、镜像、裁剪、时间戳及跨尺寸映射均需与宿主实际输入一致；换源必须重置分析状态。
+
+接口、调用示例和生命周期详见 [核心 SDK 文档](core/lib_beauty/README.md) 与 [处理链路说明](doc/SDK_PIPELINE.md)。
+
+## 模块结构
 
 | 模块 | 职责 |
 | --- | --- |
-| `core/lib_beauty` | 公共帧/人脸协议、BeautySession、有界异步分析、CPU 参考渲染、ES3 纹理渲染 |
-| `core/lib_beauty_gpupixel` | 固定上游源码的磨皮/美白 Shader 与 LUT，C++/JNI 同 EGL 纹理适配；相机 Demo 默认启用 |
-| `core/lib_beauty_mediapipe` | MediaPipe Tasks 0.10.32，本地模型、478 关键点及语义锚点 |
-| `core/lib_camera` | CameraX 预览、前后摄与 RGBA 帧输出，已接入实时美颜测试页 |
-| `feature/feature_app` | 静态图方案对比编排；宿主使用 WKQ 基础框架 |
-| `app` | XML 演示页，图片选择、方案切换、原图/处理图及参数 |
-| `core/core_base`、`core/core_utils`、`feature/feature_res` | 宿主基础包装和共享资源 |
+| `core/lib_beauty` | 公共帧协议、Session、分析调度、引擎编排、基础渲染、场景与资源包协议 |
+| `core/lib_beauty_gpupixel` | GPUPixel Shader/LUT 的 C++/JNI 纹理适配，美型、美妆与调色 |
+| `core/lib_beauty_mediapipe` | 本地人脸关键点、人像分割和手势分析后端 |
+| `core/lib_beauty_resources` | 资源安装、目录、组合、默认配置与状态管理 |
+| `core/lib_camera` | CameraX 采集、前后摄与 RGBA 输出，供 Demo 验证 |
+| `feature/feature_app` | 相机 GPU 预览、采集到 SDK 的适配与静态图参考编排 |
+| `app` | Demo 页面、效果面板、工坊入口和资源管理宿主 |
+| `core/core_base`、`core/core_utils`、`feature/feature_res` | 宿主基础包装与共享资源 |
+| `ios/BeautyResources` | Swift/Metal 资源消费源码，尚未完成 Apple 环境编译与设备验收 |
 
-后端 api 依赖共享库，共享库不依赖 MediaPipe、WKQ 或直播厂商。当前人脸后端为 MediaPipe，相机默认使用 MediaPipe + GPUPixel。
-
-基础效果：局部颜色相似度加权平滑、线性美白、暖/冷色滤镜。可选 GPUPixel 适配库提供 box blur/高通磨皮和 LUT 美白，相机 Demo 默认使用 MediaPipe + GPUPixel，隐藏后端切换，基础 OpenGL 仅保留为 SDK 内部对照；静态图片页仍使用原 CPU 参考实现。支持程序化眼镜/胡子/礼帽及最多三层 PNG 图片贴纸，Demo 内置六张本地透明素材。Android GPUPixel另有实验性美型/美妆，MediaPipe提供可选人像分割；首页独立资源中心管理本地及显式HTTPS下载。当前不提供3D遮挡。GPUPixel 是源码算法适配，不包含其完整运行时，来源、授权和限制见 [模块说明](core/lib_beauty_gpupixel/README.md)。设备夹具验证范围见[测试报告](doc/testing/TEST_REPORT.md)，真人动态观感和持续性能仍待验收。
-
-
-## RGBA 接入
-
-```kotlin
-val session = BeautySession(
-    factory = MediaPipeFaceAnalyzer.factory(context),
-    onError = { error -> /* worker 或渲染线程回调，宿主负责日志/UI 切线程 */ }
-)
-session.settings = BeautySettings(
-    smoothing = 0.4f, whitening = 0.3f,
-    glasses = true, moustache = true
-)
-session.start()
-val input = RgbaFrame(FrameInfo(width, height, timestampNs, rotation, mirrored), rgba, rowStride)
-val output = session.process(input)
-// 依选定引擎版本的编码前处理接口交回 output。
-session.stop()
-session.close()
-```
-
-`BeautyProcessor` 保留原有旁路兼容 API；实际处理使用 `BeautySession`。CPU 渲染用于 CPU 帧集成和效果验证，高分辨率实时使用优先选择 GL 并真机测量。
-
-所有生命周期及 process/submitAnalysis 均在同一宿主处理线程调用。RGBA8888 为非预乘 alpha，原始像素左上角原点、x 右/y 下，支持行 padding；从 ByteBuffer.position 起算。SDK 不修改输入。分析忙时不复制新图，空闲时同步复制缩小 RGB 后交给 worker；借用输入不会逃逸到异步线程。CPU 非旁路输出是独占副本，输出紧凑 RGBA；旁路返回原对象，仍借用宿主资源。
-
-最多一张正在分析的图像，无待分析队列。VIDEO 推理在 worker 同步执行，外层对引擎异步；单人模式关闭表情/矩阵输出。结果按原始采样纳秒时间戳关联，默认有效期 200ms；无人脸、超时、尺寸/旋转/镜像变化隐藏挂件。切摄像头即使尺寸相同也应 stop/start；下一代分析器在 worker 重建，不沿用旧跟踪状态。
-
-每个会话时间戳严格递增，stop/start 可重新计时；close 不可恢复。close 不等待正在运行的推理，立即禁止发布新结果，随后在 worker 释放后端。渲染失败通过 onError 报告并返回原帧；生命周期/参数错误直接抛出。
-
-## 纹理接入
-
-```kotlin
-// 在宿主当前 ES3 EGL context/thread 中创建与调用；SDK 不创建 EGL。
-val session = BeautySession(
-    factory = MediaPipeFaceAnalyzer.factory(context),
-    renderer = GlBeautyRenderer()
-)
-session.start()
-session.settings = BeautySettings(whitening = 0.3f, glasses = true)
-// 若需要人脸挂件，显式提供与纹理逻辑画面一致的 RGBA 原图用于分析。
-session.submitAnalysis(rgbaAnalysisFrame)
-val output = session.process(textureFrame)
-```
-
-支持 GL_TEXTURE_2D；OES 路径要求 `GL_OES_EGL_image_external_essl3`，当前设备自动测试覆盖 2D，OES 尚未实测。纹理输入不会隐式读回，只有纹理且不提供 RGBA 分析图时仍可做基础美颜，但不会自动得到关键点。
-
-纹理矩阵负责生产者采样/裁剪，语义锚点对应采样后的逻辑画面；分析图必须匹配这一空间。输出 identity 采样矩阵，尺寸和 rotation/mirrored 元数据保持不变，SDK 不把旋转/镜像重复烘焙到像素。分析图 FrameInfo 的尺寸/旋转/镜像必须与纹理帧一致。
-
-GL 输出归 SDK，**只有效至下一次 render 或 close**；引擎异步消费必须自行复制或建立同步。不可把输出纹理作为下次输入形成 FBO 反馈。SDK 恢复绘制 framebuffer、viewport、program、纹理单元0绑定、sampler、unpack buffer、颜色写掩码及修改过的 enable 状态。GL 创建/渲染/释放必须在创建时的 context/thread；context 丢失后新建 renderer/session。
+核心 SDK 与相机、WKQ 宿主框架及直播厂商解耦；可选后端依赖共享库，共享库不反向依赖具体算法后端。
 
 ## 构建与验证
 
+环境：Android API 24+、OpenGL ES 3；JDK 17。compileSdk/targetSdk 当前为 36，Gradle、NDK 和 CMake 版本以工程配置为准。首次构建需配置 Android SDK 并解析依赖。
+
 ```powershell
+# 检查本地模型
 python scripts/verify_models.py
-.\gradlew.bat :core:lib_beauty:testDebugUnitTest
-.\gradlew.bat :core:lib_beauty:assembleRelease :core:lib_beauty_mediapipe:assembleRelease :app:assembleDebug
-.\gradlew.bat :app:lintDebug :core:lib_beauty:lintDebug :core:lib_beauty_mediapipe:lintDebug
-# 仅本地未签名 R8 验证，正式发布默认要求正式签名。
+
+# 核心单元测试、SDK AAR 与 Demo APK
+.\gradlew.bat :core:lib_beauty:testDebugUnitTest :feature:feature_app:testDebugUnitTest
+.\gradlew.bat :core:lib_beauty:assembleRelease :core:lib_beauty_gpupixel:assembleRelease :core:lib_beauty_mediapipe:assembleRelease :core:lib_beauty_resources:assembleRelease :app:assembleDebug
+.\gradlew.bat :app:lintDebug
+
+# 仅用于本地无正式签名的 Release/R8 验证
 .\gradlew.bat :app:assembleRelease -PrequireReleaseSigning=false
-# 公开官方测试人像，只打入测试 APK。
-python scripts/prepare_test_fixture.py
-.\gradlew.bat :app:assembleDebugAndroidTest
 ```
 
-AAR 位于各库 `build/outputs/aar`，Debug APK 位于 `app/build/outputs/apk/debug/app-debug.apk`。只拷贝一个 AAR 不会自动携带传递依赖；宿主必须同时解析共享库、所选运行库和模型。共享库保留本地 Maven 发布任务；两个后端尚未配置远端发布。
+AAR 输出在各库的 `build/outputs/aar/`，Demo APK 在 `app/build/outputs/apk/debug/app-debug.apk`。单独复制一个 AAR 不会自动携带传递依赖；接入时须包含所选后端、共享库及模型。当前未提供远端 Maven 发布坐标。
 
-Zego/声网具体版本尚未选定，未实现厂商适配、远端合成及持续直播性能验证。静态图耗时包括转换/模型/CPU 处理，不是实时 FPS。模型来源与许可记录见 [MODELS.md](doc/third-party/MODELS.md)，本轮证据见 [TEST_REPORT.md](doc/testing/TEST_REPORT.md)。
+## 当前边界
 
-## 自定义相机测试
+- ZEGO/声网是目标适配方向，尚未固定具体版本、实现厂商帧接入或完成远端推流验收。
+- 美型、美妆、跟踪及分割已有实现和夹具验证，不能等同真人动态画质、持续温升和性能已通过。
+- iOS 已有资源解析与 Metal 消费源码，能力不与 Android 完全对齐；解析兼容不代表相应效果已渲染支持。
+- 默认本地处理人脸图像与模型，不自动保存或上传摄像头帧；资源联网由宿主显式开启。
+- 第三方源码与模型的来源、许可和再分发要求分别见模块说明及 [模型记录](doc/third-party/MODELS.md)，商业发布前应按实际使用内容核验。
 
-运行 App 后点击“相机测试”，授权后自动启动。相机原图作为底层大画面，左上角为处理效果；点击小窗交换主副画面，底部提供美颜、贴纸、调试三个面板。磨皮/美白可调强度，六张贴纸以缩略图选择，默认不佩戴；启停与检测方案位于调试面板。后台停止、返回按启动状态恢复；不录像或上传。
+## 文档导航
 
-实时页改为 `GpuBeautyPreview`：CameraX Preview → SurfaceTexture/OES → GlBeautyRenderer/FBO → 同一 EGL context 的双画面。渲染不再逐帧生成 Bitmap、执行 CPU 美颜或 GPU 读回；独立 ImageAnalysis 请求320×240、最多30次/秒，设备实际协商可能不同。MediaPipe 仍为 CPU VIDEO 推理，使用 Bitmap 作为其输入，这不等于 GPU 推理或整个链路零拷贝。挂件仅使用150ms内、同会话/方向/方案/ViewPort的结果；渲染不会等待检测。新 GPU 相机链路仅完成本地验证，真实跟随、OES视觉与性能待真机验收。详见 [GPU 管线说明](doc/GPU_CAMERA_PIPELINE.md)。
-
-## PNG 贴纸体验
-
-进入静态图页选择图片，或打开“自定义相机测试”；后端选择 MediaPipe。静态图页用款式及开关配置后点击应用；实时页打开贴纸面板，点击圆框/爱心眼镜、胡子或礼帽/皇冠/猫耳卡片，下一帧使用新设置；再次点击取消，清除按钮移除全部贴纸。
-
-六张素材位于 feature/feature_app/src/main/assets/beauty_stickers，由 DemoStickerCatalog 按 manifest 解码缓存，经 BeautySettings.stickerPack 送入共享 CPU/GL 渲染器；无脸、结果过期或缺锚点则隐藏。实时页已改用 OES/GPU 合成实现，CameraBeautyController 保留作 CPU 参考适配，不再用于页面；GPU 真机验收、直播引擎纹理交回及远端合成仍待完成。
-
-共享库的自定义图片 API 及纹理有效期见 [lib_beauty 接入说明](core/lib_beauty/README.md)。
-
-## 跨平台贴纸制作与加载
-
-在线制作：[贴纸工坊](https://beautystickerworkshop.pages.dev/)。同事可直接制作并导出ZIP，再通过SDK加载；源码位于私有仓库 [BeautyStickerWorkshop](https://github.com/wukuiqing49/BeautyStickerWorkshop)。
-
-网页工坊已拆至同级独立项目 ../BeautyStickerWorkshop，可单独建立Git仓库发布Cloudflare Pages：构建命令 npm run build，输出目录 dist。SDK保留 resources/stickers/v1 跨平台协议、iOS资源组件及Android加载器。完整部署说明见独立项目README。
-
-
-### 场景与美颜资源工坊 V2
-
-独立Web项目 `C:/work/AI/BeautyStickerWorkshop` 新增背景、运镜时间轴、美颜预设编辑和ZIP导入导出；贴纸仍沿用V1。Android公共入口 `EffectResourcePack.loadZip` / `applyTo`，Demo工坊可加载三个内置示例、导入资源并分类记忆。完整跨端协议与平台边界见 [资源V2](resources/effects/v2/README.md)。新版Web已推送并通过Cloudflare Pages自动发布，在线入口：https://beautystickerworkshop.pages.dev/effects 。
-
-## 资源制作与加载
-
-Demo 使用资源中心加载内置完整主题、单类资源、本地 ZIP 与 HTTPS 目录。Web 制作端独立位于 BeautyStickerWorkshop 仓库。V3 美颜格式、目录、缓存与性能统计契约见 [资源说明](resources/effects/v3/README.md)；本轮实测与未验证项见 [测试报告](doc/testing/TEST_REPORT.md)。
-
-
-图片睫毛制作与跨平台资源消费：[V4资源说明](resources/effects/v4/README.md)。Web独立工程为BeautyStickerWorkshop，新增eyes.html；本地实现尚未发布至Pages。
-
-
-## 统一资源闭环（2026-10-27）
-
-已新增core/lib_beauty_resources及实验室8分类资源面板，内置17个示例；资源制作使用独立Web的resource-studio.html。名称/翻译/封面、参数预设、图片睫毛、贴纸、背景、运镜、套装、默认JSON及目录交付走同一协议。
-
-[资源制作与接入手册](resources/unified/v1/README.md) · [实施方案及状态](doc/design/BEAUTY_RESOURCE_WORKFLOW_IMPLEMENTATION.md) · [测试报告](doc/testing/TEST_REPORT.md)。
-
-## 可选手势分析
-
-新增本地MediaPipe手势模型，官方7种静态分类及21点手部坐标；另有实验性OK、伸指数量0～5、捏心/双手比心/合十、挥手/拍手/画圈、捏合拖动/双手缩放规则。独立单在途支路默认关闭，按需开启；只输出结果和事件，动画由宿主实现。相机页新增开关与事件诊断。自定义手势不代表真人识别率或持续性能已验收。接入契约见[SDK_GESTURES](doc/SDK_GESTURES.md)，实测范围见[测试报告](doc/testing/TEST_REPORT.md)。
+| 主题 | 文档 |
+| --- | --- |
+| 核心 API、帧协议与引擎入口 | [lib_beauty](core/lib_beauty/README.md) |
+| MediaPipe 后端 | [lib_beauty_mediapipe](core/lib_beauty_mediapipe/README.md) |
+| GPUPixel 算法适配 | [lib_beauty_gpupixel](core/lib_beauty_gpupixel/README.md) |
+| 资源安装与组合 | [lib_beauty_resources](core/lib_beauty_resources/README.md) |
+| 统一资源制作与交付 | [统一资源协议 V1](resources/unified/v1/README.md) |
+| 贴纸 / 图片睫毛 / 完整主题 | [贴纸](resources/stickers/v1/README.md) · [睫毛](resources/effects/v4/README.md) · [主题](resources/themes/v1/README.md) |
+| 虚拟背景与运镜 | [SDK_SCENE_EFFECTS](doc/SDK_SCENE_EFFECTS.md) |
+| 手势事件与宿主接入 | [SDK_GESTURES](doc/SDK_GESTURES.md) |
+| 构建与设备证据 | [TEST_REPORT](doc/testing/TEST_REPORT.md) |

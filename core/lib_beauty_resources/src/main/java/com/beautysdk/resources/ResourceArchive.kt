@@ -20,11 +20,11 @@ internal fun bounded(input:InputStream,max:Int,cancel:()->Unit={}):ByteArray {va
 object ResourceArchive {
     fun read(bytes:ByteArray):LinkedHashMap<String,ByteArray> = readEntries(bytes,40,65536,16777216)
     /** 完整交付包单独限额，单项/套装原校验规则不放宽。 */
-    internal fun readDelivery(bytes:ByteArray)=readEntries(bytes,200,1048576,33554432)
-    private fun readEntries(bytes:ByteArray,maxFiles:Int,maxJson:Int,maxNested:Int):LinkedHashMap<String,ByteArray> {
+    internal fun readDelivery(bytes:ByteArray)=readEntries(bytes,2000,1048576,33554432,true)
+    private fun readEntries(bytes:ByteArray,maxFiles:Int,maxJson:Int,maxNested:Int,delivery:Boolean=false):LinkedHashMap<String,ByteArray> {
         require(bytes.size<=33554432);val files=linkedMapOf<String,ByteArray>();var total=0L
         ZipInputStream(bytes.inputStream()).use {z->while(true){val e=z.nextEntry?:break
-            require(!e.isDirectory&&e.name.matches(Regex("[A-Za-z0-9_][A-Za-z0-9_.-]{0,79}"))&&e.name !in files&&files.keys.none {it.equals(e.name,true)}&&files.size<maxFiles)
+            require(!e.isDirectory&&(if(delivery)safeLibraryPath(e.name) else e.name.matches(Regex("[A-Za-z0-9_][A-Za-z0-9_.-]{0,79}")))&&e.name !in files&&files.keys.none {it.equals(e.name,true)}&&files.size<maxFiles)
             val limit=if(e.name.endsWith(".png"))4194304 else if(e.name.endsWith(".json"))maxJson else maxNested
             val data=bounded(z,limit);total+=data.size;require(total<=33554432);files[e.name]=data;z.closeEntry()
         }};return files

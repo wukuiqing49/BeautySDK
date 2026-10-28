@@ -185,6 +185,9 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             else if (snapshot.state == DemoTrackingState.READY || snapshot.state == DemoTrackingState.NO_FACE)
                 binding.cameraErrorDetail.visibility = View.GONE
         }
+        androidx.lifecycle.ViewModelProvider(this)[ResourceCenterModel::class.java].ui.observe(this) { ui ->
+            controller.setGestureEffects(ui.gestureEffects)
+        }
         controller.onGestures = { snapshot, events ->
             val names=resources.getStringArray(R.array.gesture_names)
             val phases=resources.getStringArray(R.array.gesture_phases)
@@ -437,6 +440,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     fun applyResourceCategoryOrder(order:List<com.beautysdk.resources.ResourceCategory>) {
         val canonical=listOf(com.beautysdk.resources.ResourceCategory.BEAUTY,com.beautysdk.resources.ResourceCategory.RESHAPE,com.beautysdk.resources.ResourceCategory.MAKEUP,com.beautysdk.resources.ResourceCategory.FILTER,com.beautysdk.resources.ResourceCategory.STICKER,com.beautysdk.resources.ResourceCategory.BACKGROUND,com.beautysdk.resources.ResourceCategory.MOTION,com.beautysdk.resources.ResourceCategory.THEME)
         if(categoryViews.size!=8)return
+        canonical.forEachIndexed {i,c->if(::resourceCenter.isInitialized)resourceCenter.categoryName(c)?.let{categoryViews[i].text=it}}
         val desired=order.map{categoryViews[canonical.indexOf(it)]}
         if(desired.indices.all{binding.effectCategories.getChildAt(it)===desired[it]})return
         binding.effectCategories.removeAllViews();desired.forEach{binding.effectCategories.addView(it)}
@@ -482,11 +486,13 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private fun openSettings(section: Int) {
         if(section==3) {startActivity(android.content.Intent(this,ResourceCenterActivity::class.java));return}
         val editable=effectCategory in 0..3 || effectCategory in 5..6
-        binding.beautySection.visibility = if (section == 0 && adjusting && editable) View.VISIBLE else View.GONE
+        val jsonParameters=resourceCenter.hasLibrary&&effectCategory in 0..3
+        resourceCenter.parameterMode(adjusting&&effectCategory in 0..3)
+        binding.beautySection.visibility = if (section == 0 && adjusting && editable && !jsonParameters) View.VISIBLE else View.GONE
         binding.stickerSection.visibility = if (section == 1) View.VISIBLE else View.GONE
         binding.debugSection.visibility = if (section == 2) View.VISIBLE else View.GONE
         binding.workshopSection.visibility = if (section == 3) View.VISIBLE else View.GONE
-        binding.resourceCenter.root.visibility=if(section!=2 && (!adjusting || !editable)) View.VISIBLE else View.GONE
+        binding.resourceCenter.root.visibility=if(section!=2 && (!adjusting || !editable || jsonParameters)) View.VISIBLE else View.GONE
         binding.cameraModeBar.visibility=if(section!=2)View.VISIBLE else View.GONE
         binding.cameraPresets.visibility=if(editable)View.VISIBLE else View.GONE
         binding.cameraAdjust.visibility=if(editable)View.VISIBLE else View.GONE
@@ -500,6 +506,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         if(section in 0..1) applyEffectCategory()
         binding.cameraPanelTitle.visibility=if(section==2)View.VISIBLE else View.GONE
         binding.cameraPanelTitle.setText(if(section==2)R.string.camera_tab_debug else listOf(R.string.effect_category_beauty,R.string.effect_category_reshape,R.string.effect_category_makeup,R.string.effect_category_color,R.string.effect_category_sticker,R.string.effect_category_background,R.string.effect_category_motion,R.string.resources_theme)[effectCategory])
+        if(section!=2)resourceCenter.categoryName(com.beautysdk.resources.ResourceCategory.entries[effectCategory])?.let{binding.cameraPanelTitle.text=it}
         listOf(binding.cameraSettings,binding.cameraStickers,binding.cameraDebug,binding.cameraWorkshop).forEachIndexed { index, view -> view.isSelected = index == section }
         if (settingsDialog?.isShowing == true) {resizeEffectPanel();return}
         val panel = binding.cameraControlsPanel

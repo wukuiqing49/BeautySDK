@@ -1,0 +1,250 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceLibraryDeviceTest:
+INSTRUMENTATION_STATUS: test=jsonControlsApplyAndResetAndLibrarySurvivesReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stack=java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.ViewParent android.widget.LinearLayout.getParent()' on a null object reference
+	at com.beautysdk.demo.ResourceCenterController.renderLibraryControls(ResourceCenterController.kt:84)
+	at com.beautysdk.demo.ResourceCenterController.render(ResourceCenterController.kt:115)
+	at com.beautysdk.demo.ResourceCenterController._init_$lambda$10(ResourceCenterController.kt:53)
+	at com.beautysdk.demo.ResourceCenterController.$r8$lambda$RuW_AZ-jdOO5KTzD8wvLBfrXuWA(ResourceCenterController.kt:0)
+	at com.beautysdk.demo.ResourceCenterController$$ExternalSyntheticLambda15.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.ResourceCenterController$sam$androidx_lifecycle_Observer$0.onChanged(ResourceCenterController.kt:2)
+	at androidx.lifecycle.LiveData.considerNotify(LiveData.java:134)
+	at androidx.lifecycle.LiveData.dispatchingValue(LiveData.java:147)
+	at androidx.lifecycle.LiveData$ObserverWrapper.activeStateChanged(LiveData.java:482)
+	at androidx.lifecycle.LiveData$LifecycleBoundObserver.onStateChanged(LiveData.java:439)
+	at androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:316)
+	at androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry.jvm.kt:193)
+	at androidx.lifecycle.LiveData.observe(LiveData.java:206)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:40)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:15)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.jsonControlsApplyAndResetAndLibrarySurvivesReopen$lambda$12(ResourceLibraryDeviceTest.kt:65)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$wfD-sOUbGY0ZlFOCzwT_V5oSQNI(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: stream=
+Error in jsonControlsApplyAndResetAndLibrarySurvivesReopen(com.beautysdk.demo.ResourceLibraryDeviceTest):
+java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.ViewParent android.widget.LinearLayout.getParent()' on a null object reference
+	at com.beautysdk.demo.ResourceCenterController.renderLibraryControls(ResourceCenterController.kt:84)
+	at com.beautysdk.demo.ResourceCenterController.render(ResourceCenterController.kt:115)
+	at com.beautysdk.demo.ResourceCenterController._init_$lambda$10(ResourceCenterController.kt:53)
+	at com.beautysdk.demo.ResourceCenterController.$r8$lambda$RuW_AZ-jdOO5KTzD8wvLBfrXuWA(ResourceCenterController.kt:0)
+	at com.beautysdk.demo.ResourceCenterController$$ExternalSyntheticLambda15.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.ResourceCenterController$sam$androidx_lifecycle_Observer$0.onChanged(ResourceCenterController.kt:2)
+	at androidx.lifecycle.LiveData.considerNotify(LiveData.java:134)
+	at androidx.lifecycle.LiveData.dispatchingValue(LiveData.java:147)
+	at androidx.lifecycle.LiveData$ObserverWrapper.activeStateChanged(LiveData.java:482)
+	at androidx.lifecycle.LiveData$LifecycleBoundObserver.onStateChanged(LiveData.java:439)
+	at androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:316)
+	at androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry.jvm.kt:193)
+	at androidx.lifecycle.LiveData.observe(LiveData.java:206)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:40)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:15)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.jsonControlsApplyAndResetAndLibrarySurvivesReopen$lambda$12(ResourceLibraryDeviceTest.kt:65)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$wfD-sOUbGY0ZlFOCzwT_V5oSQNI(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: test=jsonControlsApplyAndResetAndLibrarySurvivesReopen
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectsMissingTranslationsUnknownParametersAndInvalidRanges
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectsMissingTranslationsUnknownParametersAndInvalidRanges
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=classifiedDeliveryInstallsAndComposesWithLanguageFallback
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=classifiedDeliveryInstallsAndComposesWithLanguageFallback
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectsTamperedExpandedFilesAndTraversalAndKeepsLegacyImport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectsTamperedExpandedFilesAndTraversalAndKeepsLegacyImport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceDeliveryDeviceTest:
+INSTRUMENTATION_STATUS: test=importOnlyInstallsExplicitApplyPersistsLanguageAndSelection
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=importOnlyInstallsExplicitApplyPersistsLanguageAndSelection
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=allTwentySevenResourcesAndFiveDefaultsInstallAndCompose
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=allTwentySevenResourcesAndFiveDefaultsInstallAndCompose
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=corruptedDeliveryAndMissingDefaultNeverPartiallyInstall
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=corruptedDeliveryAndMissingDefaultNeverPartiallyInstall
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceCenterUiDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=10
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 11.18
+There was 1 failure:
+1) jsonControlsApplyAndResetAndLibrarySurvivesReopen(com.beautysdk.demo.ResourceLibraryDeviceTest)
+java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.ViewParent android.widget.LinearLayout.getParent()' on a null object reference
+	at com.beautysdk.demo.ResourceCenterController.renderLibraryControls(ResourceCenterController.kt:84)
+	at com.beautysdk.demo.ResourceCenterController.render(ResourceCenterController.kt:115)
+	at com.beautysdk.demo.ResourceCenterController._init_$lambda$10(ResourceCenterController.kt:53)
+	at com.beautysdk.demo.ResourceCenterController.$r8$lambda$RuW_AZ-jdOO5KTzD8wvLBfrXuWA(ResourceCenterController.kt:0)
+	at com.beautysdk.demo.ResourceCenterController$$ExternalSyntheticLambda15.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.ResourceCenterController$sam$androidx_lifecycle_Observer$0.onChanged(ResourceCenterController.kt:2)
+	at androidx.lifecycle.LiveData.considerNotify(LiveData.java:134)
+	at androidx.lifecycle.LiveData.dispatchingValue(LiveData.java:147)
+	at androidx.lifecycle.LiveData$ObserverWrapper.activeStateChanged(LiveData.java:482)
+	at androidx.lifecycle.LiveData$LifecycleBoundObserver.onStateChanged(LiveData.java:439)
+	at androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:316)
+	at androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry.jvm.kt:193)
+	at androidx.lifecycle.LiveData.observe(LiveData.java:206)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:40)
+	at com.beautysdk.demo.ResourceCenterController.<init>(ResourceCenterController.kt:15)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.jsonControlsApplyAndResetAndLibrarySurvivesReopen$lambda$12(ResourceLibraryDeviceTest.kt:65)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$wfD-sOUbGY0ZlFOCzwT_V5oSQNI(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+FAILURES!!!
+Tests run: 10,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1
