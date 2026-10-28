@@ -1,0 +1,8 @@
+{
+  "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/1/selfie_segmenter.tflite",
+  "sha256": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+  "bytes": 249537,
+  "modelCard": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Selfie%20Segmentation.pdf",
+  "license": "Apache-2.0 per official model card",
+  "output": "single confidence channel person; index 0 for this pinned model, not two-class softmax"
+}

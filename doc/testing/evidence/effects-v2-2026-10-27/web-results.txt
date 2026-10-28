@@ -1,0 +1,5 @@
+npm test: 7 tests, 7 pass, 0 fail (2026-10-27)
+npm run build: exit 0; static dist includes effects.html/effects.css/effects.mjs
+node --check effects.mjs: exit 0
+Browser: background sample loaded; export status 已导出 · 山岚背景; console error logs empty
+Cloudflare: not deployed this turn

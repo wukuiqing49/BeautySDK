@@ -1,0 +1,84 @@
+{
+  "case": "GPUPIXEL-EXTENDED-01",
+  "date": "2026-10-26",
+  "implementation": "GPUPixel shader adapter: five color controls, MediaPipe 478-point slim face and big eyes; default backend unchanged",
+  "jvm": {
+    "core": 77,
+    "feature": 9,
+    "failures": 0
+  },
+  "device": {
+    "serial": "39061FDJH00D3J",
+    "model": "Pixel 8",
+    "api": 36,
+    "distinctPassed": 8,
+    "batch": {
+      "run": 8,
+      "passed": 7,
+      "failed": 1
+    },
+    "retry": {
+      "run": 1,
+      "passed": 1
+    },
+    "initialFailure": "UI test searched Activity for controls moved into dialog; test corrected to retain controls view reference. Runtime code unchanged by retry."
+  },
+  "builds": {
+    "coreRelease": "passed",
+    "gpupixelRelease": "passed",
+    "appDebugAndTest": "passed",
+    "appLint": {
+      "errors": 0,
+      "warnings": 110
+    }
+  },
+  "static": {
+    "agentStructure": "passed",
+    "configuration": "passed",
+    "architectureWarnings": 0,
+    "uiWarnings": 0,
+    "i18nWarnings": 0
+  },
+  "logs": [
+    "build/gpupixel-extended-build.log",
+    "build/gpupixel-extended-final.log",
+    "build/gpupixel-extended-device-final.log",
+    "build/gpupixel-controls-retry-build.log",
+    "build/gpupixel-controls-retry-device.log"
+  ],
+  "limits": [
+    "No real-face visual acceptance",
+    "No sustained performance or thermal measurement",
+    "No vendor SDK or remote output verification",
+    "Experimental 2D reshape can deform stickers; no segmentation or 3D occlusion"
+  ],
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "90c7592dd6a45152514fca1b4ce9312fdb19b9c7c17c3660655ddff4fefbf4bb",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "faddc41efdf18381ac72040b0ef3e54439307f9500775430d85bb20bed4c6603",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "928e79b13dd45eb4c67c1643ef2ac2342ae2aeaa2a3c22714423ad5448161f1e",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyAdjustmentsTest.kt": "e68f4f05352b2d5f461d3393910a0ed23a2cf785685eb1698a7c1e880bce69cc",
+    "core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp": "32c5a4d7a47a1e90f30f5d874bec6eb914c442b16c5d57ebf2c8d1cceea3036a",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "9c7438efe89fb9cc392987d3953b6e1fb1c44507f6c65ccbee5aea9bdf383b74",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelControlsDeviceTest.kt": "43d1880c3406e23ddc58ac943cc8104bea5b1a21f360764916f34b3ac4553e5b",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt": "7104e0bf82b5dc17c46bc8f6993f49a331029abd2475dea305cd484aa0613be3",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "b325fdabf25a6b6628502460a886b79a38e9592963d9af514a7bb24020159a46",
+    "app/src/main/res/layout/activity_camera_test.xml": "a88a8dba3e9af01da0976c5ca2a7b8bef41dc28f0994b2548f242fe99ac4c968",
+    "app/src/main/res/values/home_strings.xml": "8b6d3c405ebc9cf1fceacf47db4ccb46a755aabb24ae99debdc56da9a55b136f",
+    "app/src/main/res/values/strings.xml": "9990ee23757ec740dd2ba112416906e870807b1f47e468df212f59b8b6c0058c",
+    "app/src/main/res/values/workshop_ui_strings.xml": "e55cbedfd7711cde8808cdfffcda424f2bdbda3a2efd4730db1204b2d4cb1961",
+    "app/src/main/res/values-en/home_strings.xml": "8b6d3c405ebc9cf1fceacf47db4ccb46a755aabb24ae99debdc56da9a55b136f",
+    "app/src/main/res/values-en/strings.xml": "9990ee23757ec740dd2ba112416906e870807b1f47e468df212f59b8b6c0058c",
+    "app/src/main/res/values-en/workshop_ui_strings.xml": "e55cbedfd7711cde8808cdfffcda424f2bdbda3a2efd4730db1204b2d4cb1961",
+    "app/src/main/res/values-zh-rCN/home_strings.xml": "ed386082ec8dcb150e7fd20cdc2dda4d7f3d767e34051a0498e2132c612b2449",
+    "app/src/main/res/values-zh-rCN/strings.xml": "c6c698bcf34af6e8bb1daa27fd4445cefc688dc23af7f9164dfa584113e4c6a7",
+    "app/src/main/res/values-zh-rCN/workshop_ui_strings.xml": "b5b60474938d808c2e6c5a1ece70f2e35e193ee5ec5ec5092bd44c3e9d5beea7",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/BeautyDemoController.kt": "7168822ba91655ef7d18e4318fd355b022db11964c85145dd1449c79a0da850d",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/DemoStickerCatalog.kt": "6a788606a899624f21fbfb8fb70472d04e6404e36a9ec409af137e84ca81b3ae",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "970687509b18cb82ad35700123b1a8c9d5e977cfb5e26ca517b4fb307b82cf6d",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "7ea75aa6a8d62f2770e50ba9dbd74e7e563178a8d58eca10b627580e98924bae",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "cbeb0679b307c9c5a43cb0da33534b4bb2157422ea1ea031003469aae62bb34b",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/SOURCE.json": "73b1d0211504a2feb4da7f58bdbbbe36525c1d16618abfcd25ae2b7088ef0293",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/NOTICE": "ef1efbb0dd43a1677a121f65d68df23ed561ddbd12fcd1cbed51b71128107b77",
+    "scripts/import_gpupixel.py": "845a441ef2e3bfb0388155f0f9d1c84fe95c593825708e48c37e10064eb60013"
+  }
+}

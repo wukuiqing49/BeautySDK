@@ -1,0 +1,29 @@
+[
+  [
+    "core/lib_beauty",
+    {
+      "tests": 85,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  [
+    "core/lib_beauty_gpupixel",
+    {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  [
+    "feature/feature_app",
+    {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+]

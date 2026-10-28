@@ -1,0 +1,31 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+android {
+    namespace = 'com.beautysdk.mediapipe'
+    compileSdk = libs.versions.compileSdk.get().toInteger()
+    ndkVersion = libs.versions.beauty.ndk.get()
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version = libs.versions.beauty.cmake.get()
+        }
+    }
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInteger()
+        consumerProguardFiles 'consumer-rules.pro'
+        externalNativeBuild {
+            cmake { arguments '-DANDROID_STL=c++_static', '-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON' }
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+kotlin { jvmToolchain(17) }
+dependencies {
+    api project(':core:lib_beauty')
+    implementation libs.mediapipe.vision
+}

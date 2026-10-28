@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.beautysdk.BeautySceneTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-27T04:55:05.185Z" hostname="WIN-MMJSWULHUCA" time="0.015">
+  <properties/>
+  <testcase name="pushLoopAndSettingsDemandAndValidation" classname="com.beautysdk.BeautySceneTest" time="0.001"/>
+  <testcase name="maskRejectsFutureStaleAndGeometryAndDefendsPixels" classname="com.beautysdk.BeautySceneTest" time="0.001"/>
+  <testcase name="motionsStayInsideImageAcrossDirectionsAndReset" classname="com.beautysdk.BeautySceneTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

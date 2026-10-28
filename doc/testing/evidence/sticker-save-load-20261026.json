@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-26",
+  "case": "STICKER-SAVE-LOAD-01",
+  "sourceHashes": {
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopViewModel.kt": "69ba55bff83657291d2fbbba82b0b5f6a26c9ea85d9e91b30c07797cabe7da77",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "4ac3d95e79e1312d476d9563e2d7f2d4b0ab5aaa88a5c7a287e0b5f7f807e1dd",
+    "app/src/main/res/layout/view_sticker_workshop.xml": "2e1e2433945a04f10d6f92eb228c9be6ee6d5cbee1984b171192dd11886019ce",
+    "app/src/main/res/values/strings.xml": "268c96b2c166dcc70c363a4a27955ed5cdbe8cbb708fc8bec3741898df216893",
+    "app/src/main/res/values-en/strings.xml": "268c96b2c166dcc70c363a4a27955ed5cdbe8cbb708fc8bec3741898df216893",
+    "app/src/main/res/values-zh-rCN/strings.xml": "6551e29a13ce077a835da0feec96908d60923ffa37df085ba642c3f5e855c3f6",
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "db37d54fdc1707eeb83205b0349f23d71abb0595bd60aef2dd65f5d8c21efe8f"
+  },
+  "build": {
+    "tasks": [
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ],
+    "result": "passed",
+    "seconds": 180
+  },
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "count": 3,
+    "failures": 0,
+    "seconds": 3.525,
+    "result": "passed",
+    "methods": [
+      "StickerResourceDeviceTest#saveReloadUsesPersistedImagesAndEditedManifest",
+      "StickerResourceDeviceTest#privateDraftRestoresDisabledAndLateLoadCannotUndoClear",
+      "CameraStickerPersistenceDeviceTest#reopenRestoresStylesAndClearRemainsCleared"
+    ]
+  },
+  "checks": {
+    "uiWarnings": 0,
+    "i18nWarnings": 0,
+    "agentConfiguration": "passed"
+  },
+  "logs": [
+    "build/sticker-save-load-build.log",
+    "build/sticker-save-load-device.log",
+    "build/sticker-save-load-ui.log"
+  ],
+  "limits": [
+    "no full JVM/lint/visual matrix rerun",
+    "no disk-full/power-loss fault injection",
+    "no sustained performance test"
+  ],
+  "data": "Isolated test drafts removed and user preferences restored; no camera images saved."
+}

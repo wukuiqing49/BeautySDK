@@ -1,0 +1,7 @@
+<resources>
+<string name="workshop_section_material">Material</string>
+<string name="workshop_section_layout">Layout</string>
+<string name="workshop_section_export">Export</string>
+<string name="workshop_parameter">Adjust parameter</string>
+<string-array name="workshop_parameters"><item>Size</item><item>Horizontal offset</item><item>Vertical offset</item><item>Rotation</item><item>Pivot X</item><item>Pivot Y</item></string-array>
+</resources>

@@ -1,0 +1,52 @@
+{
+  "debug/app-debug.apk": {
+    "apk_bytes": 43743183,
+    "models": {
+      "assets/face_landmarker.task": 3758596,
+      "assets/selfie_segmenter.tflite": 249537,
+      "assets/gesture_recognizer.task": 8373440
+    },
+    "models_bytes": 12381573,
+    "so": {
+      "lib/arm64-v8a/libbeauty_gpupixel.so": 429600,
+      "lib/arm64-v8a/libbeauty_rgb_input.so": 9520,
+      "lib/arm64-v8a/libimage_processing_util_jni.so": 29008,
+      "lib/arm64-v8a/libmediapipe_tasks_vision_jni.so": 10325016,
+      "lib/arm64-v8a/libmmkv.so": 597000,
+      "lib/arm64-v8a/libsurface_util_jni.so": 4832,
+      "lib/armeabi-v7a/libbeauty_gpupixel.so": 263368,
+      "lib/armeabi-v7a/libbeauty_rgb_input.so": 9456,
+      "lib/armeabi-v7a/libimage_processing_util_jni.so": 20380,
+      "lib/armeabi-v7a/libmediapipe_tasks_vision_jni.so": 7237484,
+      "lib/armeabi-v7a/libmmkv.so": 371332,
+      "lib/armeabi-v7a/libsurface_util_jni.so": 3440
+    },
+    "arm64-v8a_models_so_bytes": 23776549,
+    "armeabi-v7a_models_so_bytes": 20287033
+  },
+  "release/app-release-unsigned.apk": {
+    "apk_bytes": 33032926,
+    "models": {
+      "assets/face_landmarker.task": 3758596,
+      "assets/gesture_recognizer.task": 8373440,
+      "assets/selfie_segmenter.tflite": 249537
+    },
+    "models_bytes": 12381573,
+    "so": {
+      "lib/arm64-v8a/libbeauty_gpupixel.so": 371080,
+      "lib/arm64-v8a/libbeauty_rgb_input.so": 9520,
+      "lib/arm64-v8a/libimage_processing_util_jni.so": 29008,
+      "lib/arm64-v8a/libmediapipe_tasks_vision_jni.so": 10325016,
+      "lib/arm64-v8a/libmmkv.so": 597000,
+      "lib/arm64-v8a/libsurface_util_jni.so": 4832,
+      "lib/armeabi-v7a/libbeauty_gpupixel.so": 232472,
+      "lib/armeabi-v7a/libbeauty_rgb_input.so": 9456,
+      "lib/armeabi-v7a/libimage_processing_util_jni.so": 20380,
+      "lib/armeabi-v7a/libmediapipe_tasks_vision_jni.so": 7237484,
+      "lib/armeabi-v7a/libmmkv.so": 371332,
+      "lib/armeabi-v7a/libsurface_util_jni.so": 3440
+    },
+    "arm64-v8a_models_so_bytes": 23718029,
+    "armeabi-v7a_models_so_bytes": 20256137
+  }
+}

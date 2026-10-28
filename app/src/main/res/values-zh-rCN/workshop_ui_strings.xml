@@ -1,0 +1,7 @@
+<resources>
+<string name="workshop_section_material">素材</string>
+<string name="workshop_section_layout">布局</string>
+<string name="workshop_section_export">导出</string>
+<string name="workshop_parameter">调整参数</string>
+<string-array name="workshop_parameters"><item>大小</item><item>水平偏移</item><item>垂直偏移</item><item>旋转角度</item><item>中心点 X</item><item>中心点 Y</item></string-array>
+</resources>

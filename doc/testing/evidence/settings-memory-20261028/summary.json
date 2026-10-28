@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-28T04:35:24.303197+00:00",
+  "commit": null,
+  "sourceFingerprint": "f4f599a5b62e39fea559dfe7be126baa73a856fec284b678b8d6cac7ed73b151",
+  "evidence": "doc/testing/evidence/settings-memory-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "CameraStickerPersistenceDeviceTest.reopenRestoresStylesAndClearRemainsCleared",
+    "GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel",
+    "ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable",
+    "ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera",
+    "ResourceCenterUiDeviceTest.deletingBuiltinDoesNotReinstallItOnReopen",
+    "ResourceDeliveryDeviceTest.allTwentySevenResourcesAndFiveDefaultsInstallAndCompose",
+    "ResourceDeliveryDeviceTest.corruptedDeliveryAndMissingDefaultNeverPartiallyInstall",
+    "ResourceDeliveryDeviceTest.importOnlyInstallsExplicitApplyPersistsLanguageAndSelection",
+    "SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory",
+    "ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme",
+    "LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel",
+    "LabHierarchyDeviceTest.singleEntryKeepsCallbacksAndOptionalInsetAccessible",
+    "LabHierarchyDeviceTest.categoryOffPreservesOtherEffectsAndBeautyUsesOneSlider",
+    "ScenePersistenceDeviceTest.manualSceneParametersAndOffSurviveReopenAndReachCamera"
+  ],
+  "deviceSuite": {
+    "tests": 14,
+    "failures": 0,
+    "seconds": 27.424
+  },
+  "lint": {
+    "Warning": 155
+  },
+  "limits": [
+    "New-instance disk restoration tested; abrupt force-stop mid-save not guaranteed",
+    "No vendor engine, sustained performance, iOS or Web changes",
+    "No complete device/language/orientation matrix",
+    "Known intermittent stop frame-count race remains unresolved"
+  ]
+}

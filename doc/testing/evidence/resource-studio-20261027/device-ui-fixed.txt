@@ -1,0 +1,111 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SceneControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=sceneControlsDriveSharedPipelineAndReset
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sceneControlsDriveSharedPipelineAndReset
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectPanelDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.EffectPanelDeviceTest:
+INSTRUMENTATION_STATUS: test=categoriesKeepSinglePanelAndResourceEditorIsSecondary
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectPanelDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=categoriesKeepSinglePanelAndResourceEditorIsSecondary
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SheetScrollDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SheetScrollDeviceTest:
+INSTRUMENTATION_STATUS: test=beautyAndWorkshopScrollWithoutDraggingSheet
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SheetScrollDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=beautyAndWorkshopScrollWithoutDraggingSheet
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.DemoLayoutDeviceTest:
+INSTRUMENTATION_STATUS: test=imageControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=imageControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cameraControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cameraControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=stickerCardsKeepSelectionAndPreviewsSwap
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=stickerCardsKeepSelectionAndPreviewsSwap
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.819
+
+OK (7 tests)
+
+
+INSTRUMENTATION_CODE: -1

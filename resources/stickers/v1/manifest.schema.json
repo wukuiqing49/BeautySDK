@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeautySDK static sticker manifest v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schemaVersion", "id", "name", "preview", "layers"],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,47}$"},
+    "png": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}\\.png$", "not": {"pattern": "\\.\\."}},
+    "pair": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": -4, "maximum": 4}}
+  },
+  "properties": {
+    "schemaVersion": {"const": 1}, "id": {"$ref": "#/$defs/id"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 80, "pattern": "\\S", "not": {"pattern": "[\u0000-\u001f\u007f-\u009f]"}},
+    "preview": {"$ref": "#/$defs/png"},
+    "layers": {"type": "array", "minItems": 1, "maxItems": 3, "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "image", "anchor", "widthInAnchorSpans", "pivot", "offset", "rotationDegrees"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "image": {"$ref": "#/$defs/png"},
+        "anchor": {"enum": ["EYES", "UPPER_LIP"]},
+        "widthInAnchorSpans": {"type": "number", "minimum": 0.1, "maximum": 10},
+        "pivot": {"$ref": "#/$defs/pair"}, "offset": {"$ref": "#/$defs/pair"},
+        "rotationDegrees": {"type": "number", "minimum": -180, "maximum": 180}
+      }
+    }}
+  },
+  "$comment": "还需运行时检查层id唯一、UTF-16名称长度、ZIP/PNG/总像素预算和资源引用完整性。"
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-27",
+  "sourceFingerprint": "ca9359588e7830c2f6b63598e4c3ce3c0e2379313dd4398e32ea81cc58236942",
+  "jvmPassed": 85,
+  "devicePassed": 7,
+  "device": "Pixel 8 / Android 16 API36",
+  "deviceCases": [
+    "com.beautysdk.demo.GpuPixelDeviceTest#customShapesHaveSignedDirectionAndRotateWithRawFrames",
+    "com.beautysdk.demo.GpuPixelDeviceTest#actualPortraitMakeupUsesDetectedLipAndCheekLandmarks",
+    "com.beautysdk.demo.GpuPixelDeviceTest#oesReshapeAndColorUseSharedTextureContract",
+    "com.beautysdk.demo.GpuPixelDeviceTest#localMakeupPreservesMouthInteriorAlphaAndHostState",
+    "com.beautysdk.demo.GpuPixelDeviceTest#texturePipelinePreservesTransformAlphaAndHostState",
+    "com.beautysdk.demo.GpuPixelDeviceTest#extendedColorAndReshapeChangePixelsAndRespectMissingFace",
+    "com.beautysdk.demo.GpuPixelControlsDeviceTest#extendedControlUpdatesAndCameraUsesGpuPixel"
+  ],
+  "notVerified": [
+    "human blink/side profile/occlusion quality",
+    "sustained GPU performance and thermal",
+    "vendor live stream",
+    "iOS/Web eyelash resource authoring",
+    "16KB runtime"
+  ]
+}

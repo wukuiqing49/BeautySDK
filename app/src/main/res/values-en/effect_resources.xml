@@ -1,0 +1,11 @@
+<resources>
+  <string name="effect_resource_hint">Import an effect or complete theme ZIP. Themes replace all four effect categories, disable absent effects and are restored on next entry. Clear to return to manual controls.</string>
+  <string name="effect_resource_empty">No scene or beauty resource selected</string>
+  <string name="effect_resource_import">Import effect / theme</string>
+  <string name="effect_resource_clear">Clear effect packs</string>
+  <string name="effect_resource_loading">Loading resources…</string>
+  <string name="effect_resource_error">Import failed: %1$s</string>
+  <string name="effect_resource_sample">Built-in scene and beauty samples</string>
+  <string-array name="effect_resource_samples"><item>Mountain background</item><item>Gentle push-in</item><item>Natural warm beauty</item><item>Complete theme · Glasses scene</item><item>Natural eyelashes</item><item>Dense eyelashes</item><item>Cat-eye eyelashes</item></string-array>
+  <string name="effect_resource_theme_selected">Theme · %1$s</string>
+</resources>

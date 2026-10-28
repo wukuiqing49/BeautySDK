@@ -1,0 +1,21 @@
+{
+  "core": {
+    "tests": 83,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "feature": {
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fixture_sha256": "688c3da292da00d49942880248e6c5f520aa5f23a95a3f1a60391939e96d268f",
+  "pixel8": {
+    "serial": "39061FDJH00D3J",
+    "tests": 6,
+    "failures": 0,
+    "seconds": 0.214
+  }
+}

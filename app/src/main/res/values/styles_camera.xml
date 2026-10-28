@@ -1,0 +1,21 @@
+<resources>
+<style name="CameraQuiet" parent="CameraAction"><item name="android:background">@drawable/bg_camera_tab</item><item name="android:textSize">13sp</item><item name="android:paddingTop">6dp</item><item name="android:paddingBottom">6dp</item></style>
+<style name="CameraMode" parent="CameraAction"><item name="android:paddingStart">12dp</item><item name="android:paddingEnd">12dp</item><item name="android:paddingTop">8dp</item><item name="android:paddingBottom">8dp</item><item name="android:textSize">13sp</item><item name="android:background">@drawable/bg_camera_tab</item></style>
+<style name="CameraAction"><item name="android:layout_width">wrap_content</item><item name="android:layout_height">wrap_content</item><item name="android:minWidth">48dp</item><item name="android:minHeight">48dp</item><item name="android:gravity">center</item><item name="android:padding">12dp</item><item name="android:textColor">@color/camera_text</item><item name="android:textSize">14sp</item><item name="android:background">@drawable/bg_camera_chip</item><item name="android:clickable">true</item><item name="android:focusable">true</item></style>
+<style name="CameraLabel"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:textColor">@color/camera_muted</item><item name="android:textSize">13sp</item><item name="android:paddingTop">12dp</item><item name="android:paddingBottom">8dp</item></style>
+<style name="EffectText" parent="CameraQuiet"><item name="android:background">@drawable/bg_effect_category</item><item name="android:textColor">@color/effect_label</item><item name="android:textSize">13sp</item><item name="android:paddingStart">10dp</item><item name="android:paddingEnd">10dp</item></style>
+<style name="EffectParameter" parent="CameraQuiet"><item name="android:background">@drawable/bg_effect_parameter</item><item name="android:textColor">@color/effect_label</item><item name="android:textSize">12sp</item><item name="android:minWidth">68dp</item><item name="android:minHeight">76dp</item><item name="android:drawablePadding">8dp</item></style>
+<style name="CameraDiagnostic">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">11sp</item>
+    <item name="android:textColor">#E6FFFFFF</item>
+    <item name="android:fontFamily">monospace</item>
+    <item name="android:gravity">start|center_vertical</item>
+    <item name="android:includeFontPadding">false</item>
+    <item name="android:paddingTop">4dp</item>
+    <item name="android:paddingBottom">4dp</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:ellipsize">end</item>
+</style>
+</resources>

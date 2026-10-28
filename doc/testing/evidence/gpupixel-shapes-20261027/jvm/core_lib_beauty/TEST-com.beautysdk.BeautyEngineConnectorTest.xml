@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.BeautyEngineConnectorTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:15.964Z" time="0.02">
+  <properties />
+  <testcase name="engineRejectionAndFallbackFailureAreExplicit" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.002" />
+  <testcase name="unsupportedRedrawDoesNotResubmitProcessor" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.001" />
+  <testcase name="restartResetsBothTimeLinesAndDuplicateFrameBypasses" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.005" />
+  <testcase name="realBeautyIsProcessedAndWrittenThroughOneEntry" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.001" />
+  <testcase name="reentrantWriteCannotCauseDoubleSubmission" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.001" />
+  <testcase name="readFailureFallsBackOnceAndReports" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.002" />
+  <testcase name="processingFailureFallsBackButWritingFailureNeverRetries" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.0" />
+  <testcase name="redrawAppliesSettingsWithoutAdvancingVideoTime" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.001" />
+  <testcase name="identityStillWritesOriginalFrameToEngine" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.0" />
+  <testcase name="lifecycleAndWrongThreadAreRejectedBeforeTouchingEngine" classname="com.beautysdk.BeautyEngineConnectorTest" time="0.006" />
+  <system-out />
+  <system-err />
+</testsuite>

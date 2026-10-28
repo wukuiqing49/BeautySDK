@@ -1,0 +1,224 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=customShapesHaveSignedDirectionAndRotateWithRawFrames
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=customShapesHaveSignedDirectionAndRotateWithRawFrames
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Actual portrait effect 6
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:299)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:405)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:250)
+
+INSTRUMENTATION_STATUS: stream=
+Error in actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest):
+java.lang.AssertionError: Actual portrait effect 6
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:299)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:405)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:250)
+
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oesReshapeAndColorUseSharedTextureContract
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oesReshapeAndColorUseSharedTextureContract
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=localMakeupPreservesMouthInteriorAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=localMakeupPreservesMouthInteriorAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=texturePipelinePreservesTransformAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=texturePipelinePreservesTransformAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=extendedColorAndReshapeChangePixelsAndRespectMissingFace
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=extendedColorAndReshapeChangePixelsAndRespectMissingFace
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EyeMakeupResourceDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.EyeMakeupResourceDeviceTest:
+INSTRUMENTATION_STATUS: test=allBuiltinPngStylesLoadRoundTripAndReplaceOldBeautyMaterial
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EyeMakeupResourceDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=allBuiltinPngStylesLoadRoundTripAndReplaceOldBeautyMaterial
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EyeMakeupResourceDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectsMalformedBindingsMissingPngOpaqueAndInvisibleMaterials
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EyeMakeupResourceDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectsMalformedBindingsMissingPngOpaqueAndInvisibleMaterials
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.EffectResourceDeviceTest:
+INSTRUMENTATION_STATUS: test=bundledCompleteThemeCanBeConsumedByPublicSdk
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=bundledCompleteThemeCanBeConsumedByPublicSdk
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=webResourcesMergeByTypeAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=webResourcesMergeByTypeAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=invalidV2DoesNotSilentlyFallBack
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=invalidV2DoesNotSilentlyFallBack
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=v3RetainsMakeupAndSignedShapes
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=13
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=v3RetainsMakeupAndSignedShapes
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.988
+There was 1 failure:
+1) actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest)
+java.lang.AssertionError: Actual portrait effect 6
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:299)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:405)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:250)
+
+FAILURES!!!
+Tests run: 13,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

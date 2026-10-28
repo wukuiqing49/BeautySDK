@@ -1,0 +1,641 @@
+{
+  "runId": "gpupixel-shapes-20261027",
+  "date": "2026-10-27",
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "variant": "debug",
+    "otherDevicesTouched": false
+  },
+  "sourceFingerprint": "2ee3964dbd08c3efdfa06db96a97cf96cc462e925cd7b90d2844c7f123009a52",
+  "instrumentation": {
+    "tests": 53,
+    "passed": 53,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 71.247,
+    "cases": {
+      "com.beautysdk.demo.BeautyDeviceTest#rfbDetectsActualPortraitWithoutInventingLandmarks": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#nativeRgbaMatchesReferenceForAllOrientationsAndStride": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#mediaPipeDetectsActualPortraitAndReleases": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#glMatchesCpuAndRestoresHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoLoadsAllSixPngAssetsAndCompositesActualPortrait": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#asyncCameraCadenceKeepsStickersThenHidesExpiredResults": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoUiRendersImageAndFrameCheck": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#cameraPageProducesProcessedImageAndStopClearsIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#frontBackFramesRestartAndStop": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraStickerPersistenceDeviceTest#reopenRestoresStylesAndClearRemainsCleared": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#imageControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#cameraControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#stickerCardsKeepSelectionAndPreviewsSwap": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#webResourcesMergeByTypeAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#invalidV2DoesNotSilentlyFallBack": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.FaceMotionDeviceTest#nativeMotionTracksPortraitTranslationAndRejectsBlankFrame": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelControlsDeviceTest#extendedControlUpdatesAndCameraUsesGpuPixel": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#customShapesHaveSignedDirectionAndRotateWithRawFrames": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#actualPortraitMakeupUsesDetectedLipAndCheekLandmarks": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#oesReshapeAndColorUseSharedTextureContract": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#localMakeupPreservesMouthInteriorAlphaAndHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#texturePipelinePreservesTransformAlphaAndHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#extendedColorAndReshapeChangePixelsAndRespectMissingFace": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.HomeNavigationDeviceTest#homeEntriesOpenCameraWorkshopAndDiagnostics": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#cameraGpuOptionProducesAnalysisWhileRendering": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#compareCpuGpuOnSameDirectInput": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#directRgbaSupportsAlignedAndNonAlignedWidths": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#compactRgbSupportsAlignedAndNonAlignedWidths": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#alignedInputMatchesReferencePixelsAndReusesBuffers": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#cpuGpuDetectOddPortraitOnBothEntrypoints": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ResolutionDeviceTest#glReallocatesOutputAcrossResolutions": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneControlsDeviceTest#sceneControlsDriveSharedPipelineAndReset": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#realModelReturnsBoundedMaskAndResetInvalidatesIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#textureOnlyBridgePreservesSourceGeometryForSegmentation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#backgroundPixelsMotionAndState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#oesInputCompositesBackgroundAndMotion": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SheetScrollDeviceTest#beautyAndWorkshopScrollWithoutDraggingSheet": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#privateDraftRestoresDisabledAndLateLoadCannotUndoClear": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#workshopUiEditsExportsImportsAndRetainsStateOnRecreation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#saveReloadUsesPersistedImagesAndEditedManifest": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#sixSamplesRoundTripEditedLayoutAndReusePixels": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#texture2dDownsamplesTransformsAndRestoresState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#unifiedEngineCallbackProcessesAndWritesTexture": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#oesSurfaceInputCanGenerateDetectionSmallImage": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#staleAndGeometryChangedReadbacksAreDiscarded": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeDemoDeviceTest#importReopenRejectAndClearCompleteTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#completeThemeCapabilitiesSettingsAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#malformedThemeAndWrongChildCategoryRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#absentCategoriesResetAndDoNotInheritPreviousTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#nestedPixelBudgetRejectedBeforeDecode": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#browserDownloadedHatLoadsWithEditedMetadata": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#webExportedSixPacksLoadUsingPublicSdk": {
+        "status": "passed",
+        "statusCode": 0
+      }
+    }
+  },
+  "jvm": {
+    "counts": {
+      "core/lib_beauty": 84,
+      "feature/feature_app": 12
+    },
+    "cases": {
+      "com.beautysdk.AnalysisFrameMappingTest#regionsRejectInvalidAndNonFiniteValues": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.AnalysisFrameMappingTest#mappedSessionPreservesAgeCachesCoordinatesAndInvalidatesResolutionChanges": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.AnalysisFrameMappingTest#cropAndLetterboxUseExplicitRegions": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.AnalysisFrameMappingTest#cropDropsOutsideFacesAndAnchorsWithoutClampingThem": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.AnalysisFrameMappingTest#everyRotationAndMirrorMapsToTargetRawCoordinates": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyAdjustmentsTest#neutralPassesThroughAndOnlyReshapeNeedsFaces": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyAdjustmentsTest#additionalShapesAreIndependentFaceEffectsWithSignedControls": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyAdjustmentsTest#invalidAndNonFiniteStrengthsAreRejected": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#engineRejectionAndFallbackFailureAreExplicit": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#unsupportedRedrawDoesNotResubmitProcessor": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#restartResetsBothTimeLinesAndDuplicateFrameBypasses": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#realBeautyIsProcessedAndWrittenThroughOneEntry": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#reentrantWriteCannotCauseDoubleSubmission": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#readFailureFallsBackOnceAndReports": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#processingFailureFallsBackButWritingFailureNeverRetries": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#redrawAppliesSettingsWithoutAdvancingVideoTime": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#identityStillWritesOriginalFrameToEngine": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyEngineConnectorTest#lifecycleAndWrongThreadAreRejectedBeforeTouchingEngine": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#rotationAndMirrorMapPixelCentersBackForEveryOrientation": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#schedulerDropsBusyFramesAndRejectsLateResultsAfterReset": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#missingPreciseLipDoesNotInventMoustache": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#analysisSamplingAndTextureGeometryShareOneTimeline": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#reusableOrientationBufferMatchesOwnedPixelsAndDoesNotModifySource": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#sessionResetsTimeAndReportsRendererErrorsWithBypass": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#resultExpiryAndGeometryAreChecked": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#hatTracksEveryOrientationAndMirrorAndHidesWithoutEyes": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#cpuBeautyPreservesAlphaMetadataAndInput": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#copyHandlesBufferPositionAndStride": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyPipelineTest#analysisErrorAndNoFaceHaveDistinctDiagnosticStates": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#rgbaSliceRespectsPositionPaddingAndReadOnlyOwnership": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#rejectsUndersizedAndOverflowSizedBuffers": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#wrongThreadCannotProcessOrCloseOwnerSession": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#textureTransformCannotBeMutatedThroughCallerArrays": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#lifecycleAndRestartPreserveOriginalFrame": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyProcessorTest#duplicateAndBackwardsTimestampsDoNotAdvanceSession": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#frameMetricsSeparateRedrawsAndDoNotInventResultAge": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#borrowedRuntimeSurvivesRenderSessionClose": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#enginePipelineCanTrackExternalFramesWithoutCameraTypes": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#borrowedPipelineDoesNotDisableResetOrCloseExternalAnalysis": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#motionBranchReceivesConfiguredAnalysisSize": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#redrawKeepsSamplingTimestampAndRejectsDifferentFrame": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#noStickerSkipsModelAndDemandChangeInvalidatesResults": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautyRuntimeTest#percentilesAreBoundedAndReportMissingStages": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautySceneTest#pushLoopAndSettingsDemandAndValidation": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautySceneTest#maskRejectsFutureStaleAndGeometryAndDefendsPixels": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.BeautySceneTest#motionsStayInsideImageAcrossDirectionsAndReset": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#expiryIsStillMeasuredFromCaptureEvenIfNewerResultIsInFuture": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#ringIsBoundedAndOutOfOrderResultsCannotReplaceNewerSignals": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#producerAheadOfPreviewKeepsNewestNonFutureFaceWithoutChangingAge": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#sharedViewportAllowsScaledFramesButNotDifferentAspectRatio": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#geometryAndExplicitStreamResetInvalidateOldFaces": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.FaceAnalysisHistoryTest#futureMissAndErrorDoNotHideFaceUntilTheirVideoFrameArrives": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.ImageStickerTest#asymmetricImageKeepsDisplayOrientationForEveryRotationAndMirror": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.ImageStickerTest#straightAlphaCompositesLayersAndMissingAnchorsHideImages": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.ImageStickerTest#imageAndPackDefensivelyCopyMutableInput": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.JavaApiTest#javaHostCanUseFrameAndLifecycleWithoutKotlinHelpers": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.JavaApiTest#javaEngineCallbackCanUseConnector": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.MotionTimelineTest#interpolationLoopAndHold": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.MotionTimelineTest#timelineRejectsUnclosedLoopAndDuplicateTime": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.MotionTimelineTest#changingTimelineResetsClockWithoutResettingEveryFrame": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.ReusableRgbInputTest#fusedConversionMatchesReferenceForPaddingScalingAndAllOrientations": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerPoseSmootherTest#smallMotionRemainsVisibleAndFastMotionFollowsImmediately": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerPoseSmootherTest#nullGeometryChangesTimeReversalAndClearDoNotKeepOldPose": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerPoseSmootherTest#angleWrapUsesShortPathAndDoesNotHide": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerPoseSmootherTest#scaleRelativeMotionWorksAcrossResolutions": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerPoseSmootherTest#equalElapsedTimeHasEqualResponseAtDifferentRenderRates": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerResourceGeometryTest#resourceParametersRejectInvalidValuesAndCopyLayerList": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerResourceGeometryTest#layerEditsKeepImageAndDefaultPoseUnchanged": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.StickerResourceGeometryTest#offsetsFollowDisplayAxesAcrossResolutionRotationAndMirror": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.TrackedFaceAnalysisTest#publicSessionUsesOptionalMotionPipelineAndKeepsLifecycle": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.TrackedFaceAnalysisTest#freshMotionBridgesStaleDetectionButCannotOutliveCorrectionOrReset": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.TrackedFaceAnalysisTest#failedMotionKeepsLastSuccessWithoutRefreshingTimestamp": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.TrackedFaceAnalysisTest#modelHandoffKeepsNewerCompletedTracking": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.TrackedFaceAnalysisTest#modelHandoffKeepsInFlightTracking": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.UnifiedInputTest#latestPendingReplacesIntermediateFramesWithoutOverwritingActiveInput": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.UnifiedInputTest#publicSessionSharesSmallAnalysisWithLargeTextureWithoutInventingDimensions": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.UnifiedInputTest#engineCanReleaseSourceImmediatelyAndWorkerUsesDirectRgba": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.UnifiedInputTest#resetDropsPendingAndOldCompletion": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#textureLeaseReleaseIsIdempotentAcrossThreads": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#downsamplesBeforeConversionAndReusesBorrowedStorage": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#limitedBlackAndWhitePreserveMetadata": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#nv21OffsetPixelStrideAndOddDimensions": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#matricesDifferAndChromaOrderingMatters": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.Yuv420InputTest#invalidPlaneRejectedBeforeRead": {
+        "status": "passed",
+        "module": "core/lib_beauty"
+      },
+      "com.beautysdk.demo.feature.app.AnalysisTimingWindowTest#recordsSlowFramesAndMissingBackendWithoutPretendingZero": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#analysisRunsOnlyForVisibleEnabledStickers": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#makeupAloneRequestsFacesAndOriginalBypassesIt": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#reshapeDrivesAnalysisWithoutStickersButColorDoesNot": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#importedPackDrivesAnalysisAndEmptyOverrideDisablesBuiltIns": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#segmentationIndependentOfFaceBackendAndOriginalDisablesBoth": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewRequestTest#completeThemeOverridesOldManualAndCustomStickerAnalysis": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewTrackingTest#staleFutureWrongSessionBackendAndGeometryCannotRenderStickers": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewTrackingTest#sameViewportCanUseNormalizedAnchorsAcrossResolutionsWithinDeadline": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewTrackingTest#revisionCameraAndBackendChangesNeverRestoreOldStickers": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewTrackingTest#noFaceErrorsAndDisabledNeverReusePreviousFace": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      },
+      "com.beautysdk.demo.feature.app.PreviewTrackingTest#fasterAnalysisDoesNotMakeStickersBlinkOnSlowerPreview": {
+        "status": "passed",
+        "module": "feature/feature_app"
+      }
+    }
+  },
+  "build": {
+    "gpuPixelReleaseAar": true,
+    "appDebug": true,
+    "androidTestApk": true,
+    "lintSeverityCounts": {
+      "Warning": 125
+    }
+  },
+  "settingsRestored": true,
+  "notRun": [
+    "human motion/occlusion/side-profile quality",
+    "sustained performance/thermal",
+    "actual vendor engines/remote stream",
+    "iOS and Web makeup resource extensions",
+    "16KiB device runtime",
+    "host Release/R8"
+  ]
+}

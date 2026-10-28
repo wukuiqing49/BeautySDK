@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-26",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/AsyncFaceAnalysis.kt": "b88d65eb0c8674ff7fb5c40eb0d8ca73e89b55404fc941961ef3cfb6896e1045",
+    "core/lib_beauty/src/test/java/com/beautysdk/UnifiedInputTest.kt": "907a72cacd6b1c4ea5e3f49566bee14c3c2f6d7b1358712802f42c10f4ecf75e",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "0c7cf9c34ec4da2f3e5931dbb799c50d0fa4662ca8fb9fe5d9c0bc4283ad709d"
+  },
+  "jvm": {
+    "core/lib_beauty": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "build": "app:assembleDebug PASS",
+  "performance": "not measured",
+  "device": "Pixel 8 install succeeded"
+}

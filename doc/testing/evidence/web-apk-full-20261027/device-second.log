@@ -1,0 +1,100 @@
+
+com.beautysdk.demo.BeautyDeviceTest:....
+CPU render 240x300 (single fixture sample): 97ms; PNG active at 350ms age, hidden at 850ms.
+..
+com.beautysdk.demo.CameraDeviceTest:..
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:...
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.EffectResourceDeviceTest:....
+com.beautysdk.demo.EyeMakeupResourceDeviceTest:..
+com.beautysdk.demo.FaceMotionDeviceTest:
+MOTION samples=15 meanMs=3.572466133333333 maxMs=6.106934
+.
+com.beautysdk.demo.GestureDeviceTest:.....
+com.beautysdk.demo.GpuPixelControlsDeviceTest:
+Error in extendedControlUpdatesAndCameraUsesGpuPixel(com.beautysdk.demo.GpuPixelControlsDeviceTest):
+java.lang.AssertionError: expected:<100> but was:<110>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel$lambda$3(GpuPixelControlsDeviceTest.kt:63)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.$r8$lambda$3oaaS8MxgABofxz6kjZ14GFOETY(GpuPixelControlsDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+com.beautysdk.demo.GpuPixelDeviceTest:......
+com.beautysdk.demo.HomeNavigationDeviceTest:.
+com.beautysdk.demo.MediaPipeDelegateDeviceTest:.
+DELEGATE round=0 execution=CPU n=40 initMs=160.287191 total[mean=164.18689684999998,p50=167.312622,p95=184.06246,max=187.365642] infer[mean=150.707713825,p50=153.135987,p95=169.974121,max=173.398478] prep[mean=3.866118325,p50=4.045329,p95=4.344239,max=5.383626]
+
+DELEGATE round=1 execution=GPU n=40 initMs=465.803711 total[mean=107.05373340000001,p50=106.669434,p95=119.285604,max=125.825643] infer[mean=93.82874570000001,p50=93.68746,p95=105.951172,max=112.451579] prep[mean=3.9570201,p50=3.89563,p95=4.436768,max=4.977336]
+
+DELEGATE round=2 execution=GPU n=40 initMs=434.763265 total[mean=91.41289987500002,p50=93.474813,p95=108.055704,max=118.067179] infer[mean=81.99376940000002,p50=84.019612,p95=96.522217,max=109.011434] prep[mean=3.833131999999998,p50=3.902995,p95=4.080281,max=4.706624]
+
+DELEGATE round=3 execution=CPU n=40 initMs=332.625732 total[mean=124.86224477500002,p50=126.247314,p95=141.45988,max=153.211263] infer[mean=117.41692097499997,p50=118.805949,p95=132.550293,max=144.323283] prep[mean=3.4567769999999998,p50=3.883545,p95=4.300374,max=4.350342]
+.
+com.beautysdk.demo.MediaPipeInputContractDeviceTest:....
+com.beautysdk.demo.ResolutionDeviceTest:.
+com.beautysdk.demo.ResourceCenterDeviceTest:..........
+com.beautysdk.demo.ResourceCenterUiDeviceTest:.
+com.beautysdk.demo.ResourceDeliveryDeviceTest:...
+com.beautysdk.demo.ResourceStoreDeviceTest:..
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.SceneDeviceTest:....
+com.beautysdk.demo.SheetScrollDeviceTest:.
+com.beautysdk.demo.StickerResourceDeviceTest:.....
+com.beautysdk.demo.TextureBridgeDeviceTest:....
+com.beautysdk.demo.ThemeDemoDeviceTest:
+Error in importReopenRejectAndClearCompleteTheme(com.beautysdk.demo.ThemeDemoDeviceTest):
+java.lang.IllegalStateException: Theme state did not settle
+	at com.beautysdk.demo.ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme$waitFor(ThemeDemoDeviceTest.kt:26)
+	at com.beautysdk.demo.ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme(ThemeDemoDeviceTest.kt:33)
+
+com.beautysdk.demo.ThemeResourceDeviceTest:....
+com.beautysdk.demo.WebStickerPackDeviceTest:..
+
+Time: 109.575
+There were 2 failures:
+1) extendedControlUpdatesAndCameraUsesGpuPixel(com.beautysdk.demo.GpuPixelControlsDeviceTest)
+java.lang.AssertionError: expected:<100> but was:<110>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel$lambda$3(GpuPixelControlsDeviceTest.kt:63)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.$r8$lambda$3oaaS8MxgABofxz6kjZ14GFOETY(GpuPixelControlsDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+2) importReopenRejectAndClearCompleteTheme(com.beautysdk.demo.ThemeDemoDeviceTest)
+java.lang.IllegalStateException: Theme state did not settle
+	at com.beautysdk.demo.ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme$waitFor(ThemeDemoDeviceTest.kt:26)
+	at com.beautysdk.demo.ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme(ThemeDemoDeviceTest.kt:33)
+
+FAILURES!!!
+Tests run: 78,  Failures: 2
+
+

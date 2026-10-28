@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.beautysdk.camera.RgbaPackingTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-27T04:55:07.116Z" hostname="WIN-MMJSWULHUCA" time="0.007">
+  <properties/>
+  <testcase name="rejectsCropOutsideStrideAndOverflowSizes" classname="com.beautysdk.camera.RgbaPackingTest" time="0.001"/>
+  <testcase name="copiesRgbaChannelsWithoutArgbReordering" classname="com.beautysdk.camera.RgbaPackingTest" time="0.0"/>
+  <testcase name="rejectsTruncatedPlane" classname="com.beautysdk.camera.RgbaPackingTest" time="0.0"/>
+  <testcase name="bulkCopyContiguousRowsHonorsTopCropAndLimit" classname="com.beautysdk.camera.RgbaPackingTest" time="0.003"/>
+  <testcase name="bulkCopyPreservesDirectBufferCropAndPosition" classname="com.beautysdk.camera.RgbaPackingTest" time="0.0"/>
+  <testcase name="rejectsInvalidConfiguration" classname="com.beautysdk.camera.RgbaPackingTest" time="0.001"/>
+  <testcase name="copiesCropWithPositionRowPaddingAndPixelStride" classname="com.beautysdk.camera.RgbaPackingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

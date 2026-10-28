@@ -1,0 +1,13 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/home_background" android:fillViewport="true" android:scrollbars="none" android:clipToPadding="false"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+<TextView style="@style/HomeDescription" android:text="@string/home_eyebrow" android:letterSpacing="0.12" android:textSize="11sp"/>
+<TextView style="@style/HomeTitle" android:layout_marginTop="20dp" android:text="@string/home_title" android:textSize="32sp"/>
+<TextView style="@style/HomeDescription" android:text="@string/home_intro"/>
+<LinearLayout android:id="@+id/open_camera" style="@style/HomeCard" android:layout_marginTop="28dp" android:background="@drawable/bg_home_hero" android:padding="24dp">
+<TextView style="@style/HomeTitle" android:text="@string/home_live" android:textSize="26sp" android:textColor="@color/camera_text"/>
+<TextView style="@style/HomeDescription" android:text="@string/home_live_desc" android:textColor="@color/camera_text"/>
+<TextView style="@style/HomeTitle" android:layout_marginTop="32dp" android:text="@string/home_start" android:textSize="16sp" android:textColor="@color/camera_accent"/>
+</LinearLayout>
+<TextView style="@style/HomeDescription" android:layout_marginTop="28dp" android:text="@string/home_tools" android:textSize="11sp" android:letterSpacing="0.1"/>
+<LinearLayout android:id="@+id/open_workshop" style="@style/HomeCard"><TextView style="@style/HomeTitle" android:text="@string/home_workshop"/><TextView style="@style/HomeDescription" android:text="@string/home_workshop_desc"/></LinearLayout>
+<TextView android:id="@+id/open_diagnostics" style="@style/HomeDescription" android:layout_marginTop="20dp" android:minHeight="48dp" android:gravity="center_vertical" android:text="@string/home_debug" android:background="?attr/selectableItemBackground" android:clickable="true" android:focusable="true"/>
+<TextView style="@style/HomeDescription" android:layout_marginTop="28dp" android:text="@string/home_engine" android:textSize="11sp"/><TextView style="@style/HomeDescription" android:text="@string/home_engine_desc" android:layout_marginBottom="16dp"/></LinearLayout></ScrollView>

@@ -1,0 +1,12 @@
+{
+  "library": {
+    "resources": 30,
+    "files": 62,
+    "locale": "en",
+    "mode": "FIXED"
+  },
+  "theme": {
+    "category": "THEME",
+    "id": "my_effect_theme"
+  }
+}

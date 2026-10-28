@@ -1,0 +1,41 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    id 'maven-publish'
+}
+
+android {
+    namespace = 'com.beautysdk'
+    compileSdk = libs.versions.compileSdk.get().toInteger()
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInteger()
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    publishing { singleVariant('release') { withSourcesJar() } }
+}
+kotlin { jvmToolchain(17) }
+dependencies { testImplementation libs.junit }
+
+// 仅本地验证坐标，正式发布前确认归属。
+group = 'com.beautysdk'
+version = libs.versions.sdk.get()
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifactId = 'lib_beauty'
+            }
+        }
+        repositories {
+            maven {
+                name = 'localBuild'
+                url = rootProject.layout.buildDirectory.dir('repo').get().asFile.toURI()
+            }
+        }
+    }
+}

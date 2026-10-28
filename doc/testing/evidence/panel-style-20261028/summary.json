@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-28T04:00:23.153228+00:00",
+  "commit": null,
+  "sourceFingerprint": "a417188e6bb5e0df28b5a32c8586cb4bcca8eca938cd78f7fb01a909c4c19a5d",
+  "evidence": "doc/testing/evidence/panel-style-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "DemoLayoutDeviceTest.cameraControlsScrollWithoutHidingProcessedPreview",
+    "DemoLayoutDeviceTest.stickerCardsKeepSelectionAndPreviewsSwap",
+    "DemoLayoutDeviceTest.imageControlsScrollWithoutHidingProcessedPreview",
+    "EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary",
+    "GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel",
+    "SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory",
+    "SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet",
+    "LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel",
+    "LabHierarchyDeviceTest.singleEntryKeepsCallbacksAndOptionalInsetAccessible",
+    "LabHierarchyDeviceTest.categoryOffPreservesOtherEffectsAndBeautyUsesOneSlider"
+  ],
+  "deviceSuite": {
+    "tests": 10,
+    "failures": 0,
+    "seconds": 19.41
+  },
+  "fontScale1_3Portrait": {
+    "tests": 4,
+    "failures": 0,
+    "seconds": 10.098
+  },
+  "limits": [
+    "No current landscape/full-language/day-night visual matrix",
+    "No SDK algorithm, sustained performance or vendor validation",
+    "Known stop frame-count race remains unresolved"
+  ]
+}

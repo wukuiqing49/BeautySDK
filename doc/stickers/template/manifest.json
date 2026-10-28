@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "round_glasses",
+  "name": "Round glasses",
+  "preview": "preview.png",
+  "layers": [
+    {
+      "id": "main",
+      "image": "sticker.png",
+      "anchor": "EYES",
+      "widthInAnchorSpans": 2.5,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "rotationDegrees": 0
+    }
+  ]
+}

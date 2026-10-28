@@ -1,0 +1,765 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.BeautyDeviceTest:
+INSTRUMENTATION_STATUS: test=rfbDetectsActualPortraitWithoutInventingLandmarks
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rfbDetectsActualPortraitWithoutInventingLandmarks
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=nativeRgbaMatchesReferenceForAllOrientationsAndStride
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=nativeRgbaMatchesReferenceForAllOrientationsAndStride
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=mediaPipeDetectsActualPortraitAndReleases
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=mediaPipeDetectsActualPortraitAndReleases
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=glMatchesCpuAndRestoresHostState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=glMatchesCpuAndRestoresHostState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=demoLoadsAllSixPngAssetsAndCompositesActualPortrait
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalArgumentException: The size of the buffer should be: 630784 but is 629760
+	at com.google.mediapipe.framework.PacketCreator.createImage(PacketCreator.java:472)
+	at com.google.mediapipe.framework.AndroidPacketCreator.createImage(AndroidPacketCreator.java:94)
+	at com.google.mediapipe.tasks.vision.core.BaseVisionTaskApi.processVideoData(BaseVisionTaskApi.java:113)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:375)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:346)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.detect(MediaPipeFaceAnalyzer.kt:93)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.analyze(MediaPipeFaceAnalyzer.kt:61)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.render$lambda$0(BeautyDemoController.kt:59)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.$r8$lambda$olcpCdm_5Fh28Rg6x2Gy03AgS0Q(BeautyDemoController.kt:0)
+	at com.beautysdk.demo.feature.app.BeautyDemoController$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:1571)
+
+INSTRUMENTATION_STATUS: stream=
+Error in demoLoadsAllSixPngAssetsAndCompositesActualPortrait(com.beautysdk.demo.BeautyDeviceTest):
+java.lang.IllegalArgumentException: The size of the buffer should be: 630784 but is 629760
+	at com.google.mediapipe.framework.PacketCreator.createImage(PacketCreator.java:472)
+	at com.google.mediapipe.framework.AndroidPacketCreator.createImage(AndroidPacketCreator.java:94)
+	at com.google.mediapipe.tasks.vision.core.BaseVisionTaskApi.processVideoData(BaseVisionTaskApi.java:113)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:375)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:346)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.detect(MediaPipeFaceAnalyzer.kt:93)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.analyze(MediaPipeFaceAnalyzer.kt:61)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.render$lambda$0(BeautyDemoController.kt:59)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.$r8$lambda$olcpCdm_5Fh28Rg6x2Gy03AgS0Q(BeautyDemoController.kt:0)
+	at com.beautysdk.demo.feature.app.BeautyDemoController$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:1571)
+
+INSTRUMENTATION_STATUS: test=demoLoadsAllSixPngAssetsAndCompositesActualPortrait
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=asyncCameraCadenceKeepsStickersThenHidesExpiredResults
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+CPU render 240x300 (single fixture sample): 118ms; PNG active at 350ms age, hidden at 850ms.
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=asyncCameraCadenceKeepsStickersThenHidesExpiredResults
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=demoUiRendersImageAndFrameCheck
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.BeautyDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=demoUiRendersImageAndFrameCheck
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.CameraDeviceTest:
+INSTRUMENTATION_STATUS: test=cameraPageProducesProcessedImageAndStopClearsIt
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cameraPageProducesProcessedImageAndStopClearsIt
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=frontBackFramesRestartAndStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=frontBackFramesRestartAndStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraStickerPersistenceDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:
+INSTRUMENTATION_STATUS: test=reopenRestoresStylesAndClearRemainsCleared
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraStickerPersistenceDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=reopenRestoresStylesAndClearRemainsCleared
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.DemoLayoutDeviceTest:
+INSTRUMENTATION_STATUS: test=imageControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=imageControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cameraControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cameraControlsScrollWithoutHidingProcessedPreview
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=stickerCardsKeepSelectionAndPreviewsSwap
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoLayoutDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=stickerCardsKeepSelectionAndPreviewsSwap
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.EffectResourceDeviceTest:
+INSTRUMENTATION_STATUS: test=webResourcesMergeByTypeAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=webResourcesMergeByTypeAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=invalidV2DoesNotSilentlyFallBack
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectResourceDeviceTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=invalidV2DoesNotSilentlyFallBack
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.FaceMotionDeviceTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.FaceMotionDeviceTest:
+INSTRUMENTATION_STATUS: test=nativeMotionTracksPortraitTranslationAndRejectsBlankFrame
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+MOTION samples=15 meanMs=3.8850044 maxMs=6.268188
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.FaceMotionDeviceTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=nativeMotionTracksPortraitTranslationAndRejectsBlankFrame
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelControlsDeviceTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=extendedControlUpdatesAndCameraUsesGpuPixel
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=oesReshapeAndColorUseSharedTextureContract
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oesReshapeAndColorUseSharedTextureContract
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=texturePipelinePreservesTransformAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=texturePipelinePreservesTransformAlphaAndHostState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=extendedColorAndReshapeChangePixelsAndRespectMissingFace
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=extendedColorAndReshapeChangePixelsAndRespectMissingFace
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.HomeNavigationDeviceTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.HomeNavigationDeviceTest:
+INSTRUMENTATION_STATUS: test=homeEntriesOpenCameraWorkshopAndDiagnostics
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.HomeNavigationDeviceTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<3> but was:<-1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics(HomeNavigationDeviceTest.kt:33)
+
+INSTRUMENTATION_STATUS: stream=
+Error in homeEntriesOpenCameraWorkshopAndDiagnostics(com.beautysdk.demo.HomeNavigationDeviceTest):
+java.lang.AssertionError: expected:<3> but was:<-1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics(HomeNavigationDeviceTest.kt:33)
+
+INSTRUMENTATION_STATUS: test=homeEntriesOpenCameraWorkshopAndDiagnostics
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.MediaPipeDelegateDeviceTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.MediaPipeDelegateDeviceTest:
+INSTRUMENTATION_STATUS: test=cameraGpuOptionProducesAnalysisWhileRendering
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.MediaPipeDelegateDeviceTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=cameraGpuOptionProducesAnalysisWhileRendering
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.MediaPipeDelegateDeviceTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=compareCpuGpuOnSameDirectInput
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+DELEGATE round=0 execution=CPU n=40 initMs=133.280315 total[mean=165.056873625,p50=165.151042,p95=190.49528,max=199.704427] infer[mean=146.6941711,p50=148.769532,p95=172.364055,max=176.932373] prep[mean=3.396090875,p50=3.561238,p95=4.040649,max=4.936809]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+DELEGATE round=1 execution=GPU n=40 initMs=460.436809 total[mean=99.498866825,p50=99.85616,p95=111.159749,max=113.889649] infer[mean=90.9344096,p50=91.320353,p95=103.27653,max=105.204875] prep[mean=3.55505675,p50=3.495931,p95=3.715251,max=4.571655]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+DELEGATE round=2 execution=GPU n=40 initMs=431.373576 total[mean=89.40505477499998,p50=94.773438,p95=103.366211,max=107.974203] infer[mean=81.78852742500001,p50=86.366129,p95=95.447713,max=100.385498] prep[mean=3.306714925,p50=3.459432,p95=4.185588,max=4.751547]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+DELEGATE round=3 execution=CPU n=40 initMs=367.19629 total[mean=126.161442075,p50=128.385743,p95=142.1226,max=148.743449] infer[mean=118.87304175,p50=121.63086,p95=135.725179,max=140.205118] prep[mean=3.1817699500000005,p50=3.589885,p95=3.949748,max=4.148397]
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.MediaPipeDelegateDeviceTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=compareCpuGpuOnSameDirectInput
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResolutionDeviceTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResolutionDeviceTest:
+INSTRUMENTATION_STATUS: test=glReallocatesOutputAcrossResolutions
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResolutionDeviceTest
+INSTRUMENTATION_STATUS: current=24
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=glReallocatesOutputAcrossResolutions
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SceneControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=sceneControlsDriveSharedPipelineAndReset
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=25
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sceneControlsDriveSharedPipelineAndReset
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SceneDeviceTest:
+INSTRUMENTATION_STATUS: test=realModelReturnsBoundedMaskAndResetInvalidatesIt
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=26
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realModelReturnsBoundedMaskAndResetInvalidatesIt
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=27
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=textureOnlyBridgePreservesSourceGeometryForSegmentation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=27
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=textureOnlyBridgePreservesSourceGeometryForSegmentation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=28
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=backgroundPixelsMotionAndState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=28
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=backgroundPixelsMotionAndState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=29
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oesInputCompositesBackgroundAndMotion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=29
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oesInputCompositesBackgroundAndMotion
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SheetScrollDeviceTest
+INSTRUMENTATION_STATUS: current=30
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SheetScrollDeviceTest:
+INSTRUMENTATION_STATUS: test=beautyAndWorkshopScrollWithoutDraggingSheet
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SheetScrollDeviceTest
+INSTRUMENTATION_STATUS: current=30
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=beautyAndWorkshopScrollWithoutDraggingSheet
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=31
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.StickerResourceDeviceTest:
+INSTRUMENTATION_STATUS: test=privateDraftRestoresDisabledAndLateLoadCannotUndoClear
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=31
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=privateDraftRestoresDisabledAndLateLoadCannotUndoClear
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=32
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=workshopUiEditsExportsImportsAndRetainsStateOnRecreation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=32
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=workshopUiEditsExportsImportsAndRetainsStateOnRecreation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=33
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=33
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=34
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=saveReloadUsesPersistedImagesAndEditedManifest
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=34
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=saveReloadUsesPersistedImagesAndEditedManifest
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=35
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=sixSamplesRoundTripEditedLayoutAndReusePixels
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.StickerResourceDeviceTest
+INSTRUMENTATION_STATUS: current=35
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sixSamplesRoundTripEditedLayoutAndReusePixels
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=36
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.TextureBridgeDeviceTest:
+INSTRUMENTATION_STATUS: test=texture2dDownsamplesTransformsAndRestoresState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=36
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=texture2dDownsamplesTransformsAndRestoresState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=37
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=unifiedEngineCallbackProcessesAndWritesTexture
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=37
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=unifiedEngineCallbackProcessesAndWritesTexture
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=38
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oesSurfaceInputCanGenerateDetectionSmallImage
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=38
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oesSurfaceInputCanGenerateDetectionSmallImage
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=39
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=staleAndGeometryChangedReadbacksAreDiscarded
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.TextureBridgeDeviceTest
+INSTRUMENTATION_STATUS: current=39
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=staleAndGeometryChangedReadbacksAreDiscarded
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeDemoDeviceTest
+INSTRUMENTATION_STATUS: current=40
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ThemeDemoDeviceTest:
+INSTRUMENTATION_STATUS: test=importReopenRejectAndClearCompleteTheme
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeDemoDeviceTest
+INSTRUMENTATION_STATUS: current=40
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=importReopenRejectAndClearCompleteTheme
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=41
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ThemeResourceDeviceTest:
+INSTRUMENTATION_STATUS: test=completeThemeCapabilitiesSettingsAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=41
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=completeThemeCapabilitiesSettingsAndRoundTrip
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=42
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=malformedThemeAndWrongChildCategoryRejected
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=42
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=malformedThemeAndWrongChildCategoryRejected
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=43
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=absentCategoriesResetAndDoNotInheritPreviousTheme
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=43
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=absentCategoriesResetAndDoNotInheritPreviousTheme
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=44
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=nestedPixelBudgetRejectedBeforeDecode
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ThemeResourceDeviceTest
+INSTRUMENTATION_STATUS: current=44
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=nestedPixelBudgetRejectedBeforeDecode
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.WebStickerPackDeviceTest
+INSTRUMENTATION_STATUS: current=45
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.WebStickerPackDeviceTest:
+INSTRUMENTATION_STATUS: test=browserDownloadedHatLoadsWithEditedMetadata
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.WebStickerPackDeviceTest
+INSTRUMENTATION_STATUS: current=45
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=browserDownloadedHatLoadsWithEditedMetadata
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.WebStickerPackDeviceTest
+INSTRUMENTATION_STATUS: current=46
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=webExportedSixPacksLoadUsingPublicSdk
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.WebStickerPackDeviceTest
+INSTRUMENTATION_STATUS: current=46
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=46
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=webExportedSixPacksLoadUsingPublicSdk
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 61.935
+There were 2 failures:
+1) demoLoadsAllSixPngAssetsAndCompositesActualPortrait(com.beautysdk.demo.BeautyDeviceTest)
+java.lang.IllegalArgumentException: The size of the buffer should be: 630784 but is 629760
+	at com.google.mediapipe.framework.PacketCreator.createImage(PacketCreator.java:472)
+	at com.google.mediapipe.framework.AndroidPacketCreator.createImage(AndroidPacketCreator.java:94)
+	at com.google.mediapipe.tasks.vision.core.BaseVisionTaskApi.processVideoData(BaseVisionTaskApi.java:113)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:375)
+	at com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker.detectForVideo(FaceLandmarker.java:346)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.detect(MediaPipeFaceAnalyzer.kt:93)
+	at com.beautysdk.mediapipe.MediaPipeFaceAnalyzer.analyze(MediaPipeFaceAnalyzer.kt:61)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.render$lambda$0(BeautyDemoController.kt:59)
+	at com.beautysdk.demo.feature.app.BeautyDemoController.$r8$lambda$olcpCdm_5Fh28Rg6x2Gy03AgS0Q(BeautyDemoController.kt:0)
+	at com.beautysdk.demo.feature.app.BeautyDemoController$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1100)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:1571)
+2) homeEntriesOpenCameraWorkshopAndDiagnostics(com.beautysdk.demo.HomeNavigationDeviceTest)
+java.lang.AssertionError: expected:<3> but was:<-1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics(HomeNavigationDeviceTest.kt:33)
+
+FAILURES!!!
+Tests run: 46,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

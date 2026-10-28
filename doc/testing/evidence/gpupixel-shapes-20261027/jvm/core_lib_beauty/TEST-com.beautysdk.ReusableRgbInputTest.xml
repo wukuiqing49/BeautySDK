@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.ReusableRgbInputTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:16.196Z" time="0.002">
+  <properties />
+  <testcase name="fusedConversionMatchesReferenceForPaddingScalingAndAllOrientations" classname="com.beautysdk.ReusableRgbInputTest" time="0.002" />
+  <system-out />
+  <system-err />
+</testsuite>

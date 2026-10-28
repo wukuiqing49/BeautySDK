@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/pixpark/gpupixel",
+  "revision": "ef552bf8ce2d0d41fa9b979bfb5c7cf79374ca88",
+  "license": "Apache-2.0",
+  "hashNormalization": "Text CRLF to LF; PNG bytes unchanged",
+  "sha256": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "src/filter/beauty_face_unit_filter.cc": "cab31f3c7ff9212df8a93c402e9b2bd615711a16ed7ee0016b4dfce66f2102a2",
+    "src/filter/beauty_face_filter.cc": "56a3063b8a25cde359a7d6b0b1490d2acbdecc8a0dea5d55c4817a5dfa5890f9",
+    "src/filter/box_mono_blur_filter.cc": "52517c467e9f0867043e720413891b50ef900dbc78745d7d3c1a29b1c9c1c01f",
+    "src/filter/box_difference_filter.cc": "4d0025e594c96bc9be7a44fb63a26cf2424e3cbc8bfd1946064ed2dcf82e4191",
+    "src/filter/box_high_pass_filter.cc": "bfc338a38c310819ac29fb55596ab810987e2bee783ddc1f43059521c81a55cc",
+    "src/filter/box_blur_filter.cc": "d53f090c8af446df99775ad353225eac41c4aba7bfd2669dc3c82927617a8e83",
+    "src/filter/face_reshape_filter.cc": "117dfbd9f28259672daef5f2daeb92cec216bbd085d2f0fca02b2ad0f4b21eed",
+    "src/filter/face_makeup_filter.cc": "221abdb1de167970a9f47d337ceaf58f2176155e1e433ac11e2700dfd1009327",
+    "src/filter/lipstick_filter.cc": "9c04605567f79683df80a656043e040bdb30a5ae8bf54acd31864ae800911152",
+    "src/filter/blusher_filter.cc": "b909663fb5f2f20046cd0b08cb49b3dff93dc15a93ce4450b8979815ce4c4883",
+    "src/res/lookup_gray.png": "9b7b6da3f0d6102dfd454119c108cc5b56e97176eda4c01871b5dfdcd256952b",
+    "src/res/lookup_origin.png": "b6e8799049eb14482b544861bb444733c22768965f69545893fa8485e85207af",
+    "src/res/lookup_skin.png": "5f898a8fe4997b4831c3c7a29fadd4b307f0bb9dc837a7cc5c6d3f2b870b55f5",
+    "src/res/lookup_light.png": "5058b32f12f584152c1a5984767415bdeb128e0ea78c858f3529ba596ba06d3a",
+    "src/res/mouth.png": "1b7c86cedd90e75881ff0ae89158d13c36b2a46296f53d75ed2520b002e3795d",
+    "src/res/blusher.png": "8dc7bfe44c33fcd790fb62efad1296a159cc0ce04e2b290f8631bdaafc12eecc"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-26",
+  "scope": "static-resource-pack-v1-and-camera-workshop",
+  "sourceFingerprint": "4efe75f559bca1e18a0b88b4a55c36610a045de619bc3b2a6f80cd7ebfdeaadd",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerResourcePack.kt": "ef4af9b2e02e4b4ea17116e40e1b0a81099a10b311902135f5843bc059bf6034",
+    "core/lib_beauty/src/main/java/com/beautysdk/ImageSticker.kt": "d1d28b5f1733eca4aa2f1d758a381ed73716e5b175b39ab90c997122b8239c45",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "cf7f27a598f13b83def1b0643110799d41d3b781499d9d5ef6129ba08da95528",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "9a910b65611c3f3cce4f1049ff8ac95143124a1c930e1a5cc7187a54ec6537c9",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerResourceGeometryTest.kt": "9cee82e4cb198dd5890dd220a0ba6034c0fad24b2d36b96a665d3ccd34c1aacb",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/DemoStickerCatalog.kt": "252d11e6e60183e49b84f0c965a271118afd9cfd317f484afff527523d9beb3b",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "06f7e8b0cb0e6cdc866753c1319576a8159893280985a3fd5f264eb7babc5c2d",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "d7d9b3f57df9822c926bf147f9312e4c64b1639e0735857fc05fff04bf0e9455",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "1e3c1eb5db937297c7c795553903acdef98b3b5724538e959e5569d432f72def",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "49d44160caa0ae0a7c58d2914c04b3e5b7f7ed92cdaf27741bb80ac4df990b85",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "fe5746048b5662f2550a1a97c84404e4e94f78893b9d6923c456e744d8c0d554",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopViewModel.kt": "8246b17997fab42bb40a45021cb80652e2cfedf3f18144b118859ae899850a61",
+    "app/src/main/res/layout/activity_camera_test.xml": "3ffcd2ad921db0bdab1ebfb13ef7121a400f598018ee5fa27a9d79bab5feafdd",
+    "app/src/main/res/layout/view_sticker_workshop.xml": "0a22007224d1eb94e3d1c9474a42bf199419c61e00d5abe9118d25871553d23a",
+    "app/src/main/res/values/strings.xml": "a209488a45d5d252c216c97f1360d447e719adbea6cc1738ea33930b936d9514",
+    "app/src/main/res/values-en/strings.xml": "a209488a45d5d252c216c97f1360d447e719adbea6cc1738ea33930b936d9514",
+    "app/src/main/res/values-zh-rCN/strings.xml": "69c2a62c9f2a4029a9c483ded1da9a2d64aa914a9209483e2c0d0873f7d58fcc",
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "175f7c1bed6bfcb061e465176e99fcca04efe86ce8e1314ae3ba635d9bc3d836",
+    "app/src/androidTest/java/com/beautysdk/demo/BeautyDeviceTest.kt": "f9868520681fd4907e826839aa727f95e991a57cc785dc24a833ade024546efe",
+    "app/build.gradle": "f92afbe2c7cf86295c07348df112f0c22d552791cebc2536776fc6a2fbb8ebf3",
+    "scripts/build_sticker_samples.py": "664f5fc5e211dd977509c677da7749a2ae796574680eb10615e4e006fd95347e",
+    "feature/feature_app/src/main/assets/sticker_packs/blue_top_hat.zip": "e6aa925105de9d20f88cc6e3992910dd4a98c20306a129366c4aff5a0e7490ac",
+    "feature/feature_app/src/main/assets/sticker_packs/cat_ears.zip": "e532e090d939f261ca4478d7c3e71d11e6a65d27cec93edb44f1b974194077a2",
+    "feature/feature_app/src/main/assets/sticker_packs/curled_moustache.zip": "ee1131b1843484183b8f8195f48e7824dc322d6ee75f898de4166f6c15e0e11b",
+    "feature/feature_app/src/main/assets/sticker_packs/gold_crown.zip": "b965370cac1565b9a2f52f993e23f38b72a4b413304585c11927fa87d11bfc56",
+    "feature/feature_app/src/main/assets/sticker_packs/heart_glasses.zip": "f7a778c1969c43ffce129dc63d27cbd84d153adda90022a97786680778629107",
+    "feature/feature_app/src/main/assets/sticker_packs/round_glasses.zip": "acf77b2239205479b23384a39661571c0cb10b8df35a2428449b86c7341d1f5a"
+  },
+  "unitResults": {
+    "core/lib_beauty": {
+      "tests": 50,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "build": {
+    "coreReleaseAar": "PASS",
+    "appDebug": "PASS",
+    "appAndroidTest": "PASS",
+    "appLintDebug": "PASS",
+    "lintSeverities": {
+      "Warning": 75
+    },
+    "externalDependencyVersionsChanged": false
+  },
+  "staticGates": {
+    "ui": "PASS (0 warnings)",
+    "i18n": "PASS (0 warnings)",
+    "architecture": "PASS (0 warnings)"
+  },
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "install": "Success",
+    "passedTests": [
+      "StickerResourceDeviceTest#sixSamplesRoundTripEditedLayoutAndReusePixels",
+      "StickerResourceDeviceTest#invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected",
+      "StickerResourceDeviceTest#workshopUiEditsExportsImportsAndRetainsStateOnRecreation",
+      "BeautyDeviceTest#glMatchesCpuAndRestoresHostState",
+      "MediaPipeDelegateDeviceTest#cameraGpuOptionProducesAnalysisWhileRendering"
+    ],
+    "firstBatch": "4 passed / 1 test locator failure (dialog content reparented to separate Window)",
+    "retry": "UI locator corrected to retained panel; OK (1 test), 1.824 seconds",
+    "testData": "Built-in PNG/ZIP plus three exclusive cache files, deleted by finally; no camera frames saved"
+  },
+  "logs": [
+    "build/sticker-workshop-final.log",
+    "build/sticker-workshop-test-fix.log",
+    "build/sticker-workshop-device.log",
+    "build/sticker-workshop-ui-retry.log"
+  ],
+  "notVerified": [
+    "System document picker actual file selection/save locations (ContentResolver I/O tested with file URI)",
+    "Small-screen, large-font and full visual UI matrix",
+    "Human face sticker placement/flicker and sustained performance",
+    "Third-party live engine adapters and remote output",
+    "New release host R8 build"
+  ]
+}

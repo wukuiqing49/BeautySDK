@@ -1,0 +1,4 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="10dp" android:background="@drawable/bg_camera_chip" android:clickable="true" android:focusable="true">
+<ImageView android:id="@+id/sticker_image" android:layout_width="match_parent" android:layout_height="52dp" android:scaleType="fitCenter" android:importantForAccessibility="no"/>
+<TextView android:id="@+id/sticker_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="11sp" android:textColor="@color/camera_text" android:gravity="center" android:importantForAccessibility="no"/>
+</LinearLayout>

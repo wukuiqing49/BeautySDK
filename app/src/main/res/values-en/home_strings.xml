@@ -1,0 +1,19 @@
+<resources>
+    <string name="home_eyebrow">BEAUTY SDK / ANDROID</string>
+    <string name="home_title">Make every frame shine.</string>
+    <string name="home_intro">Explore real-time beauty, face stickers and your own materials.</string>
+    <string name="home_live">Live beauty studio</string>
+    <string name="home_live_desc">Camera preview · Beauty · Face stickers</string>
+    <string name="home_start">Start exploring →</string>
+    <string name="home_tools">YOUR WORKSPACE</string>
+    <string name="home_workshop">Resources</string>
+    <string name="home_workshop_desc">Built-in, imported and online resources in the live preview.</string>
+    <string name="home_images">Image laboratory</string>
+    <string name="home_images_desc">Try effects on a photo and compare processing backends.</string>
+    <string name="home_debug">Developer tools</string>
+    <string name="home_debug_desc">Inspect tracking, processing time and backend options.</string>
+    <string name="home_engine">LIVE ENGINE INTEGRATION · PLANNED</string>
+    <string name="home_engine_desc">Camera demo available. Zego and Agora adapters are not integrated yet.</string>
+    <string name="camera_compare">Swap comparison</string>
+    <string name="camera_workshop_tab">Resources</string>
+</resources>

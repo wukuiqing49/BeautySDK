@@ -1,0 +1,5 @@
+{
+  "core/lib_beauty/src/main/java/com/beautysdk/GestureRuleEngine.kt": "a8fc19a8634649a00c26eb3d373299f21588ee23ba1f2b128eefc508b40b8305",
+  "core/lib_beauty/src/test/java/com/beautysdk/GestureRuleEngineTest.kt": "133223e0bac060994eafc13fc9ac2b4e5477a5bfea5ea026243ebef22aa49d09",
+  "core/lib_beauty/src/test/java/com/beautysdk/GestureAnalysisRuntimeTest.kt": "ae912c8b797418e6f5aac5c574dd9f6d0ec65dd6ce597b33723a88fdb2c3099c"
+}

@@ -1,0 +1,11 @@
+{
+  "restored": true,
+  "filesVerified": 5,
+  "settingsRestored": {
+    "stay_on_while_plugged_in": true,
+    "font_scale": true,
+    "accelerometer_rotation": true,
+    "user_rotation": true
+  },
+  "cameraFramesSaved": false
+}

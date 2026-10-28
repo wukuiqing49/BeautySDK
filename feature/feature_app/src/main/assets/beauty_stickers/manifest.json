@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "stickers": [
+    {
+      "id": "round_glasses",
+      "file": "round_glasses.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "EYE_MIDPOINT",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "widthInAnchorSpans": 2.5,
+      "span": "EYES"
+    },
+    {
+      "id": "heart_glasses",
+      "file": "heart_glasses.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "EYE_MIDPOINT",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "widthInAnchorSpans": 2.5,
+      "span": "EYES"
+    },
+    {
+      "id": "curled_moustache",
+      "file": "curled_moustache.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "UPPER_LIP",
+      "pivot": [
+        0.5,
+        0.4
+      ],
+      "widthInAnchorSpans": 1.7,
+      "span": "MOUTH_CORNERS"
+    },
+    {
+      "id": "blue_top_hat",
+      "file": "blue_top_hat.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "EYE_MIDPOINT",
+      "pivot": [
+        0.5,
+        1.45
+      ],
+      "widthInAnchorSpans": 2.5,
+      "span": "EYES"
+    },
+    {
+      "id": "gold_crown",
+      "file": "gold_crown.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "EYE_MIDPOINT",
+      "pivot": [
+        0.5,
+        1.45
+      ],
+      "widthInAnchorSpans": 2.5,
+      "span": "EYES"
+    },
+    {
+      "id": "cat_ears",
+      "file": "cat_ears.png",
+      "width": 512,
+      "height": 256,
+      "anchor": "EYE_MIDPOINT",
+      "pivot": [
+        0.5,
+        1.45
+      ],
+      "widthInAnchorSpans": 2.5,
+      "span": "EYES"
+    }
+  ]
+}

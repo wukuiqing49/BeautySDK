@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-27",
+  "sourceFingerprint": "fb928841679063fa20a1d26a12f7856bed56ff04f643c0c32cf25c260c0c6409",
+  "jvm": {
+    "lib_beauty_resources": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lib_beauty": {
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lib_beauty_gpupixel": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "device": {
+    "model": "Pixel 8",
+    "android": 16,
+    "api": 36,
+    "tests": 19,
+    "failures": 0,
+    "seconds": 7.661
+  },
+  "webTests": 23,
+  "builtinPackages": 17,
+  "browserExport": {
+    "resources": 3,
+    "files": 8,
+    "themeDefault": true,
+    "defaultOverrides": {},
+    "hashesVerified": true
+  },
+  "apkSha256": "59c7f65fb1b80eace830589b340851b6b168751fc8e0ce3ed8ad8ebe22e346fb",
+  "notVerified": [
+    "Apple compilation and Metal device rendering",
+    "live vendor SDK callbacks/remote stream",
+    "sustained thermal/performance",
+    "Cloudflare deployment",
+    "disk-full and process-kill recovery",
+    "full Android UI font/orientation/theme matrix"
+  ]
+}

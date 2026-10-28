@@ -1,0 +1,189 @@
+{
+  "jvm": {
+    "core/lib_beauty": {
+      "tests": 117,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "core/lib_camera": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "core/lib_beauty_resources": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "core/lib_beauty_gpupixel": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "deviceCases": {
+    "BeautyDeviceTest": [
+      "asyncCameraCadenceKeepsStickersThenHidesExpiredResults",
+      "demoLoadsAllSixPngAssetsAndCompositesActualPortrait",
+      "demoUiRendersImageAndFrameCheck",
+      "nativeRgbaMatchesReferenceForAllOrientationsAndStride",
+      "mediaPipeDetectsActualPortraitAndReleases",
+      "glMatchesCpuAndRestoresHostState"
+    ],
+    "CameraDeviceTest": [
+      "frontBackFramesRestartAndStop",
+      "cameraPageProducesProcessedImageAndStopClearsIt"
+    ],
+    "CameraStickerPersistenceDeviceTest": [
+      "reopenRestoresStylesAndClearRemainsCleared"
+    ],
+    "DemoLayoutDeviceTest": [
+      "cameraControlsScrollWithoutHidingProcessedPreview",
+      "stickerCardsKeepSelectionAndPreviewsSwap",
+      "imageControlsScrollWithoutHidingProcessedPreview"
+    ],
+    "EffectPanelDeviceTest": [
+      "categoriesKeepSinglePanelAndResourceEditorIsSecondary"
+    ],
+    "EffectResourceDeviceTest": [
+      "webResourcesMergeByTypeAndRoundTrip",
+      "bundledCompleteThemeCanBeConsumedByPublicSdk",
+      "v3RetainsMakeupAndSignedShapes",
+      "invalidV2DoesNotSilentlyFallBack"
+    ],
+    "EyeMakeupResourceDeviceTest": [
+      "allBuiltinPngStylesLoadRoundTripAndReplaceOldBeautyMaterial",
+      "rejectsMalformedBindingsMissingPngOpaqueAndInvisibleMaterials"
+    ],
+    "FaceMotionDeviceTest": [
+      "nativeMotionTracksPortraitTranslationAndRejectsBlankFrame"
+    ],
+    "GestureDeviceTest": [
+      "officialFixturesRecognizeFourGesturesAndReturnReal21Points",
+      "blankInputHasNoHandsAndCloseIsIdempotent",
+      "allRotationsAndMirrorsMapRealLandmarksBackToRawPixels",
+      "sharedRuntimeTriggersOnceAndDisableClearsResults",
+      "demoSwitchControlsIndependentBranchAndCameraLifecycle"
+    ],
+    "GpuPixelControlsDeviceTest": [
+      "extendedControlUpdatesAndCameraUsesGpuPixel"
+    ],
+    "GpuPixelDeviceTest": [
+      "texturePipelinePreservesTransformAlphaAndHostState",
+      "extendedColorAndReshapeChangePixelsAndRespectMissingFace",
+      "oesReshapeAndColorUseSharedTextureContract",
+      "localMakeupPreservesMouthInteriorAlphaAndHostState",
+      "actualPortraitMakeupUsesDetectedLipAndCheekLandmarks",
+      "customShapesHaveSignedDirectionAndRotateWithRawFrames"
+    ],
+    "HomeNavigationDeviceTest": [
+      "homeEntriesOpenCameraWorkshopAndDiagnostics"
+    ],
+    "MediaPipeDelegateDeviceTest": [
+      "cameraGpuOptionProducesAnalysisWhileRendering",
+      "compareCpuGpuOnSameDirectInput"
+    ],
+    "MediaPipeInputContractDeviceTest": [
+      "compactRgbSupportsAlignedAndNonAlignedWidths",
+      "directRgbaSupportsAlignedAndNonAlignedWidths",
+      "alignedInputMatchesReferencePixelsAndReusesBuffers",
+      "cpuGpuDetectOddPortraitOnBothEntrypoints"
+    ],
+    "PublishedCatalogDeviceTest": [
+      "publishedCatalogDownloadsAndLoadsVerifiedResource"
+    ],
+    "ResolutionDeviceTest": [
+      "glReallocatesOutputAcrossResolutions"
+    ],
+    "ResourceCenterDeviceTest": [
+      "allCurrentWebResourcesInstallAndLoad",
+      "eyelashPreservesOtherMakeupAndParameters",
+      "themeMaterializesBeforeSingleSlotEditing",
+      "defaultAndStateRoundTripRespectExplicitNull",
+      "activeLeasePreventsDeletionAndDuplicateInstallReuses",
+      "badDigestCancelledAndPathTraversalNeverInstall",
+      "fakeNetworkCatalogCacheAndDownloadUseSameInstaller",
+      "wrongScopeCapabilitiesAndRevisionConflictAreRejected",
+      "glassesMoustacheAndHatComposeInIndependentSlots",
+      "restartPreservesPresetScopeAndMissingPackageOnlyDisablesItsSlot"
+    ],
+    "ResourceCenterUiDeviceTest": [
+      "rapidParametersKeepResourceCardsAndCallerInputStable",
+      "independentPageInstallsSelectsAndPersistsWithoutCamera",
+      "deletingBuiltinDoesNotReinstallItOnReopen"
+    ],
+    "ResourceDeliveryDeviceTest": [
+      "allTwentySevenResourcesAndFiveDefaultsInstallAndCompose",
+      "corruptedDeliveryAndMissingDefaultNeverPartiallyInstall",
+      "importOnlyInstallsExplicitApplyPersistsLanguageAndSelection"
+    ],
+    "ResourceStoreDeviceTest": [
+      "verifiedCacheWorksOfflineAndRejectsBadUpdates",
+      "catalogRejectsUnsafeUrlsVersionsAndFalseNumbers"
+    ],
+    "SceneControlsDeviceTest": [
+      "controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory"
+    ],
+    "SceneDeviceTest": [
+      "backgroundPixelsMotionAndState",
+      "realModelReturnsBoundedMaskAndResetInvalidatesIt",
+      "textureOnlyBridgePreservesSourceGeometryForSegmentation",
+      "oesInputCompositesBackgroundAndMotion"
+    ],
+    "SheetScrollDeviceTest": [
+      "beautyAndWorkshopScrollWithoutDraggingSheet"
+    ],
+    "StickerResourceDeviceTest": [
+      "sixSamplesRoundTripEditedLayoutAndReusePixels",
+      "invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected",
+      "workshopUiEditsExportsImportsAndRetainsStateOnRecreation",
+      "privateDraftRestoresDisabledAndLateLoadCannotUndoClear",
+      "saveReloadUsesPersistedImagesAndEditedManifest"
+    ],
+    "TextureBridgeDeviceTest": [
+      "texture2dDownsamplesTransformsAndRestoresState",
+      "staleAndGeometryChangedReadbacksAreDiscarded",
+      "unifiedEngineCallbackProcessesAndWritesTexture",
+      "oesSurfaceInputCanGenerateDetectionSmallImage"
+    ],
+    "ThemeDemoDeviceTest": [
+      "importReopenRejectAndClearCompleteTheme"
+    ],
+    "ThemeResourceDeviceTest": [
+      "completeThemeCapabilitiesSettingsAndRoundTrip",
+      "absentCategoriesResetAndDoNotInheritPreviousTheme",
+      "nestedPixelBudgetRejectedBeforeDecode",
+      "malformedThemeAndWrongChildCategoryRejected"
+    ],
+    "WebStickerPackDeviceTest": [
+      "webExportedSixPacksLoadUsingPublicSdk",
+      "browserDownloadedHatLoadsWithEditedMetadata"
+    ]
+  },
+  "suite": {
+    "tests": 81,
+    "failures": 0,
+    "seconds": 100.805
+  },
+  "stability": {
+    "tests": 10,
+    "failures": 1,
+    "failedCase": "CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt",
+    "failedRound": 2
+  },
+  "changedSources": [
+    "app/src/androidTest/java/com/beautysdk/demo/CameraDeviceTest.kt",
+    "app/src/androidTest/java/com/beautysdk/demo/MediaPipeDelegateDeviceTest.kt",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceCameraTestSetup.kt"
+  ]
+}

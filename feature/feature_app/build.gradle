@@ -1,0 +1,45 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace = 'com.beautysdk.demo.feature.app'
+    compileSdk = libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInteger()
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    testImplementation libs.junit
+    api project(':core:lib_camera')
+    implementation project(':core:lib_beauty_mediapipe')
+    implementation project(':core:lib_beauty')
+    implementation project(':core:lib_beauty_gpupixel')
+    implementation project(':core:core_base')
+    implementation project(':core:core_utils')
+    implementation project(':feature:feature_res')
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.recyclerview
+}

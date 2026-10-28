@@ -1,0 +1,22 @@
+{
+  "fixture": "public portrait, translated RGB, 192x240, GPU; no live camera",
+  "frames": 84,
+  "usable": 82,
+  "missing": 2,
+  "captures": 4,
+  "maskAgeMedianMs": 66.672852,
+  "maskAgeP95Ms": 162.171143,
+  "currentFrameVsStaleMaskMeanIoU": 0.6685300562761386,
+  "sampleAlignedMaskMeanIoU": 1,
+  "inferenceMeanMs": 31.185681605633803,
+  "queueMeanMs": 10.685459690140847,
+  "copyMeanMs": 0.21970943661971823,
+  "preparationMeanMs": 0.12258612676056337,
+  "postprocessMeanMs": 4.456203070422537,
+  "completedIntervalMeanMs": 38.70440094285713,
+  "extractionMeanMs": 0.09490073239436622,
+  "conversionMeanMs": 4.004275915492957,
+  "packagingMeanMs": 0.3570264225352114,
+  "completedMasks": 71,
+  "reference": "same model at current position, not ground truth; composite is CPU diagnostic, not production GL"
+}

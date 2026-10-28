@@ -1,0 +1,110 @@
+{
+  "case": "SCENE-EFFECTS-01",
+  "date": "2026-10-26",
+  "workspace": "untracked sources identified by SHA256",
+  "jvm": {
+    "core": 80,
+    "feature": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "device": {
+    "model": "Pixel 8",
+    "serial": "39061FDJH00D3J",
+    "api": 36,
+    "final": {
+      "tests": 12,
+      "failures": 0,
+      "seconds": 4.031
+    },
+    "classes": {
+      "SceneDeviceTest": 4,
+      "TextureBridgeDeviceTest": 4,
+      "GpuPixelDeviceTest": 3,
+      "SceneControlsDeviceTest": 1
+    },
+    "initialFailures": [
+      "Test wrongly assumed fixed 256-square masks; actual task returns input-sized mask. Corrected assertion to raw 128x96, runtime mapping unchanged.",
+      "UI received no frame because display was sleeping; wakeup found keyguard not showing, retry passed without bypassing authentication."
+    ],
+    "retry": {
+      "tests": 5,
+      "failures": 0,
+      "seconds": 3.492
+    },
+    "additionalFix": "Activity onDestroy dismisses settings dialog as fallback after already-stopped lifecycle; final source rebuilt and all12 device tests passed."
+  },
+  "build": {
+    "coreRelease": "passed",
+    "mediaPipeRelease": "passed",
+    "appDebug": "passed",
+    "testApk": "passed",
+    "lint": {
+      "errors": 0,
+      "warnings": 114
+    }
+  },
+  "checks": {
+    "configuration": "passed",
+    "agentStructure": "passed",
+    "architectureWarnings": 0,
+    "uiWarnings": 0,
+    "i18nWarnings": 0
+  },
+  "model": {
+    "url": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/1/selfie_segmenter.tflite",
+    "sha256": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+    "bytes": 249537,
+    "modelCard": "https://storage.googleapis.com/mediapipe-assets/Model%20Card%20MediaPipe%20Selfie%20Segmentation.pdf",
+    "license": "Apache-2.0 per official model card",
+    "output": "single confidence channel person; index 0 for this pinned model, not two-class softmax"
+  },
+  "limits": [
+    "No real-face edge/hair/rapid-motion visual acceptance",
+    "No sustained CPU/GPU contention, thermal or end-to-end performance benchmark",
+    "No physical camera movement, 3D scene reconstruction or outpainting",
+    "No vendor adapter, remote stream, cross-context or 16KB runtime acceptance",
+    "No manual small-screen/font-scale/rotation visual matrix",
+    "Pure-texture segmentation uses small-image GPU readback, not zero-copy; separate from face bridge"
+  ],
+  "logs": [
+    "build/scene-build.log",
+    "build/scene-final-build.log",
+    "build/scene-lifecycle-build.log",
+    "build/scene-test-retry-build.log",
+    "build/scene-ui-lifecycle-build.log",
+    "build/scene-device.log",
+    "build/scene-device-retry.log",
+    "build/scene-device-final.log"
+  ],
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyScene.kt": "5f09847e0bc0e207d200465c0942828a46390bc39253ea0bd4c03a2e6acb611e",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySceneRenderer.kt": "7c6493540f16edf144aada24634fbca01897a15e0fd8c9079e04db915c07af9d",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "6d4f45ee25dce0d2ff5f33f0b35860f2e9f97909c05bd95df8ee14f6511947fa",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlTextureAnalysisBridge.kt": "eb8d2cde4234ff2e184630a2c747d5e4226930fb864fbf8dc9548de060e7d948",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "b891869e5ba140b786a76cc13189b5b76fd19114ac9bd075e46b327c2835f8b9",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "18fd6a63b7a977b9448de304c55aee1d02ba991b59b5d6b326290ab0a9144adb",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautySceneTest.kt": "685cffed65282aba1c0fa53a83ec994a13d972d1cfac6f67297bed0200748440",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "6014acb4a61fb92ca80cb01032fb5134952c714303f90b2cc1f8afb71ca4fd75",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeForegroundMasks.kt": "65b5317310a34d1e451703ea3c05de6a1df0c17fa75a00f51b93184ae1a1f251",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/GlForegroundMaskBridge.kt": "2ae466a5bb2797aa9e91839b538782fff37cdf3c42c86bf18565c0f2f58aef2c",
+    "core/lib_beauty_mediapipe/src/main/assets/selfie_segmenter.tflite": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+    "core/lib_beauty_mediapipe/src/main/assets/selfie_segmenter.SOURCE.json": "2d5b1197edcedb25c7f453a54d4f95b29eb068dce6d8a3b4a88563a32d218cdf",
+    "core/lib_beauty_mediapipe/src/main/assets/beautysdk_mediapipe/MODEL_SOURCE.txt": "29dbb8cbb4e19148382f2b0efaa626bb6932170a23123f12c9830e46fb02c21e",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "d3b088fa9ec3f537c577d9ff49976ae1eceea56b5eff4151e4a6bcdb072ccaa1",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "942d93c61d5dc4c8c0b3d907e44a1f6847e83aaa468daa47c626c4dc975b83f2",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/DemoStickerCatalog.kt": "5e02e1a26aab679cab975352adf82c6221ee7a84261face3042f793e7554fa25",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/BeautyDemoController.kt": "eb511a817a213e397b1f807de2beef11b8017ae56f844085899afd0e193f5bfd",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "86380a0f28a4a9fc8692a01b1de52bc2b3eb4979128da5630d818a0eea1def2e",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "a3f51ea8dc6953c7b18c91be9ec8810ca8b4f0edf7f1f1d258864ff8f286e000",
+    "app/src/main/res/layout/activity_camera_test.xml": "56c1f44791a22ffc7323b9335166cd22f43b4cecf91f490f0c9aec0ec56be6b0",
+    "app/src/main/res/values/strings.xml": "e556f936a3711e8aa259fb2e5f7b9a8db501df54581bf24dedc142e7faef1cdc",
+    "app/src/main/res/values-en/strings.xml": "e556f936a3711e8aa259fb2e5f7b9a8db501df54581bf24dedc142e7faef1cdc",
+    "app/src/main/res/values-zh-rCN/strings.xml": "d9f10c09988247d50b8d088c2aede302242b4b32f4f8947ff9443c948c9a2138",
+    "app/src/androidTest/java/com/beautysdk/demo/SceneDeviceTest.kt": "e2c8c9098a9fb84e01a887af1cdf0ad41e401500f471e7bdf1cdf0fd229baaf7",
+    "app/src/androidTest/java/com/beautysdk/demo/SceneControlsDeviceTest.kt": "e446179d0151d1fb1fd68f9e5cfb1a42b425ecfee0d91d7c40b7034ea76799a9",
+    "app/src/androidTest/java/com/beautysdk/demo/TextureBridgeDeviceTest.kt": "32d2950046055f8340389bf5971c5b93fb17bf8c43c998ec3876b1aac3fa93cf",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt": "7104e0bf82b5dc17c46bc8f6993f49a331029abd2475dea305cd484aa0613be3"
+  }
+}

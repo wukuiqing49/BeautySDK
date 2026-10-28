@@ -1,0 +1,19 @@
+
+com.beautysdk.demo.LabInteractionDeviceTest:
+Error in presetsAdjustCancelAndReopenUseOneClearPanel(com.beautysdk.demo.LabInteractionDeviceTest):
+java.lang.IllegalArgumentException: Required value was null.
+	at com.beautysdk.demo.LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel(LabInteractionDeviceTest.kt:68)
+
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.SheetScrollDeviceTest:.
+
+Time: 9.607
+There was 1 failure:
+1) presetsAdjustCancelAndReopenUseOneClearPanel(com.beautysdk.demo.LabInteractionDeviceTest)
+java.lang.IllegalArgumentException: Required value was null.
+	at com.beautysdk.demo.LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel(LabInteractionDeviceTest.kt:68)
+
+FAILURES!!!
+Tests run: 3,  Failures: 1
+
+

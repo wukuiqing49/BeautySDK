@@ -1,0 +1,2010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.13.2">
+
+    <issue
+        id="OldTargetApi"
+        severity="Warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        category="Correctness"
+        priority="6"
+        summary="Target SDK attribute is not targeting latest version"
+        explanation="When your application or sdk runs on a version of Android that is more recent than your `targetSdkVersion` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdkVersion` is less than 14, your app may get an option button in the UI.&#xA;&#xA;To fix this issue, set the `targetSdkVersion` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: https://developer.android.com/reference/android/os/Build.VERSION_CODES.html as well as follow this guide:&#xA;https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        url="https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        urls="https://developer.android.com/distribute/best-practices/develop/target-sdk.html,https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        errorLine1="targetSdk = &quot;36&quot;"
+        errorLine2="            ~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        severity="Warning"
+        message="Attribute `clipToOutline` is only used in API level 31 and higher (current min is 24)"
+        category="Correctness"
+        priority="6"
+        summary="Attribute unused on older versions"
+        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
+        errorLine1="&lt;FrameLayout android:id=&quot;@+id/camera_effect_container&quot; android:layout_width=&quot;@dimen/camera_result_width&quot; android:layout_height=&quot;@dimen/camera_result_height&quot; android:layout_margin=&quot;16dp&quot; android:clipToOutline=&quot;true&quot; android:padding=&quot;2dp&quot; android:contentDescription=&quot;@string/camera_swap&quot; android:clickable=&quot;true&quot; android:focusable=&quot;true&quot;>"
+        errorLine2="                                                                                                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="9"
+            column="187"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        severity="Warning"
+        message="A newer version of com.android.application than 8.13.2 is available: 9.4.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Android Gradle Plugin Version"
+        explanation="This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="agp = &quot;8.13.2&quot;"
+        errorLine2="      ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="10"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        severity="Warning"
+        message="A newer version of com.android.library than 8.13.2 is available: 9.4.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Android Gradle Plugin Version"
+        explanation="This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="agp = &quot;8.13.2&quot;"
+        errorLine2="      ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="10"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.mediapipe:tasks-vision than 0.10.32 is available: 1.1.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="mediapipe = &quot;0.10.32&quot;"
+        errorLine2="            ~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.test:runner than 1.6.2 is available: 1.7.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="test-runner = &quot;1.6.2&quot;"
+        errorLine2="              ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="8"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.camera:camera-camera2 than 1.4.2 is available: 1.6.2"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="camerax = &quot;1.4.2&quot;"
+        errorLine2="          ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="9"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.camera:camera-core than 1.4.2 is available: 1.6.2"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="camerax = &quot;1.4.2&quot;"
+        errorLine2="          ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="9"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.camera:camera-lifecycle than 1.4.2 is available: 1.6.2"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="camerax = &quot;1.4.2&quot;"
+        errorLine2="          ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="9"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.camera:camera-view than 1.4.2 is available: 1.6.2"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="camerax = &quot;1.4.2&quot;"
+        errorLine2="          ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="9"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.core:core-ktx than 1.18.0 is available: 1.19.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-core = &quot;1.18.0&quot;"
+        errorLine2="                ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="15"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.1 is available: 1.8.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-appcompat = &quot;1.7.1&quot;"
+        errorLine2="                     ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="17"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.fragment:fragment-ktx than 1.8.9 is available: 1.9.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-fragment = &quot;1.8.9&quot;"
+        errorLine2="                    ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="18"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.10.0 is available: 2.11.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-lifecycle = &quot;2.10.0&quot;"
+        errorLine2="                     ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="19"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.10.0 is available: 2.11.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-lifecycle = &quot;2.10.0&quot;"
+        errorLine2="                     ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="19"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.10.0 is available: 2.11.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-lifecycle = &quot;2.10.0&quot;"
+        errorLine2="                     ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="19"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.2.1 is available: 2.2.2"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="androidx-constraintlayout = &quot;2.2.1&quot;"
+        errorLine2="                            ~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="20"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.android.material:material than 1.13.0 is available: 1.14.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="material = &quot;1.13.0&quot;"
+        errorLine2="           ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="22"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of com.microsoft.onnxruntime:onnxruntime-android than 1.24.3 is available: 1.31.0"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="onnxruntime = &quot;1.24.3&quot;"
+        errorLine2="              ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="7"
+            column="15"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of org.jetbrains.kotlin.android than 2.3.10 is available: 2.4.21"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="kotlin = &quot;2.3.10&quot;"
+        errorLine2="         ~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\gradle\libs.versions.toml"
+            line="11"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        severity="Warning"
+        message="Possible overdraw: Root element paints background `@color/camera_surface` with a theme that also paints a background (inferred theme is `@style/Theme.Beauty`)"
+        category="Performance"
+        priority="3"
+        summary="Overdraw: Painting regions more than once"
+        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
+        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:id=&quot;@+id/root&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:orientation=&quot;vertical&quot; android:background=&quot;@color/camera_surface&quot;>"
+        errorLine2="                                                                                                                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="1"
+            column="201"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        severity="Warning"
+        message="Possible overdraw: Root element paints background `@color/home_background` with a theme that also paints a background (inferred theme is `@style/Theme.Beauty`)"
+        category="Performance"
+        priority="3"
+        summary="Overdraw: Painting regions more than once"
+        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
+        errorLine1="&lt;ScrollView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:id=&quot;@+id/root&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:background=&quot;@color/home_background&quot; android:fillViewport=&quot;true&quot; android:scrollbars=&quot;none&quot; android:clipToPadding=&quot;false&quot;>&lt;LinearLayout android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;wrap_content&quot; android:orientation=&quot;vertical&quot; android:padding=&quot;24dp&quot;>"
+        errorLine2="                                                                                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_main.xml"
+            line="1"
+            column="168"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.layout.activity_camera_test` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:id=&quot;@+id/root&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:orientation=&quot;vertical&quot; android:background=&quot;@color/camera_surface&quot;>"
+        errorLine2="^">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.layout.activity_image_lab` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:id=&quot;@+id/root&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:orientation=&quot;vertical&quot; android:paddingHorizontal=&quot;@dimen/demo_page_padding&quot;>"
+        errorLine2="^">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.layout.activity_main` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;ScrollView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:id=&quot;@+id/root&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:background=&quot;@color/home_background&quot; android:fillViewport=&quot;true&quot; android:scrollbars=&quot;none&quot; android:clipToPadding=&quot;false&quot;>&lt;LinearLayout android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;wrap_content&quot; android:orientation=&quot;vertical&quot; android:padding=&quot;24dp&quot;>"
+        errorLine2="^">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_main.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.camera_preview_height` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;camera_preview_height&quot;>240dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml"
+            line="2"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.page_padding` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;page_padding&quot;>24dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.section_spacing` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;section_spacing&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.demo_page_padding` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;dimen name=&quot;demo_page_padding&quot;>12dp&lt;/dimen>&lt;dimen name=&quot;demo_panel_padding&quot;>12dp&lt;/dimen>&lt;/resources>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml"
+            line="5"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.demo_panel_padding` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;dimen name=&quot;demo_page_padding&quot;>12dp&lt;/dimen>&lt;dimen name=&quot;demo_panel_padding&quot;>12dp&lt;/dimen>&lt;/resources>"
+        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml"
+            line="5"
+            column="52"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_camera_preview` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>&lt;solid android:color=&quot;@color/camera_panel&quot;/>&lt;stroke android:width=&quot;1dp&quot; android:color=&quot;#665B758F&quot;/>&lt;corners android:radius=&quot;16dp&quot;/>&lt;/shape>"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_camera_preview.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_camera_sheet` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>&lt;solid android:color=&quot;@color/camera_surface&quot;/>&lt;corners android:topLeftRadius=&quot;24dp&quot; android:topRightRadius=&quot;24dp&quot;/>&lt;/shape>"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_camera_sheet.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_demo_panel` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>&lt;solid android:color=&quot;?attr/colorSurfaceContainer&quot; />&lt;corners android:radius=&quot;16dp&quot; />&lt;/shape>"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_demo_panel.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_home_card` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>&lt;solid android:color=&quot;@color/home_card&quot;/>&lt;corners android:radius=&quot;20dp&quot;/>&lt;stroke android:width=&quot;1dp&quot; android:color=&quot;@color/home_border&quot;/>&lt;/shape>"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_home_card.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_home_hero` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>&lt;gradient android:startColor=&quot;#292544&quot; android:endColor=&quot;#514276&quot; android:angle=&quot;315&quot;/>&lt;corners android:radius=&quot;28dp&quot;/>&lt;/shape>"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_home_hero.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.drawable.bg_scaffold_surface` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_scaffold_surface.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.color.demo_preview_background` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;color name=&quot;demo_preview_background&quot;>#111827&lt;/color>&lt;color name=&quot;camera_surface&quot;>#101116&lt;/color>&lt;color name=&quot;camera_panel&quot;>#202129&lt;/color>&lt;color name=&quot;camera_accent&quot;>#BDA4FF&lt;/color>&lt;color name=&quot;camera_muted&quot;>#B8B6C4&lt;/color>&lt;color name=&quot;camera_text&quot;>#F7F5FC&lt;/color>&lt;/resources>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\colors.xml"
+            line="4"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.app_spacing_small` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;app_spacing_small&quot;>8dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml"
+            line="2"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.app_spacing_medium` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;app_spacing_medium&quot;>16dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.app_spacing_large` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;dimen name=&quot;app_spacing_large&quot;>24dp&lt;/dimen>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.camera_result_height` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;dimen name=&quot;camera_result_width&quot;>132dp&lt;/dimen>&lt;dimen name=&quot;camera_result_height&quot;>184dp&lt;/dimen>&lt;/resources>"
+        errorLine2="                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml"
+            line="5"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.dimen.camera_result_width` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;dimen name=&quot;camera_result_width&quot;>132dp&lt;/dimen>&lt;dimen name=&quot;camera_result_height&quot;>184dp&lt;/dimen>&lt;/resources>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml"
+            line="5"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_eyebrow` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_eyebrow&quot;>BEAUTY SDK / ANDROID&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="2"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_title` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_title&quot;>Make every frame shine.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="3"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_intro` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_intro&quot;>Explore real-time beauty, face stickers and your own materials.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_live` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_live&quot;>Live beauty studio&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="5"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_live_desc` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_live_desc&quot;>Camera preview · Beauty · Face stickers&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_start` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_start&quot;>Start exploring →&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_tools` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_tools&quot;>YOUR WORKSPACE&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_workshop` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_workshop&quot;>Material workshop&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_workshop_desc` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_workshop_desc&quot;>Import ZIP packs, tune layers and export your creation.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_images` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_images&quot;>Image laboratory&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_images_desc` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_images_desc&quot;>Try effects on a photo and compare processing backends.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_debug` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_debug&quot;>Developer tools&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_debug_desc` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_debug_desc&quot;>Inspect tracking, processing time and backend options.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_engine` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_engine&quot;>LIVE ENGINE INTEGRATION · PLANNED&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.home_engine_desc` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;home_engine_desc&quot;>Camera demo available. Zego and Agora adapters are not integrated yet.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_compare` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_compare&quot;>Swap comparison&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_workshop_tab` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_workshop_tab&quot;>Workshop&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.color.home_border` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;color name=&quot;home_background&quot;>#F6F5F8&lt;/color>&lt;color name=&quot;home_card&quot;>#FFFFFF&lt;/color>&lt;color name=&quot;home_border&quot;>#E7E4EC&lt;/color>&lt;color name=&quot;home_ink&quot;>#242130&lt;/color>&lt;color name=&quot;home_muted&quot;>#686374&lt;/color>"
+        errorLine2="                                                                                           ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="2"
+            column="92"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.color.home_card` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;color name=&quot;home_background&quot;>#F6F5F8&lt;/color>&lt;color name=&quot;home_card&quot;>#FFFFFF&lt;/color>&lt;color name=&quot;home_border&quot;>#E7E4EC&lt;/color>&lt;color name=&quot;home_ink&quot;>#242130&lt;/color>&lt;color name=&quot;home_muted&quot;>#686374&lt;/color>"
+        errorLine2="                                                    ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="2"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.color.home_ink` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;color name=&quot;home_background&quot;>#F6F5F8&lt;/color>&lt;color name=&quot;home_card&quot;>#FFFFFF&lt;/color>&lt;color name=&quot;home_border&quot;>#E7E4EC&lt;/color>&lt;color name=&quot;home_ink&quot;>#242130&lt;/color>&lt;color name=&quot;home_muted&quot;>#686374&lt;/color>"
+        errorLine2="                                                                                                                                    ~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="2"
+            column="133"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.color.home_muted` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;color name=&quot;home_background&quot;>#F6F5F8&lt;/color>&lt;color name=&quot;home_card&quot;>#FFFFFF&lt;/color>&lt;color name=&quot;home_border&quot;>#E7E4EC&lt;/color>&lt;color name=&quot;home_ink&quot;>#242130&lt;/color>&lt;color name=&quot;home_muted&quot;>#686374&lt;/color>"
+        errorLine2="                                                                                                                                                                          ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="2"
+            column="171"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.style.HomeTitle` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;style name=&quot;HomeTitle&quot;>&lt;item name=&quot;android:layout_width&quot;>match_parent&lt;/item>&lt;item name=&quot;android:layout_height&quot;>wrap_content&lt;/item>&lt;item name=&quot;android:textColor&quot;>@color/home_ink&lt;/item>&lt;item name=&quot;android:textSize&quot;>20sp&lt;/item>&lt;item name=&quot;android:textStyle&quot;>bold&lt;/item>&lt;/style>"
+        errorLine2="       ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="3"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.style.HomeDescription` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;style name=&quot;HomeDescription&quot;>&lt;item name=&quot;android:layout_width&quot;>match_parent&lt;/item>&lt;item name=&quot;android:layout_height&quot;>wrap_content&lt;/item>&lt;item name=&quot;android:layout_marginTop&quot;>8dp&lt;/item>&lt;item name=&quot;android:textColor&quot;>@color/home_muted&lt;/item>&lt;item name=&quot;android:textSize&quot;>14sp&lt;/item>&lt;item name=&quot;android:lineSpacingExtra&quot;>4dp&lt;/item>&lt;/style>"
+        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="4"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.style.HomeCard` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;style name=&quot;HomeCard&quot;>&lt;item name=&quot;android:layout_width&quot;>match_parent&lt;/item>&lt;item name=&quot;android:layout_height&quot;>wrap_content&lt;/item>&lt;item name=&quot;android:layout_marginTop&quot;>12dp&lt;/item>&lt;item name=&quot;android:padding&quot;>20dp&lt;/item>&lt;item name=&quot;android:orientation&quot;>vertical&lt;/item>&lt;item name=&quot;android:background&quot;>@drawable/bg_home_card&lt;/item>&lt;item name=&quot;android:foreground&quot;>?attr/selectableItemBackground&lt;/item>&lt;item name=&quot;android:clickable&quot;>true&lt;/item>&lt;item name=&quot;android:focusable&quot;>true&lt;/item>&lt;/style>"
+        errorLine2="       ~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml"
+            line="5"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.description` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;description&quot;>Compare beauty-only, MediaPipe and RFB on a local image. This screen does not capture or stream video.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.run_check` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;run_check&quot;>Run frame check&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="5"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.check_pending` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;check_pending&quot;>Ready to check&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.backend_label` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;backend_label&quot;>Analysis backend&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.select_image` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;select_image&quot;>Choose an image&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.smoothing` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;smoothing&quot;>Smoothing&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.whitening` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;whitening&quot;>Whitening&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.warm_filter` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;warm_filter&quot;>Warm filter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.glasses` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;glasses&quot;>Glasses&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.apply_effects` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;apply_effects&quot;>Apply effects&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.effect_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;effect_hint&quot;>Choose a portrait for stickers. RFB currently detects boxes only; stickers require an additional landmark model. Image processing time is not live-video FPS.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.original_image` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;original_image&quot;>Original&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.processed_image` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;processed_image&quot;>Processed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_test` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_test&quot;>Camera test&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="24"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_hint&quot;>GPU texture preview; asynchronous analysis requests 320×240, up to 30 frames/s. Actual throughput depends on the device. No recording or upload.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="25"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_beauty` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_beauty&quot;>Smoothing and whitening&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_start` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_start&quot;>Start camera&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="27"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_switch` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_switch&quot;>Switch front / back&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_stop` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_stop&quot;>Stop camera&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="29"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_frame_status` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_frame_status&quot;>%1$d × %2$d · Faces: %3$d · Processing: %4$d ms&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="36"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_raw_preview` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_raw_preview&quot;>Camera preview&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_processed_preview` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_processed_preview&quot;>Processed preview&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="38"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.hat` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;hat&quot;>Headwear&lt;/string>"
+        errorLine2="            ~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="39"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.sticker_glasses_style` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;sticker_glasses_style&quot;>Glasses style&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="40"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.sticker_head_style` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;sticker_head_style&quot;>Headwear style&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="41"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_start` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_start&quot;>Start&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="55"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_switch` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_switch&quot;>Flip&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="56"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_stop` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_stop&quot;>Stop&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_show_original` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_show_original&quot;>Show original (no effects)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="58"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_preview_waiting` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_preview_waiting&quot;>Start the camera and face the lens&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="59"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_beauty_settings` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_beauty_settings&quot;>Beauty settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.demo_settings_close` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;demo_settings_close&quot;>Done&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="73"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_studio` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_studio&quot;>Beauty Studio&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="74"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_live_label` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_live_label&quot;>LIVE PREVIEW&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="75"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_back` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_back&quot;>Back&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="79"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_reset` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_reset&quot;>Reset&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="82"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_stickers_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_stickers_hint&quot;>Tap a sticker to apply; tap again to remove.&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="83"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_none` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_none&quot;>Clear stickers&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="84"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_beauty_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_beauty_hint&quot;>Fine-tune your natural look&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="86"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_swap` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_swap&quot;>Swap original and effect views&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="87"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_beauty_backend` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_beauty_backend&quot;>Beauty renderer&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="89"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_mediapipe_gpu` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_mediapipe_gpu&quot;>MediaPipe GPU inference (comparison)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="92"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_frame_tracking` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_frame_tracking&quot;>Image-based sticker tracking (experimental)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="93"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_extended_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_extended_hint&quot;>GPUPixel color and reshape. Select MediaPipe for slim face and big eyes. Rosy tone is a skin-tone color adjustment.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="125"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_extended_parameter` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_extended_parameter&quot;>Extended beauty parameter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="126"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_extended_strength` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;camera_extended_strength&quot;>Parameter strength&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="127"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_scene_hint` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_scene_hint&quot;>Background and camera motion · independent controls; original background until segmentation is ready&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="130"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_background_label` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_background_label&quot;>Virtual background&lt;/string>&lt;string name=&quot;camera_motion_label&quot;>Camera motion&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="131"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_motion_label` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_background_label&quot;>Virtual background&lt;/string>&lt;string name=&quot;camera_motion_label&quot;>Camera motion&lt;/string>"
+        errorLine2="                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="131"
+            column="75"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.camera_motion_zoom` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;string name=&quot;camera_motion_zoom&quot;>Maximum motion zoom · 1–2×&lt;/string>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml"
+            line="132"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.style.TextAppearance_AndroidSkill_Title` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;style name=&quot;TextAppearance.AndroidSkill.Title&quot; parent=&quot;TextAppearance.Material3.TitleLarge&quot; />"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\values\styles.xml"
+            line="2"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        severity="Warning"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        category="Usability"
+        priority="5"
+        summary="Button should be borderless"
+        explanation="Button bars typically use a borderless style for the buttons. Set the `style=&quot;?android:attr/buttonBarButtonStyle&quot;` attribute on each of the buttons, and set `style=&quot;?android:attr/buttonBarStyle&quot;` on the parent layout"
+        url="https://d.android.com/r/studio-ui/designer/material/dialogs"
+        urls="https://d.android.com/r/studio-ui/designer/material/dialogs"
+        errorLine1="&lt;LinearLayout android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;wrap_content&quot; android:orientation=&quot;horizontal&quot;>&lt;Button android:id=&quot;@+id/select_image&quot; android:layout_width=&quot;0dp&quot; android:layout_height=&quot;wrap_content&quot; android:layout_weight=&quot;1&quot; android:minWidth=&quot;0dp&quot; android:minHeight=&quot;48dp&quot; android:text=&quot;@string/select_image&quot; />"
+        errorLine2="                                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml"
+            line="6"
+            column="121"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        severity="Warning"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        category="Usability"
+        priority="5"
+        summary="Button should be borderless"
+        explanation="Button bars typically use a borderless style for the buttons. Set the `style=&quot;?android:attr/buttonBarButtonStyle&quot;` attribute on each of the buttons, and set `style=&quot;?android:attr/buttonBarStyle&quot;` on the parent layout"
+        url="https://d.android.com/r/studio-ui/designer/material/dialogs"
+        urls="https://d.android.com/r/studio-ui/designer/material/dialogs"
+        errorLine1="&lt;Button android:id=&quot;@+id/apply_effects&quot; android:layout_width=&quot;0dp&quot; android:layout_height=&quot;wrap_content&quot; android:layout_weight=&quot;1&quot; android:minWidth=&quot;0dp&quot; android:minHeight=&quot;48dp&quot; android:text=&quot;@string/apply_effects&quot; />"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml"
+            line="7"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        severity="Warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        category="Usability"
+        priority="4"
+        summary="Text size is too small"
+        explanation="Avoid using sizes smaller than 11sp."
+        errorLine1="&lt;LinearLayout android:layout_width=&quot;0dp&quot; android:layout_weight=&quot;1&quot; android:layout_height=&quot;wrap_content&quot; android:gravity=&quot;center&quot; android:orientation=&quot;vertical&quot;>&lt;TextView android:layout_width=&quot;wrap_content&quot; android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/camera_studio&quot; android:textColor=&quot;@color/camera_text&quot; android:textSize=&quot;18sp&quot; android:textStyle=&quot;bold&quot;/>&lt;TextView android:layout_width=&quot;wrap_content&quot; android:layout_height=&quot;wrap_content&quot; android:text=&quot;@string/camera_live_label&quot; android:textColor=&quot;@color/camera_accent&quot; android:textSize=&quot;10sp&quot; android:letterSpacing=&quot;0.15&quot;/>&lt;/LinearLayout>"
+        errorLine2="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="4"
+            column="535"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        severity="Warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        category="Usability"
+        priority="4"
+        summary="Text size is too small"
+        explanation="Avoid using sizes smaller than 11sp."
+        errorLine1="&lt;TextView android:id=&quot;@+id/camera_effect_label&quot; android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;wrap_content&quot; android:layout_gravity=&quot;bottom&quot; android:background=&quot;#CC202129&quot; android:padding=&quot;6dp&quot; android:text=&quot;@string/camera_result_short&quot; android:textColor=&quot;@color/camera_accent&quot; android:textSize=&quot;10sp&quot; android:gravity=&quot;center&quot;/>"
+        errorLine2="                                                                                                                                                                                                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="12"
+            column="291"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        severity="Warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        category="Usability"
+        priority="4"
+        summary="Text size is too small"
+        explanation="Avoid using sizes smaller than 11sp."
+        errorLine1="&lt;TextView android:id=&quot;@+id/camera_main_label&quot; android:layout_width=&quot;wrap_content&quot; android:layout_height=&quot;wrap_content&quot; android:layout_gravity=&quot;bottom|end&quot; android:layout_margin=&quot;16dp&quot; android:background=&quot;@drawable/bg_camera_chip&quot; android:padding=&quot;8dp&quot; android:text=&quot;@string/camera_original_short&quot; android:textColor=&quot;@color/camera_text&quot; android:textSize=&quot;10sp&quot;/>"
+        errorLine2="                                                                                                                                                                                                                                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml"
+            line="15"
+            column="337"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        severity="Warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        category="Productivity"
+        priority="6"
+        summary="Use KTX extension function"
+        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
+        errorLine1="        stickerPreferences.edit().apply {"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\CameraTestActivity.kt"
+            line="359"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        severity="Warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        category="Productivity"
+        priority="6"
+        summary="Use KTX extension function"
+        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
+        errorLine1="                preferences.edit().putBoolean(enabledKey,enabled).apply()"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\StickerWorkshopViewModel.kt"
+            line="84"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        severity="Warning"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        category="Productivity"
+        priority="6"
+        summary="Use KTX extension function"
+        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
+        errorLine1="        preferences.edit().putBoolean(enabledKey,value).apply()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\StickerWorkshopViewModel.kt"
+            line="99"
+            column="9"/>
+    </issue>
+
+</issues>

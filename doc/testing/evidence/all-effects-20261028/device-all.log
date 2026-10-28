@@ -1,0 +1,66 @@
+
+com.beautysdk.demo.BeautyDeviceTest:....
+CPU render 240x300 (single fixture sample): 86ms; PNG active at 350ms age, hidden at 850ms.
+..
+com.beautysdk.demo.CameraDeviceTest:
+Error in cameraPageProducesProcessedImageAndStopClearsIt(com.beautysdk.demo.CameraDeviceTest):
+java.lang.AssertionError: Processed image missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt(CameraDeviceTest.kt:124)
+
+Error in frontBackFramesRestartAndStop(com.beautysdk.demo.CameraDeviceTest):
+java.lang.AssertionError: No frame for FRONT; errors=[]
+	at com.beautysdk.demo.CameraDeviceTest.frontBackFramesRestartAndStop$next(CameraDeviceTest.kt:60)
+	at com.beautysdk.demo.CameraDeviceTest.frontBackFramesRestartAndStop$next$default(CameraDeviceTest.kt:53)
+	at com.beautysdk.demo.CameraDeviceTest.frontBackFramesRestartAndStop(CameraDeviceTest.kt:62)
+
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:.
+Error in cameraControlsScrollWithoutHidingProcessedPreview(com.beautysdk.demo.DemoLayoutDeviceTest):
+java.lang.NullPointerException: Attempt to invoke virtual method 'int android.view.View.getVisibility()' on a null object reference
+	at com.beautysdk.demo.DemoLayoutDeviceTest.cameraControlsScrollWithoutHidingProcessedPreview$lambda$2(DemoLayoutDeviceTest.kt:40)
+	at com.beautysdk.demo.DemoLayoutDeviceTest.$r8$lambda$huQmCVOCORNa0lXjMmWX7fQizIY(DemoLayoutDeviceTest.kt:0)
+	at com.beautysdk.demo.DemoLayoutDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+.
+com.beautysdk.demo.EffectPanelDeviceTest:
+Error in categoriesKeepSinglePanelAndResourceEditorIsSecondary(com.beautysdk.demo.EffectPanelDeviceTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary$lambda$1(EffectPanelDeviceTest.kt:29)
+	at com.beautysdk.demo.EffectPanelDeviceTest.$r8$lambda$ipVyBYiMr2sPMo72jjLQx6DST3o(EffectPanelDeviceTest.kt:0)
+	at com.beautysdk.demo.EffectPanelDeviceTest$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+com.beautysdk.demo.EffectResourceDeviceTest:....
+com.beautysdk.demo.EyeMakeupResourceDeviceTest:..
+com.beautysdk.demo.FaceMotionDeviceTest:
+MOTION samples=15 meanMs=3.5030219333333337 maxMs=5.733195
+.
+com.beautysdk.demo.GestureDeviceTest:INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0

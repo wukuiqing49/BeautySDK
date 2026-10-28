@@ -1,0 +1,104 @@
+
+com.beautysdk.demo.BeautyDeviceTest:....
+CPU render 240x300 (single fixture sample): 78ms; PNG active at 350ms age, hidden at 850ms.
+..
+com.beautysdk.demo.CameraDeviceTest:
+Error in cameraPageProducesProcessedImageAndStopClearsIt(com.beautysdk.demo.CameraDeviceTest):
+java.lang.AssertionError: expected:<0> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at com.beautysdk.demo.CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt$lambda$4(CameraDeviceTest.kt:127)
+	at com.beautysdk.demo.CameraDeviceTest.$r8$lambda$jo5r6jVgOV50vicZrfV0qSo17gU(CameraDeviceTest.kt:0)
+	at com.beautysdk.demo.CameraDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+.
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:...
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.EffectResourceDeviceTest:....
+com.beautysdk.demo.EyeMakeupResourceDeviceTest:..
+com.beautysdk.demo.FaceMotionDeviceTest:
+MOTION samples=15 meanMs=3.669767 maxMs=6.09904
+.
+com.beautysdk.demo.GestureDeviceTest:.....
+com.beautysdk.demo.GpuPixelControlsDeviceTest:.
+com.beautysdk.demo.GpuPixelDeviceTest:......
+com.beautysdk.demo.HomeNavigationDeviceTest:.
+com.beautysdk.demo.MediaPipeDelegateDeviceTest:
+Error in cameraGpuOptionProducesAnalysisWhileRendering(com.beautysdk.demo.MediaPipeDelegateDeviceTest):
+java.lang.AssertionError: GPU camera analysis timeout
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.MediaPipeDelegateDeviceTest.cameraGpuOptionProducesAnalysisWhileRendering(MediaPipeDelegateDeviceTest.kt:36)
+
+DELEGATE round=0 execution=CPU n=40 initMs=105.083984 total[mean=164.32841200000001,p50=165.516114,p95=184.143799,max=185.266927] infer[mean=151.301053875,p50=152.842854,p95=169.639852,max=172.602662] prep[mean=3.8783650249999995,p50=4.034301,p95=5.256836,max=6.918864]
+
+DELEGATE round=1 execution=GPU n=40 initMs=483.117228 total[mean=102.99913645000001,p50=103.687419,p95=116.469401,max=145.815185] infer[mean=90.13921619999999,p50=91.858724,p95=103.143921,max=117.808228] prep[mean=3.72320255,p50=3.885376,p95=4.550741,max=6.605021]
+
+DELEGATE round=2 execution=GPU n=40 initMs=421.966431 total[mean=93.32239990000001,p50=96.102255,p95=109.462077,max=111.398396] infer[mean=83.89638364999999,p50=85.529908,p95=97.951823,max=98.017619] prep[mean=4.0873434500000005,p50=3.981364,p95=4.28121,max=10.71403]
+
+DELEGATE round=3 execution=CPU n=40 initMs=294.92627 total[mean=127.13350832500002,p50=126.499959,p95=142.817953,max=145.712199] infer[mean=119.20696827499998,p50=118.860759,p95=134.430013,max=136.639648] prep[mean=3.732926400000001,p50=4.104939,p95=4.625203,max=5.762818]
+.
+com.beautysdk.demo.MediaPipeInputContractDeviceTest:....
+com.beautysdk.demo.PublishedCatalogDeviceTest:Published HTTPS catalog resources=17; verified download and load succeeded.
+.
+com.beautysdk.demo.ResolutionDeviceTest:.
+com.beautysdk.demo.ResourceCenterDeviceTest:..........
+com.beautysdk.demo.ResourceCenterUiDeviceTest:...
+com.beautysdk.demo.ResourceDeliveryDeviceTest:...
+com.beautysdk.demo.ResourceStoreDeviceTest:..
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.SceneDeviceTest:....
+com.beautysdk.demo.SheetScrollDeviceTest:.
+com.beautysdk.demo.StickerResourceDeviceTest:.....
+com.beautysdk.demo.TextureBridgeDeviceTest:....
+com.beautysdk.demo.ThemeDemoDeviceTest:.
+com.beautysdk.demo.ThemeResourceDeviceTest:....
+com.beautysdk.demo.WebStickerPackDeviceTest:..
+
+Time: 131.432
+There were 2 failures:
+1) cameraPageProducesProcessedImageAndStopClearsIt(com.beautysdk.demo.CameraDeviceTest)
+java.lang.AssertionError: expected:<0> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at org.junit.Assert.assertEquals(Assert.java:633)
+	at com.beautysdk.demo.CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt$lambda$4(CameraDeviceTest.kt:127)
+	at com.beautysdk.demo.CameraDeviceTest.$r8$lambda$jo5r6jVgOV50vicZrfV0qSo17gU(CameraDeviceTest.kt:0)
+	at com.beautysdk.demo.CameraDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+2) cameraGpuOptionProducesAnalysisWhileRendering(com.beautysdk.demo.MediaPipeDelegateDeviceTest)
+java.lang.AssertionError: GPU camera analysis timeout
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.MediaPipeDelegateDeviceTest.cameraGpuOptionProducesAnalysisWhileRendering(MediaPipeDelegateDeviceTest.kt:36)
+
+FAILURES!!!
+Tests run: 81,  Failures: 2
+
+

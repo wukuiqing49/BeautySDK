@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-26",
+  "scope": "common-engine-read-process-write-entry",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEngineConnector.kt": "78bbe9406f2e2390e8984f5b002672ac10d2a2e917d599a37cb61d2f73c60cc7",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEnginePipeline.kt": "33fc5d2be330465b247aec7a97e2630339a1b9c18c38cfabb9fc22ca06dae221",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyProcessor.kt": "dcdf75d8dfa4d212283c67bc1cf09b41a2fbf79d07d2771ae0cef1ea15bde804",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyEngineConnectorTest.kt": "f82213b06691ff7451eaecb2cfec4496be64f786878c73eef0a1cf0f4a020d0e",
+    "core/lib_beauty/src/test/java/com/beautysdk/JavaApiTest.java": "60855d506d59633f5148d074ccc26d5c66d9515fb8ec5cc73f0a5d0a827a8bb4",
+    "app/src/androidTest/java/com/beautysdk/demo/TextureBridgeDeviceTest.kt": "32d2950046055f8340389bf5971c5b93fb17bf8c43c998ec3876b1aac3fa93cf",
+    "core/lib_beauty/README.md": "1c5d4fdacbaaded7d3d8a91b9986b169d363eae9de3acb0f65212170b12dbed5",
+    "doc/SDK_PIPELINE.md": "ecb9ff0754b8ca05af64d85284ac29570c53b9ff1d0535e2517dd22526da38cb",
+    "AGENTS.md": "547052af51050f4479fc4d980268fd2d71b6a3d4a87aebad2a4f1023859bb51f",
+    ".agents/config/project-profile.yml": "9e06081935d4b45789ed0cd017718a266bcd26f2be7a583732fbe7d8b0e00b39"
+  },
+  "unitTests": {
+    "core": 71,
+    "new": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "model": "Pixel 8",
+    "class": "TextureBridgeDeviceTest",
+    "count": 4,
+    "new": 1,
+    "result": "passed",
+    "seconds": 0.172,
+    "usesCamera": false,
+    "usesMediaPipe": false,
+    "analyzer": "fixed fixture; actual GPU whitening and connector write checked"
+  },
+  "build": {
+    "result": "passed",
+    "duration": "3m22s",
+    "log": "build/sdk-engine-connector-final.log",
+    "tasks": [
+      ":core:lib_beauty:testDebugUnitTest",
+      ":core:lib_beauty:assembleRelease",
+      ":core:lib_beauty:lintDebug",
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ]
+  },
+  "lint": {
+    "scope": "core/lib_beauty debug",
+    "errors": 0,
+    "warnings": 0
+  },
+  "staticChecks": [
+    "agent structure passed",
+    "agent configuration passed",
+    "architecture passed, 0 warnings"
+  ],
+  "deviceLog": "build/sdk-engine-connector-device.log",
+  "notVerified": [
+    "actual vendor frame adapter and callback registration",
+    "remote stream output",
+    "variable-thread engine scheduling and shared-EGL synchronization",
+    "MediaPipe joint sustained pipeline performance",
+    "GPU stress and thermal behavior",
+    "asynchronous engine release integration"
+  ],
+  "demoChanges": "none; production camera entry unchanged"
+}

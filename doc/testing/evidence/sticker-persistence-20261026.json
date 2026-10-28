@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-26",
+  "case": "STICKER-PERSISTENCE-01",
+  "sourceHashes": {
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "936cdbb2cd1dcb6f9b61507f54192e8b9502cece0cb16168c62ebcf89de3a5fd",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "38ad9c29073318978305b4e620ab77fb19c7386ccae7cdf3359f861b05903260",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopViewModel.kt": "5eac43343d9bf89867bd46bde8e6b88c2d51de4243a0f6c7ff54a1ebe86c4435",
+    "app/src/androidTest/java/com/beautysdk/demo/CameraStickerPersistenceDeviceTest.kt": "1eb8f943b1216c03a59c2406c8dc6b164b1999aa84a9c34ada404d7aa26466e1",
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "bf9d1d1c866424a093942161c7996e6bb77c5ae8959065f1a472107f4b5c86e4"
+  },
+  "build": {
+    "tasks": [
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ],
+    "result": "passed",
+    "seconds": 87
+  },
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "tests": 2,
+    "failures": 0,
+    "seconds": 3.293,
+    "result": "passed",
+    "methods": [
+      "CameraStickerPersistenceDeviceTest#reopenRestoresStylesAndClearRemainsCleared",
+      "StickerResourceDeviceTest#privateDraftRestoresDisabledAndLateLoadCannotUndoClear"
+    ]
+  },
+  "logs": [
+    "build/sticker-persistence-build.log",
+    "build/sticker-persistence-device.log"
+  ],
+  "limits": [
+    "force-stop/reboot not separately tested",
+    "no full UI or sustained performance regression"
+  ],
+  "data": "User sticker preferences restored; isolated draft deleted. No camera images stored."
+}

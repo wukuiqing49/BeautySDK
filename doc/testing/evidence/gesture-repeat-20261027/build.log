@@ -1,0 +1,25 @@
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugKotlin
+> Task :core:lib_beauty:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty:bundleLibRuntimeToJarDebug
+> Task :core:lib_beauty:bundleLibCompileToJarDebug
+> Task :core:lib_beauty:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestKotlin
+> Task :core:lib_beauty:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestJavaWithJavac UP-TO-DATE
+> Task :core:lib_beauty:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :core:lib_beauty:testDebugUnitTest
+
+BUILD SUCCESSFUL in 3s
+17 actionable tasks: 5 executed, 12 up-to-date

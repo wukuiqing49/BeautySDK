@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.beautysdk.camera.CameraTextureTransformTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-27T04:55:07.085Z" hostname="WIN-MMJSWULHUCA" time="0.029">
+  <properties/>
+  <testcase name="cropIsAppliedBeforeProducerTransform" classname="com.beautysdk.camera.CameraTextureTransformTest" time="0.002"/>
+  <testcase name="allRotationsAndMirrorsMapDisplayCornersBackToRaw" classname="com.beautysdk.camera.CameraTextureTransformTest" time="0.025"/>
+  <testcase name="cameraProducerOrientationIsRemovedBeforeCropForEveryLensAndRotation" classname="com.beautysdk.camera.CameraTextureTransformTest" time="0.0"/>
+  <testcase name="compositionKeepsInputsAndRejectsInvalidCrop" classname="com.beautysdk.camera.CameraTextureTransformTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,48 @@
+
+com.beautysdk.demo.BeautyDeviceTest:....
+CPU render 240x300 (single fixture sample): 88ms; PNG active at 350ms age, hidden at 850ms.
+..
+com.beautysdk.demo.CameraDeviceTest:..
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:...
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.EffectResourceDeviceTest:....
+com.beautysdk.demo.EyeMakeupResourceDeviceTest:..
+com.beautysdk.demo.FaceMotionDeviceTest:
+MOTION samples=15 meanMs=3.4223741333333337 maxMs=5.874593
+.
+com.beautysdk.demo.GestureDeviceTest:.....
+com.beautysdk.demo.GpuPixelControlsDeviceTest:.
+com.beautysdk.demo.GpuPixelDeviceTest:......
+com.beautysdk.demo.HomeNavigationDeviceTest:.
+com.beautysdk.demo.MediaPipeDelegateDeviceTest:.
+DELEGATE round=0 execution=CPU n=40 initMs=176.071818 total[mean=163.19834310000005,p50=164.536337,p95=186.547892,max=190.174032] infer[mean=150.40669245000004,p50=151.308635,p95=173.437338,max=175.8125] prep[mean=3.6623607,p50=3.966797,p95=4.120931,max=4.257772]
+
+DELEGATE round=1 execution=GPU n=40 initMs=459.161703 total[mean=104.309785075,p50=105.082113,p95=113.407674,max=115.688803] infer[mean=91.39333699999997,p50=92.011067,p95=100.222127,max=102.2583] prep[mean=3.9138590249999994,p50=3.875488,p95=4.136475,max=5.074219]
+
+DELEGATE round=2 execution=GPU n=40 initMs=438.980673 total[mean=89.05448207500001,p50=93.239665,p95=103.432618,max=113.960734] infer[mean=79.33476762500001,p50=81.886312,p95=94.880087,max=100.596354] prep[mean=4.010177575000001,p50=3.896648,p95=4.972616,max=5.285075]
+
+DELEGATE round=3 execution=CPU n=40 initMs=337.470662 total[mean=127.34513862500003,p50=126.153809,p95=146.839518,max=147.195923] infer[mean=119.55727129999998,p50=118.68046,p95=137.04187,max=139.612345] prep[mean=3.7231078500000003,p50=3.995931,p95=5.131551,max=7.55013]
+.
+com.beautysdk.demo.MediaPipeInputContractDeviceTest:....
+com.beautysdk.demo.PublishedCatalogDeviceTest:Published HTTPS catalog resources=17; verified download and load succeeded.
+.
+com.beautysdk.demo.ResolutionDeviceTest:.
+com.beautysdk.demo.ResourceCenterDeviceTest:..........
+com.beautysdk.demo.ResourceCenterUiDeviceTest:..
+com.beautysdk.demo.ResourceDeliveryDeviceTest:...
+com.beautysdk.demo.ResourceStoreDeviceTest:..
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.SceneDeviceTest:....
+com.beautysdk.demo.SheetScrollDeviceTest:.
+com.beautysdk.demo.StickerResourceDeviceTest:.....
+com.beautysdk.demo.TextureBridgeDeviceTest:....
+com.beautysdk.demo.ThemeDemoDeviceTest:.
+com.beautysdk.demo.ThemeResourceDeviceTest:....
+com.beautysdk.demo.WebStickerPackDeviceTest:..
+
+Time: 98.84
+
+OK (80 tests)
+
+

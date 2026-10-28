@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.beautysdk.demo.feature.app.PreviewRequestTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:12:30.781Z" hostname="WIN-MMJSWULHUCA" time="0.015">
+  <properties/>
+  <testcase name="analysisRunsOnlyForVisibleEnabledStickers" classname="com.beautysdk.demo.feature.app.PreviewRequestTest" time="0.011"/>
+  <testcase name="reshapeDrivesAnalysisWithoutStickersButColorDoesNot" classname="com.beautysdk.demo.feature.app.PreviewRequestTest" time="0.001"/>
+  <testcase name="importedPackDrivesAnalysisAndEmptyOverrideDisablesBuiltIns" classname="com.beautysdk.demo.feature.app.PreviewRequestTest" time="0.002"/>
+  <testcase name="segmentationIndependentOfFaceBackendAndOriginalDisablesBoth" classname="com.beautysdk.demo.feature.app.PreviewRequestTest" time="0.0"/>
+  <testcase name="completeThemeOverridesOldManualAndCustomStickerAnalysis" classname="com.beautysdk.demo.feature.app.PreviewRequestTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

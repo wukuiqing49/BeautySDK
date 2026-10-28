@@ -1,0 +1,294 @@
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestKotlin
+> Task :core:lib_beauty:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestJavaWithJavac UP-TO-DATE
+> Task :core:lib_beauty:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :core:lib_beauty:testDebugUnitTest
+> Task :core:core_base:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_base:preBuild UP-TO-DATE
+> Task :core:core_base:preDebugBuild UP-TO-DATE
+> Task :core:core_base:generateDebugResValues UP-TO-DATE
+> Task :core:core_base:generateDebugResources UP-TO-DATE
+> Task :core:core_base:packageDebugResources UP-TO-DATE
+> Task :core:core_base:processDebugNavigationResources UP-TO-DATE
+> Task :core:core_base:parseDebugLocalResources UP-TO-DATE
+> Task :core:core_base:generateDebugRFile UP-TO-DATE
+> Task :core:core_base:compileDebugKotlin NO-SOURCE
+> Task :core:core_base:javaPreCompileDebug UP-TO-DATE
+> Task :core:core_base:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_base:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:core_base:processDebugJavaRes NO-SOURCE
+> Task :core:core_utils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_utils:preBuild UP-TO-DATE
+> Task :core:core_utils:preDebugBuild UP-TO-DATE
+> Task :core:core_utils:generateDebugResValues UP-TO-DATE
+> Task :core:core_utils:generateDebugResources UP-TO-DATE
+> Task :core:core_utils:packageDebugResources UP-TO-DATE
+> Task :core:core_utils:processDebugNavigationResources UP-TO-DATE
+> Task :core:core_utils:parseDebugLocalResources UP-TO-DATE
+> Task :core:core_utils:generateDebugRFile UP-TO-DATE
+> Task :core:core_utils:compileDebugKotlin NO-SOURCE
+> Task :core:core_utils:javaPreCompileDebug UP-TO-DATE
+> Task :core:core_utils:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_utils:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:core_utils:processDebugJavaRes NO-SOURCE
+> Task :core:lib_beauty_gpupixel:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_gpupixel:preBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_gpupixel:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_mediapipe:preBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_mediapipe:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty_rfb:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_rfb:preBuild UP-TO-DATE
+> Task :core:lib_beauty_rfb:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_rfb:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty_rfb:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_rfb:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_camera:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_camera:preBuild UP-TO-DATE
+> Task :core:lib_camera:preDebugBuild UP-TO-DATE
+> Task :core:lib_camera:generateDebugResValues UP-TO-DATE
+> Task :core:lib_camera:generateDebugResources UP-TO-DATE
+> Task :core:lib_camera:packageDebugResources UP-TO-DATE
+> Task :core:lib_camera:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_camera:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_camera:generateDebugRFile UP-TO-DATE
+> Task :core:lib_camera:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_camera:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_camera:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_camera:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_camera:processDebugJavaRes UP-TO-DATE
+> Task :core:core_base:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:core_utils:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_camera:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:feature_app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:feature_app:preBuild UP-TO-DATE
+> Task :feature:feature_app:preDebugBuild UP-TO-DATE
+> Task :feature:feature_app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :feature:feature_app:generateDebugResValues UP-TO-DATE
+> Task :feature:feature_app:generateDebugResources UP-TO-DATE
+> Task :feature:feature_app:packageDebugResources UP-TO-DATE
+> Task :feature:feature_app:processDebugNavigationResources UP-TO-DATE
+> Task :feature:feature_app:parseDebugLocalResources UP-TO-DATE
+> Task :feature:feature_res:preBuild UP-TO-DATE
+> Task :feature:feature_res:preDebugBuild UP-TO-DATE
+> Task :feature:feature_res:generateDebugResValues UP-TO-DATE
+> Task :feature:feature_res:generateDebugResources UP-TO-DATE
+> Task :feature:feature_res:packageDebugResources UP-TO-DATE
+> Task :feature:feature_res:processDebugNavigationResources UP-TO-DATE
+> Task :feature:feature_res:parseDebugLocalResources UP-TO-DATE
+> Task :feature:feature_res:generateDebugRFile UP-TO-DATE
+> Task :feature:feature_app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :feature:feature_app:generateDebugRFile UP-TO-DATE
+> Task :feature:feature_res:javaPreCompileDebug UP-TO-DATE
+> Task :feature:feature_res:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:feature_res:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:feature_app:compileDebugKotlin UP-TO-DATE
+> Task :feature:feature_app:javaPreCompileDebug UP-TO-DATE
+> Task :feature:feature_app:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:feature_app:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :feature:feature_app:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:feature_app:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:feature_app:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :feature:feature_app:compileDebugUnitTestKotlin
+> Task :feature:feature_app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :feature:feature_app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :feature:feature_app:processDebugJavaRes UP-TO-DATE
+> Task :feature:feature_app:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :feature:feature_res:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :feature:feature_res:processDebugJavaRes NO-SOURCE
+> Task :feature:feature_app:testDebugUnitTest
+> Task :core:lib_beauty:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty:writeReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:checkReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :core:lib_beauty_gpupixel:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :core:lib_beauty_gpupixel:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :core:lib_beauty_gpupixel:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :core:lib_beauty_gpupixel:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:mergeReleaseNativeLibs
+> Task :core:lib_beauty_gpupixel:stripReleaseDebugSymbols
+> Task :core:lib_beauty_gpupixel:copyReleaseJniLibsProjectAndLocalJars
+> Task :core:lib_beauty_gpupixel:generateReleaseResValues UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :core:lib_beauty:generateReleaseResValues UP-TO-DATE
+> Task :core:lib_beauty:generateReleaseResources UP-TO-DATE
+> Task :core:lib_beauty:packageReleaseResources UP-TO-DATE
+> Task :core:lib_beauty:processReleaseNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseReleaseLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateReleaseRFile UP-TO-DATE
+> Task :core:lib_beauty:compileReleaseKotlin
+> Task :core:lib_beauty:javaPreCompileRelease UP-TO-DATE
+> Task :core:lib_beauty:compileReleaseJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty:bundleLibCompileToJarRelease
+> Task :core:lib_beauty_gpupixel:generateReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:packageReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processReleaseNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:parseReleaseLocalResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateReleaseRFile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileReleaseKotlin
+> Task :core:lib_beauty_gpupixel:extractReleaseAnnotations
+> Task :core:lib_beauty_gpupixel:mergeReleaseShaders UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileReleaseShaders NO-SOURCE
+> Task :core:lib_beauty_gpupixel:generateReleaseAssets UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:mergeReleaseAssets
+> Task :core:lib_beauty_gpupixel:javaPreCompileRelease UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileReleaseJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_gpupixel:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:prepareLintJarForPublish UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:prepareReleaseArtProfile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processReleaseManifest UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processReleaseJavaRes
+> Task :core:lib_beauty_gpupixel:mergeReleaseJavaResource
+> Task :core:lib_beauty_gpupixel:syncReleaseLibJars
+> Task :core:lib_beauty_gpupixel:writeReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:bundleReleaseAar
+> Task :core:lib_beauty:compileReleaseLibraryResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:mergeReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:verifyReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:assembleRelease
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :core:core_base:writeDebugAarMetadata UP-TO-DATE
+> Task :core:core_utils:writeDebugAarMetadata UP-TO-DATE
+> Task :core:lib_beauty:writeDebugAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:writeDebugAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:writeDebugAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_rfb:writeDebugAarMetadata UP-TO-DATE
+> Task :core:lib_camera:writeDebugAarMetadata UP-TO-DATE
+> Task :feature:feature_app:writeDebugAarMetadata UP-TO-DATE
+> Task :feature:feature_res:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :core:core_base:extractDeepLinksDebug UP-TO-DATE
+> Task :core:core_base:processDebugManifest UP-TO-DATE
+> Task :core:core_utils:extractDeepLinksDebug UP-TO-DATE
+> Task :core:core_utils:processDebugManifest UP-TO-DATE
+> Task :core:lib_beauty:extractDeepLinksDebug UP-TO-DATE
+> Task :core:lib_beauty:processDebugManifest UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:extractDeepLinksDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugManifest UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:extractDeepLinksDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processDebugManifest UP-TO-DATE
+> Task :core:lib_beauty_rfb:extractDeepLinksDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:processDebugManifest UP-TO-DATE
+> Task :core:lib_camera:extractDeepLinksDebug UP-TO-DATE
+> Task :core:lib_camera:processDebugManifest UP-TO-DATE
+> Task :feature:feature_app:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:feature_app:processDebugManifest UP-TO-DATE
+> Task :feature:feature_res:extractDeepLinksDebug UP-TO-DATE
+> Task :feature:feature_res:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :core:core_base:compileDebugLibraryResources UP-TO-DATE
+> Task :core:core_utils:compileDebugLibraryResources UP-TO-DATE
+> Task :core:lib_beauty:compileDebugLibraryResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugLibraryResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileDebugLibraryResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:compileDebugLibraryResources UP-TO-DATE
+> Task :core:lib_camera:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:feature_app:compileDebugLibraryResources UP-TO-DATE
+> Task :feature:feature_res:compileDebugLibraryResources UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebugAndroidTest UP-TO-DATE
+> Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :app:generateDebugAndroidTestResources UP-TO-DATE
+> Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebugAndroidTest UP-TO-DATE
+> Task :app:processDebugAndroidTestManifest UP-TO-DATE
+> Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+> Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :app:processDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:compileDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+> Task :app:processDebugAndroidTestResources UP-TO-DATE
+
+> Task :app:compileDebugAndroidTestKotlin FAILED
+e: file:///C:/work/AI/BeautySDK/app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt:227:120 Unresolved reference 'copy'.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugAndroidTestKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 9s
+222 actionable tasks: 21 executed, 201 up-to-date

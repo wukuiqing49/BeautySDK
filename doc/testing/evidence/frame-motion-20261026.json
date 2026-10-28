@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-26",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt": "624cd8f7f7653e7002b7ab07324a68900f72e1da773966445e1c541cfd407c13",
+    "core/lib_beauty/src/main/java/com/beautysdk/AsyncFaceAnalysis.kt": "fd5c1ffb5b5a214227eae16024d4ecd88971198efe91446d512ef32c99c95ba8",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySession.kt": "d90290ff2ee60379cb39ebe211fd1c2df26709bececf93573ac166f1f06cd33b",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "19e5798e033beaa6c95570f6e8fe3018447b19dee06455b909c68d89e2db6ca6",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeFaceMotion.kt": "ef5d53505c06e590715b3657f522ef9d9db9d70e268eb1f8c6c4fcab3efdc65b",
+    "core/lib_beauty_mediapipe/src/main/cpp/face_motion.cpp": "b645f6d2b118bfdd55c2ec89d41321660494957133d7f416bf11270a869fe56b",
+    "core/lib_beauty_mediapipe/src/main/cpp/CMakeLists.txt": "5e44b5b00f2da4160e1da711a58f9e5fef6a7430ed8791be623d8eb3402609a7",
+    "core/lib_beauty_mediapipe/consumer-rules.pro": "5e71ae201d34210d8fd2c39476f48da6fac478d8c7b35ab60867450211f53c5a",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "8b4d243399e3f2a9cc7b65d8a10b8aeccd1bec5bed1cc898011485e1023c70ae",
+    "app/src/main/res/layout/activity_camera_test.xml": "6d8fdbf5eb6083e0d4a49c0a70e4d23286cd224b2da77a41b4579d34191e7c3a",
+    "core/lib_beauty/src/test/java/com/beautysdk/TrackedFaceAnalysisTest.kt": "aa0fbf614e5bcc9ddc3d203114064746dbf64f521390efaf7344abf3b7665d0b",
+    "app/src/androidTest/java/com/beautysdk/demo/FaceMotionDeviceTest.kt": "ca6eb609db8a2c49f3dcb938a4cbc21c91bb98c57dc1025ea8108d575eed70af"
+  },
+  "jvm": {
+    "beauty": 39,
+    "feature": 7,
+    "failures": 0,
+    "errors": 0
+  },
+  "device": "Pixel 8 Android 16",
+  "deviceTests": {
+    "nativeMotion": "PASS",
+    "nativeRgba": "PASS",
+    "cameraGpuSmoke": "initial timeout with device Dozing; awake retry PASS 1.778s"
+  },
+  "motionTiming": {
+    "samples": 15,
+    "meanMs": 3.547987266666666,
+    "maxMs": 5.782308,
+    "input": "translated public portrait fixture; estimate only"
+  },
+  "native": "Release AAR two ABIs built; both ELF LOAD align 0x4000",
+  "unverified": [
+    "sustained real-person flicker reduction",
+    "rotation/scale/occlusion full visual matrix",
+    "thermal/memory stability",
+    "release host R8",
+    "vendor adapters and remote stream"
+  ]
+}

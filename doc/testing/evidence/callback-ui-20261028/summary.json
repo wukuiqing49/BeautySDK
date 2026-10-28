@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-28T02:32:47.258870+00:00",
+  "commit": null,
+  "sourceFingerprint": "1db1ec805e7a3d3daac589077b92e4619ca56a076828bd81e5c9b2ddf7d4a37f",
+  "evidence": "doc/testing/evidence/callback-ui-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "DemoLayoutDeviceTest.cameraControlsScrollWithoutHidingProcessedPreview",
+    "DemoLayoutDeviceTest.stickerCardsKeepSelectionAndPreviewsSwap",
+    "DemoLayoutDeviceTest.imageControlsScrollWithoutHidingProcessedPreview",
+    "EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary",
+    "GestureDeviceTest.officialFixturesRecognizeFourGesturesAndReturnReal21Points",
+    "GestureDeviceTest.blankInputHasNoHandsAndCloseIsIdempotent",
+    "GestureDeviceTest.allRotationsAndMirrorsMapRealLandmarksBackToRawPixels",
+    "GestureDeviceTest.sharedRuntimeTriggersOnceAndDisableClearsResults",
+    "GestureDeviceTest.demoSwitchControlsIndependentBranchAndCameraLifecycle",
+    "SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet",
+    "LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel",
+    "CallbackDisplayDeviceTest.faceTransitionsDoNotRepeatOrTreatStaleAsLeave",
+    "CallbackDisplayDeviceTest.gestureCallbackStaysVisibleUntilNextEventAndResetsWithSession"
+  ],
+  "deviceSuite": {
+    "tests": 13,
+    "failures": 0,
+    "seconds": 32.224
+  },
+  "fontScale1_3Portrait": {
+    "tests": 5,
+    "failures": 0,
+    "seconds": 7.407
+  },
+  "fontScale1_3Landscape": {
+    "tests": 5,
+    "failures": 0,
+    "seconds": 7.638
+  },
+  "lint": {
+    "Warning": 149
+  },
+  "limits": [
+    "UI callback injection tests do not prove real human entry/exit recognition",
+    "Face display derives transitions from existing rate-limited demo stats, not a new SDK event API",
+    "No additional always-on face analysis",
+    "No vendor stream, other device, full language/day/night matrix, release or sustained performance retest",
+    "Known stop frame-count race remains unresolved"
+  ]
+}

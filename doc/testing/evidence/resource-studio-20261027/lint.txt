@@ -1,0 +1,602 @@
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:13: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+targetSdk = "36"
+            ~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdkVersion specifies that it has been tested with,
+   various compatibility modes kick in. This ensures that your application
+   continues to work, but it may look out of place. For example, if the
+   targetSdkVersion is less than 14, your app may get an option button in the
+   UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:9: Warning: Attribute clipToOutline is only used in API level 31 and higher (current min is 24) [UnusedAttribute]
+<FrameLayout android:id="@+id/camera_effect_container" android:layout_width="@dimen/camera_result_width" android:layout_height="@dimen/camera_result_height" android:layout_margin="16dp" android:clipToOutline="true" android:padding="2dp" android:contentDescription="@string/camera_swap" android:clickable="true" android:focusable="true">
+                                                                                                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:10: Warning: A newer version of com.android.application than 8.13.2 is available: 9.4.1 [AndroidGradlePluginVersion]
+agp = "8.13.2"
+      ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:10: Warning: A newer version of com.android.library than 8.13.2 is available: 9.4.1 [AndroidGradlePluginVersion]
+agp = "8.13.2"
+      ~~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:6: Warning: A newer version of com.google.mediapipe:tasks-vision than 0.10.32 is available: 1.1.1 [GradleDependency]
+mediapipe = "0.10.32"
+            ~~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:8: Warning: A newer version of androidx.test:runner than 1.6.2 is available: 1.7.0 [GradleDependency]
+test-runner = "1.6.2"
+              ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:9: Warning: A newer version of androidx.camera:camera-camera2 than 1.4.2 is available: 1.6.2 [GradleDependency]
+camerax = "1.4.2"
+          ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:9: Warning: A newer version of androidx.camera:camera-core than 1.4.2 is available: 1.6.2 [GradleDependency]
+camerax = "1.4.2"
+          ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:9: Warning: A newer version of androidx.camera:camera-lifecycle than 1.4.2 is available: 1.6.2 [GradleDependency]
+camerax = "1.4.2"
+          ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:9: Warning: A newer version of androidx.camera:camera-view than 1.4.2 is available: 1.6.2 [GradleDependency]
+camerax = "1.4.2"
+          ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:15: Warning: A newer version of androidx.core:core-ktx than 1.18.0 is available: 1.19.1 [GradleDependency]
+androidx-core = "1.18.0"
+                ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:17: Warning: A newer version of androidx.appcompat:appcompat than 1.7.1 is available: 1.8.0 [GradleDependency]
+androidx-appcompat = "1.7.1"
+                     ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:18: Warning: A newer version of androidx.fragment:fragment-ktx than 1.8.9 is available: 1.9.1 [GradleDependency]
+androidx-fragment = "1.8.9"
+                    ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:19: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.10.0 is available: 2.11.0 [GradleDependency]
+androidx-lifecycle = "2.10.0"
+                     ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:19: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.10.0 is available: 2.11.0 [GradleDependency]
+androidx-lifecycle = "2.10.0"
+                     ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:19: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.10.0 is available: 2.11.0 [GradleDependency]
+androidx-lifecycle = "2.10.0"
+                     ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:20: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.2.1 is available: 2.2.2 [GradleDependency]
+androidx-constraintlayout = "2.2.1"
+                            ~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:22: Warning: A newer version of com.google.android.material:material than 1.13.0 is available: 1.14.0 [GradleDependency]
+material = "1.13.0"
+           ~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:7: Warning: A newer version of com.microsoft.onnxruntime:onnxruntime-android than 1.24.3 is available: 1.31.0 [NewerVersionAvailable]
+onnxruntime = "1.24.3"
+              ~~~~~~~~
+C:\work\AI\BeautySDK\gradle\libs.versions.toml:11: Warning: A newer version of org.jetbrains.kotlin.android than 2.3.10 is available: 2.4.21 [NewerVersionAvailable]
+kotlin = "2.3.10"
+         ~~~~~~~~
+
+   Explanation for issues of type "NewerVersionAvailable":
+   This detector checks with a central repository to see if there are newer
+   versions available for the dependencies used by this project. This is
+   similar to the GradleDependency check, which checks for newer versions
+   available in the Android SDK tools and libraries, but this works with any
+   MavenCentral dependency, and connects to the library every time, which
+   makes it more flexible but also much slower.
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:1: Warning: Possible overdraw: Root element paints background @color/camera_surface with a theme that also paints a background (inferred theme is @style/Theme.Beauty) [Overdraw]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/camera_surface">
+                                                                                                                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_main.xml:1: Warning: Possible overdraw: Root element paints background @color/home_background with a theme that also paints a background (inferred theme is @style/Theme.Beauty) [Overdraw]
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/home_background" android:fillViewport="true" android:scrollbars="none" android:clipToPadding="false"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+                                                                                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:1: Warning: The resource R.layout.activity_camera_test appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/camera_surface">
+^
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml:1: Warning: The resource R.layout.activity_image_lab appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingHorizontal="@dimen/demo_page_padding">
+^
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_main.xml:1: Warning: The resource R.layout.activity_main appears to be unused [UnusedResources]
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/home_background" android:fillViewport="true" android:scrollbars="none" android:clipToPadding="false"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+^
+C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml:2: Warning: The resource R.dimen.camera_preview_height appears to be unused [UnusedResources]
+    <dimen name="camera_preview_height">240dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml:3: Warning: The resource R.dimen.page_padding appears to be unused [UnusedResources]
+    <dimen name="page_padding">24dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml:4: Warning: The resource R.dimen.section_spacing appears to be unused [UnusedResources]
+    <dimen name="section_spacing">16dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml:5: Warning: The resource R.dimen.demo_page_padding appears to be unused [UnusedResources]
+<dimen name="demo_page_padding">12dp</dimen><dimen name="demo_panel_padding">12dp</dimen></resources>
+       ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\beauty_demo_dimens.xml:5: Warning: The resource R.dimen.demo_panel_padding appears to be unused [UnusedResources]
+<dimen name="demo_page_padding">12dp</dimen><dimen name="demo_panel_padding">12dp</dimen></resources>
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_camera_preview.xml:1: Warning: The resource R.drawable.bg_camera_preview appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="@color/camera_panel"/><stroke android:width="1dp" android:color="#665B758F"/><corners android:radius="16dp"/></shape>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_camera_sheet.xml:1: Warning: The resource R.drawable.bg_camera_sheet appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="@color/camera_surface"/><corners android:topLeftRadius="24dp" android:topRightRadius="24dp"/></shape>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_demo_panel.xml:1: Warning: The resource R.drawable.bg_demo_panel appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="?attr/colorSurfaceContainer" /><corners android:radius="16dp" /></shape>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_home_card.xml:1: Warning: The resource R.drawable.bg_home_card appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><solid android:color="@color/home_card"/><corners android:radius="20dp"/><stroke android:width="1dp" android:color="@color/home_border"/></shape>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_home_hero.xml:1: Warning: The resource R.drawable.bg_home_hero appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"><gradient android:startColor="#292544" android:endColor="#514276" android:angle="315"/><corners android:radius="28dp"/></shape>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\drawable\bg_scaffold_surface.xml:2: Warning: The resource R.drawable.bg_scaffold_surface appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\work\AI\BeautySDK\app\src\main\res\values\colors.xml:4: Warning: The resource R.color.demo_preview_background appears to be unused [UnusedResources]
+<color name="demo_preview_background">#111827</color><color name="camera_surface">#101116</color><color name="camera_panel">#202129</color><color name="camera_accent">#BDA4FF</color><color name="camera_muted">#B8B6C4</color><color name="camera_text">#F7F5FC</color></resources>
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml:2: Warning: The resource R.dimen.app_spacing_small appears to be unused [UnusedResources]
+    <dimen name="app_spacing_small">8dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml:3: Warning: The resource R.dimen.app_spacing_medium appears to be unused [UnusedResources]
+    <dimen name="app_spacing_medium">16dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml:4: Warning: The resource R.dimen.app_spacing_large appears to be unused [UnusedResources]
+    <dimen name="app_spacing_large">24dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml:5: Warning: The resource R.dimen.camera_result_height appears to be unused [UnusedResources]
+<dimen name="camera_result_width">132dp</dimen><dimen name="camera_result_height">184dp</dimen></resources>
+                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\dimens.xml:5: Warning: The resource R.dimen.camera_result_width appears to be unused [UnusedResources]
+<dimen name="camera_result_width">132dp</dimen><dimen name="camera_result_height">184dp</dimen></resources>
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:2: Warning: The resource R.string.home_eyebrow appears to be unused [UnusedResources]
+    <string name="home_eyebrow">BEAUTY SDK / ANDROID</string>
+            ~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:3: Warning: The resource R.string.home_title appears to be unused [UnusedResources]
+    <string name="home_title">Make every frame shine.</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:4: Warning: The resource R.string.home_intro appears to be unused [UnusedResources]
+    <string name="home_intro">Explore real-time beauty, face stickers and your own materials.</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:5: Warning: The resource R.string.home_live appears to be unused [UnusedResources]
+    <string name="home_live">Live beauty studio</string>
+            ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:6: Warning: The resource R.string.home_live_desc appears to be unused [UnusedResources]
+    <string name="home_live_desc">Camera preview · Beauty · Face stickers</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:7: Warning: The resource R.string.home_start appears to be unused [UnusedResources]
+    <string name="home_start">Start exploring →</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:8: Warning: The resource R.string.home_tools appears to be unused [UnusedResources]
+    <string name="home_tools">YOUR WORKSPACE</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:9: Warning: The resource R.string.home_workshop appears to be unused [UnusedResources]
+    <string name="home_workshop">Resources</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:10: Warning: The resource R.string.home_workshop_desc appears to be unused [UnusedResources]
+    <string name="home_workshop_desc">Built-in, imported and online resources in the live preview.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:11: Warning: The resource R.string.home_images appears to be unused [UnusedResources]
+    <string name="home_images">Image laboratory</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:12: Warning: The resource R.string.home_images_desc appears to be unused [UnusedResources]
+    <string name="home_images_desc">Try effects on a photo and compare processing backends.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:13: Warning: The resource R.string.home_debug appears to be unused [UnusedResources]
+    <string name="home_debug">Developer tools</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:14: Warning: The resource R.string.home_debug_desc appears to be unused [UnusedResources]
+    <string name="home_debug_desc">Inspect tracking, processing time and backend options.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:15: Warning: The resource R.string.home_engine appears to be unused [UnusedResources]
+    <string name="home_engine">LIVE ENGINE INTEGRATION · PLANNED</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:16: Warning: The resource R.string.home_engine_desc appears to be unused [UnusedResources]
+    <string name="home_engine_desc">Camera demo available. Zego and Agora adapters are not integrated yet.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:17: Warning: The resource R.string.camera_compare appears to be unused [UnusedResources]
+    <string name="camera_compare">Swap comparison</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_strings.xml:18: Warning: The resource R.string.camera_workshop_tab appears to be unused [UnusedResources]
+    <string name="camera_workshop_tab">Resources</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:2: Warning: The resource R.color.home_border appears to be unused [UnusedResources]
+<color name="home_background">#F6F5F8</color><color name="home_card">#FFFFFF</color><color name="home_border">#E7E4EC</color><color name="home_ink">#242130</color><color name="home_muted">#686374</color>
+                                                                                           ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:2: Warning: The resource R.color.home_card appears to be unused [UnusedResources]
+<color name="home_background">#F6F5F8</color><color name="home_card">#FFFFFF</color><color name="home_border">#E7E4EC</color><color name="home_ink">#242130</color><color name="home_muted">#686374</color>
+                                                    ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:2: Warning: The resource R.color.home_ink appears to be unused [UnusedResources]
+<color name="home_background">#F6F5F8</color><color name="home_card">#FFFFFF</color><color name="home_border">#E7E4EC</color><color name="home_ink">#242130</color><color name="home_muted">#686374</color>
+                                                                                                                                    ~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:2: Warning: The resource R.color.home_muted appears to be unused [UnusedResources]
+<color name="home_background">#F6F5F8</color><color name="home_card">#FFFFFF</color><color name="home_border">#E7E4EC</color><color name="home_ink">#242130</color><color name="home_muted">#686374</color>
+                                                                                                                                                                          ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:3: Warning: The resource R.style.HomeTitle appears to be unused [UnusedResources]
+<style name="HomeTitle"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:textColor">@color/home_ink</item><item name="android:textSize">20sp</item><item name="android:textStyle">bold</item></style>
+       ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:4: Warning: The resource R.style.HomeDescription appears to be unused [UnusedResources]
+<style name="HomeDescription"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:layout_marginTop">8dp</item><item name="android:textColor">@color/home_muted</item><item name="android:textSize">14sp</item><item name="android:lineSpacingExtra">4dp</item></style>
+       ~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\home_styles.xml:5: Warning: The resource R.style.HomeCard appears to be unused [UnusedResources]
+<style name="HomeCard"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:layout_marginTop">12dp</item><item name="android:padding">20dp</item><item name="android:orientation">vertical</item><item name="android:background">@drawable/bg_home_card</item><item name="android:foreground">?attr/selectableItemBackground</item><item name="android:clickable">true</item><item name="android:focusable">true</item></style>
+       ~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:4: Warning: The resource R.string.description appears to be unused [UnusedResources]
+    <string name="description">Compare beauty-only, MediaPipe and RFB on a local image. This screen does not capture or stream video.</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:5: Warning: The resource R.string.run_check appears to be unused [UnusedResources]
+    <string name="run_check">Run frame check</string>
+            ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:6: Warning: The resource R.string.check_pending appears to be unused [UnusedResources]
+    <string name="check_pending">Ready to check</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:9: Warning: The resource R.string.backend_label appears to be unused [UnusedResources]
+    <string name="backend_label">Analysis backend</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:10: Warning: The resource R.string.select_image appears to be unused [UnusedResources]
+    <string name="select_image">Choose an image</string>
+            ~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:11: Warning: The resource R.string.smoothing appears to be unused [UnusedResources]
+    <string name="smoothing">Smoothing</string>
+            ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:12: Warning: The resource R.string.whitening appears to be unused [UnusedResources]
+    <string name="whitening">Whitening</string>
+            ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:13: Warning: The resource R.string.warm_filter appears to be unused [UnusedResources]
+    <string name="warm_filter">Warm filter</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:14: Warning: The resource R.string.glasses appears to be unused [UnusedResources]
+    <string name="glasses">Glasses</string>
+            ~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:16: Warning: The resource R.string.apply_effects appears to be unused [UnusedResources]
+    <string name="apply_effects">Apply effects</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:17: Warning: The resource R.string.effect_hint appears to be unused [UnusedResources]
+    <string name="effect_hint">Choose a portrait for stickers. RFB currently detects boxes only; stickers require an additional landmark model. Image processing time is not live-video FPS.</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:18: Warning: The resource R.string.original_image appears to be unused [UnusedResources]
+    <string name="original_image">Original</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:19: Warning: The resource R.string.processed_image appears to be unused [UnusedResources]
+    <string name="processed_image">Processed</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:24: Warning: The resource R.string.camera_test appears to be unused [UnusedResources]
+    <string name="camera_test">Camera test</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:25: Warning: The resource R.string.camera_hint appears to be unused [UnusedResources]
+    <string name="camera_hint">GPU texture preview; asynchronous analysis requests 320×240, up to 30 frames/s. Actual throughput depends on the device. No recording or upload.</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:26: Warning: The resource R.string.camera_beauty appears to be unused [UnusedResources]
+    <string name="camera_beauty">Smoothing and whitening</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:27: Warning: The resource R.string.camera_start appears to be unused [UnusedResources]
+    <string name="camera_start">Start camera</string>
+            ~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:28: Warning: The resource R.string.camera_switch appears to be unused [UnusedResources]
+    <string name="camera_switch">Switch front / back</string>
+            ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:29: Warning: The resource R.string.camera_stop appears to be unused [UnusedResources]
+    <string name="camera_stop">Stop camera</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:36: Warning: The resource R.string.camera_frame_status appears to be unused [UnusedResources]
+    <string name="camera_frame_status">%1$d × %2$d · Faces: %3$d · Processing: %4$d ms</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:37: Warning: The resource R.string.camera_raw_preview appears to be unused [UnusedResources]
+    <string name="camera_raw_preview">Camera preview</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:38: Warning: The resource R.string.camera_processed_preview appears to be unused [UnusedResources]
+    <string name="camera_processed_preview">Processed preview</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:39: Warning: The resource R.string.hat appears to be unused [UnusedResources]
+    <string name="hat">Headwear</string>
+            ~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:40: Warning: The resource R.string.sticker_glasses_style appears to be unused [UnusedResources]
+    <string name="sticker_glasses_style">Glasses style</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:41: Warning: The resource R.string.sticker_head_style appears to be unused [UnusedResources]
+    <string name="sticker_head_style">Headwear style</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:55: Warning: The resource R.string.demo_start appears to be unused [UnusedResources]
+    <string name="demo_start">Start</string>
+            ~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:56: Warning: The resource R.string.demo_switch appears to be unused [UnusedResources]
+    <string name="demo_switch">Flip</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:57: Warning: The resource R.string.demo_stop appears to be unused [UnusedResources]
+    <string name="demo_stop">Stop</string>
+            ~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:58: Warning: The resource R.string.demo_show_original appears to be unused [UnusedResources]
+    <string name="demo_show_original">Show original (no effects)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:59: Warning: The resource R.string.camera_preview_waiting appears to be unused [UnusedResources]
+    <string name="camera_preview_waiting">Start the camera and face the lens</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:72: Warning: The resource R.string.demo_beauty_settings appears to be unused [UnusedResources]
+    <string name="demo_beauty_settings">Beauty settings</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:73: Warning: The resource R.string.demo_settings_close appears to be unused [UnusedResources]
+    <string name="demo_settings_close">Done</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:74: Warning: The resource R.string.camera_studio appears to be unused [UnusedResources]
+<string name="camera_studio">Beauty Studio</string>
+        ~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:75: Warning: The resource R.string.camera_live_label appears to be unused [UnusedResources]
+<string name="camera_live_label">LIVE PREVIEW</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:79: Warning: The resource R.string.camera_back appears to be unused [UnusedResources]
+<string name="camera_back">Back</string>
+        ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:82: Warning: The resource R.string.camera_reset appears to be unused [UnusedResources]
+<string name="camera_reset">Reset</string>
+        ~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:83: Warning: The resource R.string.camera_stickers_hint appears to be unused [UnusedResources]
+<string name="camera_stickers_hint">Tap a sticker to apply; tap again to remove.</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:84: Warning: The resource R.string.camera_none appears to be unused [UnusedResources]
+<string name="camera_none">Clear stickers</string>
+        ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:86: Warning: The resource R.string.camera_beauty_hint appears to be unused [UnusedResources]
+<string name="camera_beauty_hint">Fine-tune your natural look</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:87: Warning: The resource R.string.camera_swap appears to be unused [UnusedResources]
+<string name="camera_swap">Swap original and effect views</string>
+        ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:89: Warning: The resource R.string.camera_beauty_backend appears to be unused [UnusedResources]
+    <string name="camera_beauty_backend">Beauty renderer</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:92: Warning: The resource R.string.camera_mediapipe_gpu appears to be unused [UnusedResources]
+    <string name="camera_mediapipe_gpu">MediaPipe GPU inference (comparison)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:93: Warning: The resource R.string.camera_frame_tracking appears to be unused [UnusedResources]
+    <string name="camera_frame_tracking">Image-based sticker tracking (experimental)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:125: Warning: The resource R.string.camera_extended_hint appears to be unused [UnusedResources]
+    <string name="camera_extended_hint">GPUPixel color, reshape and makeup. Reshape and makeup need MediaPipe; chin and mouth support negative values; rosy tone is a color adjustment.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:126: Warning: The resource R.string.camera_extended_parameter appears to be unused [UnusedResources]
+    <string name="camera_extended_parameter">Extended beauty parameter</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:127: Warning: The resource R.string.camera_extended_strength appears to be unused [UnusedResources]
+    <string name="camera_extended_strength">Parameter strength</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:130: Warning: The resource R.string.camera_scene_hint appears to be unused [UnusedResources]
+<string name="camera_scene_hint">Background and camera motion · independent controls; original background until segmentation is ready</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:131: Warning: The resource R.string.camera_background_label appears to be unused [UnusedResources]
+<string name="camera_background_label">Virtual background</string><string name="camera_motion_label">Camera motion</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:131: Warning: The resource R.string.camera_motion_label appears to be unused [UnusedResources]
+<string name="camera_background_label">Virtual background</string><string name="camera_motion_label">Camera motion</string>
+                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:132: Warning: The resource R.string.camera_motion_zoom appears to be unused [UnusedResources]
+<string name="camera_motion_zoom">Maximum motion zoom · 1–2×</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:135: Warning: The resource R.string.camera_makeup_entry appears to be unused [UnusedResources]
+    <string name="camera_makeup_entry">Reshape &amp; makeup · Lips / Blush / Nose</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:137: Warning: The resource R.string.camera_performance_waiting appears to be unused [UnusedResources]
+<string name="camera_performance_waiting">Preview metrics · Waiting for frames</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\strings.xml:151: Warning: The resource R.string.camera_theme_exit appears to be unused [UnusedResources]
+<string name="camera_theme_exit">Resource preset active · Clear to edit manually</string>
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\values\styles.xml:2: Warning: The resource R.style.TextAppearance_AndroidSkill_Title appears to be unused [UnusedResources]
+    <style name="TextAppearance.AndroidSkill.Title" parent="TextAppearance.Material3.TitleLarge" />
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:53: Warning: activity_camera_test.xml has more than 80 views, bad for performance [TooManyViews]
+<TextView android:id="@+id/camera_status" style="@style/CameraLabel" android:text="@string/camera_stopped" android:textIsSelectable="true"/><TextView android:id="@+id/camera_error_detail" style="@style/CameraLabel" android:text="@string/camera_failed" android:textIsSelectable="true" android:visibility="gone"/><TextView style="@style/CameraLabel" android:text="@string/camera_hint"/>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "TooManyViews":
+   Using too many views in a single layout is bad for performance. Consider
+   using compound drawables or other tricks for reducing the number of views
+   in this layout.
+
+   The maximum view count defaults to 80 but can be configured with the
+   environment variable ANDROID_LINT_MAX_VIEW_COUNT.
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml:6: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"><Button android:id="@+id/select_image" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minWidth="0dp" android:minHeight="48dp" android:text="@string/select_image" />
+                                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_image_lab.xml:7: Warning: Buttons in button bars should be borderless; use style="?android:attr/buttonBarButtonStyle" (and ?android:attr/buttonBarStyle on the parent) [ButtonStyle]
+<Button android:id="@+id/apply_effects" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minWidth="0dp" android:minHeight="48dp" android:text="@string/apply_effects" />
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ButtonStyle":
+   Button bars typically use a borderless style for the buttons. Set the
+   style="?android:attr/buttonBarButtonStyle" attribute on each of the
+   buttons, and set style="?android:attr/buttonBarStyle" on the parent layout
+
+   https://d.android.com/r/studio-ui/designer/material/dialogs
+
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:4: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+<LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/camera_studio" android:textColor="@color/camera_text" android:textSize="18sp" android:textStyle="bold"/><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/camera_live_label" android:textColor="@color/camera_accent" android:textSize="10sp" android:letterSpacing="0.15"/></LinearLayout>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:12: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+<TextView android:id="@+id/camera_effect_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom" android:background="#CC202129" android:padding="6dp" android:text="@string/camera_result_short" android:textColor="@color/camera_accent" android:textSize="10sp" android:gravity="center"/>
+                                                                                                                                                                                                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\res\layout\activity_camera_test.xml:16: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+<TextView android:id="@+id/camera_main_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp" android:background="@drawable/bg_camera_chip" android:padding="8dp" android:text="@string/camera_original_short" android:textColor="@color/camera_text" android:textSize="10sp"/>
+                                                                                                                                                                                                                                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\CameraTestActivity.kt:423: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        stickerPreferences.edit().apply {
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\StickerWorkshopViewModel.kt:89: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                preferences.edit().putBoolean(enabledKey,enabled).apply()
+                ~~~~~~~~~~~~~~~~~~
+C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\StickerWorkshopViewModel.kt:104: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit().putBoolean(enabledKey,value).apply()
+        ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling
+
+   ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+C:\work\AI\BeautySDK\app\src\main\java\com\beautysdk\demo\EffectWorkshopController.kt:26: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            val input=android.widget.EditText(activity).apply { setText("https://beautystickerworkshop.pages.dev/catalog.json");inputType=android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_URI;maxLines=3 }
+                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+0 errors, 130 warnings

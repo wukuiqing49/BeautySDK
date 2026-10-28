@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.BeautyRuntimeTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:16.083Z" time="0.034">
+  <properties />
+  <testcase name="frameMetricsSeparateRedrawsAndDoNotInventResultAge" classname="com.beautysdk.BeautyRuntimeTest" time="0.011" />
+  <testcase name="borrowedRuntimeSurvivesRenderSessionClose" classname="com.beautysdk.BeautyRuntimeTest" time="0.002" />
+  <testcase name="enginePipelineCanTrackExternalFramesWithoutCameraTypes" classname="com.beautysdk.BeautyRuntimeTest" time="0.005" />
+  <testcase name="borrowedPipelineDoesNotDisableResetOrCloseExternalAnalysis" classname="com.beautysdk.BeautyRuntimeTest" time="0.001" />
+  <testcase name="motionBranchReceivesConfiguredAnalysisSize" classname="com.beautysdk.BeautyRuntimeTest" time="0.001" />
+  <testcase name="redrawKeepsSamplingTimestampAndRejectsDifferentFrame" classname="com.beautysdk.BeautyRuntimeTest" time="0.0" />
+  <testcase name="noStickerSkipsModelAndDemandChangeInvalidatesResults" classname="com.beautysdk.BeautyRuntimeTest" time="0.0" />
+  <testcase name="percentilesAreBoundedAndReportMissingStages" classname="com.beautysdk.BeautyRuntimeTest" time="0.011" />
+  <system-out />
+  <system-err />
+</testsuite>

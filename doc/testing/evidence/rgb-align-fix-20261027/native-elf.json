@@ -1,0 +1,30 @@
+{
+  "jni/arm64-v8a/libbeauty_rgb_input.so": {
+    "ptLoadAlignments": [
+      16384,
+      16384
+    ],
+    "atLeast16KiB": true
+  },
+  "jni/armeabi-v7a/libbeauty_rgb_input.so": {
+    "ptLoadAlignments": [
+      16384,
+      16384
+    ],
+    "atLeast16KiB": true
+  },
+  "jni/x86/libbeauty_rgb_input.so": {
+    "ptLoadAlignments": [
+      16384,
+      16384
+    ],
+    "atLeast16KiB": true
+  },
+  "jni/x86_64/libbeauty_rgb_input.so": {
+    "ptLoadAlignments": [
+      16384,
+      16384
+    ],
+    "atLeast16KiB": true
+  }
+}

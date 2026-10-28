@@ -1,0 +1,25 @@
+{
+  "aarSha256": "303cf34420f907d73c29541e5bc5a9283b4417f624b31a5c629c371dfa8952d2",
+  "libraries": {
+    "jni/arm64-v8a/libbeauty_gpupixel.so": {
+      "sha256": "e0e0feadcb722551fe3940494c4d73c124763d02e3c79a26788ca4ed20838eca",
+      "ptLoadAlignBytes": [
+        16384,
+        16384,
+        16384
+      ],
+      "allAtLeast16KiB": true
+    },
+    "jni/armeabi-v7a/libbeauty_gpupixel.so": {
+      "sha256": "b2ce27b2943e1a04c0e658773743e968440fd4894eadb28c1c35cafbf09a0d50",
+      "ptLoadAlignBytes": [
+        16384,
+        16384,
+        16384
+      ],
+      "allAtLeast16KiB": true
+    }
+  },
+  "makeupAssetsAndLicensePackaged": true,
+  "runtime16KiBTested": false
+}

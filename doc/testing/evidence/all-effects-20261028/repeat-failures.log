@@ -1,0 +1,33 @@
+
+com.beautysdk.demo.CameraDeviceTest:
+Error in cameraPageProducesProcessedImageAndStopClearsIt(com.beautysdk.demo.CameraDeviceTest):
+java.lang.AssertionError: Processed image missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt(CameraDeviceTest.kt:124)
+
+com.beautysdk.demo.MediaPipeDelegateDeviceTest:
+Error in cameraGpuOptionProducesAnalysisWhileRendering(com.beautysdk.demo.MediaPipeDelegateDeviceTest):
+java.lang.AssertionError: GPU camera analysis timeout
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.MediaPipeDelegateDeviceTest.cameraGpuOptionProducesAnalysisWhileRendering(MediaPipeDelegateDeviceTest.kt:36)
+
+
+Time: 52.622
+There were 2 failures:
+1) cameraPageProducesProcessedImageAndStopClearsIt(com.beautysdk.demo.CameraDeviceTest)
+java.lang.AssertionError: Processed image missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.CameraDeviceTest.cameraPageProducesProcessedImageAndStopClearsIt(CameraDeviceTest.kt:124)
+2) cameraGpuOptionProducesAnalysisWhileRendering(com.beautysdk.demo.MediaPipeDelegateDeviceTest)
+java.lang.AssertionError: GPU camera analysis timeout
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.MediaPipeDelegateDeviceTest.cameraGpuOptionProducesAnalysisWhileRendering(MediaPipeDelegateDeviceTest.kt:36)
+
+FAILURES!!!
+Tests run: 2,  Failures: 2
+
+

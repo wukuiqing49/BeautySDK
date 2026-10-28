@@ -1,0 +1,159 @@
+schemaVersion: 1
+project:
+  name: BeautySDK
+  description: Android 直播视频帧美颜与人脸挂件 SDK
+  lifecycle: initialized
+  phase: multi-backend-prototype
+android:
+  namespace: com.beautysdk.demo
+  minSdk: 24
+  compileSdk: 36
+  targetSdk: 36
+  jvmTarget: 17
+  language: kotlin
+  uiToolkit: xml
+  viewBinding: true
+  versionName: 0.1.0
+  applicationId: com.beautysdk.demo
+  sdkNamespace: com.beautysdk
+modules:
+  app: app
+  coreBase: core/core_base
+  coreUtils: core/core_utils
+  libBeauty: core/lib_beauty
+  libBeautyResources: core/lib_beauty_resources
+  libBeautyGpuPixel: core/lib_beauty_gpupixel
+  libBeautyMediaPipe: core/lib_beauty_mediapipe
+  libCamera: core/lib_camera
+  featureApp: feature/feature_app
+  featureRes: feature/feature_res
+frameworks:
+  active:
+  - AndroidCoreBase:v1.3.0
+  - AndroidCoreUtils:v1.1.1
+sourceOfTruth:
+  agentEntry: AGENTS.md
+  sdkRules: .agents/rules/beauty-sdk.md
+  scaffoldPlan: .agents/config/project-scaffold.yml
+  dependencyVersions: gradle/libs.versions.toml
+  gradleWrapper: gradle/wrapper/gradle-wrapper.properties
+  moduleGraph: settings.gradle
+  moduleBuildFiles: '**/build.gradle'
+  applicationConfiguration: app-config.properties
+validation:
+  agentStructure: python -B .agents/scripts/validate_agent_structure.py --project-root
+    .
+  agentConfiguration: python -B .agents/scripts/validate_android_workflows.py --project-root
+    . --config-only
+  libraryTests: .\gradlew.bat :core:lib_beauty:testDebugUnitTest
+  libraryBuild: .\gradlew.bat :core:lib_beauty:assembleRelease
+  cameraLibraryBuild: .\gradlew.bat :core:lib_camera:assembleDebug :core:lib_camera:assembleRelease :core:lib_camera:lintDebug
+  demoBuild: .\gradlew.bat :app:assembleDebug
+  lint: .\gradlew.bat :app:lintDebug
+  localPublication: .\gradlew.bat :core:lib_beauty:publishReleasePublicationToLocalBuildRepository
+agentFiles:
+  rules:
+  - beauty-sdk.md
+  workflows:
+  - beauty-sdk.md
+  prompts:
+  - beauty-sdk.md
+planned:
+  platform: android
+  artifact: aar
+  primaryLanguage: kotlin
+  javaCallableApi: true
+  inputSource: live-engine-video-frame
+  outputTarget: live-engine-pre-encode-frame
+  engineReferences:
+  - zego
+  - agora
+  detector: mediapipe-face-landmarker
+  renderer: opengl-es
+  faceCount: 1
+  effects:
+  - beauty
+  - glasses
+  - moustache
+  scheduling: async-bounded-analysis-and-render-with-latest-valid-result
+  modelDelivery: local
+  minSdkCandidate: 24
+  versionPolicy: verify-and-pin-at-integration
+  packageIdentityStatus: provisional-com.beautysdk-before-publication
+  outOfScope:
+  - capture-engine
+  - audio-processing
+  - video-encoding
+  - streaming-service
+  - accounts
+  - billing
+  - analytics
+implemented:
+  scaffold:
+  - skill-generated-app-core-feature
+  - independent-core-lib-beauty-library
+  - independent-core-lib-camera-library
+  - wkq-base-and-utils-host-integration
+  - gradle-wrapper-version-catalog-public-app-config
+  - local-maven-publication
+  sdk:
+  - borrowed-rgba-and-texture-frame-descriptors
+  - same-thread-lifecycle
+  - strict-session-timestamps
+  - synchronous-pass-through
+  - pluggable-face-analyzer-contract
+  - bounded-async-analysis-with-expiry-and-session-reset
+  - rgba-reference-beauty-and-procedural-stickers
+  - gles3-texture-beauty-and-procedural-stickers
+  - gpupixel-pinned-shader-lut-native-texture-adapter
+  - gpupixel-color-adjustments-and-mediapipe-478-point-experimental-reshape
+  - gpupixel-local-lipstick-blusher-with-shared-texture-pipeline
+  - beautysdk-custom-nose-chin-mouth-warp-in-shared-gpupixel-pass
+  - immutable-image-sticker-pack-and-cpu-gl-source-over
+  - static-png-resource-pack-v1-validated-zip-import-export-layout
+  - shared-beauty-analysis-runtime-demand-and-session-rendering
+  - bounded-analysis-and-frame-percentile-diagnostics
+  - explicit-yuv420-planes-and-reusable-small-rgba-conversion
+  - bounded-gles3-2d-output-copy-leases
+  - optional-gles3-small-analysis-image-two-pbo-bridge
+  - synchronous-engine-frame-read-process-write-connector
+  - shared-engine-pipeline-session-analysis-and-optional-texture-bridge
+  - optional-engine-motion-estimator
+  - optional-person-segmentation-background-composite-and-digital-camera-motion
+  - optional-local-mediapipe-gesture-analysis-and-host-events
+  - experimental-hand-geometry-and-temporal-gesture-rules
+  - local-mediapipe-face-landmarker
+  demo:
+  - camera-shared-engine-connector-pipeline-with-borrowed-analysis-and-redraw
+  - feature-app-frame-check
+  - base-activity-viewbinding
+  - core-utils-application-initialization
+  - english-and-simplified-chinese
+  - local-image-backend-comparison
+  - camerax-preview-front-back-rgba-lifecycle
+  - live-camera-oes-gpu-beauty-implementation-local-validation
+  - dark-camera-ui-beauty-sticker-debug-panels
+  - six-local-png-stickers-with-style-selection
+  - camera-resource-workshop-import-layer-editor-json-zip-export
+  - private-atomic-workshop-draft-restore-with-persisted-activation
+  - workshop-explicit-save-zip-reload-and-apply
+unverified:
+- engine-version-and-frame-callback-contract
+- model-commercial-redistribution-terms
+- oes-input-and-sustained-egl-context-loss
+- cpu-gpu-conversion-and-end-to-end-latency
+- aar-and-host-package-size-per-abi
+- sustained-device-performance-and-remote-stream-output
+- camera-gpu-device-acceptance-context-loss-and-visual-matrix
+- gpupixel-device-shader-visual-lifecycle-and-performance
+
+# 场景分割/合成与运镜的验证范围见doc/testing/TEST_REPORT.md，真人画质与持续性能待验收。
+
+# 2026-10-27：新增tools/sticker-workshop离线网页制作工具、resources/stickers/v1跨端协议，
+# Android资源加载兼容已设备验证；ios/BeautyResources为Swift/Metal资源组件代码，Windows未编译验收。
+
+# 2026-10-27：完整主题包BeautyThemePack复用V1/V2子包，32MiB/累计像素预算、能力检查和整套替换。
+# 独立Web项目theme.html负责组合制作，Demo统一效果导入口支持主题；iOS Swift/Metal未编译验收。
+
+# 2026-10-27：统一资源协议V1、公共lib_beauty_resources、17内置资源及实验室8分类面板。
+# Web resource-studio.html与Android已验证，iOS统一消费源码待Apple工具链验收。

@@ -1,0 +1,20 @@
+{
+  "input": "public portrait RGB 192x240",
+  "warmup": 5,
+  "results": [
+    {
+      "execution": "CPU",
+      "supported": true,
+      "samples": 20,
+      "medianInferenceMs": 89.540243,
+      "p95InferenceMs": 100.819743
+    },
+    {
+      "execution": "GPU",
+      "supported": true,
+      "samples": 20,
+      "medianInferenceMs": 42.25887,
+      "p95InferenceMs": 51.35026
+    }
+  ]
+}

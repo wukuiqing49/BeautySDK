@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.BeautyPipelineTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:15.987Z" time="0.089">
+  <properties />
+  <testcase name="rotationAndMirrorMapPixelCentersBackForEveryOrientation" classname="com.beautysdk.BeautyPipelineTest" time="0.004" />
+  <testcase name="schedulerDropsBusyFramesAndRejectsLateResultsAfterReset" classname="com.beautysdk.BeautyPipelineTest" time="0.002" />
+  <testcase name="missingPreciseLipDoesNotInventMoustache" classname="com.beautysdk.BeautyPipelineTest" time="0.001" />
+  <testcase name="analysisSamplingAndTextureGeometryShareOneTimeline" classname="com.beautysdk.BeautyPipelineTest" time="0.002" />
+  <testcase name="reusableOrientationBufferMatchesOwnedPixelsAndDoesNotModifySource" classname="com.beautysdk.BeautyPipelineTest" time="0.002" />
+  <testcase name="sessionResetsTimeAndReportsRendererErrorsWithBypass" classname="com.beautysdk.BeautyPipelineTest" time="0.004" />
+  <testcase name="resultExpiryAndGeometryAreChecked" classname="com.beautysdk.BeautyPipelineTest" time="0.001" />
+  <testcase name="hatTracksEveryOrientationAndMirrorAndHidesWithoutEyes" classname="com.beautysdk.BeautyPipelineTest" time="0.065" />
+  <testcase name="cpuBeautyPreservesAlphaMetadataAndInput" classname="com.beautysdk.BeautyPipelineTest" time="0.001" />
+  <testcase name="copyHandlesBufferPositionAndStride" classname="com.beautysdk.BeautyPipelineTest" time="0.0" />
+  <testcase name="analysisErrorAndNoFaceHaveDistinctDiagnosticStates" classname="com.beautysdk.BeautyPipelineTest" time="0.007" />
+  <system-out />
+  <system-err />
+</testsuite>

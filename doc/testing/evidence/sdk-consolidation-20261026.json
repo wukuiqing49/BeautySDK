@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-26",
+  "scope": "public-sdk-consolidation-no-vendor-adapter",
+  "commit": null,
+  "sourceFileHashes": {
+    ".agents/config/project-profile.yml": "b023729e1e1112a80fb7a71dda083bfe965c97bfbbf28a286f893e2385109097",
+    "AGENTS.md": "c41542c9e2a73f36419c6eceffdbe2c11f0e285eae097c650884a9d02bc95c84",
+    "app/src/androidTest/java/com/beautysdk/demo/BeautyDeviceTest.kt": "693bdf116fece225fc627bb347a7cb828cd525750258da5cd7db63e05d16053d",
+    "app/src/androidTest/java/com/beautysdk/demo/CameraDeviceTest.kt": "3b76fb4d4a5ba5b528696d28b28646af302ca745335e73aa582a1d5789edf495",
+    "app/src/androidTest/java/com/beautysdk/demo/DemoLayoutDeviceTest.kt": "08b66ea1b48174bf49cdf019a7e378f9142b17d495c676e1f1c4acc915f11a2c",
+    "app/src/androidTest/java/com/beautysdk/demo/FaceMotionDeviceTest.kt": "ca6eb609db8a2c49f3dcb938a4cbc21c91bb98c57dc1025ea8108d575eed70af",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt": "1f034aab5f55bb55efce82ee28717c6f7b98f8ca7080ea5a91019a48d5ba7bd4",
+    "app/src/androidTest/java/com/beautysdk/demo/MediaPipeDelegateDeviceTest.kt": "c3076d44e033494c4a93f344b127aa9a36de63f02ae29982d70fafa16a505749",
+    "app/src/androidTest/java/com/beautysdk/demo/ResolutionDeviceTest.kt": "15fa9fe8ed60756d92eddf41ffaa63e3b77e49dfcef5316685c620abde929069",
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "82bd242f858319d05bd2b6c2da0ec8e3ad280de9965187061f9920dea2c4555d",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "5192789815f0ba1dff45211e414712e8cc44458278006a97eb7f83c372e7e08a",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "ce36820ddcb0fd9a57b9752f3e7c73fbe24db2594e8af6850e4be728761f37c1",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopViewModel.kt": "819bbbec6058171eeb0686d33fe28729907ba826e88f2a39c6bd825284bf5597",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisCoordinates.kt": "f35e13ccb5ff72ff8eb9326310a34d7b8eafd14163a4102e5f0378c38aa2c320",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "e695f40f17b9bfc94c387d8f6389c7f0e6336d21df3f4072bfa14ca62e90b39c",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisOrientation.kt": "6a82e30fafb932b86253b3fdd5c2829cbdba7f4f27065bd27ee7ba828ee5a551",
+    "core/lib_beauty/src/main/java/com/beautysdk/AsyncFaceAnalysis.kt": "fd5c1ffb5b5a214227eae16024d4ecd88971198efe91446d512ef32c99c95ba8",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyAnalysisRuntime.kt": "5dd25ec34eb5518e0478ed8ffa9a2475bccdd9c251b991f39e63d6516d2b4adb",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "f656375bbcd28f34b8d5868309a96f46ecc439584065cd27def5353417b125db",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyFrameWindow.kt": "5e9f47281bbdc4453665422e60a4b3f55ee6c5da6ee38b26e69441763fd4b900",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyProcessor.kt": "7560bde8c2f22a467a88979761f7557fa2eb79fc69e719735822515e1b58e57f",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySession.kt": "e6f9adc4d78d76164e5eed8f8083b2b49fae4481c2652e350ff68f4bac890c79",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyTimingWindow.kt": "fd15b206bdec62ecfbbb32a8929d1d3a7854da6d58f1d5c251f5bad5786a0ab8",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "19e5798e033beaa6c95570f6e8fe3018447b19dee06455b909c68d89e2db6ca6",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysisHistory.kt": "49e9d282f29f2f0132aa4d10799534a7a44e593806a19d472b7d27dbfed076af",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "ac1cd4b5d12eb5fd2f6eda156b0e81934366ee03da67494cd34b0986467687ce",
+    "core/lib_beauty/src/main/java/com/beautysdk/ImageSticker.kt": "e487376ec5504d5c9904bdf30430066315cda32bcd5e478b7cea91715dca4f7a",
+    "core/lib_beauty/src/main/java/com/beautysdk/ReusableRgbInput.kt": "d5c83504b8994507de4b9b7bd853f8d795bdf2257c3c192261d229e54f58396e",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "9a910b65611c3f3cce4f1049ff8ac95143124a1c930e1a5cc7187a54ec6537c9",
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerPoseSmoother.kt": "d546d302e3ae37bd4ea6ccc5819d3cf3e7f6be5bbe4425750439388739a08e7c",
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerResourcePack.kt": "831db0a778ba4bac4d19362f4a0e9923a44675d6a14335f2f123d6a3d58a3594",
+    "core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt": "fd5642b2f575feb7a05aed6c2549f7543cd02e791aa9d54077e62c8730bd5250",
+    "core/lib_beauty/src/main/java/com/beautysdk/VideoFrame.kt": "6836239a7cec3a1096e9d465f653a090a991f1e554d024e4f3fda8a469cfa8ea",
+    "core/lib_beauty/src/test/java/com/beautysdk/AnalysisFrameMappingTest.kt": "4662daa69f2d231cd09a1883189f4fca20ae9001632dd591deea5a8c7780d4ab",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyPipelineTest.kt": "e9d41bb3439162e8999f4fc8881a7e82300b0686b0facf6a4a62b7e9e6b8ec32",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyProcessorTest.kt": "5570f1c78a72984a82c336dbd178d7a2b9f383da567962453d348dbd0213f174",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyRuntimeTest.kt": "ba4865bacc0611b505467df4ca41f0d1818335c7f3f63f7b82fe8aa47c41952e",
+    "core/lib_beauty/src/test/java/com/beautysdk/FaceAnalysisHistoryTest.kt": "465c62e4871f7f6dd98184b665249bf0fa3154884eb8ab6748407dabbecc56c3",
+    "core/lib_beauty/src/test/java/com/beautysdk/ImageStickerTest.kt": "3ff0c1266980e8da57884f0b3f8ffdb488d90f87dd36e21d1288dd8aa7f2fca9",
+    "core/lib_beauty/src/test/java/com/beautysdk/JavaApiTest.java": "3ed0de3fbca95bb765966ec0b1523652f61e2a6536341f14d756b5456751c943",
+    "core/lib_beauty/src/test/java/com/beautysdk/ReusableRgbInputTest.kt": "303a7ca7dfb27d4fe8ffec4d1c5a50210c23d160f8d104675e99b9fb6ee526a5",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerPoseSmootherTest.kt": "c4978ed4ba587e7e10da1319fa5f0cdabc64096ec1fed9bb7f8f744d35e24af2",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerResourceGeometryTest.kt": "9cee82e4cb198dd5890dd220a0ba6034c0fad24b2d36b96a665d3ccd34c1aacb",
+    "core/lib_beauty/src/test/java/com/beautysdk/TrackedFaceAnalysisTest.kt": "07435bce116f7ab82f5dc5de27c3eca1bb17be941a03e61d8ad3d11555ca2b92",
+    "core/lib_beauty/src/test/java/com/beautysdk/UnifiedInputTest.kt": "5041a593ebd5a2903983ca5dfa43067fe890c9afcaefdf730718fa4cc6e71390",
+    "doc/SDK_PIPELINE.md": "af53877de6f5d9be490b3a98d14e8e73f9c422889dfc73bd5ad52ba22349f849",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/AnalysisTimingWindow.kt": "47b4b6db6b01126c7cb03d3d14c68b79a11700ba6e13ea621340dc9c18820727",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/DemoStickerCatalog.kt": "25478c776c0f00ffffcdeb50244a0846db0a8947e6a155edf66d17070bae8017",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "8d3e47700fbeca8addacc24378da894821fd152f6df472b786e71936d30a437e",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/AnalysisTimingWindowTest.kt": "5c0d2c5ccfae70fb06c3888b5f029f51565d96cf505f00b66e8c3bd30cd1d16f",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "1e3c1eb5db937297c7c795553903acdef98b3b5724538e959e5569d432f72def",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewTrackingTest.kt": "0be776917c748ad2d0e5881769ee717b3a2f37f63f879d0f4dff51bf53c0ded7",
+    "scripts/collect_beauty_diagnostics.py": "ffd593c6c26b7e55b5ee6ad647b30dc257f14338ee2924ab04dd5bd13564379e"
+  },
+  "sourceFingerprint": "e1e2ab206198c613b4f1df7085f8499c24e5d5345d5dcd9f1e9953b7e0982457",
+  "jvm": {
+    "core/lib_beauty": {
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 103
+  },
+  "device": {
+    "model": "Pixel 8",
+    "android": "16",
+    "tests": 12,
+    "result": "OK (12 tests)",
+    "seconds": 13.63
+  },
+  "builds": {
+    "full": "sdk-converge-final-metrics.log: 4m10s, core/feature tests, Release AAR, Debug APK/androidTest, Lint passed",
+    "finalHost": "sdk-converge-host-final.log: 1m25s, final bulk draft IO passed"
+  },
+  "staticChecks": [
+    "agent structure",
+    "agent config",
+    "architecture 0 warnings",
+    "UI 0 warnings",
+    "i18n 0 warnings"
+  ],
+  "diagnosticsSmoke": {
+    "durationSeconds": 2,
+    "frameWindows": 0,
+    "hasFrameDiagnostics": false,
+    "result": "collector completed with idle app; not a performance baseline"
+  },
+  "logs": [
+    "build/sdk-converge-final-metrics.log",
+    "build/sdk-converge-host-final.log",
+    "build/sdk-converge-device-verified.log",
+    "build/functional-test/sdk-diagnostics-smoke.json"
+  ],
+  "initialPixelFailure": {
+    "result": "11/12 passed; CPU/GL mismatch after enabling linear filtering",
+    "rootCause": "old shader texelFetch bypassed texture filtering",
+    "fix": "use texture sampling; original <=2 channel tolerance retained",
+    "verified": "all 12 passed on final artifact"
+  },
+  "notVerified": [
+    "sustained before/after FPS and P95 comparison",
+    "thermal steady state",
+    "human sticker alignment/occlusion/fast turns",
+    "full UI configuration matrix",
+    "actual live vendor frame and remote output",
+    "YUV/libyuv integration"
+  ]
+}

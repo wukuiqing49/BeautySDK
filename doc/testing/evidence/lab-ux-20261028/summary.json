@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-28T02:19:43.779208+00:00",
+  "commit": null,
+  "sourceFingerprint": "69cc14ddca59c57b0a5c5487867cdf66d544f4122ca040dae141a0931cd04a52",
+  "evidence": "doc/testing/evidence/lab-ux-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "CameraStickerPersistenceDeviceTest.reopenRestoresStylesAndClearRemainsCleared",
+    "DemoLayoutDeviceTest.cameraControlsScrollWithoutHidingProcessedPreview",
+    "DemoLayoutDeviceTest.stickerCardsKeepSelectionAndPreviewsSwap",
+    "DemoLayoutDeviceTest.imageControlsScrollWithoutHidingProcessedPreview",
+    "EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary",
+    "GestureDeviceTest.officialFixturesRecognizeFourGesturesAndReturnReal21Points",
+    "GestureDeviceTest.blankInputHasNoHandsAndCloseIsIdempotent",
+    "GestureDeviceTest.allRotationsAndMirrorsMapRealLandmarksBackToRawPixels",
+    "GestureDeviceTest.sharedRuntimeTriggersOnceAndDisableClearsResults",
+    "GestureDeviceTest.demoSwitchControlsIndependentBranchAndCameraLifecycle",
+    "GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel",
+    "HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics",
+    "ResourceCenterDeviceTest.allCurrentWebResourcesInstallAndLoad",
+    "ResourceCenterDeviceTest.eyelashPreservesOtherMakeupAndParameters",
+    "ResourceCenterDeviceTest.themeMaterializesBeforeSingleSlotEditing",
+    "ResourceCenterDeviceTest.defaultAndStateRoundTripRespectExplicitNull",
+    "ResourceCenterDeviceTest.activeLeasePreventsDeletionAndDuplicateInstallReuses",
+    "ResourceCenterDeviceTest.badDigestCancelledAndPathTraversalNeverInstall",
+    "ResourceCenterDeviceTest.fakeNetworkCatalogCacheAndDownloadUseSameInstaller",
+    "ResourceCenterDeviceTest.wrongScopeCapabilitiesAndRevisionConflictAreRejected",
+    "ResourceCenterDeviceTest.glassesMoustacheAndHatComposeInIndependentSlots",
+    "ResourceCenterDeviceTest.restartPreservesPresetScopeAndMissingPackageOnlyDisablesItsSlot",
+    "ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable",
+    "ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera",
+    "ResourceCenterUiDeviceTest.deletingBuiltinDoesNotReinstallItOnReopen",
+    "ResourceDeliveryDeviceTest.allTwentySevenResourcesAndFiveDefaultsInstallAndCompose",
+    "ResourceDeliveryDeviceTest.corruptedDeliveryAndMissingDefaultNeverPartiallyInstall",
+    "ResourceDeliveryDeviceTest.importOnlyInstallsExplicitApplyPersistsLanguageAndSelection",
+    "SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory",
+    "SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet",
+    "ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme",
+    "LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel"
+  ],
+  "deviceSuite": {
+    "tests": 32,
+    "failures": 0,
+    "seconds": 59.59
+  },
+  "fontScale1_3Portrait": {
+    "tests": 3,
+    "failures": 0,
+    "seconds": 10.424
+  },
+  "fontScale1_3Landscape": {
+    "tests": 3,
+    "failures": 0,
+    "seconds": 9.975
+  },
+  "lint": {
+    "errors": 0,
+    "fatal": 0,
+    "warnings": 146
+  },
+  "initialFailures": [
+    {
+      "run": "device-ux.log",
+      "reason": "Reset dialog accessibility root did not expose button; replaced lookup with actual dialog button, kept cancellation/confirmation assertions"
+    },
+    {
+      "run": "device-landscape.log",
+      "reason": "Input injected before centered BottomSheet animation stabilized; wait for animation and intersect window bounds"
+    }
+  ],
+  "limits": [
+    "Other devices and API24 runtime",
+    "English and full day/night visual matrix",
+    "Rotation recreation and process death",
+    "Unchanged SDK algorithms, sustained performance, vendor stream",
+    "Known intermittent stop frame-count race remains unresolved"
+  ]
+}

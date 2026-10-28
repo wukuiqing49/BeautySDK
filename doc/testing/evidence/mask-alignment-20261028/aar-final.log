@@ -1,0 +1,63 @@
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty:writeReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:preBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:checkReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :core:lib_beauty_mediapipe:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :core:lib_beauty_mediapipe:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :core:lib_beauty_mediapipe:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :core:lib_beauty_mediapipe:configureCMakeRelWithDebInfo[x86]
+> Task :core:lib_beauty_mediapipe:buildCMakeRelWithDebInfo[x86]
+> Task :core:lib_beauty_mediapipe:configureCMakeRelWithDebInfo[x86_64]
+> Task :core:lib_beauty_mediapipe:buildCMakeRelWithDebInfo[x86_64]
+> Task :core:lib_beauty_mediapipe:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseNativeLibs UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:stripReleaseDebugSymbols UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateReleaseResValues UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:generateReleaseResValues UP-TO-DATE
+> Task :core:lib_beauty:generateReleaseResources UP-TO-DATE
+> Task :core:lib_beauty:packageReleaseResources UP-TO-DATE
+> Task :core:lib_beauty:processReleaseNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseReleaseLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateReleaseRFile UP-TO-DATE
+> Task :core:lib_beauty:compileReleaseKotlin UP-TO-DATE
+> Task :core:lib_beauty:javaPreCompileRelease UP-TO-DATE
+> Task :core:lib_beauty:compileReleaseJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_mediapipe:generateReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:packageReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processReleaseNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:parseReleaseLocalResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateReleaseRFile UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileReleaseKotlin UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:extractReleaseAnnotations UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseShaders UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileReleaseShaders NO-SOURCE
+> Task :core:lib_beauty_mediapipe:generateReleaseAssets UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseAssets UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:javaPreCompileRelease UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileReleaseJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_mediapipe:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:prepareLintJarForPublish UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:prepareReleaseArtProfile UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processReleaseManifest UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processReleaseJavaRes UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseJavaResource UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:syncReleaseLibJars UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:writeReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:bundleReleaseAar
+> Task :core:lib_beauty:compileReleaseLibraryResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:mergeReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:verifyReleaseResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:assembleRelease
+
+BUILD SUCCESSFUL in 3s
+49 actionable tasks: 9 executed, 40 up-to-date

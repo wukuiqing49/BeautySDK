@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-28T03:42:42.216682+00:00",
+  "commit": null,
+  "sourceFingerprint": "08b34d675c4d81b495d32b91b255b0d5a4db4ae1f873fccbfab224e86f86d4f6",
+  "evidence": "doc/testing/evidence/lab-clean-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "CameraStickerPersistenceDeviceTest.reopenRestoresStylesAndClearRemainsCleared",
+    "DemoLayoutDeviceTest.cameraControlsScrollWithoutHidingProcessedPreview",
+    "DemoLayoutDeviceTest.stickerCardsKeepSelectionAndPreviewsSwap",
+    "DemoLayoutDeviceTest.imageControlsScrollWithoutHidingProcessedPreview",
+    "EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary",
+    "GestureDeviceTest.officialFixturesRecognizeFourGesturesAndReturnReal21Points",
+    "GestureDeviceTest.blankInputHasNoHandsAndCloseIsIdempotent",
+    "GestureDeviceTest.allRotationsAndMirrorsMapRealLandmarksBackToRawPixels",
+    "GestureDeviceTest.sharedRuntimeTriggersOnceAndDisableClearsResults",
+    "GestureDeviceTest.demoSwitchControlsIndependentBranchAndCameraLifecycle",
+    "GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel",
+    "HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics",
+    "ResourceCenterDeviceTest.allCurrentWebResourcesInstallAndLoad",
+    "ResourceCenterDeviceTest.eyelashPreservesOtherMakeupAndParameters",
+    "ResourceCenterDeviceTest.themeMaterializesBeforeSingleSlotEditing",
+    "ResourceCenterDeviceTest.defaultAndStateRoundTripRespectExplicitNull",
+    "ResourceCenterDeviceTest.activeLeasePreventsDeletionAndDuplicateInstallReuses",
+    "ResourceCenterDeviceTest.badDigestCancelledAndPathTraversalNeverInstall",
+    "ResourceCenterDeviceTest.fakeNetworkCatalogCacheAndDownloadUseSameInstaller",
+    "ResourceCenterDeviceTest.wrongScopeCapabilitiesAndRevisionConflictAreRejected",
+    "ResourceCenterDeviceTest.glassesMoustacheAndHatComposeInIndependentSlots",
+    "ResourceCenterDeviceTest.restartPreservesPresetScopeAndMissingPackageOnlyDisablesItsSlot",
+    "ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable",
+    "ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera",
+    "ResourceCenterUiDeviceTest.deletingBuiltinDoesNotReinstallItOnReopen",
+    "ResourceDeliveryDeviceTest.allTwentySevenResourcesAndFiveDefaultsInstallAndCompose",
+    "ResourceDeliveryDeviceTest.corruptedDeliveryAndMissingDefaultNeverPartiallyInstall",
+    "ResourceDeliveryDeviceTest.importOnlyInstallsExplicitApplyPersistsLanguageAndSelection",
+    "SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory",
+    "SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet",
+    "ThemeDemoDeviceTest.importReopenRejectAndClearCompleteTheme",
+    "LabInteractionDeviceTest.presetsAdjustCancelAndReopenUseOneClearPanel",
+    "CallbackDisplayDeviceTest.faceTransitionsDoNotRepeatOrTreatStaleAsLeave",
+    "CallbackDisplayDeviceTest.gestureCallbackStaysVisibleUntilNextEventAndResetsWithSession",
+    "LabHierarchyDeviceTest.singleEntryKeepsCallbacksAndOptionalInsetAccessible",
+    "LabHierarchyDeviceTest.categoryOffPreservesOtherEffectsAndBeautyUsesOneSlider"
+  ],
+  "deviceSuite": {
+    "tests": 36,
+    "failures": 0,
+    "seconds": 54.397
+  },
+  "fontScale1_3Portrait": {
+    "tests": 9,
+    "failures": 0,
+    "seconds": 18.285
+  },
+  "fontScale1_3Landscape": {
+    "tests": 9,
+    "failures": 0,
+    "seconds": 18.364
+  },
+  "lint": {
+    "Warning": 151
+  },
+  "limits": [
+    "UI callback injection tests do not prove real human detection",
+    "No vendor stream, sustained performance or core algorithm retest",
+    "No complete language/day-night, recreation or other-device matrix",
+    "Known intermittent stop frame-count race remains unresolved"
+  ],
+  "cameraFramesSaved": false
+}

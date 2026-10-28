@@ -1,0 +1,12 @@
+{
+  "core/lib_beauty/src/main/java/com/beautysdk/EffectResourcePack.kt": "c647ab37e62da4b55c3005daefd0c144eb38f60986d0d30874770d25a8031e15",
+  "core/lib_beauty/src/main/java/com/beautysdk/MotionTimeline.kt": "a3dd0f6f9056cecb9f9d0697595566e16695b905c072d79351a07d6da3b053c5",
+  "core/lib_beauty/src/main/java/com/beautysdk/BeautyScene.kt": "72dee05708be42efbef2f0391f66b8b80858dfb2be9c5921f1d489db134b1eb4",
+  "core/lib_beauty/src/main/java/com/beautysdk/BeautySceneRenderer.kt": "1164aa42958a28d1a5a703a730c1ac55c9bf7982899949e472cbc386df9a7d29",
+  "app/src/main/java/com/beautysdk/demo/EffectWorkshopController.kt": "a111402bb8b1bb7ebe4b2b391b80798d9d1a3359232b37c0a37a415371fa9391",
+  "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "4bd02a53533ca23554f4a373d652027d136f00f80c9de82100a0575303563364",
+  "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "55b7cd79e7830a6989d5d839fb9c49834bfab679eb5505123fe84dc0d6822e2c",
+  "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/DemoStickerCatalog.kt": "f4919a5997372c772bbe590a200ec2b1201a32868c0b7edd401b462ea25e69ac",
+  "app/src/androidTest/java/com/beautysdk/demo/EffectResourceDeviceTest.kt": "6ba9130c1d9a63561d7e359b56401af168283068f97a2869f8b33749e04bf9df",
+  "app/src/androidTest/java/com/beautysdk/demo/SceneDeviceTest.kt": "30f501d68bcac1c1beae4611709d85af31f67dabd64b140672fe55a7040a59e8"
+}

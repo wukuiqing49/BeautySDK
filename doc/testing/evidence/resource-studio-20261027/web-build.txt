@@ -1,0 +1,5 @@
+
+> beauty-sticker-workshop@1.0.0 build
+> node scripts/build.mjs
+
+Cloudflare Pages 静态产物已生成：dist/

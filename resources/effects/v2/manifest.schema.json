@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeautySDK Effect Resource V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "name",
+    "preview",
+    "config"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "type": {
+      "enum": [
+        "BACKGROUND",
+        "MOTION",
+        "BEAUTY"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,47}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "preview": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}\\.png$"
+    },
+    "config": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "BACKGROUND"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "enum": [
+                  "BLUR",
+                  "COLOR",
+                  "IMAGE"
+                ]
+              },
+              "image": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "blurRadius": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 32
+              },
+              "focus": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "required": [
+              "mode",
+              "image",
+              "color",
+              "blurRadius",
+              "focus"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "MOTION"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "enum": [
+                  "PUSH_IN",
+                  "PAN",
+                  "FACE_FOLLOW",
+                  "KEYFRAMES"
+                ]
+              },
+              "zoom": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 2
+              },
+              "periodMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000
+              },
+              "timeline": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "loop": {
+                        "type": "boolean"
+                      },
+                      "frames": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 32,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "timeMs": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 60000
+                            },
+                            "x": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            "y": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            "zoom": {
+                              "type": "number",
+                              "minimum": 1,
+                              "maximum": 2
+                            },
+                            "easing": {
+                              "enum": [
+                                "LINEAR",
+                                "SMOOTH"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "timeMs",
+                            "x",
+                            "y",
+                            "zoom",
+                            "easing"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "loop",
+                      "frames"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "mode",
+              "zoom",
+              "periodMs",
+              "timeline"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "BEAUTY"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "smoothing": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "whitening": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "filter": {
+                "enum": [
+                  "NONE",
+                  "WARM",
+                  "COOL"
+                ]
+              },
+              "adjustments": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "rosy": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "brightness": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "contrast": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  "saturation": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  "sharpening": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "slimFace": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "bigEyes": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "rosy",
+                  "brightness",
+                  "contrast",
+                  "saturation",
+                  "sharpening",
+                  "slimFace",
+                  "bigEyes"
+                ]
+              }
+            },
+            "required": [
+              "smoothing",
+              "whitening",
+              "filter",
+              "adjustments"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

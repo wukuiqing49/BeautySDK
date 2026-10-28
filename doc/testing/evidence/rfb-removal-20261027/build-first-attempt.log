@@ -1,0 +1,143 @@
+Starting a Gradle Daemon, 5 busy and 1 incompatible Daemons could not be reused, use --status for details
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResValues
+> Task :core:lib_beauty:generateDebugResources
+> Task :core:lib_beauty:packageDebugResources
+> Task :core:lib_beauty:processDebugNavigationResources
+> Task :core:lib_beauty:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:javaPreCompileDebug
+> Task :core:lib_beauty_gpupixel:preBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:javaPreCompileDebugUnitTest
+> Task :core:lib_beauty_gpupixel:generateDebugResValues
+> Task :core:lib_beauty_gpupixel:generateDebugResources
+> Task :core:lib_beauty_gpupixel:packageDebugResources
+> Task :core:lib_beauty_gpupixel:processDebugNavigationResources
+> Task :core:lib_beauty:parseDebugLocalResources
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebug
+> Task :core:lib_beauty_gpupixel:parseDebugLocalResources
+> Task :core:lib_beauty_gpupixel:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebugUnitTest
+> Task :core:core_base:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_base:preBuild UP-TO-DATE
+> Task :core:core_base:preDebugBuild UP-TO-DATE
+> Task :core:core_base:generateDebugResValues
+> Task :core:core_base:generateDebugResources
+> Task :core:lib_beauty_gpupixel:generateDebugRFile
+> Task :core:lib_beauty:generateDebugRFile
+> Task :core:core_base:packageDebugResources
+> Task :core:lib_beauty:generateDebugUnitTestStubRFile
+> Task :core:core_base:processDebugNavigationResources
+> Task :core:lib_beauty_gpupixel:generateDebugUnitTestStubRFile
+> Task :core:core_utils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_utils:preBuild UP-TO-DATE
+> Task :core:core_utils:preDebugBuild UP-TO-DATE
+> Task :core:core_base:parseDebugLocalResources
+> Task :core:core_base:javaPreCompileDebug
+> Task :core:core_utils:generateDebugResValues
+> Task :core:core_utils:generateDebugResources
+> Task :core:core_base:generateDebugRFile
+> Task :core:core_utils:packageDebugResources
+> Task :core:core_base:compileDebugKotlin NO-SOURCE
+> Task :core:core_base:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_base:processDebugJavaRes NO-SOURCE
+> Task :core:core_utils:processDebugNavigationResources
+> Task :core:core_base:bundleLibRuntimeToJarDebug
+> Task :core:lib_beauty_mediapipe:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_mediapipe:preBuild UP-TO-DATE
+> Task :core:core_utils:parseDebugLocalResources
+> Task :core:core_utils:javaPreCompileDebug
+> Task :core:lib_beauty_mediapipe:preDebugBuild UP-TO-DATE
+> Task :core:core_utils:generateDebugRFile
+> Task :core:lib_beauty_mediapipe:generateDebugResValues
+> Task :core:core_utils:compileDebugKotlin NO-SOURCE
+> Task :core:core_utils:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_utils:bundleLibRuntimeToJarDebug
+> Task :core:core_utils:processDebugJavaRes NO-SOURCE
+> Task :core:lib_beauty_mediapipe:generateDebugResources
+> Task :core:lib_beauty_mediapipe:packageDebugResources
+> Task :core:lib_beauty_mediapipe:processDebugNavigationResources
+> Task :core:lib_beauty_mediapipe:parseDebugLocalResources
+> Task :core:lib_camera:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_mediapipe:javaPreCompileDebug
+> Task :core:lib_camera:preBuild UP-TO-DATE
+> Task :core:lib_camera:preDebugBuild UP-TO-DATE
+> Task :core:lib_camera:generateDebugResValues
+> Task :core:lib_beauty_mediapipe:generateDebugRFile
+> Task :core:lib_camera:generateDebugResources
+> Task :core:lib_camera:packageDebugResources
+> Task :core:lib_camera:processDebugNavigationResources
+> Task :core:lib_camera:parseDebugLocalResources
+> Task :core:lib_camera:javaPreCompileDebug
+> Task :core:core_base:bundleLibCompileToJarDebug
+> Task :feature:feature_app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:feature_app:preBuild UP-TO-DATE
+> Task :feature:feature_app:preDebugBuild UP-TO-DATE
+> Task :core:lib_camera:generateDebugRFile
+> Task :core:core_utils:bundleLibCompileToJarDebug
+> Task :feature:feature_app:dataBindingMergeDependencyArtifactsDebug
+> Task :feature:feature_app:generateDebugResValues
+> Task :feature:feature_app:generateDebugResources
+> Task :feature:feature_app:packageDebugResources
+> Task :feature:feature_app:processDebugNavigationResources
+> Task :feature:feature_res:preBuild UP-TO-DATE
+> Task :feature:feature_res:preDebugBuild UP-TO-DATE
+> Task :feature:feature_res:generateDebugResValues
+> Task :feature:feature_app:parseDebugLocalResources
+> Task :feature:feature_res:generateDebugResources
+> Task :feature:feature_res:packageDebugResources
+> Task :feature:feature_res:processDebugNavigationResources
+> Task :feature:feature_res:javaPreCompileDebug
+> Task :feature:feature_app:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:feature_app:javaPreCompileDebug
+> Task :feature:feature_app:generateDebugRFile
+> Task :feature:feature_res:processDebugJavaRes NO-SOURCE
+> Task :feature:feature_app:javaPreCompileDebugUnitTest
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:feature_res:parseDebugLocalResources
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :feature:feature_res:generateDebugRFile
+> Task :feature:feature_app:dataBindingGenBaseClassesDebug
+> Task :feature:feature_res:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:feature_res:bundleLibCompileToJarDebug
+> Task :feature:feature_res:bundleLibRuntimeToJarDebug
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_resources:preBuild UP-TO-DATE
+> Task :core:lib_beauty_resources:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_resources:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_resources:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_resources:packageDebugResources UP-TO-DATE
+> Task :feature:feature_app:generateDebugUnitTestStubRFile
+> Task :app:mergeDebugResources FAILED
+> Task :core:lib_camera:compileDebugKotlin
+> Task :core:lib_beauty:compileDebugKotlin
+w: Detected multiple Kotlin daemon sessions at 
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:mergeDebugResources'.
+> java.io.IOException: Unable to delete directory 'C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources'
+    Failed to delete some children. This might happen because a process has files open or has its working directory set in the target directory.
+    - C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources\values-zh_values-zh.arsc.flat
+    - C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources\values-zu_values-zu.arsc.flat
+    - C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources\values_values.arsc.flat
+    - C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources\xml_backup_rules.xml.flat
+    - C:\work\AI\BeautySDK\app\build\intermediates\merged_res\debug\mergeDebugResources\xml_data_extraction_rules.xml.flat
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1m 42s
+79 actionable tasks: 74 executed, 5 up-to-date

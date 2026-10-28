@@ -1,0 +1,12 @@
+Command: adb -s 39061FDJH00D3J shell am instrument -w -e class com.beautysdk.demo.EffectResourceDeviceTest,com.beautysdk.demo.SceneDeviceTest com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner
+Exit: 0
+com.beautysdk.demo.EffectResourceDeviceTest:..
+com.beautysdk.demo.SceneDeviceTest:....
+Time: 2.244
+OK (6 tests)
+范围：加载、合并、回读、坏包和固定纹理/模型测试；不含相机UI/持续直播性能。
+
+最终APK覆盖安装（install -r，无清数据），同命令复验：
+Time: 2.129
+OK (6 tests)
+包含periodMs=4000.00001拒绝用例。

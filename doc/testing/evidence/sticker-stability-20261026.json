@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-26",
+  "scope": "sticker-success-retention-and-pose-smoothing",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt": "4efc1dbe8d88725de6143533983f571b161eda472e318b138ebf0bf347b5d99b",
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerPoseSmoother.kt": "d546d302e3ae37bd4ea6ccc5819d3cf3e7f6be5bbe4425750439388739a08e7c",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "3951b2ac893cb252c48e6b8f1001b74b6e08a45f8489b6b20642b1df2599f535",
+    "core/lib_beauty/src/test/java/com/beautysdk/TrackedFaceAnalysisTest.kt": "f95bc375b3a70f0c1bb30f94db8dae43ec6b3f97a0fbca3033fb37de402f1ed2",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerPoseSmootherTest.kt": "c4978ed4ba587e7e10da1319fa5f0cdabc64096ec1fed9bb7f8f744d35e24af2"
+  },
+  "unitResults": {
+    "core/lib_beauty": {
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "appAssembleDebug": "PASS",
+  "appAssembleDebugAndroidTest": "PASS",
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "install": "Success",
+    "tests": [
+      "BeautyDeviceTest#glMatchesCpuAndRestoresHostState",
+      "MediaPipeDelegateDeviceTest#cameraGpuOptionProducesAnalysisWhileRendering"
+    ],
+    "result": "OK (2 tests)",
+    "durationSeconds": 2.035
+  },
+  "logs": [
+    "build/sticker-stability-build.log",
+    "build/sticker-stability-device.log"
+  ],
+  "visualAcceptance": "未执行真人持续跟随视觉验收",
+  "limitations": [
+    "小变化平滑引入约35ms时间常数的响应延迟，参数待真人评估",
+    "不延长150ms结果期限或300ms检测参考期限，持续失败仍会隐藏",
+    "未验证真实直播引擎和持续负载性能"
+  ]
+}

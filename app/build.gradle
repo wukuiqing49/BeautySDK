@@ -1,0 +1,56 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+}
+
+apply from: rootProject.file('gradle/app-conventions.gradle')
+
+android {
+    compileSdk = libs.versions.compileSdk.get().toInteger()
+
+    defaultConfig {
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        minSdk = libs.versions.minSdk.get().toInteger()
+        targetSdk = libs.versions.targetSdk.get().toInteger()
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
+    sourceSets.androidTest.assets.srcDir layout.buildDirectory.dir('test-assets')
+}
+
+dependencies {
+    androidTestImplementation libs.junit
+    androidTestImplementation libs.androidx.test.runner
+    androidTestImplementation project(':core:lib_beauty')
+    androidTestImplementation project(':core:lib_beauty_gpupixel')
+    androidTestImplementation project(':core:lib_beauty_mediapipe')
+    androidTestImplementation project(':core:lib_camera')
+    implementation project(':core:core_base')
+    implementation project(':core:core_utils')
+    implementation project(':feature:feature_app')
+    implementation project(':core:lib_beauty')
+    implementation project(':core:lib_beauty_resources')
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.activity.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+}

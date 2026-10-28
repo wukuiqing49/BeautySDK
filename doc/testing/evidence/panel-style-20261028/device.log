@@ -1,0 +1,15 @@
+
+com.beautysdk.demo.LabHierarchyDeviceTest:..
+com.beautysdk.demo.CallbackDisplayDeviceTest:..
+com.beautysdk.demo.LabInteractionDeviceTest:.
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.SheetScrollDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:...
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.GpuPixelControlsDeviceTest:.
+
+Time: 22.06
+
+OK (12 tests)
+
+

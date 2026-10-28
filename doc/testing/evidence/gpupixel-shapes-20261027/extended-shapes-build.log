@@ -1,0 +1,220 @@
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugKotlin
+> Task :core:lib_beauty:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty:bundleLibRuntimeToJarDebug
+> Task :core:lib_beauty:bundleLibCompileToJarDebug
+> Task :core:lib_beauty:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestKotlin
+> Task :core:lib_beauty:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :core:lib_beauty:compileDebugUnitTestJavaWithJavac UP-TO-DATE
+> Task :core:lib_beauty:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :core:lib_beauty:testDebugUnitTest
+> Task :core:core_base:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_base:preBuild UP-TO-DATE
+> Task :core:core_base:preDebugBuild UP-TO-DATE
+> Task :core:core_base:generateDebugResValues UP-TO-DATE
+> Task :core:core_base:generateDebugResources UP-TO-DATE
+> Task :core:core_base:packageDebugResources UP-TO-DATE
+> Task :core:core_base:processDebugNavigationResources UP-TO-DATE
+> Task :core:core_base:parseDebugLocalResources UP-TO-DATE
+> Task :core:core_base:generateDebugRFile UP-TO-DATE
+> Task :core:core_base:compileDebugKotlin NO-SOURCE
+> Task :core:core_base:javaPreCompileDebug UP-TO-DATE
+> Task :core:core_base:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_base:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:core_base:processDebugJavaRes NO-SOURCE
+> Task :core:core_utils:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:core_utils:preBuild UP-TO-DATE
+> Task :core:core_utils:preDebugBuild UP-TO-DATE
+> Task :core:core_utils:generateDebugResValues UP-TO-DATE
+> Task :core:core_utils:generateDebugResources UP-TO-DATE
+> Task :core:core_utils:packageDebugResources UP-TO-DATE
+> Task :core:core_utils:processDebugNavigationResources UP-TO-DATE
+> Task :core:core_utils:parseDebugLocalResources UP-TO-DATE
+> Task :core:core_utils:generateDebugRFile UP-TO-DATE
+> Task :core:core_utils:compileDebugKotlin NO-SOURCE
+> Task :core:core_utils:javaPreCompileDebug UP-TO-DATE
+> Task :core:core_utils:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:core_utils:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:core_utils:processDebugJavaRes NO-SOURCE
+> Task :core:lib_beauty_gpupixel:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_gpupixel:preBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugKotlin
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_gpupixel:bundleLibRuntimeToJarDebug
+> Task :core:lib_beauty_gpupixel:processDebugJavaRes
+> Task :core:lib_beauty_mediapipe:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_mediapipe:preBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileDebugKotlin
+> Task :core:lib_beauty_mediapipe:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_mediapipe:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_mediapipe:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty_rfb:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_rfb:preBuild UP-TO-DATE
+> Task :core:lib_beauty_rfb:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_rfb:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_rfb:compileDebugKotlin
+> Task :core:lib_beauty_rfb:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_rfb:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_camera:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_camera:preBuild UP-TO-DATE
+> Task :core:lib_camera:preDebugBuild UP-TO-DATE
+> Task :core:lib_camera:generateDebugResValues UP-TO-DATE
+> Task :core:lib_camera:generateDebugResources UP-TO-DATE
+> Task :core:lib_camera:packageDebugResources UP-TO-DATE
+> Task :core:lib_camera:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_camera:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_camera:generateDebugRFile UP-TO-DATE
+> Task :core:lib_camera:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_camera:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_camera:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_camera:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_camera:processDebugJavaRes UP-TO-DATE
+> Task :core:core_base:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:core_utils:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:bundleLibCompileToJarDebug
+> Task :core:lib_beauty_mediapipe:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_rfb:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_camera:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :feature:feature_app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :feature:feature_app:preBuild UP-TO-DATE
+> Task :feature:feature_app:preDebugBuild UP-TO-DATE
+> Task :feature:feature_app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :feature:feature_app:generateDebugResValues UP-TO-DATE
+> Task :feature:feature_app:generateDebugResources UP-TO-DATE
+> Task :feature:feature_app:packageDebugResources UP-TO-DATE
+> Task :feature:feature_app:processDebugNavigationResources UP-TO-DATE
+> Task :feature:feature_app:parseDebugLocalResources UP-TO-DATE
+> Task :feature:feature_res:preBuild UP-TO-DATE
+> Task :feature:feature_res:preDebugBuild UP-TO-DATE
+> Task :feature:feature_res:generateDebugResValues UP-TO-DATE
+> Task :feature:feature_res:generateDebugResources UP-TO-DATE
+> Task :feature:feature_res:packageDebugResources UP-TO-DATE
+> Task :feature:feature_res:processDebugNavigationResources UP-TO-DATE
+> Task :feature:feature_res:parseDebugLocalResources UP-TO-DATE
+> Task :feature:feature_res:generateDebugRFile UP-TO-DATE
+> Task :feature:feature_app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :feature:feature_app:generateDebugRFile UP-TO-DATE
+> Task :feature:feature_res:javaPreCompileDebug UP-TO-DATE
+> Task :feature:feature_res:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:feature_res:bundleLibCompileToJarDebug UP-TO-DATE
+
+> Task :feature:feature_app:compileDebugKotlin
+w: file:///C:/work/AI/BeautySDK/feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/BeautyDemoController.kt:56:25 'when' is exhaustive so 'else' is redundant here.
+
+> Task :feature:feature_app:javaPreCompileDebug UP-TO-DATE
+> Task :feature:feature_app:compileDebugJavaWithJavac NO-SOURCE
+> Task :feature:feature_app:bundleLibRuntimeToJarDebug
+> Task :feature:feature_app:bundleLibCompileToJarDebug
+> Task :feature:feature_app:preDebugUnitTestBuild UP-TO-DATE
+> Task :feature:feature_app:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :feature:feature_app:compileDebugUnitTestKotlin
+> Task :feature:feature_app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :feature:feature_app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :feature:feature_app:processDebugJavaRes UP-TO-DATE
+> Task :feature:feature_app:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :feature:feature_res:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :feature:feature_res:processDebugJavaRes NO-SOURCE
+> Task :feature:feature_app:testDebugUnitTest
+> Task :core:lib_beauty:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty:writeReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preReleaseBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:checkReleaseAarMetadata UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:configureCMakeRelWithDebInfo[arm64-v8a]
+
+> Task :core:lib_beauty_gpupixel:buildCMakeRelWithDebInfo[arm64-v8a] FAILED
+C/C++: ninja: Entering directory `C:\work\AI\BeautySDK\core\lib_beauty_gpupixel\.cxx\RelWithDebInfo\2lv39562\arm64-v8a'
+C/C++: C:\Users\Administrator\AppData\Local\Android\Sdk\ndk\27.0.12077973\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android24 --sysroot=C:/Users/Administrator/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dbeauty_gpupixel_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -Wall -Wextra -Werror -fvisibility=hidden -MD -MT CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o -MF CMakeFiles\beauty_gpupixel.dir\beauty_bridge.cpp.o.d -o CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o -c C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp
+C/C++: C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:452:66: error: misleading indentation; statement is not part of the previous 'if' [-Werror,-Wmisleading-indentation]
+C/C++:   452 |             throw std::runtime_error("Invalid reshape strength");env->GetFloatArrayRegion(transform,0,16,matrix);
+C/C++:       |                                                                  ^
+C/C++: C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:451:30: note: previous statement is here
+C/C++:   451 |         for(int i=0;i<5;++i) if(!std::isfinite(values[i]) || values[i]>(1.f) || values[i]<(i>=3 ? -1.f : 0.f))
+C/C++:       |                              ^
+C/C++: C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:452:66: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+C/C++:   452 |             throw std::runtime_error("Invalid reshape strength");env->GetFloatArrayRegion(transform,0,16,matrix);
+C/C++:       |                                                                  ^
+C/C++: C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:451:9: note: previous statement is here
+C/C++:   451 |         for(int i=0;i<5;++i) if(!std::isfinite(values[i]) || values[i]>(1.f) || values[i]<(i>=3 ? -1.f : 0.f))
+C/C++:       |         ^
+C/C++: 2 errors generated.
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':core:lib_beauty_gpupixel:buildCMakeRelWithDebInfo[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\work\AI\BeautySDK\core\lib_beauty_gpupixel\.cxx\RelWithDebInfo\2lv39562\arm64-v8a'
+  [1/2] Building CXX object CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o
+  FAILED: CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o 
+  C:\Users\Administrator\AppData\Local\Android\Sdk\ndk\27.0.12077973\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android24 --sysroot=C:/Users/Administrator/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dbeauty_gpupixel_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D__BIONIC_NO_PAGE_SIZE_MACRO -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -Wall -Wextra -Werror -fvisibility=hidden -MD -MT CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o -MF CMakeFiles\beauty_gpupixel.dir\beauty_bridge.cpp.o.d -o CMakeFiles/beauty_gpupixel.dir/beauty_bridge.cpp.o -c C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp
+  C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:452:66: error: misleading indentation; statement is not part of the previous 'if' [-Werror,-Wmisleading-indentation]
+    452 |             throw std::runtime_error("Invalid reshape strength");env->GetFloatArrayRegion(transform,0,16,matrix);
+        |                                                                  ^
+  C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:451:30: note: previous statement is here
+    451 |         for(int i=0;i<5;++i) if(!std::isfinite(values[i]) || values[i]>(1.f) || values[i]<(i>=3 ? -1.f : 0.f))
+        |                              ^
+  C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:452:66: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+    452 |             throw std::runtime_error("Invalid reshape strength");env->GetFloatArrayRegion(transform,0,16,matrix);
+
+        |                                                                  ^
+
+  C:/work/AI/BeautySDK/core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp:451:9: note: previous statement is here
+
+    451 |         for(int i=0;i<5;++i) if(!std::isfinite(values[i]) || values[i]>(1.f) || values[i]<(i>=3 ? -1.f : 0.f))
+
+        |         ^
+
+  2 errors generated.
+
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\Administrator\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\work\\AI\\BeautySDK\\core\\lib_beauty_gpupixel\\.cxx\\RelWithDebInfo\\2lv39562\\arm64-v8a" ^
+        beauty_gpupixel
+    from C:\work\AI\BeautySDK\core\lib_beauty_gpupixel
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 7s
+110 actionable tasks: 18 executed, 92 up-to-date

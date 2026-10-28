@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.ImageStickerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:16.130Z" time="0.063">
+  <properties />
+  <testcase name="asymmetricImageKeepsDisplayOrientationForEveryRotationAndMirror" classname="com.beautysdk.ImageStickerTest" time="0.06" />
+  <testcase name="straightAlphaCompositesLayersAndMissingAnchorsHideImages" classname="com.beautysdk.ImageStickerTest" time="0.002" />
+  <testcase name="imageAndPackDefensivelyCopyMutableInput" classname="com.beautysdk.ImageStickerTest" time="0.001" />
+  <system-out />
+  <system-err />
+</testsuite>

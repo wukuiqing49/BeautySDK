@@ -1,0 +1,19 @@
+<resources>
+    <string name="home_eyebrow">BEAUTY SDK / ANDROID</string>
+    <string name="home_title">让每一帧，自然出彩。</string>
+    <string name="home_intro">实时美颜、人脸贴纸与自定义素材，一站式体验。</string>
+    <string name="home_live">实时美颜</string>
+    <string name="home_live_desc">相机预览 · 美颜调节 · 人脸贴纸</string>
+    <string name="home_start">开始体验 →</string>
+    <string name="home_tools">创作与验证</string>
+    <string name="home_workshop">资源中心</string>
+    <string name="home_workshop_desc">内置资源、离线导入、网络下载与实时预览。</string>
+    <string name="home_images">图片实验室</string>
+    <string name="home_images_desc">使用静态图片验证效果、比较处理后端。</string>
+    <string name="home_debug">开发者工具</string>
+    <string name="home_debug_desc">查看跟踪状态、处理耗时与后端选项。</string>
+    <string name="home_engine">直播引擎接入 · 待实现</string>
+    <string name="home_engine_desc">当前提供相机演示，Zego、声网适配尚未接入。</string>
+    <string name="camera_compare">切换对比</string>
+    <string name="camera_workshop_tab">资源</string>
+</resources>

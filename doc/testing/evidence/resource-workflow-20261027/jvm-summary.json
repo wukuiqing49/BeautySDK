@@ -1,0 +1,20 @@
+{
+  "lib_beauty_resources": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lib_beauty": {
+    "tests": 110,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lib_beauty_gpupixel": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

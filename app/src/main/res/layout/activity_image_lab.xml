@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingHorizontal="@dimen/demo_page_padding">
+<Button android:id="@+id/open_camera" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/camera_test" />
+<FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="5" android:background="@color/demo_preview_background">
+<ImageView android:id="@+id/original_image" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitCenter" android:contentDescription="@string/original_image" />
+<ImageView android:id="@+id/processed_image" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/demo_preview_background" android:scaleType="fitCenter" android:contentDescription="@string/processed_image" /></FrameLayout>
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"><Button android:id="@+id/select_image" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minWidth="0dp" android:minHeight="48dp" android:text="@string/select_image" />
+<Button android:id="@+id/apply_effects" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minWidth="0dp" android:minHeight="48dp" android:text="@string/apply_effects" />
+</LinearLayout>
+<ScrollView android:id="@+id/controls_scroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="5" android:fillViewport="true" android:scrollbars="none" android:clipToPadding="false"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/demo_panel_padding" android:background="@drawable/bg_demo_panel">
+<TextView android:id="@+id/effect_result" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/effect_hint" android:accessibilityLiveRegion="polite" android:textIsSelectable="true" />
+<CheckBox android:id="@+id/show_original" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/demo_show_original" />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/backend_label"  />
+<Spinner android:id="@+id/backend" android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/beauty_backends" android:contentDescription="@string/backend_label" />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/smoothing"  />
+<SeekBar android:id="@+id/smoothing" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="40" android:contentDescription="@string/smoothing" />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/whitening"  />
+<SeekBar android:id="@+id/whitening" android:layout_width="match_parent" android:layout_height="wrap_content" android:max="100" android:progress="30" android:contentDescription="@string/whitening" />
+<CheckBox android:id="@+id/warm_filter" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/warm_filter" android:checked="false" />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sticker_glasses_style"  />
+<Spinner android:id="@+id/glasses_style" android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/sticker_glasses_styles" android:contentDescription="@string/sticker_glasses_style" />
+<CheckBox android:id="@+id/glasses" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/glasses" android:checked="true" />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sticker_head_style"  />
+<Spinner android:id="@+id/head_style" android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/sticker_head_styles" android:contentDescription="@string/sticker_head_style" />
+<CheckBox android:id="@+id/hat" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/hat" android:checked="true" />
+<CheckBox android:id="@+id/moustache" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/moustache" android:checked="true" />
+<Button android:id="@+id/run_check" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/run_check" />
+<TextView android:id="@+id/result" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/check_pending"  />
+<TextView  android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/description"  />
+</LinearLayout></ScrollView></LinearLayout>

@@ -1,0 +1,34 @@
+{
+  "debug_apk_bytes": 35771107,
+  "models_bytes": 4008133,
+  "models": [
+    "assets/face_landmarker.task",
+    "assets/selfie_segmenter.tflite"
+  ],
+  "abis": {
+    "arm64-v8a": {
+      "so_bytes": 11394976,
+      "models_plus_so_bytes": 15403109
+    },
+    "armeabi-v7a": {
+      "so_bytes": 7905460,
+      "models_plus_so_bytes": 11913593
+    }
+  },
+  "native_alignment": {
+    "lib/arm64-v8a/libbeauty_gpupixel.so": 16384,
+    "lib/arm64-v8a/libbeauty_rgb_input.so": 16384,
+    "lib/arm64-v8a/libimage_processing_util_jni.so": 16384,
+    "lib/arm64-v8a/libmediapipe_tasks_vision_jni.so": 16384,
+    "lib/arm64-v8a/libmmkv.so": 16384,
+    "lib/arm64-v8a/libsurface_util_jni.so": 16384,
+    "lib/armeabi-v7a/libbeauty_gpupixel.so": 16384,
+    "lib/armeabi-v7a/libbeauty_rgb_input.so": 16384,
+    "lib/armeabi-v7a/libimage_processing_util_jni.so": 16384,
+    "lib/armeabi-v7a/libmediapipe_tasks_vision_jni.so": 16384,
+    "lib/armeabi-v7a/libmmkv.so": 4096,
+    "lib/armeabi-v7a/libsurface_util_jni.so": 16384
+  },
+  "release_apk_bytes": 26648190,
+  "release_unwanted_entries": []
+}

@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-26",
+  "scope": "optional-texture-analysis-bridge",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/GlTextureAnalysisBridge.kt": "ee2dfb80dbe6c777dfd33793c9da1a337dd1dd7f8eff6ac8dcd3fde4be951287",
+    "app/src/androidTest/java/com/beautysdk/demo/TextureBridgeDeviceTest.kt": "05672cf3c11fd22aa87a8730f8443042e749bccd6e4fa1b099738ededc8091b6",
+    "core/lib_beauty/README.md": "360f839c8f36f8e534bb7af2e5029312bb408ce715980a9d3606cd5975bfc6e0",
+    "doc/SDK_PIPELINE.md": "e5417c193ff0f026483309728557317ce3db2f62804b025d06701ca25cf95cb8",
+    "AGENTS.md": "1b8da64c86d693852494b5aad1f2b5520c96f167ad4083fd28837d421d8152d0",
+    ".agents/config/project-profile.yml": "eef6a077bb6f2769b03390c60a4ad10377b6eef92b4b9702e10df205b019eede"
+  },
+  "unitTests": {
+    "core": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "model": "Pixel 8",
+    "class": "TextureBridgeDeviceTest",
+    "count": 3,
+    "result": "passed",
+    "seconds": 0.194,
+    "usesCamera": false,
+    "usesMediaPipe": false,
+    "analyzer": "fixed fixture; checks shared runtime and GL Session integration"
+  },
+  "build": {
+    "core": "passed, 1m41s",
+    "host": "passed, 1m28s",
+    "logs": [
+      "build/sdk-texture-bridge-core.log",
+      "build/sdk-texture-bridge-host.log"
+    ],
+    "tasks": [
+      ":core:lib_beauty:testDebugUnitTest",
+      ":core:lib_beauty:assembleRelease",
+      ":core:lib_beauty:lintDebug",
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ]
+  },
+  "lint": {
+    "scope": "core/lib_beauty debug",
+    "errors": 0,
+    "warnings": 0
+  },
+  "staticChecks": [
+    "agent structure passed",
+    "agent configuration passed",
+    "architecture passed, 0 warnings"
+  ],
+  "deviceLog": "build/sdk-texture-bridge-device.log",
+  "notVerified": [
+    "vendor integration and remote video",
+    "cross-context synchronization and context loss",
+    "joint MediaPipe sustained performance",
+    "busy-GPU tail latency and thermal behavior",
+    "human visual sticker following"
+  ],
+  "demoChanges": "none; independent RGBA camera analysis path retained"
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeautySDK theme bundle v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bundleVersion",
+    "id",
+    "name",
+    "preview",
+    "resources"
+  ],
+  "properties": {
+    "bundleVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,47}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "preview": {
+      "const": "preview.png"
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sticker",
+        "background",
+        "motion",
+        "beauty"
+      ],
+      "properties": {
+        "sticker": {
+          "enum": [
+            null,
+            "sticker.zip"
+          ]
+        },
+        "background": {
+          "enum": [
+            null,
+            "background.zip"
+          ]
+        },
+        "motion": {
+          "enum": [
+            null,
+            "motion.zip"
+          ]
+        },
+        "beauty": {
+          "enum": [
+            null,
+            "beauty.zip"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "sticker": {
+              "const": "sticker.zip"
+            }
+          }
+        },
+        {
+          "properties": {
+            "background": {
+              "const": "background.zip"
+            }
+          }
+        },
+        {
+          "properties": {
+            "motion": {
+              "const": "motion.zip"
+            }
+          }
+        },
+        {
+          "properties": {
+            "beauty": {
+              "const": "beauty.zip"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

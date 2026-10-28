@@ -1,0 +1,37 @@
+{
+  "core/lib_beauty": {
+    "tests": 117,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "core/lib_camera": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "core/lib_beauty_resources": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "core/lib_beauty_gpupixel": {
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "feature/feature_app": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 139
+  }
+}

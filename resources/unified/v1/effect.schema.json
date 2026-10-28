@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "effectVersion",
+    "effectType",
+    "payload"
+  ],
+  "properties": {
+    "effectVersion": {
+      "const": 1
+    },
+    "effectType": {
+      "enum": [
+        "PARAMETERS",
+        "LEGACY",
+        "THEME"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "effectType": {
+            "const": "PARAMETERS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "parameters"
+            ],
+            "properties": {
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "beauty.smoothing": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "beauty.whitening": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "beauty.rosy": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "color.brightness": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "color.contrast": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  "color.saturation": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  "color.sharpening": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "reshape.slimFace": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "reshape.bigEyes": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "reshape.slimNose": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "reshape.chinLength": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "reshape.mouthSize": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "makeup.lipstick": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "makeup.blusher": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "makeup.eyelashes": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "effectType": {
+            "const": "THEME"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "resources"
+            ],
+            "properties": {
+              "resources": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 20,
+                "items": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "file",
+                    "sha256"
+                  ],
+                  "properties": {
+                    "file": {
+                      "type": "string",
+                      "pattern": "^resource_[0-9]+\\.zip$"
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

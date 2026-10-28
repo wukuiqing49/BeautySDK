@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingVertical="8dp">
+  <TextView android:id="@+id/resource_status" style="@style/CameraLabel" android:text="@string/resources_loading" android:accessibilityLiveRegion="polite" />
+  <LinearLayout android:id="@+id/resource_management" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+      <TextView android:id="@+id/resource_import" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_import" />
+      <TextView android:id="@+id/resource_online" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_online" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+      <TextView android:id="@+id/resource_reset" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_reset_category" />
+      <TextView android:id="@+id/resource_defaults" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_defaults" />
+      <TextView android:id="@+id/resource_cancel" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@android:string/cancel" />
+    </LinearLayout>
+    <TextView android:id="@+id/resource_apply_delivery" style="@style/CameraAction" android:text="@string/resources_apply_delivery" android:visibility="gone" />
+  </LinearLayout>
+  <TextView android:id="@+id/resource_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:text="@string/resources_empty" android:textColor="@color/camera_muted" android:visibility="gone" />
+  <TextView android:id="@+id/resource_none" style="@style/EffectText" android:text="@string/camera_category_off" android:visibility="gone" />
+  <GridLayout android:id="@+id/resource_grid" android:layout_width="match_parent" android:layout_height="wrap_content" android:columnCount="3" />
+</LinearLayout>

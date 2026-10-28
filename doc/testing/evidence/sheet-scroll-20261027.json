@@ -1,0 +1,30 @@
+{
+  "case": "SHEET-SCROLL-01",
+  "date": "2026-10-27",
+  "device": "Pixel 8 / Android16 API36",
+  "result": {
+    "tests": 3,
+    "failures": 0,
+    "seconds": 7.648
+  },
+  "build": "app Debug and test APK passed; retry test APK passed",
+  "uiStaticWarnings": 0,
+  "initialFailure": "New test incorrectly required empty workshop to overflow; corrected test to validate zero scroll when contents fit. Runtime fix unchanged.",
+  "logs": [
+    "build/sheet-scroll-build.log",
+    "build/sheet-scroll-retry-build.log",
+    "build/sheet-scroll-device.log",
+    "build/sheet-scroll-device-final.log"
+  ],
+  "limits": [
+    "No manual small-screen/font-scale/landscape matrix",
+    "No subjective gesture acceptance",
+    "No full lint/SDK algorithm/performance rerun: change is dialog-only"
+  ],
+  "sourceHashes": {
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "4d02a944e1fee152f2a6c60cddb5a561df4c52849ba9ae3ad48de8e6cb7b1e98",
+    "app/src/androidTest/java/com/beautysdk/demo/SheetScrollDeviceTest.kt": "8c96795f40b4528fbbbd180e616206246260d21365ec6db60dfa2672383214f4",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelControlsDeviceTest.kt": "43d1880c3406e23ddc58ac943cc8104bea5b1a21f360764916f34b3ac4553e5b",
+    "app/src/androidTest/java/com/beautysdk/demo/SceneControlsDeviceTest.kt": "e446179d0151d1fb1fd68f9e5cfb1a42b425ecfee0d91d7c40b7034ea76799a9"
+  }
+}

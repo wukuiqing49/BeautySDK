@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-26",
+  "scope": "public-engine-input-output-increment",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/Yuv420Input.kt": "0071fae77e6d33949d73d0c04d40f7b349839fb532aa2ab78215967e68428460",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlTextureOutputPool.kt": "2839ba61b9704e4d38e74076bcd1d519f6b421aa2d58b2aafd3b74c4d4efa1e4",
+    "core/lib_beauty/src/test/java/com/beautysdk/Yuv420InputTest.kt": "b0c09256cf7e726ed143386af16068749bb165577d7677a00bb73ce38be5c9df",
+    "app/src/androidTest/java/com/beautysdk/demo/BeautyDeviceTest.kt": "a40c357969e8ee436bf30e80eea85f1f5dfaf8d33d84115e63267e4697f5c088",
+    "core/lib_beauty/README.md": "76bbe3cad6c247e90399a3033cebcdc23a424c5536cd369ab36f4ff47375d76d",
+    "doc/SDK_PIPELINE.md": "7faf902d878d218074c0470329fe9bad227c64f23d160d93e28c4e701e11c8ac",
+    "AGENTS.md": "da2bcf4687af709f9c632e020f8889287ec2521b82dbe64089937f103743cab1",
+    ".agents/config/project-profile.yml": "c45af30420b874b7cd314acfaad8a3a56e00b925cdd521dc450857a1d896ce4f"
+  },
+  "unitTests": {
+    "core": 62,
+    "new": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "model": "Pixel 8",
+    "test": "BeautyDeviceTest#glMatchesCpuAndRestoresHostState",
+    "count": 1,
+    "result": "passed",
+    "seconds": 0.357
+  },
+  "build": {
+    "result": "passed",
+    "duration": "1m59s",
+    "log": "build/sdk-engine-final.log",
+    "tasks": [
+      ":core:lib_beauty:testDebugUnitTest",
+      ":core:lib_beauty:assembleRelease",
+      ":core:lib_beauty:lintDebug",
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ]
+  },
+  "lint": {
+    "scope": "core/lib_beauty debug",
+    "errors": 0,
+    "warnings": 0
+  },
+  "staticChecks": [
+    "agent structure passed",
+    "agent configuration passed",
+    "architecture passed, 0 warnings"
+  ],
+  "deviceLog": "build/sdk-engine-pool-device.log",
+  "notVerified": [
+    "vendor integration and remote video",
+    "cross-context GPU synchronization",
+    "OES normalization and analysis readback",
+    "context loss and full lifecycle matrix",
+    "sustained performance and native YUV conversion",
+    "YUV output/encoding pipeline"
+  ]
+}

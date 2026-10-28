@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-26",
+  "device": "Pixel 8 Android 16",
+  "sourceHashes": {
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeFaceAnalyzer.kt": "d0fb46328589e85c4ebd9ae7bab05ea8219176315da1066490ccb3824569a07d",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/AnalysisTimingWindow.kt": "a5ca9c7c327547955dea207f436146b8a6483b20ca88df15a9f4cb76ea3d1858",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "4975665f35f73e4b3575a67a862bf9ff75245af5988e76dbc2df5ab7b844ae2a",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/CameraBeautyController.kt": "4277351134032520cf96cb81ca94bdc1190abd08477f2187493df6e4ee25f4d5",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "a2aead8afebad501ba05e16a5361fd47c7fd4a9d3633065323ea9f5a945849ed",
+    "app/src/main/res/layout/activity_camera_test.xml": "082a5f2ce4616294a1d808772371ebe4a60c573a257910aa6f730a2204a04e84",
+    "app/src/androidTest/java/com/beautysdk/demo/MediaPipeDelegateDeviceTest.kt": "c3076d44e033494c4a93f344b127aa9a36de63f02ae29982d70fafa16a505749"
+  },
+  "benchmarkRounds": [
+    "DELEGATE round=0 execution=CPU n=40 initMs=365.568685 total[mean=182.55341097499996,p50=185.260946,p95=214.818889,max=228.765177] infer[mean=152.82238569999998,p50=159.339478,p95=174.784953,max=189.075602] prep[mean=3.18648785,p50=3.090698,p95=3.772298,max=3.784994]",
+    "DELEGATE round=1 execution=GPU n=40 initMs=2249.291464 total[mean=109.15306390000003,p50=108.97876,p95=124.162598,max=134.875855] infer[mean=92.54202797499998,p50=94.360148,p95=104.634481,max=111.880494] prep[mean=3.5751293000000004,p50=3.503337,p95=4.802083,max=5.047486]",
+    "DELEGATE round=2 execution=GPU n=40 initMs=580.374756 total[mean=100.174285875,p50=100.839234,p95=111.029174,max=119.212525] infer[mean=89.936344475,p50=90.200155,p95=99.282674,max=105.242065] prep[mean=3.559493,p50=3.501791,p95=4.020101,max=4.592895]",
+    "DELEGATE round=3 execution=CPU n=40 initMs=309.31836 total[mean=107.24968175,p50=103.38265,p95=139.05664,max=140.87911] infer[mean=100.80070297500001,p50=98.185425,p95=130.626871,max=131.845052] prep[mean=2.8738465249999994,p50=2.752564,p95=4.070801,max=5.091716]"
+  ],
+  "jvmTests": 39,
+  "deviceTests": {
+    "fixedPortraitABBA": "passed 27.395s",
+    "cameraGpuWithGlSmoke": "passed 1.695s"
+  },
+  "limitations": [
+    "Static fixture timing is not camera stream latency",
+    "No sustained temperature or remote engine tests",
+    "GPU not made default; no proven flicker reduction",
+    "UI hierarchy dump failed to idle; programmatic checkbox smoke used instead"
+  ]
+}

@@ -1,0 +1,6 @@
+<resources>
+<color name="home_background">#F6F5F8</color><color name="home_card">#FFFFFF</color><color name="home_border">#E7E4EC</color><color name="home_ink">#242130</color><color name="home_muted">#686374</color>
+<style name="HomeTitle"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:textColor">@color/home_ink</item><item name="android:textSize">20sp</item><item name="android:textStyle">bold</item></style>
+<style name="HomeDescription"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:layout_marginTop">8dp</item><item name="android:textColor">@color/home_muted</item><item name="android:textSize">14sp</item><item name="android:lineSpacingExtra">4dp</item></style>
+<style name="HomeCard"><item name="android:layout_width">match_parent</item><item name="android:layout_height">wrap_content</item><item name="android:layout_marginTop">12dp</item><item name="android:padding">20dp</item><item name="android:orientation">vertical</item><item name="android:background">@drawable/bg_home_card</item><item name="android:foreground">?attr/selectableItemBackground</item><item name="android:clickable">true</item><item name="android:focusable">true</item></style>
+</resources>

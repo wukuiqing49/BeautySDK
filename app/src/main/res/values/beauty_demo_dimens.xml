@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="camera_preview_height">240dp</dimen>
+    <dimen name="page_padding">24dp</dimen>
+    <dimen name="section_spacing">16dp</dimen>
+<dimen name="demo_page_padding">12dp</dimen><dimen name="demo_panel_padding">12dp</dimen></resources>

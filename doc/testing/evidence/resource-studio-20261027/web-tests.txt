@@ -1,0 +1,104 @@
+
+> beauty-sticker-workshop@1.0.0 test
+> node --test test/*.test.mjs
+
+TAP version 13
+# Subtest: V3 preserves every signed shape/makeup field through ZIP and theme
+ok 1 - V3 preserves every signed shape/makeup field through ZIP and theme
+  ---
+  duration_ms: 27.0239
+  type: 'test'
+  ...
+# Subtest: V3 rejects incomplete fields, signed range, false numbers and cross-category versions
+ok 2 - V3 rejects incomplete fields, signed range, false numbers and cross-category versions
+  ---
+  duration_ms: 2.022
+  type: 'test'
+  ...
+# Subtest: V2三个类型导出回读并生成Android/iOS共用夹具
+ok 3 - V2三个类型导出回读并生成Android/iOS共用夹具
+  ---
+  duration_ms: 27.6361
+  type: 'test'
+  ...
+# Subtest: V2严格拒绝未知字段、跨类别内容、非闭合循环、重复时间和伪数字
+ok 4 - V2严格拒绝未知字段、跨类别内容、非闭合循环、重复时间和伪数字
+  ---
+  duration_ms: 2.2008
+  type: 'test'
+  ...
+# Subtest: 时间轴端点、插值、循环和非循环停留
+ok 5 - 时间轴端点、插值、循环和非循环停留
+  ---
+  duration_ms: 0.6849
+  type: 'test'
+  ...
+# Subtest: 六个Android样例导入、编辑和网页ZIP导出往返
+ok 6 - 六个Android样例导入、编辑和网页ZIP导出往返
+  ---
+  duration_ms: 160.5838
+  type: 'test'
+  ...
+# Subtest: 非法版本、未知字段、非法锚点、路径、数字、图层均拒绝
+ok 7 - 非法版本、未知字段、非法锚点、路径、数字、图层均拒绝
+  ---
+  duration_ms: 18.7305
+  type: 'test'
+  ...
+# Subtest: 局部位置、旋转、镜像、宽高比在共同夹具中一致
+ok 8 - 局部位置、旋转、镜像、宽高比在共同夹具中一致
+  ---
+  duration_ms: 4.1585
+  type: 'test'
+  ...
+# Subtest: 离线交付包含六模板且脚本语法有效、没有外部依赖
+ok 9 - 离线交付包含六模板且脚本语法有效、没有外部依赖
+  ---
+  duration_ms: 188.2348
+  type: 'test'
+  ...
+# Subtest: 连续拖动合并，撤销重做独立于后续编辑，原配置不会被改写
+ok 10 - 连续拖动合并，撤销重做独立于后续编辑，原配置不会被改写
+  ---
+  duration_ms: 2.4184
+  type: 'test'
+  ...
+# Subtest: 历史有界、超过拖动间隔分段、切换素材后重置引用
+ok 11 - 历史有界、超过拖动间隔分段、切换素材后重置引用
+  ---
+  duration_ms: 0.4776
+  type: 'test'
+  ...
+# Subtest: 完整主题四类别导出、回读、能力推导与跨端夹具
+ok 12 - 完整主题四类别导出、回读、能力推导与跨端夹具
+  ---
+  duration_ms: 94.3214
+  type: 'test'
+  ...
+# Subtest: 主题拒绝未知版本、空主题、目录引用、跨类子包、额外文件与嵌套主题
+ok 13 - 主题拒绝未知版本、空主题、目录引用、跨类子包、额外文件与嵌套主题
+  ---
+  duration_ms: 86.4197
+  type: 'test'
+  ...
+# Subtest: 只有运镜的主题不要求分割且不继承旧贴纸
+ok 14 - 只有运镜的主题不要求分割且不继承旧贴纸
+  ---
+  duration_ms: 31.5666
+  type: 'test'
+  ...
+# Subtest: 主题在解码前拒绝累计像素超限，子包各自合法也不能绕过预算
+ok 15 - 主题在解码前拒绝累计像素超限，子包各自合法也不能绕过预算
+  ---
+  duration_ms: 114.7893
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 532.0213

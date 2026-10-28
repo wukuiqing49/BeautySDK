@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="resources_loading">资源准备中…</string>
+    <string name="resources_import">导入资源包</string>
+    <string name="resources_online">网络资源目录</string>
+    <string name="resources_reset_category">重置分类</string>
+    <string name="resources_defaults">恢复默认</string>
+    <string name="resources_error">资源处理失败：%1$s</string>
+    <string name="resources_progress">%1$s · %2$d KB</string>
+    <string name="resources_ready">已安装 %1$d 项 · 长按可停用或删除</string>
+    <string name="resources_selected">已选中</string>
+    <string name="resources_installed">已安装</string>
+    <string name="resources_disable">停用</string>
+    <string name="resources_delete">删除资源</string>
+    <string name="resources_download">点击下载</string>
+    <string name="resources_card">%1$s · %2$s</string>
+    <string name="resources_theme">套装</string>
+    <string name="resources_page_title">资源中心</string>
+    <string name="resources_page_hint">在这里导入、下载和管理素材。下载不会自动启用；点击已安装素材可应用配置。</string>
+    <string name="resources_empty">此分类暂无已安装素材，可前往首页资源中心添加。</string>
+    <string name="scene_background_off">背景已关闭</string>
+    <string name="scene_background_waiting">等待有效人像分割，当前保留原背景</string>
+    <string name="scene_background_ready">人像分割就绪 · 背景已生效</string>
+    <string name="resources_camera_hint">已安装效果 · 点击选择，长按停用</string>
+    <string name="resources_apply_delivery">应用导入资源库的默认配置</string>
+</resources>

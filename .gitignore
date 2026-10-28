@@ -1,0 +1,18 @@
+/.gradle/
+/.kotlin/
+**/build/
+**/.cxx/
+/local.properties
+/.idea/
+*.iml
+*.jks
+*.keystore
+/keystore.properties
+__pycache__/
+*.pyc
+
+# 本地运行日志与浏览器临时产物
+/*.log
+/.playwright-mcp/
+**/node_modules/
+.DS_Store

@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-27",
+  "sourceFingerprint": "7688472e5d5e7145d743c2a295133299324bb4481960766d8726ac8d3c638fa2",
+  "jvmPassed": 3,
+  "jvmCases": [
+    "com.beautysdk.gpupixel.EyelashGeometryTest#rawRotationAndMirrorPreserveGeometryOnNonSquareFrames",
+    "com.beautysdk.gpupixel.EyelashGeometryTest#missingEyeClearsOnlyItsReusedVerticesAndNullClearsAllLashes",
+    "com.beautysdk.gpupixel.EyelashGeometryTest#horizontalLowerLidDriftCannotReopenClosedEye"
+  ],
+  "devicePassed": 1,
+  "deviceBlocked": 6,
+  "reason": "Pixel 8 disconnected during second test; adb devices no longer lists target",
+  "deviceCasesPassed": [
+    "com.beautysdk.demo.GpuPixelDeviceTest#customShapesHaveSignedDirectionAndRotateWithRawFrames"
+  ],
+  "settingsRestore": "not confirmed; backup retained locally in build/functional-test/eyelashes-refine-20261027/device-settings-backup.tar; no clear or uninstall; other devices untouched",
+  "build": "GPUPixel Release AAR and app Debug/test APK passed",
+  "notVerified": [
+    "full current-source GPU regression",
+    "human dynamic quality / sustained performance",
+    "16KB runtime",
+    "Web/iOS eyelash resources"
+  ]
+}

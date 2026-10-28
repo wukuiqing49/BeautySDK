@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/camera_surface">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:padding="12dp">
+    <TextView android:id="@+id/camera_back" style="@style/CameraAction" android:text="@string/camera_back" />
+    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/camera_studio" android:textColor="@color/camera_text" android:textSize="18sp" android:textStyle="bold" />
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/camera_live_label" android:textColor="@color/camera_accent" android:textSize="10sp" android:letterSpacing="0.15" />
+    </LinearLayout>
+    <TextView android:id="@+id/camera_switch" style="@style/CameraAction" android:text="@string/demo_switch" android:contentDescription="@string/camera_switch" />
+    <TextView android:id="@+id/camera_more" style="@style/CameraQuiet" android:text="@string/camera_more" />
+  </LinearLayout>
+  <FrameLayout android:id="@+id/camera_stage" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:background="@color/demo_preview_background">
+    <com.beautysdk.demo.feature.app.GpuBeautyPreview android:id="@+id/camera_gpu_preview" android:layout_width="match_parent" android:layout_height="match_parent" android:contentDescription="@string/camera_processed_preview" />
+    <FrameLayout android:id="@+id/camera_effect_container" android:layout_width="@dimen/camera_result_width" android:layout_height="@dimen/camera_result_height" android:layout_margin="16dp" android:clipToOutline="true" android:padding="2dp" android:contentDescription="@string/camera_swap" android:clickable="true" android:focusable="true" android:visibility="gone">
+      <View android:id="@+id/camera_processed" android:layout_width="match_parent" android:layout_height="match_parent" android:contentDescription="@string/camera_raw_preview" />
+      <TextView android:id="@+id/camera_preview_hint" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:padding="12dp" android:text="@string/camera_preview_waiting" android:textColor="@color/camera_muted" android:textSize="12sp" />
+      <TextView android:id="@+id/camera_effect_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_gravity="bottom" android:background="#CC202129" android:padding="6dp" android:text="@string/camera_original_short" android:textColor="@color/camera_accent" android:textSize="10sp" android:gravity="center" />
+    </FrameLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="top|end" android:layout_margin="12dp" android:orientation="vertical" android:gravity="end">
+      <TextView android:id="@+id/camera_compare" style="@style/CameraAction" android:text="@string/camera_hold_original" />
+      <LinearLayout android:id="@+id/camera_diagnostics" android:layout_width="168dp" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:padding="12dp" android:background="@drawable/bg_camera_diagnostics" android:orientation="vertical" android:clickable="false">
+        <TextView android:id="@+id/camera_face_summary" style="@style/CameraDiagnostic" android:text="@string/camera_face_idle" />
+        <TextView android:id="@+id/camera_hand_summary" style="@style/CameraDiagnostic" android:text="@string/camera_hand_wait" />
+        <TextView android:id="@+id/camera_performance" style="@style/CameraDiagnostic" android:minLines="2" android:maxLines="2" android:text="@string/camera_performance_idle" />
+      </LinearLayout>
+    </LinearLayout>
+    <TextView android:id="@+id/camera_main_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp" android:background="@drawable/bg_camera_chip" android:padding="8dp" android:text="@string/camera_result_short" android:textColor="@color/camera_text" android:textSize="10sp" android:visibility="gone" />
+  </FrameLayout>
+
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingBottom="12dp" android:paddingStart="16dp" android:paddingEnd="16dp">
+    <TextView android:id="@+id/camera_reset_all" style="@style/CameraAction" android:text="@string/camera_reset_all" />
+    <TextView android:id="@+id/camera_settings" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/camera_effects_entry" android:layout_marginStart="4dp" android:layout_marginEnd="4dp" />
+    <TextView android:id="@+id/camera_stickers" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/camera_tab_stickers" android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:visibility="gone" />
+    <TextView android:id="@+id/camera_workshop" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/resources_page_title" android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:visibility="gone" />
+    <TextView android:id="@+id/camera_debug" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/camera_tab_debug" android:layout_marginStart="4dp" android:layout_marginEnd="4dp" android:visibility="gone" />
+  </LinearLayout>
+  <LinearLayout android:id="@+id/camera_controls_panel" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:visibility="gone" android:background="@drawable/bg_camera_sheet" android:paddingTop="8dp" android:paddingStart="16dp" android:paddingEnd="16dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+      <TextView android:id="@+id/camera_panel_title" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/camera_tab_beauty" android:textColor="@color/camera_text" android:textSize="20sp" android:textStyle="bold" android:visibility="gone" />
+      <HorizontalScrollView android:id="@+id/effect_category_scroll" android:layout_width="0dp" android:layout_height="wrap_content" android:scrollbars="none" android:layout_weight="1">
+        <LinearLayout android:id="@+id/effect_categories" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="0dp" android:paddingBottom="0dp" />
+      </HorizontalScrollView>
+      <TextView android:id="@+id/camera_settings_close" style="@style/EffectText" android:text="@string/demo_settings_close" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/camera_mode_bar" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:paddingTop="0dp" android:paddingBottom="0dp">
+      <TextView android:id="@+id/camera_presets" android:text="@string/camera_mode_presets" style="@style/EffectText" />
+      <TextView android:id="@+id/camera_adjust" android:text="@string/camera_mode_adjust" style="@style/EffectText" />
+      <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+      <CheckBox android:id="@+id/camera_beauty" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/camera_portrait_master" android:checked="true" android:textColor="@color/camera_text" android:buttonTint="@color/camera_accent" android:textSize="12sp" />
+      <TextView android:id="@+id/camera_clear_stickers" style="@style/CameraAction" android:text="@string/camera_none" android:visibility="gone" />
+      <TextView android:id="@+id/camera_reset" style="@style/EffectText" android:layout_gravity="end" android:text="@string/camera_reset_category_short" android:textSize="12sp" />
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#282932" android:layout_marginBottom="12dp" />
+    <TextView android:id="@+id/camera_panel_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/camera_presets_hint" android:textColor="@color/camera_muted" android:textSize="12sp" android:paddingBottom="10dp" android:visibility="gone" />
+    <ScrollView android:id="@+id/controls_scroll" android:layout_width="match_parent" android:layout_height="0dp" android:visibility="gone" android:scrollbars="none" android:clipToPadding="false" android:layout_weight="1">
+      <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="0dp" android:paddingBottom="16dp">
+        <TextView android:id="@+id/camera_theme_exit" style="@style/CameraAction" android:layout_width="match_parent" android:visibility="gone" android:text="@string/camera_theme_exit" />
+        <LinearLayout android:id="@+id/beauty_section" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+          <TextView android:id="@+id/camera_category_hint" style="@style/CameraLabel" android:text="@string/camera_beauty_hint" android:visibility="gone" />
+          <TextView android:id="@+id/camera_makeup_entry" style="@style/CameraAction" android:layout_width="match_parent" android:text="@string/camera_makeup_entry" android:visibility="gone" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" />
+          <TextView style="@style/CameraLabel" android:visibility="gone" android:text="@string/camera_beauty_backend" />
+          <Spinner android:id="@+id/camera_beauty_backend" android:visibility="gone" android:layout_width="match_parent" android:layout_height="48dp" android:entries="@array/beauty_renderers" android:contentDescription="@string/camera_beauty_backend" />
+          <LinearLayout android:id="@+id/basic_beauty_controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+              <TextView android:id="@+id/camera_smoothing_choice" style="@style/EffectParameter" android:drawableTop="@drawable/ic_effect_smooth" android:text="@string/smoothing" />
+              <TextView android:id="@+id/camera_whitening_choice" style="@style/EffectParameter" android:drawableTop="@drawable/ic_effect_light" android:text="@string/whitening" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/camera_smoothing_control" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+              <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+                <TextView style="@style/CameraLabel" android:layout_width="0dp" android:layout_weight="1" android:text="@string/smoothing" />
+                <TextView android:id="@+id/camera_smoothing_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/camera_accent" />
+              </LinearLayout>
+              <SeekBar android:progressTint="@color/camera_accent" android:thumbTint="@color/camera_accent" android:progressBackgroundTint="#34343E" android:id="@+id/camera_smoothing" android:layout_width="match_parent" android:layout_height="48dp" android:max="100" android:progress="40" android:contentDescription="@string/smoothing" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/camera_whitening_control" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+              <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+                <TextView style="@style/CameraLabel" android:layout_width="0dp" android:layout_weight="1" android:text="@string/whitening" />
+                <TextView android:id="@+id/camera_whitening_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/camera_accent" />
+              </LinearLayout>
+              <SeekBar android:progressTint="@color/camera_accent" android:thumbTint="@color/camera_accent" android:progressBackgroundTint="#34343E" android:id="@+id/camera_whitening" android:layout_width="match_parent" android:layout_height="48dp" android:max="100" android:progress="30" android:contentDescription="@string/whitening" />
+            </LinearLayout>
+          </LinearLayout>
+          <LinearLayout android:id="@+id/camera_extended_section" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+            <TextView android:visibility="gone" style="@style/CameraLabel" android:text="@string/camera_extended_hint" />
+            <Spinner android:id="@+id/camera_extended_parameter" android:layout_width="match_parent" android:layout_height="48dp" android:contentDescription="@string/camera_extended_parameter" />
+            <TextView android:id="@+id/camera_extended_value" style="@style/CameraLabel" />
+            <SeekBar android:progressTint="@color/camera_accent" android:thumbTint="@color/camera_accent" android:progressBackgroundTint="#34343E" android:id="@+id/camera_extended_strength" android:layout_width="match_parent" android:layout_height="48dp" android:max="100" android:contentDescription="@string/camera_extended_strength" />
+          </LinearLayout>
+          <LinearLayout android:id="@+id/background_controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView style="@style/CameraLabel" android:text="@string/camera_scene_hint" />
+            <Spinner android:id="@+id/camera_background" android:layout_width="match_parent" android:layout_height="48dp" android:contentDescription="@string/camera_background_label" />
+            <TextView android:id="@+id/camera_scene_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/scene_background_off" android:textColor="@color/camera_muted" android:paddingTop="8dp" android:paddingBottom="8dp" />
+          </LinearLayout>
+          <LinearLayout android:id="@+id/motion_controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <Spinner android:id="@+id/camera_motion" android:layout_width="match_parent" android:layout_height="48dp" android:contentDescription="@string/camera_motion_label" />
+            <TextView style="@style/CameraLabel" android:text="@string/camera_motion_zoom" />
+            <SeekBar android:progressTint="@color/camera_accent" android:thumbTint="@color/camera_accent" android:progressBackgroundTint="#34343E" android:id="@+id/camera_motion_zoom" android:layout_width="match_parent" android:layout_height="48dp" android:max="100" android:progress="25" android:contentDescription="@string/camera_motion_zoom" />
+          </LinearLayout>
+        </LinearLayout>
+        <include android:id="@+id/resource_center" layout="@layout/view_resource_center" />
+        <LinearLayout android:id="@+id/sticker_section" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+          <TextView style="@style/CameraLabel" android:text="@string/camera_stickers_hint" />
+          <GridLayout android:id="@+id/camera_sticker_grid" android:layout_width="match_parent" android:layout_height="wrap_content" android:columnCount="3" android:alignmentMode="alignMargins" android:visibility="gone" />
+          <Spinner android:id="@+id/camera_glasses_style" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:entries="@array/sticker_glasses_styles" />
+          <Spinner android:id="@+id/camera_head_style" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:entries="@array/sticker_head_styles" />
+          <CheckBox android:id="@+id/camera_glasses" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:text="@string/glasses" />
+          <CheckBox android:id="@+id/camera_hat" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:text="@string/hat" />
+          <CheckBox android:id="@+id/camera_moustache" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:text="@string/moustache" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/workshop_section" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+          <include android:id="@+id/sticker_workshop" layout="@layout/view_sticker_workshop" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/debug_section" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+          <TextView style="@style/CameraLabel" android:text="@string/backend_label" />
+          <Spinner android:id="@+id/camera_backend" android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/beauty_backends" android:contentDescription="@string/backend_label" />
+          <CheckBox android:id="@+id/camera_frame_tracking" android:checked="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/camera_frame_tracking" />
+          <CheckBox android:id="@+id/camera_mediapipe_gpu" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/camera_mediapipe_gpu" />
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/camera_start" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/demo_start" />
+            <TextView android:id="@+id/camera_stop" style="@style/CameraAction" android:layout_width="0dp" android:layout_weight="1" android:text="@string/demo_stop" />
+          </LinearLayout>
+          <CheckBox android:id="@+id/camera_show_raw" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/demo_show_original" />
+          <TextView android:id="@+id/camera_status" style="@style/CameraLabel" android:text="@string/camera_stopped" android:textIsSelectable="true" />
+          <TextView android:id="@+id/camera_error_detail" style="@style/CameraLabel" android:text="@string/camera_failed" android:textIsSelectable="true" android:visibility="gone" />
+          <TextView style="@style/CameraLabel" android:text="@string/camera_hint" />
+        </LinearLayout>
+      </LinearLayout>
+    </ScrollView>
+  </LinearLayout>
+  <LinearLayout android:id="@+id/camera_callback_details" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:visibility="gone" android:background="@drawable/bg_camera_sheet">
+    <TextView android:id="@+id/camera_tracking" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="28dp" android:gravity="center" android:text="@string/camera_stopped" android:textColor="@color/camera_muted" android:textSize="11sp" android:accessibilityLiveRegion="polite" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="4dp" android:paddingBottom="4dp" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="16dp">
+      <CheckBox android:visibility="gone" android:checked="true" android:id="@+id/camera_gesture_enabled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/camera_callback_gesture_toggle" android:textColor="@color/camera_text" android:textSize="12sp" />
+      <TextView android:id="@+id/camera_gesture_status" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:paddingStart="8dp" android:paddingTop="4dp" android:paddingBottom="4dp" android:text="@string/camera_gesture_off" android:textColor="@color/camera_muted" android:textSize="11sp" />
+    </LinearLayout>
+    <TextView android:id="@+id/camera_event_history" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/camera_muted" android:textSize="12sp" android:textIsSelectable="true" android:paddingTop="12dp" />
+  </LinearLayout>
+</LinearLayout>

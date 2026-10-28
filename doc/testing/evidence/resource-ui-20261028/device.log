@@ -1,0 +1,197 @@
+
+com.beautysdk.demo.ResourceCenterUiDeviceTest:
+Error in rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest):
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:33)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+..
+com.beautysdk.demo.ResourceCenterDeviceTest:..........
+com.beautysdk.demo.ResourceDeliveryDeviceTest:
+Error in importOnlyInstallsExplicitApplyPersistsLanguageAndSelection(com.beautysdk.demo.ResourceDeliveryDeviceTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest.importOnlyInstallsExplicitApplyPersistsLanguageAndSelection$lambda$11(ResourceDeliveryDeviceTest.kt:44)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest.$r8$lambda$nx08F4F75JM_FjI1uQHkFMt7Koc(ResourceDeliveryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+..
+com.beautysdk.demo.SceneControlsDeviceTest:
+Error in controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(com.beautysdk.demo.SceneControlsDeviceTest):
+java.lang.AssertionError: Final settings did not reach expected state
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory$waitFor(SceneControlsDeviceTest.kt:28)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(SceneControlsDeviceTest.kt:41)
+
+com.beautysdk.demo.GpuPixelControlsDeviceTest:
+Error in extendedControlUpdatesAndCameraUsesGpuPixel(com.beautysdk.demo.GpuPixelControlsDeviceTest):
+java.lang.AssertionError: No GPUPixel frame
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel(GpuPixelControlsDeviceTest.kt:95)
+
+com.beautysdk.demo.EffectPanelDeviceTest:
+Error in categoriesKeepSinglePanelAndResourceEditorIsSecondary(com.beautysdk.demo.EffectPanelDeviceTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary$lambda$1(EffectPanelDeviceTest.kt:29)
+	at com.beautysdk.demo.EffectPanelDeviceTest.$r8$lambda$ipVyBYiMr2sPMo72jjLQx6DST3o(EffectPanelDeviceTest.kt:0)
+	at com.beautysdk.demo.EffectPanelDeviceTest$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+com.beautysdk.demo.HomeNavigationDeviceTest:
+Error in homeEntriesOpenCameraWorkshopAndDiagnostics(com.beautysdk.demo.HomeNavigationDeviceTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics$lambda$5(HomeNavigationDeviceTest.kt:53)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.$r8$lambda$BMT5Hr-1at4xniIloPS8YpTvLQE(HomeNavigationDeviceTest.kt:0)
+	at com.beautysdk.demo.HomeNavigationDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+com.beautysdk.demo.ThemeDemoDeviceTest:.
+
+Time: 59.783
+There were 6 failures:
+1) rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest)
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:33)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+2) importOnlyInstallsExplicitApplyPersistsLanguageAndSelection(com.beautysdk.demo.ResourceDeliveryDeviceTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest.importOnlyInstallsExplicitApplyPersistsLanguageAndSelection$lambda$11(ResourceDeliveryDeviceTest.kt:44)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest.$r8$lambda$nx08F4F75JM_FjI1uQHkFMt7Koc(ResourceDeliveryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceDeliveryDeviceTest$$ExternalSyntheticLambda11.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+3) controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(com.beautysdk.demo.SceneControlsDeviceTest)
+java.lang.AssertionError: Final settings did not reach expected state
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory$waitFor(SceneControlsDeviceTest.kt:28)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(SceneControlsDeviceTest.kt:41)
+4) extendedControlUpdatesAndCameraUsesGpuPixel(com.beautysdk.demo.GpuPixelControlsDeviceTest)
+java.lang.AssertionError: No GPUPixel frame
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelControlsDeviceTest.extendedControlUpdatesAndCameraUsesGpuPixel(GpuPixelControlsDeviceTest.kt:95)
+5) categoriesKeepSinglePanelAndResourceEditorIsSecondary(com.beautysdk.demo.EffectPanelDeviceTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.EffectPanelDeviceTest.categoriesKeepSinglePanelAndResourceEditorIsSecondary$lambda$1(EffectPanelDeviceTest.kt:29)
+	at com.beautysdk.demo.EffectPanelDeviceTest.$r8$lambda$ipVyBYiMr2sPMo72jjLQx6DST3o(EffectPanelDeviceTest.kt:0)
+	at com.beautysdk.demo.EffectPanelDeviceTest$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+6) homeEntriesOpenCameraWorkshopAndDiagnostics(com.beautysdk.demo.HomeNavigationDeviceTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.homeEntriesOpenCameraWorkshopAndDiagnostics$lambda$5(HomeNavigationDeviceTest.kt:53)
+	at com.beautysdk.demo.HomeNavigationDeviceTest.$r8$lambda$BMT5Hr-1at4xniIloPS8YpTvLQE(HomeNavigationDeviceTest.kt:0)
+	at com.beautysdk.demo.HomeNavigationDeviceTest$$ExternalSyntheticLambda4.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+FAILURES!!!
+Tests run: 21,  Failures: 6
+
+

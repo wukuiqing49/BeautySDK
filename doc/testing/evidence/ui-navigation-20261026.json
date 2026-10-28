@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-26",
+  "scope": "navigation-and-camera-ui",
+  "sourceFileHashes": {
+    "app/src/androidTest/java/com/beautysdk/demo/BeautyDeviceTest.kt": "693bdf116fece225fc627bb347a7cb828cd525750258da5cd7db63e05d16053d",
+    "app/src/androidTest/java/com/beautysdk/demo/CameraDeviceTest.kt": "3b76fb4d4a5ba5b528696d28b28646af302ca745335e73aa582a1d5789edf495",
+    "app/src/androidTest/java/com/beautysdk/demo/DemoLayoutDeviceTest.kt": "08b66ea1b48174bf49cdf019a7e378f9142b17d495c676e1f1c4acc915f11a2c",
+    "app/src/androidTest/java/com/beautysdk/demo/FaceMotionDeviceTest.kt": "ca6eb609db8a2c49f3dcb938a4cbc21c91bb98c57dc1025ea8108d575eed70af",
+    "app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt": "1f034aab5f55bb55efce82ee28717c6f7b98f8ca7080ea5a91019a48d5ba7bd4",
+    "app/src/androidTest/java/com/beautysdk/demo/MediaPipeDelegateDeviceTest.kt": "c3076d44e033494c4a93f344b127aa9a36de63f02ae29982d70fafa16a505749",
+    "app/src/androidTest/java/com/beautysdk/demo/ResolutionDeviceTest.kt": "15fa9fe8ed60756d92eddf41ffaa63e3b77e49dfcef5316685c620abde929069",
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "a273256ffc56559eedcbe1c77a26279f6a9eff5e8cf09dbeaf8ace574408f021",
+    "app/src/main/AndroidManifest.xml": "1d2b9214c199ccec7fce9e8b93b4e79d9debf97290a5bd641e878230da691421",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "42b8cb2fe742da15e595f71afb8f5ab8c59b6482cc0447ea66e5e8fd3a59c9a3",
+    "app/src/main/java/com/beautysdk/demo/ImageLabActivity.kt": "2311964cdf439f82940d8db8a32f92b7d87f835fc6482fe8f23fe32e8ca42d59",
+    "app/src/main/java/com/beautysdk/demo/MainActivity.kt": "58b76b48542234240dbdf8789c215212904d32f0e07e945d5a62de80892a7979",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "e719b2d5117d4db41642efb5692c6d21a5a640f74b5b6ba92a8c7f21b902f1a9",
+    "app/src/main/res/drawable/bg_home_card.xml": "130e7c77dfd0c7003d6519be33584196ce1d8e6607bbbc51daaf093c4081457b",
+    "app/src/main/res/drawable/bg_home_hero.xml": "6af22b4e51a782801baa02b0f49498f164566336314a469911f8f05d65049329",
+    "app/src/main/res/layout/activity_camera_test.xml": "94a92bbe561819353191fe57de47702278bd7a05b30e6d7197b66379b6a6ae80",
+    "app/src/main/res/layout/activity_image_lab.xml": "444f7a5f17654b258efe28851f72e3d686fe23bcd8ad5df7d74aacb0b79cd9fb",
+    "app/src/main/res/layout/activity_main.xml": "88492956b2c78e407c584f5f6758b2f13991bbd5ccecfa20311097a7a7346a57",
+    "app/src/main/res/values/home_strings.xml": "8b6d3c405ebc9cf1fceacf47db4ccb46a755aabb24ae99debdc56da9a55b136f",
+    "app/src/main/res/values/home_styles.xml": "1938c78bad89f9ccbf0daf26b5e92846e95a7c1c37d5a9cea76fcd7bc5343278",
+    "app/src/main/res/values/themes.xml": "08c29c1c49baa17c32461c8a40fb3746277460fbb907abfebb700f68e1a889d8",
+    "app/src/main/res/values-en/home_strings.xml": "8b6d3c405ebc9cf1fceacf47db4ccb46a755aabb24ae99debdc56da9a55b136f",
+    "app/src/main/res/values-v27/themes.xml": "073fc38aac6d99434728c44e687d5ee573d6637ad5e8e0ba659a43370e6bd083",
+    "app/src/main/res/values-v29/themes.xml": "480b231db6788081625cf150720c5213eeb213f772908a63825a12958cc896dd",
+    "app/src/main/res/values-zh-rCN/home_strings.xml": "ed386082ec8dcb150e7fd20cdc2dda4d7f3d767e34051a0498e2132c612b2449"
+  },
+  "sourceFingerprint": "43e56694ef92dd7ec1759d3946c605d98ee3974aa3d251cc42d2164cd2d51079",
+  "build": "assembleDebug assembleDebugAndroidTest lintDebug passed",
+  "lint": {
+    "Error": 0,
+    "Warning": 103
+  },
+  "device": "Pixel 8 / Android 16",
+  "deviceTests": 5,
+  "deviceResult": "OK (5 tests), 7.352s",
+  "logs": [
+    "build/ui-navigation-final-retry.log",
+    "build/ui-navigation-device-final.log"
+  ],
+  "unverified": [
+    "home visual acceptance",
+    "small screen",
+    "landscape",
+    "font scaling",
+    "live engine",
+    "sustained performance"
+  ]
+}

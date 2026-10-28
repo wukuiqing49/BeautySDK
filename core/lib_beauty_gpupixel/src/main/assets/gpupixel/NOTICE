@@ -1,0 +1,10 @@
+GPUPixel — Copyright © 2021 PixPark. All rights reserved.
+Source: https://github.com/pixpark/gpupixel
+Revision: ef552bf8ce2d0d41fa9b979bfb5c7cf79374ca88
+License: Apache-2.0 (see LICENSE).
+BeautySDK adapts the beauty shaders, radius-4 box blur, high-pass difference, LUT assets,
+curveWarp/enlargeEye, lipstick/blusher textures and multiply blending.
+BeautySDK maps localized lip triangles and cheek quads to MediaPipe-478;
+the lip interior is excluded and input alpha is preserved.
+The EGL owner, JNI bridge and texture pipeline are implemented by BeautySDK;
+the complete GPUPixel runtime, detector and model files are not included.

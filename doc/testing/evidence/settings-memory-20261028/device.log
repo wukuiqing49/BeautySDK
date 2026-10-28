@@ -1,0 +1,16 @@
+
+com.beautysdk.demo.ScenePersistenceDeviceTest:.
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.LabHierarchyDeviceTest:..
+com.beautysdk.demo.LabInteractionDeviceTest:.
+com.beautysdk.demo.GpuPixelControlsDeviceTest:.
+com.beautysdk.demo.ResourceCenterUiDeviceTest:...
+com.beautysdk.demo.ResourceDeliveryDeviceTest:...
+com.beautysdk.demo.ThemeDemoDeviceTest:.
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+
+Time: 27.424
+
+OK (14 tests)
+
+

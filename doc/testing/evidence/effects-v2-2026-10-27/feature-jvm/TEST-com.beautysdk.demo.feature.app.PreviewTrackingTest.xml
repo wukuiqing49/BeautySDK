@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.beautysdk.demo.feature.app.PreviewTrackingTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-27T03:36:49.691Z" hostname="WIN-MMJSWULHUCA" time="0.022">
+  <properties/>
+  <testcase name="staleFutureWrongSessionBackendAndGeometryCannotRenderStickers" classname="com.beautysdk.demo.feature.app.PreviewTrackingTest" time="0.019"/>
+  <testcase name="sameViewportCanUseNormalizedAnchorsAcrossResolutionsWithinDeadline" classname="com.beautysdk.demo.feature.app.PreviewTrackingTest" time="0.0"/>
+  <testcase name="revisionCameraAndBackendChangesNeverRestoreOldStickers" classname="com.beautysdk.demo.feature.app.PreviewTrackingTest" time="0.002"/>
+  <testcase name="noFaceErrorsAndDisabledNeverReusePreviousFace" classname="com.beautysdk.demo.feature.app.PreviewTrackingTest" time="0.001"/>
+  <testcase name="fasterAnalysisDoesNotMakeStickersBlinkOnSlowerPreview" classname="com.beautysdk.demo.feature.app.PreviewTrackingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

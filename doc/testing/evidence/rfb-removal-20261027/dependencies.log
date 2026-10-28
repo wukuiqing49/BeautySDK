@@ -1,0 +1,8 @@
+Starting a Gradle Daemon, 7 busy Daemons could not be reused, use --status for details
+
+> Task :app:dependencyInsight
+No dependencies matching given input were found in configuration ':app:debugRuntimeClasspath'
+w: Detected multiple Kotlin daemon sessions at 
+
+BUILD SUCCESSFUL in 1m 3s
+1 actionable task: 1 executed

@@ -1,0 +1,6 @@
+{
+  "check": "zipalign -c -P 16 4",
+  "artifact": "app-release-unsigned.apk",
+  "exitCode": 0,
+  "scope": "ZIP alignment; not all third-party ELF or 16KB device validation"
+}

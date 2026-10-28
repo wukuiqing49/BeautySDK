@@ -1,0 +1,11 @@
+<resources>
+  <string name="effect_resource_hint">支持独立效果或完整主题 ZIP。主题整体替换贴纸、背景、运镜和美颜；未包含的效果关闭。已选主题会在下次进入时恢复，清除后恢复手动设置。</string>
+  <string name="effect_resource_empty">尚未选择场景或美颜资源</string>
+  <string name="effect_resource_import">导入效果 / 主题</string>
+  <string name="effect_resource_clear">清除效果资源</string>
+  <string name="effect_resource_loading">正在加载资源…</string>
+  <string name="effect_resource_error">导入失败：%1$s</string>
+  <string name="effect_resource_sample">内置场景与美颜示例</string>
+  <string-array name="effect_resource_samples"><item>山岚背景</item><item>轻推近运镜</item><item>自然暖色美颜</item><item>完整主题 · 眼镜场景组合</item><item>自然款睫毛</item><item>浓密款睫毛</item><item>眼尾款睫毛</item></string-array>
+  <string name="effect_resource_theme_selected">主题 · %1$s</string>
+</resources>

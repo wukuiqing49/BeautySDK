@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packageVersion",
+    "id",
+    "revision",
+    "category",
+    "subcategory",
+    "slot",
+    "defaultLocale",
+    "name",
+    "description",
+    "localizations",
+    "preview",
+    "effect",
+    "scope",
+    "requirements"
+  ],
+  "properties": {
+    "packageVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,47}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "category": {
+      "enum": [
+        "BEAUTY",
+        "RESHAPE",
+        "MAKEUP",
+        "FILTER",
+        "STICKER",
+        "BACKGROUND",
+        "MOTION",
+        "THEME"
+      ]
+    },
+    "subcategory": {
+      "type": "string",
+      "pattern": "^[A-Z_]{1,32}$"
+    },
+    "slot": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.]{0,63}$"
+    },
+    "defaultLocale": {
+      "type": "string",
+      "pattern": "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{2,8})*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "localizations": {
+      "type": "object",
+      "maxProperties": 30,
+      "propertyNames": {
+        "pattern": "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{2,8})*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name",
+          "description"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "preview": {
+      "const": "preview.png"
+    },
+    "effect": {
+      "const": "effect.json"
+    },
+    "scope": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "beauty.smoothing",
+          "beauty.whitening",
+          "beauty.rosy",
+          "color.brightness",
+          "color.contrast",
+          "color.saturation",
+          "color.sharpening",
+          "reshape.slimFace",
+          "reshape.bigEyes",
+          "reshape.slimNose",
+          "reshape.chinLength",
+          "reshape.mouthSize",
+          "makeup.lipstick",
+          "makeup.blusher",
+          "makeup.eyelashes"
+        ]
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "features"
+      ],
+      "properties": {
+        "features": {
+          "type": "array",
+          "maxItems": 20,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "defaultsVersion": 1,
+  "defaultLocale": "zh-CN",
+  "localeMode": "FOLLOW_HOST",
+  "enabled": true,
+  "parameters": {
+    "beauty.smoothing": 0.35,
+    "beauty.whitening": 0.2
+  },
+  "selections": {},
+  "categoryOrder": [
+    "BEAUTY",
+    "RESHAPE",
+    "MAKEUP",
+    "FILTER",
+    "STICKER",
+    "BACKGROUND",
+    "MOTION",
+    "THEME"
+  ]
+}

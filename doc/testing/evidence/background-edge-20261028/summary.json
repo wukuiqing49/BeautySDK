@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-28T04:17:45.919412+00:00",
+  "commit": null,
+  "sourceFingerprint": "0c94d34bd8d6e61b003072badf7932307b8c77972c2e86ea42b5e19cf2eb847a",
+  "evidence": "doc/testing/evidence/background-edge-20261028",
+  "variant": "debug",
+  "environment": {
+    "device": "Pixel 8",
+    "api": 36
+  },
+  "verifiedDeviceCases": [
+    "SceneDeviceTest.lowResolutionMaskKeepsColorEdgeAndBlurDoesNotBleedForeground",
+    "SceneDeviceTest.backgroundPixelsMotionAndState",
+    "SceneDeviceTest.realModelReturnsBoundedMaskAndResetInvalidatesIt",
+    "SceneDeviceTest.textureOnlyBridgePreservesSourceGeometryForSegmentation",
+    "SceneDeviceTest.oesInputCompositesBackgroundAndMotion",
+    "SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory"
+  ],
+  "deviceSuite": {
+    "tests": 6,
+    "failures": 0,
+    "seconds": 4.819
+  },
+  "jvm": {
+    "module": "core/lib_beauty",
+    "tests": 117,
+    "failures": 0,
+    "errors": 0
+  },
+  "limits": [
+    "Synthetic hard-color edge does not establish real hair quality",
+    "No sustained GPU performance, moving human occlusion or vendor-stream validation",
+    "No iOS renderer change",
+    "Existing stop frame-count race remains unresolved"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android 美颜 SDK"
+  short_description: "实现直播引擎帧接入、人脸定位、OpenGL 合成与性能验证"
+  default_prompt: "使用 $android-beauty-sdk-workflow 分析或实现 BeautySDK 视频帧处理链路，并验证线程、坐标和资源生命周期。"

@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-26",
+  "sourceFileHashes": {
+    "app/src/androidTest/java/com/beautysdk/demo/StickerResourceDeviceTest.kt": "0a898b02d0cd73570cf7faabb8bb08bf31ee8ea3d12399953bf91f53686ca6b4",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "c499dcbd3d39c8aed28274a9d80a279f2546210b0fbc84c74ddd011fb87138a2",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopController.kt": "d32640aeb1f8aaf93c66e0ed4595eadfb02f7c7ec697083c9657fe85d436609b",
+    "app/src/main/java/com/beautysdk/demo/StickerWorkshopViewModel.kt": "f99de8ed4219814f768b40dcbd68b9a4e64571e7243a5ff1cb8e7bf139335aa1",
+    "app/src/main/res/layout/view_sticker_workshop.xml": "f04bf1ceb7bb72e401d3d62031e12b2fd6ee76ae36bd2c00fd0cb5acee2ad3fc",
+    "app/src/main/res/values-en/workshop_ui_strings.xml": "e55cbedfd7711cde8808cdfffcda424f2bdbda3a2efd4730db1204b2d4cb1961",
+    "app/src/main/res/values-zh-rCN/workshop_ui_strings.xml": "b5b60474938d808c2e6c5a1ece70f2e35e193ee5ec5ec5092bd44c3e9d5beea7",
+    "app/src/main/res/values/workshop_ui_strings.xml": "e55cbedfd7711cde8808cdfffcda424f2bdbda3a2efd4730db1204b2d4cb1961"
+  },
+  "sourceFingerprint": "31990e9faf8a8e487fab807e2406e838d6f61e44285ee68a15b82efb61c42a7a",
+  "device": "Pixel 8 Android 16",
+  "deviceTests": "OK (4 tests), 5.677s",
+  "build": "assembleDebug assembleDebugAndroidTest lintDebug passed, 1m33s",
+  "lint": {
+    "Error": 0,
+    "Warning": 103
+  },
+  "logs": [
+    "build/workshop-layout-build.log",
+    "build/workshop-layout-device.log"
+  ]
+}

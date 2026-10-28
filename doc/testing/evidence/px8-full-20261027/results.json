@@ -1,0 +1,263 @@
+{
+  "runId": "px8-full-20261027",
+  "date": "2026-10-27",
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "applicationId": "com.beautysdk.demo",
+    "versionName": "0.1.0",
+    "versionCode": 1000,
+    "variant": "debug",
+    "otherDevicesTouched": false
+  },
+  "instrumentation": {
+    "tests": 48,
+    "passed": 45,
+    "failed": 3,
+    "skipped": 0,
+    "seconds": 64.817,
+    "cases": {
+      "com.beautysdk.demo.BeautyDeviceTest#rfbDetectsActualPortraitWithoutInventingLandmarks": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#nativeRgbaMatchesReferenceForAllOrientationsAndStride": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#mediaPipeDetectsActualPortraitAndReleases": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#glMatchesCpuAndRestoresHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoLoadsAllSixPngAssetsAndCompositesActualPortrait": {
+        "status": "failed",
+        "statusCode": -2,
+        "error": "java.lang.IllegalArgumentException: The size of the buffer should be: 630784 but is 629760"
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#asyncCameraCadenceKeepsStickersThenHidesExpiredResults": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoUiRendersImageAndFrameCheck": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#cameraPageProducesProcessedImageAndStopClearsIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#frontBackFramesRestartAndStop": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraStickerPersistenceDeviceTest#reopenRestoresStylesAndClearRemainsCleared": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#imageControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#cameraControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#stickerCardsKeepSelectionAndPreviewsSwap": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#webResourcesMergeByTypeAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#invalidV2DoesNotSilentlyFallBack": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.FaceMotionDeviceTest#nativeMotionTracksPortraitTranslationAndRejectsBlankFrame": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelControlsDeviceTest#extendedControlUpdatesAndCameraUsesGpuPixel": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#oesReshapeAndColorUseSharedTextureContract": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#texturePipelinePreservesTransformAlphaAndHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#extendedColorAndReshapeChangePixelsAndRespectMissingFace": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.HomeNavigationDeviceTest#homeEntriesOpenCameraWorkshopAndDiagnostics": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#cameraGpuOptionProducesAnalysisWhileRendering": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#compareCpuGpuOnSameDirectInput": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#directRgbaSupportsAlignedAndNonAlignedWidths": {
+        "status": "failed",
+        "statusCode": -2,
+        "error": "java.lang.IllegalArgumentException: The size of the buffer should be: 229440 but is 228960"
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#compactRgbSupportsAlignedAndNonAlignedWidths": {
+        "status": "failed",
+        "statusCode": -2,
+        "error": "java.lang.IllegalArgumentException: The size of the buffer should be: 229440 but is 228960"
+      },
+      "com.beautysdk.demo.ResolutionDeviceTest#glReallocatesOutputAcrossResolutions": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneControlsDeviceTest#sceneControlsDriveSharedPipelineAndReset": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#realModelReturnsBoundedMaskAndResetInvalidatesIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#textureOnlyBridgePreservesSourceGeometryForSegmentation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#backgroundPixelsMotionAndState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#oesInputCompositesBackgroundAndMotion": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SheetScrollDeviceTest#beautyAndWorkshopScrollWithoutDraggingSheet": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#privateDraftRestoresDisabledAndLateLoadCannotUndoClear": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#workshopUiEditsExportsImportsAndRetainsStateOnRecreation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#saveReloadUsesPersistedImagesAndEditedManifest": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#sixSamplesRoundTripEditedLayoutAndReusePixels": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#texture2dDownsamplesTransformsAndRestoresState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#unifiedEngineCallbackProcessesAndWritesTexture": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#oesSurfaceInputCanGenerateDetectionSmallImage": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#staleAndGeometryChangedReadbacksAreDiscarded": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeDemoDeviceTest#importReopenRejectAndClearCompleteTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#completeThemeCapabilitiesSettingsAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#malformedThemeAndWrongChildCategoryRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#absentCategoriesResetAndDoNotInheritPreviousTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#nestedPixelBudgetRejectedBeforeDecode": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#browserDownloadedHatLoadsWithEditedMetadata": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#webExportedSixPacksLoadUsingPublicSdk": {
+        "status": "passed",
+        "statusCode": 0
+      }
+    }
+  },
+  "jvm": {
+    "core/lib_beauty": {
+      "tests": 83,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "core/lib_beauty_rfb": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "core/lib_camera": {
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 125,
+    "Fatal": 0
+  },
+  "sourceFingerprint": "f5bf879bf8c6eba5c10800afe4d0f77ea1f1277f868c1b473c33132fd1f94488",
+  "settingsRestored": true,
+  "batteryTemperatureC": {
+    "before": 28.8,
+    "after": 30.2
+  },
+  "thermalStatusAfter": 0,
+  "limitations": [
+    "No real person AR/segmentation visual acceptance",
+    "No long duration/three-pipeline FPS memory thermal benchmark",
+    "No vendor SDK/remote encoded output",
+    "No dark/font-scale/landscape UI matrix",
+    "No release/16KB execution or iOS test"
+  ],
+  "failureRootCause": "MediaPipe RGB ByteBuffer row alignment missing for non-4-aligned widths; reproduced through compact RGB and direct RGBA APIs"
+}

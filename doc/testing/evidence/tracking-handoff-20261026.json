@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-26",
+  "scope": "tracking-reference-handoff",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt": "d202dfc5c6c71900d953b93b59f6eaafd45d69404c30b59396f6d24f80da2936",
+    "core/lib_beauty/src/test/java/com/beautysdk/TrackedFaceAnalysisTest.kt": "27fb9088c08d91e8d833a3e6ded948b864eb1d4c04cfb76f1f0cd8ccb79966b3"
+  },
+  "validation": {
+    "coreUnitTests": 41,
+    "failures": 0,
+    "errors": 0,
+    "appAssembleDebug": "PASS",
+    "pixel8Install": "Success",
+    "visualAcceptance": "NOT VERIFIED"
+  },
+  "buildLog": "build/tracking-handoff-build.log",
+  "limitations": [
+    "匹配失败、模型校正噪声仍可能导致位置跳变",
+    "未执行持续真人视觉、温升及直播引擎验证"
+  ]
+}

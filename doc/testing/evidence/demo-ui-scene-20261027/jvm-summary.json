@@ -1,0 +1,30 @@
+[
+  {
+    "module": "core/lib_beauty",
+    "tests": 117,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "module": "core/lib_beauty_resources",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "module": "core/lib_beauty_gpupixel",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "module": "feature/feature_app",
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+]

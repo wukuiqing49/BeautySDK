@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeautySDK Beauty Resource V4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "name",
+    "preview",
+    "config"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 4
+    },
+    "type": {
+      "const": "BEAUTY"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,47}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "preview": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}\\.png$"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "smoothing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "whitening": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "filter": {
+          "enum": [
+            "NONE",
+            "WARM",
+            "COOL"
+          ]
+        },
+        "adjustments": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "rosy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "brightness": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "contrast": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "saturation": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "sharpening": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "slimFace": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "bigEyes": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "lipstick": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "blusher": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "slimNose": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "chinLength": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "mouthSize": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "eyelashes": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "rosy",
+            "brightness",
+            "contrast",
+            "saturation",
+            "sharpening",
+            "slimFace",
+            "bigEyes",
+            "lipstick",
+            "blusher",
+            "slimNose",
+            "chinLength",
+            "mouthSize",
+            "eyelashes"
+          ]
+        },
+        "eyeMakeup": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "image",
+            "root",
+            "length",
+            "mirrorRight"
+          ],
+          "properties": {
+            "kind": {
+              "const": "EYELASH"
+            },
+            "image": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]+\\.png$"
+            },
+            "root": {
+              "type": "array",
+              "minItems": 9,
+              "maxItems": 9,
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "prefixItems": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 1
+                  }
+                ],
+                "items": false
+              }
+            },
+            "length": {
+              "type": "number",
+              "minimum": 0.02,
+              "maximum": 0.5
+            },
+            "mirrorRight": {
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "required": [
+        "smoothing",
+        "whitening",
+        "filter",
+        "adjustments",
+        "eyeMakeup"
+      ]
+    }
+  }
+}

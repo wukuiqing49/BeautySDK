@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.StickerPoseSmootherTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:16.200Z" time="0.002">
+  <properties />
+  <testcase name="smallMotionRemainsVisibleAndFastMotionFollowsImmediately" classname="com.beautysdk.StickerPoseSmootherTest" time="0.001" />
+  <testcase name="nullGeometryChangesTimeReversalAndClearDoNotKeepOldPose" classname="com.beautysdk.StickerPoseSmootherTest" time="0.0" />
+  <testcase name="angleWrapUsesShortPathAndDoesNotHide" classname="com.beautysdk.StickerPoseSmootherTest" time="0.0" />
+  <testcase name="scaleRelativeMotionWorksAcrossResolutions" classname="com.beautysdk.StickerPoseSmootherTest" time="0.001" />
+  <testcase name="equalElapsedTimeHasEqualResponseAtDifferentRenderRates" classname="com.beautysdk.StickerPoseSmootherTest" time="0.0" />
+  <system-out />
+  <system-err />
+</testsuite>

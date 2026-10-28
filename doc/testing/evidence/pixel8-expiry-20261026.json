@@ -1,0 +1,55 @@
+{
+  "analysisSampleCount": 69,
+  "trackingWindowCount": 70,
+  "allTrackingTotals": {
+    "ready": 356.0,
+    "stale": 160.0,
+    "noFace": 1382.0,
+    "processing": 0.0,
+    "error": 0.0
+  },
+  "windowsWithReadyAndNoNoFace": {
+    "count": 13,
+    "ready": 286.0,
+    "stale": 88.0
+  },
+  "faceSamples": 16,
+  "faceSampleTimingMs": {
+    "copyMs": {
+      "median": 0.126,
+      "max": 0.219,
+      "min": 0.091
+    },
+    "queueMs": {
+      "median": 26.644,
+      "max": 53.3,
+      "min": 0.151
+    },
+    "prepareMs": {
+      "median": 1.654,
+      "max": 3.991,
+      "min": 1.225
+    },
+    "inferMs": {
+      "median": 65.856,
+      "max": 195.846,
+      "min": 34.095
+    },
+    "totalMs": {
+      "median": 70.197,
+      "max": 202.401,
+      "min": 36.483
+    },
+    "intervalMs": {
+      "median": 70.284,
+      "max": 216.293,
+      "min": 36.55
+    }
+  },
+  "maxReportedAgeMs": 299.500203,
+  "limitations": [
+    "Analysis日志每秒仅输出一条，不是逐次推理分布，不能据此计算真实分析FPS或完整尾延迟。",
+    "Tracking为约每秒累计的渲染状态；STALE优先于NO_FACE，过期结果不一定曾检测到人脸。",
+    "无相同场景旧版本对照，不能判断候选调度相对旧版改善或恶化。"
+  ]
+}

@@ -1,0 +1,848 @@
+Compiled from "PacketCreator.java"
+public class com.google.mediapipe.framework.PacketCreator {
+  private static final int GL_RGBA;
+
+  protected com.google.mediapipe.framework.Graph mediapipeGraph;
+
+  public com.google.mediapipe.framework.PacketCreator(com.google.mediapipe.framework.Graph);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       9: return
+
+  public com.google.mediapipe.framework.Packet createReferencePacket(com.google.mediapipe.framework.Packet);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokevirtual #19                 // Method com/google/mediapipe/framework/Packet.getNativeHandle:()J
+      12: invokespecial #22                 // Method nativeCreateReferencePacket:(JJ)J
+      15: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      18: areturn
+
+  public com.google.mediapipe.framework.Packet createRgbImage(java.nio.ByteBuffer, int, int);
+    Code:
+       0: iload_2
+       1: iconst_3
+       2: imul
+       3: iconst_3
+       4: iadd
+       5: iconst_4
+       6: idiv
+       7: iconst_4
+       8: imul
+       9: istore        4
+      11: iload         4
+      13: iload_3
+      14: imul
+      15: aload_1
+      16: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      19: if_icmpeq     64
+      22: new           #36                 // class java/lang/IllegalArgumentException
+      25: dup
+      26: new           #38                 // class java/lang/StringBuilder
+      29: dup
+      30: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      33: ldc           #41                 // String The size of the buffer should be:
+      35: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      38: iload         4
+      40: iload_3
+      41: imul
+      42: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      45: ldc           #50                 // String  but is
+      47: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      50: aload_1
+      51: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      54: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      57: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      60: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      63: athrow
+      64: aload_0
+      65: aload_0
+      66: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      69: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      72: aload_1
+      73: iload_2
+      74: iload_3
+      75: invokespecial #59                 // Method nativeCreateRgbImage:(JLjava/nio/ByteBuffer;II)J
+      78: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      81: areturn
+
+  public com.google.mediapipe.framework.Packet createAudioPacket(byte[], int, int);
+    Code:
+       0: aload_1
+       1: arraylength
+       2: iload_2
+       3: iload_3
+       4: invokestatic  #63                 // Method checkAudioDataSize:(III)V
+       7: aload_0
+       8: aload_0
+       9: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      12: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      15: aload_1
+      16: iconst_0
+      17: iload_2
+      18: iload_3
+      19: invokespecial #67                 // Method nativeCreateAudioPacket:(J[BIII)J
+      22: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      25: areturn
+
+  public com.google.mediapipe.framework.Packet createAudioPacket(java.nio.ByteBuffer, int, int);
+    Code:
+       0: aload_1
+       1: invokevirtual #71                 // Method java/nio/ByteBuffer.remaining:()I
+       4: iload_2
+       5: iload_3
+       6: invokestatic  #63                 // Method checkAudioDataSize:(III)V
+       9: aload_1
+      10: invokevirtual #74                 // Method java/nio/ByteBuffer.isDirect:()Z
+      13: ifeq          37
+      16: aload_0
+      17: aload_0
+      18: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      21: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      24: aload_1
+      25: invokevirtual #78                 // Method java/nio/ByteBuffer.slice:()Ljava/nio/ByteBuffer;
+      28: iload_2
+      29: iload_3
+      30: invokespecial #82                 // Method nativeCreateAudioPacketDirect:(JLjava/nio/ByteBuffer;II)J
+      33: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      36: areturn
+      37: aload_1
+      38: invokevirtual #85                 // Method java/nio/ByteBuffer.hasArray:()Z
+      41: ifeq          74
+      44: aload_0
+      45: aload_0
+      46: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      49: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      52: aload_1
+      53: invokevirtual #88                 // Method java/nio/ByteBuffer.array:()[B
+      56: aload_1
+      57: invokevirtual #92                 // Method java/nio/ByteBuffer.arrayOffset:()I
+      60: aload_1
+      61: invokevirtual #95                 // Method java/nio/ByteBuffer.position:()I
+      64: iadd
+      65: iload_2
+      66: iload_3
+      67: invokespecial #67                 // Method nativeCreateAudioPacket:(J[BIII)J
+      70: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      73: areturn
+      74: new           #36                 // class java/lang/IllegalArgumentException
+      77: dup
+      78: ldc           #98                 // String Data must be either a direct byte buffer or be backed by a byte array.
+      80: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      83: athrow
+
+  private static void checkAudioDataSize(int, int, int);
+    Code:
+       0: iload_1
+       1: iload_2
+       2: imul
+       3: iconst_2
+       4: imul
+       5: istore_3
+       6: iload_3
+       7: iload_0
+       8: if_icmpeq     47
+      11: new           #36                 // class java/lang/IllegalArgumentException
+      14: dup
+      15: new           #38                 // class java/lang/StringBuilder
+      18: dup
+      19: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      22: ldc           #100                // String Please check the audio data size, has to be num_channels * num_samples * 2 =
+      24: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      27: iload_3
+      28: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      31: ldc           #102                // String  but was
+      33: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      36: iload_0
+      37: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      40: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      43: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      46: athrow
+      47: return
+
+  public com.google.mediapipe.framework.Packet createRgbImageFromRgba(java.nio.ByteBuffer, int, int);
+    Code:
+       0: iload_2
+       1: iload_3
+       2: imul
+       3: iconst_4
+       4: imul
+       5: aload_1
+       6: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+       9: if_icmpeq     55
+      12: new           #36                 // class java/lang/IllegalArgumentException
+      15: dup
+      16: new           #38                 // class java/lang/StringBuilder
+      19: dup
+      20: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      23: ldc           #41                 // String The size of the buffer should be:
+      25: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      28: iload_2
+      29: iload_3
+      30: imul
+      31: iconst_4
+      32: imul
+      33: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      36: ldc           #50                 // String  but is
+      38: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      41: aload_1
+      42: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      45: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      48: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      51: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      54: athrow
+      55: aload_0
+      56: aload_0
+      57: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      60: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      63: aload_1
+      64: iload_2
+      65: iload_3
+      66: invokespecial #104                // Method nativeCreateRgbImageFromRgba:(JLjava/nio/ByteBuffer;II)J
+      69: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      72: areturn
+
+  public com.google.mediapipe.framework.Packet createGrayscaleImage(java.nio.ByteBuffer, int, int);
+    Code:
+       0: iload_2
+       1: iload_3
+       2: imul
+       3: aload_1
+       4: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+       7: if_icmpeq     51
+      10: new           #36                 // class java/lang/IllegalArgumentException
+      13: dup
+      14: new           #38                 // class java/lang/StringBuilder
+      17: dup
+      18: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      21: ldc           #41                 // String The size of the buffer should be:
+      23: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      26: iload_2
+      27: iload_3
+      28: imul
+      29: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      32: ldc           #50                 // String  but is
+      34: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      37: aload_1
+      38: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      41: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      44: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      47: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      50: athrow
+      51: aload_0
+      52: aload_0
+      53: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      56: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      59: aload_1
+      60: iload_2
+      61: iload_3
+      62: invokespecial #107                // Method nativeCreateGrayscaleImage:(JLjava/nio/ByteBuffer;II)J
+      65: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      68: areturn
+
+  public com.google.mediapipe.framework.Packet createRgbaImageFrame(java.nio.ByteBuffer, int, int);
+    Code:
+       0: aload_1
+       1: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+       4: iload_2
+       5: iload_3
+       6: imul
+       7: iconst_4
+       8: imul
+       9: if_icmpeq     55
+      12: new           #36                 // class java/lang/IllegalArgumentException
+      15: dup
+      16: new           #38                 // class java/lang/StringBuilder
+      19: dup
+      20: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      23: ldc           #41                 // String The size of the buffer should be:
+      25: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      28: iload_2
+      29: iload_3
+      30: imul
+      31: iconst_4
+      32: imul
+      33: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      36: ldc           #50                 // String  but is
+      38: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      41: aload_1
+      42: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      45: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      48: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      51: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      54: athrow
+      55: aload_0
+      56: aload_0
+      57: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      60: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      63: aload_1
+      64: iload_2
+      65: iload_3
+      66: invokespecial #110                // Method nativeCreateRgbaImageFrame:(JLjava/nio/ByteBuffer;II)J
+      69: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      72: areturn
+
+  public com.google.mediapipe.framework.Packet createFloatImageFrame(java.nio.FloatBuffer, int, int);
+    Code:
+       0: aload_1
+       1: invokevirtual #113                // Method java/nio/FloatBuffer.capacity:()I
+       4: iload_2
+       5: iload_3
+       6: imul
+       7: iconst_4
+       8: imul
+       9: if_icmpeq     55
+      12: new           #36                 // class java/lang/IllegalArgumentException
+      15: dup
+      16: new           #38                 // class java/lang/StringBuilder
+      19: dup
+      20: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      23: ldc           #41                 // String The size of the buffer should be:
+      25: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      28: iload_2
+      29: iload_3
+      30: imul
+      31: iconst_4
+      32: imul
+      33: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      36: ldc           #50                 // String  but is
+      38: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      41: aload_1
+      42: invokevirtual #113                // Method java/nio/FloatBuffer.capacity:()I
+      45: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      48: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      51: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      54: athrow
+      55: aload_0
+      56: aload_0
+      57: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      60: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      63: aload_1
+      64: iload_2
+      65: iload_3
+      66: invokespecial #116                // Method nativeCreateFloatImageFrame:(JLjava/nio/FloatBuffer;II)J
+      69: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      72: areturn
+
+  public com.google.mediapipe.framework.Packet createInt16(short);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: invokespecial #120                // Method nativeCreateInt16:(JS)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createInt32(int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: invokespecial #124                // Method nativeCreateInt32:(JI)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createInt64(long);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: lload_1
+       9: invokespecial #128                // Method nativeCreateInt64:(JJ)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createFloat32(float);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: fload_1
+       9: invokespecial #131                // Method nativeCreateFloat32:(JF)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createFloat64(double);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: dload_1
+       9: invokespecial #135                // Method nativeCreateFloat64:(JD)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createBool(boolean);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: invokespecial #139                // Method nativeCreateBool:(JZ)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createString(java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokespecial #143                // Method nativeCreateString:(JLjava/lang/String;)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createInt16Vector(short[]);
+    Code:
+       0: new           #147                // class java/lang/UnsupportedOperationException
+       3: dup
+       4: ldc           #149                // String Not implemented yet
+       6: invokespecial #151                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+       9: athrow
+
+  public com.google.mediapipe.framework.Packet createInt32Vector(int[]);
+    Code:
+       0: new           #147                // class java/lang/UnsupportedOperationException
+       3: dup
+       4: ldc           #149                // String Not implemented yet
+       6: invokespecial #151                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+       9: athrow
+
+  public com.google.mediapipe.framework.Packet createInt64Vector(long[]);
+    Code:
+       0: new           #147                // class java/lang/UnsupportedOperationException
+       3: dup
+       4: ldc           #149                // String Not implemented yet
+       6: invokespecial #151                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+       9: athrow
+
+  public com.google.mediapipe.framework.Packet createFloat32Vector(float[]);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokespecial #152                // Method nativeCreateFloat32Vector:(J[F)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createFloat64Vector(double[]);
+    Code:
+       0: new           #147                // class java/lang/UnsupportedOperationException
+       3: dup
+       4: ldc           #149                // String Not implemented yet
+       6: invokespecial #151                // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+       9: athrow
+
+  public com.google.mediapipe.framework.Packet createInt32Array(int[]);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokespecial #156                // Method nativeCreateInt32Array:(J[I)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createInt32Pair(int, int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: iload_2
+      10: invokespecial #160                // Method nativeCreateInt32Pair:(JII)J
+      13: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      16: areturn
+
+  public com.google.mediapipe.framework.Packet createFloat32Array(float[]);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokespecial #164                // Method nativeCreateFloat32Array:(J[F)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createByteArray(byte[]);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokespecial #167                // Method nativeCreateStringFromByteArray:(J[B)J
+      12: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      15: areturn
+
+  public com.google.mediapipe.framework.Packet createVideoHeader(int, int);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: iload_2
+      10: invokespecial #171                // Method nativeCreateVideoHeader:(JII)J
+      13: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      16: areturn
+
+  public com.google.mediapipe.framework.Packet createTimeSeriesHeader(int, double);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: dload_2
+      10: invokespecial #174                // Method nativeCreateTimeSeriesHeader:(JID)J
+      13: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      16: areturn
+
+  public com.google.mediapipe.framework.Packet createMatrix(int, int, float[]);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: iload_2
+      10: aload_3
+      11: invokespecial #178                // Method nativeCreateMatrix:(JII[F)J
+      14: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      17: areturn
+
+  public com.google.mediapipe.framework.Packet createSerializedProto(com.google.protobuf.MessageLite);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokeinterface #182,  1          // InterfaceMethod com/google/protobuf/MessageLite.toByteArray:()[B
+      14: invokespecial #167                // Method nativeCreateStringFromByteArray:(J[B)J
+      17: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      20: areturn
+
+  public com.google.mediapipe.framework.Packet createCalculatorOptions(com.google.protobuf.MessageLite);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokeinterface #182,  1          // InterfaceMethod com/google/protobuf/MessageLite.toByteArray:()[B
+      14: invokespecial #187                // Method nativeCreateCalculatorOptions:(J[B)J
+      17: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      20: areturn
+
+  public com.google.mediapipe.framework.Packet createProto(com.google.protobuf.MessageLite);
+    Code:
+       0: aload_1
+       1: invokestatic  #190                // Method com/google/mediapipe/framework/ProtoUtil.pack:(Lcom/google/protobuf/MessageLite;)Lcom/google/mediapipe/framework/ProtoUtil$SerializedMessage;
+       4: astore_2
+       5: aload_0
+       6: aload_0
+       7: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+      10: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+      13: aload_2
+      14: invokespecial #196                // Method nativeCreateProto:(JLcom/google/mediapipe/framework/ProtoUtil$SerializedMessage;)J
+      17: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      20: areturn
+
+  public com.google.mediapipe.framework.Packet createCameraIntrinsics(float, float, float, float, float, float);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: fload_1
+       9: fload_2
+      10: fload_3
+      11: fload         4
+      13: fload         5
+      15: fload         6
+      17: invokespecial #200                // Method nativeCreateCameraIntrinsics:(JFFFFFF)J
+      20: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      23: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(int, int, int, int, com.google.mediapipe.framework.TextureReleaseCallback, com.google.mediapipe.framework.PacketCreator$SyncMode);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: iload_1
+       9: iload_2
+      10: iload_3
+      11: iload         4
+      13: aload         5
+      15: aload         6
+      17: invokestatic  #204                // Method com/google/mediapipe/framework/PacketCreator$SyncMode.access$000:(Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)I
+      20: invokespecial #210                // Method nativeCreateGpuBuffer:(JIIIILcom/google/mediapipe/framework/TextureReleaseCallback;I)J
+      23: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      26: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(int, int, int, int, com.google.mediapipe.framework.TextureReleaseCallback);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: iload         4
+       6: aload         5
+       8: getstatic     #214                // Field com/google/mediapipe/framework/PacketCreator$SyncMode.NO_SYNC:Lcom/google/mediapipe/framework/PacketCreator$SyncMode;
+      11: invokevirtual #218                // Method createGpuBuffer:(IIIILcom/google/mediapipe/framework/TextureReleaseCallback;Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)Lcom/google/mediapipe/framework/Packet;
+      14: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(int, int, int, com.google.mediapipe.framework.TextureReleaseCallback, com.google.mediapipe.framework.PacketCreator$SyncMode);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: sipush        6408
+       7: aload         4
+       9: aload         5
+      11: invokevirtual #218                // Method createGpuBuffer:(IIIILcom/google/mediapipe/framework/TextureReleaseCallback;Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)Lcom/google/mediapipe/framework/Packet;
+      14: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(int, int, int, com.google.mediapipe.framework.TextureReleaseCallback);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: aload         4
+       6: getstatic     #214                // Field com/google/mediapipe/framework/PacketCreator$SyncMode.NO_SYNC:Lcom/google/mediapipe/framework/PacketCreator$SyncMode;
+       9: invokevirtual #222                // Method createGpuBuffer:(IIILcom/google/mediapipe/framework/TextureReleaseCallback;Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)Lcom/google/mediapipe/framework/Packet;
+      12: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(int, int, int);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: iload_2
+       3: iload_3
+       4: sipush        6408
+       7: aconst_null
+       8: invokevirtual #225                // Method createGpuBuffer:(IIIILcom/google/mediapipe/framework/TextureReleaseCallback;)Lcom/google/mediapipe/framework/Packet;
+      11: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(com.google.mediapipe.framework.TextureFrame, com.google.mediapipe.framework.PacketCreator$SyncMode);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokeinterface #228,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getTextureName:()I
+      14: aload_1
+      15: invokeinterface #233,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getWidth:()I
+      20: aload_1
+      21: invokeinterface #236,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getHeight:()I
+      26: aload_1
+      27: invokeinterface #239,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getFormat:()I
+      32: aload_1
+      33: aload_2
+      34: invokestatic  #204                // Method com/google/mediapipe/framework/PacketCreator$SyncMode.access$000:(Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)I
+      37: invokespecial #210                // Method nativeCreateGpuBuffer:(JIIIILcom/google/mediapipe/framework/TextureReleaseCallback;I)J
+      40: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      43: areturn
+
+  public com.google.mediapipe.framework.Packet createGpuBuffer(com.google.mediapipe.framework.TextureFrame);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: getstatic     #214                // Field com/google/mediapipe/framework/PacketCreator$SyncMode.NO_SYNC:Lcom/google/mediapipe/framework/PacketCreator$SyncMode;
+       5: invokevirtual #242                // Method createGpuBuffer:(Lcom/google/mediapipe/framework/TextureFrame;Lcom/google/mediapipe/framework/PacketCreator$SyncMode;)Lcom/google/mediapipe/framework/Packet;
+       8: areturn
+
+  public com.google.mediapipe.framework.Packet createImage(com.google.mediapipe.framework.TextureFrame);
+    Code:
+       0: aload_0
+       1: aload_0
+       2: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+       5: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+       8: aload_1
+       9: invokeinterface #228,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getTextureName:()I
+      14: aload_1
+      15: invokeinterface #233,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getWidth:()I
+      20: aload_1
+      21: invokeinterface #236,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getHeight:()I
+      26: aload_1
+      27: invokeinterface #239,  1          // InterfaceMethod com/google/mediapipe/framework/TextureFrame.getFormat:()I
+      32: aload_1
+      33: invokespecial #245                // Method nativeCreateGpuImage:(JIIIILcom/google/mediapipe/framework/TextureReleaseCallback;)J
+      36: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+      39: areturn
+
+  public com.google.mediapipe.framework.Packet createImage(java.nio.ByteBuffer, int, int, int);
+    Code:
+       0: iload         4
+       2: iconst_4
+       3: if_icmpne     14
+       6: iload_2
+       7: iconst_4
+       8: imul
+       9: istore        5
+      11: goto          74
+      14: iload         4
+      16: iconst_3
+      17: if_icmpne     34
+      20: iload_2
+      21: iconst_3
+      22: imul
+      23: iconst_3
+      24: iadd
+      25: iconst_4
+      26: idiv
+      27: iconst_4
+      28: imul
+      29: istore        5
+      31: goto          74
+      34: iload         4
+      36: iconst_1
+      37: if_icmpne     46
+      40: iload_2
+      41: istore        5
+      43: goto          74
+      46: new           #36                 // class java/lang/IllegalArgumentException
+      49: dup
+      50: new           #38                 // class java/lang/StringBuilder
+      53: dup
+      54: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+      57: ldc           #249                // String Channels should be: 1, 3, or 4, but is
+      59: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      62: iload         4
+      64: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      67: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      70: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      73: athrow
+      74: iload         5
+      76: iload_3
+      77: imul
+      78: istore        6
+      80: aload_1
+      81: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+      84: iload         6
+      86: if_icmpeq     129
+      89: new           #36                 // class java/lang/IllegalArgumentException
+      92: dup
+      93: new           #38                 // class java/lang/StringBuilder
+      96: dup
+      97: invokespecial #40                 // Method java/lang/StringBuilder."<init>":()V
+     100: ldc           #41                 // String The size of the buffer should be:
+     102: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     105: iload         6
+     107: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     110: ldc           #50                 // String  but is
+     112: invokevirtual #43                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     115: aload_1
+     116: invokevirtual #30                 // Method java/nio/ByteBuffer.capacity:()I
+     119: invokevirtual #47                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     122: invokevirtual #52                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     125: invokespecial #56                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     128: athrow
+     129: aload_0
+     130: aload_0
+     131: getfield      #7                  // Field mediapipeGraph:Lcom/google/mediapipe/framework/Graph;
+     134: invokevirtual #13                 // Method com/google/mediapipe/framework/Graph.getNativeHandle:()J
+     137: aload_1
+     138: iload_2
+     139: iload_3
+     140: iload         5
+     142: iload         4
+     144: invokespecial #251                // Method nativeCreateCpuImage:(JLjava/nio/ByteBuffer;IIII)J
+     147: invokestatic  #26                 // Method com/google/mediapipe/framework/Packet.create:(J)Lcom/google/mediapipe/framework/Packet;
+     150: areturn
+
+  private void releaseWithSyncToken(long, com.google.mediapipe.framework.TextureReleaseCallback);
+    Code:
+       0: aload_3
+       1: new           #255                // class com/google/mediapipe/framework/GraphGlSyncToken
+       4: dup
+       5: lload_1
+       6: invokespecial #257                // Method com/google/mediapipe/framework/GraphGlSyncToken."<init>":(J)V
+       9: invokeinterface #260,  2          // InterfaceMethod com/google/mediapipe/framework/TextureReleaseCallback.release:(Lcom/google/mediapipe/framework/GlSyncToken;)V
+      14: return
+
+  private native long nativeCreateReferencePacket(long, long);
+
+  private native long nativeCreateAudioPacket(long, byte[], int, int, int);
+
+  private native long nativeCreateAudioPacketDirect(long, java.nio.ByteBuffer, int, int);
+
+  private native long nativeCreateRgbImageFromRgba(long, java.nio.ByteBuffer, int, int);
+
+  private native long nativeCreateRgbImage(long, java.nio.ByteBuffer, int, int);
+
+  private native long nativeCreateGrayscaleImage(long, java.nio.ByteBuffer, int, int);
+
+  private native long nativeCreateRgbaImageFrame(long, java.nio.ByteBuffer, int, int);
+
+  private native long nativeCreateFloatImageFrame(long, java.nio.FloatBuffer, int, int);
+
+  private native long nativeCreateInt16(long, short);
+
+  private native long nativeCreateInt32(long, int);
+
+  private native long nativeCreateInt64(long, long);
+
+  private native long nativeCreateFloat32(long, float);
+
+  private native long nativeCreateFloat64(long, double);
+
+  private native long nativeCreateBool(long, boolean);
+
+  private native long nativeCreateString(long, java.lang.String);
+
+  private native long nativeCreateVideoHeader(long, int, int);
+
+  private native long nativeCreateTimeSeriesHeader(long, int, double);
+
+  private native long nativeCreateMatrix(long, int, int, float[]);
+
+  private native long nativeCreateGpuBuffer(long, int, int, int, int, com.google.mediapipe.framework.TextureReleaseCallback, int);
+
+  private native long nativeCreateGpuImage(long, int, int, int, int, com.google.mediapipe.framework.TextureReleaseCallback);
+
+  private native long nativeCreateCpuImage(long, java.nio.ByteBuffer, int, int, int, int);
+
+  private native long nativeCreateInt32Array(long, int[]);
+
+  private native long nativeCreateInt32Pair(long, int, int);
+
+  private native long nativeCreateFloat32Array(long, float[]);
+
+  private native long nativeCreateFloat32Vector(long, float[]);
+
+  private native long nativeCreateStringFromByteArray(long, byte[]);
+
+  private native long nativeCreateProto(long, com.google.mediapipe.framework.ProtoUtil$SerializedMessage);
+
+  private native long nativeCreateCalculatorOptions(long, byte[]);
+
+  private native long nativeCreateCameraIntrinsics(long, float, float, float, float, float, float);
+}

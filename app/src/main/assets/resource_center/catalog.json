@@ -1,0 +1,797 @@
+{
+  "resourceCatalogVersion": 1,
+  "resources": [
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lash_natural",
+        "revision": 1,
+        "category": "MAKEUP",
+        "subcategory": "EYELASH",
+        "slot": "makeup.eyelash",
+        "defaultLocale": "zh-CN",
+        "name": "自然款睫毛",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.eyelash.texture.v1",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.eyelashes"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lash_natural_1.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lash_natural_1.png",
+      "bytes": 29342,
+      "sha256": "63ebb3ab3151d8f08e1a026f11fd573db6f56f77bb562215fbf855fccee9b810"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lash_dense",
+        "revision": 1,
+        "category": "MAKEUP",
+        "subcategory": "EYELASH",
+        "slot": "makeup.eyelash",
+        "defaultLocale": "zh-CN",
+        "name": "浓密款睫毛",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.eyelash.texture.v1",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.eyelashes"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lash_dense_1.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lash_dense_1.png",
+      "bytes": 45517,
+      "sha256": "85e5b656d25af084306b902e0a5b3aa43ab430cf21fb39d6ffcdee4bfd2224ae"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lash_cat",
+        "revision": 1,
+        "category": "MAKEUP",
+        "subcategory": "EYELASH",
+        "slot": "makeup.eyelash",
+        "defaultLocale": "zh-CN",
+        "name": "眼尾款睫毛",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.eyelash.texture.v1",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.eyelashes"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lash_cat_1.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lash_cat_1.png",
+      "bytes": 37783,
+      "sha256": "9e7d058eccfdc72ba8825a2a721c2bf6528f65564ad95a6a77c7ca44df2ae782"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "beauty_daily",
+        "revision": 2,
+        "category": "BEAUTY",
+        "subcategory": "PRESET",
+        "slot": "beauty",
+        "defaultLocale": "zh-CN",
+        "name": "日常美颜",
+        "description": "适中的磨皮与提亮，轻微红润。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "beauty.parameters.v1"
+          ]
+        },
+        "scope": [
+          "beauty.smoothing",
+          "beauty.whitening",
+          "beauty.rosy"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/beauty_daily_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/beauty_daily_2.png",
+      "bytes": 7152,
+      "sha256": "f879ddd78c7c8ed8c461ba0af3c23dc01b24f1ba9d4f76bda9707ac025f99a52"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "beauty_clear",
+        "revision": 2,
+        "category": "BEAUTY",
+        "subcategory": "PRESET",
+        "slot": "beauty",
+        "defaultLocale": "zh-CN",
+        "name": "清透美颜",
+        "description": "低强度磨皮，保留更多皮肤细节。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "beauty.parameters.v1"
+          ]
+        },
+        "scope": [
+          "beauty.smoothing",
+          "beauty.whitening",
+          "beauty.rosy"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/beauty_clear_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/beauty_clear_2.png",
+      "bytes": 7967,
+      "sha256": "16bafc9ffe927b798b99e67d36e3222e19df892f90d13125856d310c12a6dfda"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "beauty_soft",
+        "revision": 2,
+        "category": "BEAUTY",
+        "subcategory": "PRESET",
+        "slot": "beauty",
+        "defaultLocale": "zh-CN",
+        "name": "柔光美颜",
+        "description": "较柔和的肤质与提亮，适合对比测试。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "beauty.parameters.v1"
+          ]
+        },
+        "scope": [
+          "beauty.smoothing",
+          "beauty.whitening",
+          "beauty.rosy"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/beauty_soft_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/beauty_soft_2.png",
+      "bytes": 7860,
+      "sha256": "ce13e9fcf4cf1d03cdd949b63b915ee59a1e8088c337296c163e1b5f82674835"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "reshape_natural",
+        "revision": 2,
+        "category": "RESHAPE",
+        "subcategory": "PRESET",
+        "slot": "reshape",
+        "defaultLocale": "zh-CN",
+        "name": "自然美型",
+        "description": "轻度瘦脸、大眼与瘦鼻。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "reshape.parameters.v1"
+          ]
+        },
+        "scope": [
+          "reshape.slimFace",
+          "reshape.bigEyes",
+          "reshape.slimNose",
+          "reshape.chinLength",
+          "reshape.mouthSize"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/reshape_natural_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/reshape_natural_2.png",
+      "bytes": 7474,
+      "sha256": "a170ad622c945156081ae12cdc9473fe0f1008f51735c13948bde9e7f888b2c1"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "reshape_refined",
+        "revision": 2,
+        "category": "RESHAPE",
+        "subcategory": "PRESET",
+        "slot": "reshape",
+        "defaultLocale": "zh-CN",
+        "name": "精致轮廓",
+        "description": "增强轮廓，微调下巴与嘴型。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "reshape.parameters.v1"
+          ]
+        },
+        "scope": [
+          "reshape.slimFace",
+          "reshape.bigEyes",
+          "reshape.slimNose",
+          "reshape.chinLength",
+          "reshape.mouthSize"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/reshape_refined_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/reshape_refined_2.png",
+      "bytes": 8190,
+      "sha256": "59769dbde2d47040efb6b2135a1b41eb1a3e2beb44b38e42da580de723cbc90c"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "reshape_gentle",
+        "revision": 2,
+        "category": "RESHAPE",
+        "subcategory": "PRESET",
+        "slot": "reshape",
+        "defaultLocale": "zh-CN",
+        "name": "柔和比例",
+        "description": "轻微调整比例，避免过大位移。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "reshape.parameters.v1"
+          ]
+        },
+        "scope": [
+          "reshape.slimFace",
+          "reshape.bigEyes",
+          "reshape.slimNose",
+          "reshape.chinLength",
+          "reshape.mouthSize"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/reshape_gentle_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/reshape_gentle_2.png",
+      "bytes": 7464,
+      "sha256": "1b76dde4f72a5a35a9452e6472bc65161de070fc1b014ad5c698ca82aa9d61de"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lipstick_daily",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "LIPSTICK",
+        "slot": "makeup.lipstick",
+        "defaultLocale": "zh-CN",
+        "name": "日常唇色",
+        "description": "当前 SDK 口红效果的日常强度预设。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.lipstick"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lipstick_daily_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lipstick_daily_2.png",
+      "bytes": 6556,
+      "sha256": "4a1150963837f62d183e1c3c57b0bdaf88814ebdb8aeba00c48d0659be993baa"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lipstick_light",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "LIPSTICK",
+        "slot": "makeup.lipstick",
+        "defaultLocale": "zh-CN",
+        "name": "轻透唇色",
+        "description": "较低口红强度，适合自然妆测试。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.lipstick"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lipstick_light_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lipstick_light_2.png",
+      "bytes": 7480,
+      "sha256": "5cc4482cb1fa2b25c9cdd50f34195b50abb0c26518fd651b4005fe81c3b5780d"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lipstick_defined",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "LIPSTICK",
+        "slot": "makeup.lipstick",
+        "defaultLocale": "zh-CN",
+        "name": "鲜明唇色",
+        "description": "较高口红强度，不包含独立色号或纹理。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.lipstick"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/lipstick_defined_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/lipstick_defined_2.png",
+      "bytes": 7074,
+      "sha256": "c285c17c285a1691dccf643128500feddacdbb7f82e75e310c1532883af528c4"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "blusher_soft",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "BLUSHER",
+        "slot": "makeup.blusher",
+        "defaultLocale": "zh-CN",
+        "name": "轻柔腮红",
+        "description": "低强度腮红，保持柔和过渡。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.blusher"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/blusher_soft_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/blusher_soft_2.png",
+      "bytes": 7499,
+      "sha256": "ac2d290305569c15080469bf4a1b603d84ec19381711bc00d91cb253f1a072d5"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "blusher_light",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "BLUSHER",
+        "slot": "makeup.blusher",
+        "defaultLocale": "zh-CN",
+        "name": "清淡腮红",
+        "description": "微弱腮红强度，便于与原图比较。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.blusher"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/blusher_light_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/blusher_light_2.png",
+      "bytes": 7647,
+      "sha256": "dbd454abc42d05b018e14ff93eadd496d8530227f7981fff3411c0a57c4c7153"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "blusher_fresh",
+        "revision": 2,
+        "category": "MAKEUP",
+        "subcategory": "BLUSHER",
+        "slot": "makeup.blusher",
+        "defaultLocale": "zh-CN",
+        "name": "元气腮红",
+        "description": "中等腮红强度，用于观察位置与过渡。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.blusher"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/blusher_fresh_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/blusher_fresh_2.png",
+      "bytes": 6870,
+      "sha256": "7ec926893c181ba4d5dfe5739ca4d64bc18bed22b1de6adb04f110d6388924a4"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "filter_soft",
+        "revision": 2,
+        "category": "FILTER",
+        "subcategory": "PRESET",
+        "slot": "filter",
+        "defaultLocale": "zh-CN",
+        "name": "柔和调色",
+        "description": "轻微提亮、增强色彩。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "filter.basic.v1"
+          ]
+        },
+        "scope": [
+          "color.brightness",
+          "color.contrast",
+          "color.saturation",
+          "color.sharpening"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/filter_soft_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/filter_soft_2.png",
+      "bytes": 7499,
+      "sha256": "9dd54906a23b2d6ca7fb1fea4fba3c2e311fa416c21415bc826fff4b2077bfc5"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "filter_clear",
+        "revision": 2,
+        "category": "FILTER",
+        "subcategory": "PRESET",
+        "slot": "filter",
+        "defaultLocale": "zh-CN",
+        "name": "清晰调色",
+        "description": "适当增强对比与锐度。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "filter.basic.v1"
+          ]
+        },
+        "scope": [
+          "color.brightness",
+          "color.contrast",
+          "color.saturation",
+          "color.sharpening"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/filter_clear_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/filter_clear_2.png",
+      "bytes": 7472,
+      "sha256": "2c500fb5119b4ecf33949d6da0ce6c5cfa52e8cbf865ad582843cde56c37ccb7"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "filter_muted",
+        "revision": 2,
+        "category": "FILTER",
+        "subcategory": "PRESET",
+        "slot": "filter",
+        "defaultLocale": "zh-CN",
+        "name": "柔淡调色",
+        "description": "降低对比与饱和度。",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "filter.basic.v1"
+          ]
+        },
+        "scope": [
+          "color.brightness",
+          "color.contrast",
+          "color.saturation",
+          "color.sharpening"
+        ]
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/filter_muted_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/filter_muted_2.png",
+      "bytes": 7998,
+      "sha256": "22a6a1cf97954faf0489dc2951537ac795a6d3591bf2fe5056b1aa774aaf95e5"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "background_scene",
+        "revision": 1,
+        "category": "BACKGROUND",
+        "subcategory": "PRESET",
+        "slot": "background",
+        "defaultLocale": "zh-CN",
+        "name": "山岚背景",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "background.v1",
+            "segmentation"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/background_scene_1.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/background_scene_1.png",
+      "bytes": 32466,
+      "sha256": "6af06619627661a3ce178ccd071668d2b3d73c14d4dab9547aace9755116ff44"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "blue_top_hat",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "HAT",
+        "slot": "sticker.hat",
+        "defaultLocale": "zh-CN",
+        "name": "Blue top hat",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/blue_top_hat_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/blue_top_hat_2.png",
+      "bytes": 24455,
+      "sha256": "522b85c43711003da190f5824ae386c5cef24d139b7462030734934b47d9d49d"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "cat_ears",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "HAT",
+        "slot": "sticker.hat",
+        "defaultLocale": "zh-CN",
+        "name": "Cat ears",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/cat_ears_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/cat_ears_2.png",
+      "bytes": 42453,
+      "sha256": "aab487b93fe2439a19cc0233ff8a91c135d8577bad80e045b7d1f0be95a034e4"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "curled_moustache",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "MOUSTACHE",
+        "slot": "sticker.moustache",
+        "defaultLocale": "zh-CN",
+        "name": "Curled moustache",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/curled_moustache_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/curled_moustache_2.png",
+      "bytes": 34397,
+      "sha256": "6042c8136bdd70766cb1b92857c1febe57da74445793ef48cf75d024e438b0e6"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "gold_crown",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "HAT",
+        "slot": "sticker.hat",
+        "defaultLocale": "zh-CN",
+        "name": "Gold crown",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/gold_crown_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/gold_crown_2.png",
+      "bytes": 42593,
+      "sha256": "db5f782daf1c108563bde334f9dfdfc275b30c87cb6464143dc1b9616cdcefad"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "heart_glasses",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "GLASSES",
+        "slot": "sticker.glasses",
+        "defaultLocale": "zh-CN",
+        "name": "Heart glasses",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/heart_glasses_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/heart_glasses_2.png",
+      "bytes": 42294,
+      "sha256": "f561227751f04181a6e1bafb500a5a4cb4127dafd47f91c489cf533bc491ceba"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "motion_scene",
+        "revision": 1,
+        "category": "MOTION",
+        "subcategory": "PRESET",
+        "slot": "motion",
+        "defaultLocale": "zh-CN",
+        "name": "轻推近",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "motion.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/motion_scene_1.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/motion_scene_1.png",
+      "bytes": 17161,
+      "sha256": "b03248dc783b761fa88e0334f3cb598eee48809c16fb1798d3373f5a9b13daab"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "round_glasses",
+        "revision": 2,
+        "category": "STICKER",
+        "subcategory": "GLASSES",
+        "slot": "sticker.glasses",
+        "defaultLocale": "zh-CN",
+        "name": "Round glasses",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "sticker.png.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/round_glasses_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/round_glasses_2.png",
+      "bytes": 39014,
+      "sha256": "48d62cc3d47c12de6c40fab3ede5fdea123bff1411d8ce3d071c29f00178cee6"
+    },
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "daily_theme",
+        "revision": 2,
+        "category": "THEME",
+        "subcategory": "PRESET",
+        "slot": "theme",
+        "defaultLocale": "zh-CN",
+        "name": "日常组合",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "beauty.parameters.v1",
+            "face.landmarks478",
+            "makeup.eyelash.texture.v1",
+            "makeup.parameters.v1",
+            "theme.v1"
+          ]
+        },
+        "scope": []
+      },
+      "url": "https://beautystickerworkshop.pages.dev/resources/daily_theme_2.zip",
+      "previewUrl": "https://beautystickerworkshop.pages.dev/resources/daily_theme_2.png",
+      "bytes": 51370,
+      "sha256": "11805e0fa5100f15eecb4c059eb8ff3e4bd33bf1cc630e299e38a7a6e44bd8bc"
+    }
+  ]
+}

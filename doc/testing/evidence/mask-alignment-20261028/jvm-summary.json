@@ -1,0 +1,16 @@
+[
+  {
+    "module": "core/lib_beauty",
+    "tests": 119,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "module": "feature/feature_app",
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+]

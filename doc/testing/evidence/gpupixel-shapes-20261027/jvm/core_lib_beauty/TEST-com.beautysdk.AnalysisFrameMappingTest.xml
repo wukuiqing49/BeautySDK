@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.AnalysisFrameMappingTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:15.923Z" time="0.037">
+  <properties />
+  <testcase name="regionsRejectInvalidAndNonFiniteValues" classname="com.beautysdk.AnalysisFrameMappingTest" time="0.013" />
+  <testcase name="mappedSessionPreservesAgeCachesCoordinatesAndInvalidatesResolutionChanges" classname="com.beautysdk.AnalysisFrameMappingTest" time="0.022" />
+  <testcase name="cropAndLetterboxUseExplicitRegions" classname="com.beautysdk.AnalysisFrameMappingTest" time="0.001" />
+  <testcase name="cropDropsOutsideFacesAndAnchorsWithoutClampingThem" classname="com.beautysdk.AnalysisFrameMappingTest" time="0.0" />
+  <testcase name="everyRotationAndMirrorMapsToTargetRawCoordinates" classname="com.beautysdk.AnalysisFrameMappingTest" time="0.0" />
+  <system-out />
+  <system-err />
+</testsuite>

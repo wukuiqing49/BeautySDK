@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android 项目脚手架"
+  short_description: "按 app/core/feature 技能生成工程并创建 core/lib_beauty"
+  default_prompt: "使用 $android-project-scaffold-workflow 按项目脚手架创建工程，将美颜 SDK 放入 core/lib_beauty，并验证库与宿主。"

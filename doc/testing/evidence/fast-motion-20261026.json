@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-26",
+  "case": "FAST-MOTION-01",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerPoseSmoother.kt": "9f6b8a505bf09386c79b86b539687369e952dd15bade570905252d0076ee7659",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEnginePipeline.kt": "85f9878942196e6c06f6f9efae8ed3b01f4706851327e419db70494ad6dd6bd5",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeFaceMotion.kt": "4a6242253b50feb08644d814859e1c7c3632375aa8491799c5da7a7cd4428857",
+    "core/lib_beauty_mediapipe/src/main/cpp/face_motion.cpp": "8d99bc42018739fac7d174453c185c99ae073580f753935853766f73b73d6eda",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerPoseSmootherTest.kt": "7820b2cd43427993da09881e0656ffb2095bfbeb3db1a44be7608b242c945882",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyRuntimeTest.kt": "8772b52991b45232882ab8beb9238fc0597adaa28aa4bdae814aa58f79ac8388",
+    "app/src/androidTest/java/com/beautysdk/demo/FaceMotionDeviceTest.kt": "2277ad535c34df2ff76e520394a3b9c3f62bddb12763e0ae2403875f5ef0f944"
+  },
+  "unit": {
+    "core": 76,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "new": 2
+  },
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "tests": 6,
+    "failures": 0,
+    "seconds": 1.84,
+    "classes": [
+      "FaceMotionDeviceTest",
+      "TextureBridgeDeviceTest"
+    ],
+    "fixture": "Public fixed portrait with real model landmarks; known 3/2 and 18/8 gray-pixel shifts; blank rejection. GL fixtures for 2D/OES/connector."
+  },
+  "nativeTiming": {
+    "samplesPerCase": 15,
+    "smallShiftMeanMs": 3.7748968666666665,
+    "smallShiftMaxMs": 5.90511,
+    "largeShiftMeanMs": 5.3674750666666675,
+    "largeShiftMaxMs": 9.808472,
+    "scope": "fixture estimate() call only, not full pipeline latency or sustained performance; no before/after speed claim"
+  },
+  "build": {
+    "coreRelease": "passed",
+    "mediaPipeRelease": "passed",
+    "nativeABIs": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "appAndTestApk": "passed",
+    "mainSeconds": 186,
+    "finalUnitSeconds": 29,
+    "nativeReleaseSeconds": 23
+  },
+  "checks": {
+    "agentStructure": "passed",
+    "agentConfig": "passed",
+    "architectureWarnings": 0
+  },
+  "logs": [
+    "build/fast-motion-build.log",
+    "build/fast-motion-unit-final.log",
+    "build/fast-motion-device.log",
+    "build/fast-motion-native-release.log"
+  ],
+  "limits": [
+    "No live quick head-turn/thermal acceptance",
+    "No real vendor adapter or remote streaming",
+    "No 3D sticker perspective or occlusion",
+    "No full app lint/UI regression or 16KB runtime verification"
+  ]
+}

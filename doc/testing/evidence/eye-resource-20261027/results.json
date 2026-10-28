@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-27",
+  "sourceFingerprint": "848797231380dfb668649fd8da2495df5fc3b159548f10263cd5a4798e145a0f",
+  "jvmPassed": {
+    "lib_beauty": 85,
+    "lib_beauty_gpupixel": 4
+  },
+  "pixel8DevicePassed": 13,
+  "deviceSeconds": 5.329,
+  "webPassed": 18,
+  "ios": "not compiled or run on Windows",
+  "notVerified": [
+    "real blink/side profile/occlusion quality",
+    "sustained thermal/performance",
+    "vendor live engine",
+    "Pages deployment"
+  ]
+}

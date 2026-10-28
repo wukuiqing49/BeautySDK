@@ -1,0 +1,5 @@
+--------- beginning of main
+10-28 14:30:38.134  8511  8686 D BeautyMaskAge: sourceAgeMs=null ready=false
+10-28 14:30:38.214  8511  8752 D BeautySegmentation: execution=GPU n=11 copyMeanMs=0.7975814545454546 queueMaxMs=9.487752 prepareMaxMs=84.658366 inferMeanMs=16.317109090909092 inferMaxMs=20.17867 completedIntervalMaxMs=115.697835
+10-28 14:30:39.136  8511  8686 D BeautyMaskAge: sourceAgeMs=41.596476 ready=true
+10-28 14:30:40.807  8511  8826 D BeautyMaskAge: sourceAgeMs=null ready=false

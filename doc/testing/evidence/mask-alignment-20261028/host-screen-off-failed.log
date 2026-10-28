@@ -1,0 +1,171 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SceneControlsDeviceTest:
+INSTRUMENTATION_STATUS: test=controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneControlsDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Final settings did not reach expected state
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory$waitFor(SceneControlsDeviceTest.kt:29)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(SceneControlsDeviceTest.kt:43)
+
+INSTRUMENTATION_STATUS: stream=
+Error in controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(com.beautysdk.demo.SceneControlsDeviceTest):
+java.lang.AssertionError: Final settings did not reach expected state
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory$waitFor(SceneControlsDeviceTest.kt:29)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(SceneControlsDeviceTest.kt:43)
+
+INSTRUMENTATION_STATUS: test=controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ScenePersistenceDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ScenePersistenceDeviceTest:
+INSTRUMENTATION_STATUS: test=manualSceneParametersAndOffSurviveReopenAndReachCamera
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ScenePersistenceDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Restored background must reach actual camera renderer
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.ScenePersistenceDeviceTest.manualSceneParametersAndOffSurviveReopenAndReachCamera(ScenePersistenceDeviceTest.kt:59)
+
+INSTRUMENTATION_STATUS: stream=
+Error in manualSceneParametersAndOffSurviveReopenAndReachCamera(com.beautysdk.demo.ScenePersistenceDeviceTest):
+java.lang.AssertionError: Restored background must reach actual camera renderer
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.ScenePersistenceDeviceTest.manualSceneParametersAndOffSurviveReopenAndReachCamera(ScenePersistenceDeviceTest.kt:59)
+
+INSTRUMENTATION_STATUS: test=manualSceneParametersAndOffSurviveReopenAndReachCamera
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SceneDeviceTest:
+INSTRUMENTATION_STATUS: test=realModelReturnsBoundedMaskAndResetInvalidatesIt
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realModelReturnsBoundedMaskAndResetInvalidatesIt
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=uncertainEdgesKeepSoftAlphaAndMaskUpdatesReachSameTexture
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=uncertainEdgesKeepSoftAlphaAndMaskUpdatesReachSameTexture
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=publicPortraitExportsActualGlCompositeForEdgeReview
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=publicPortraitExportsActualGlCompositeForEdgeReview
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=textureOnlyBridgePreservesSourceGeometryForSegmentation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=textureOnlyBridgePreservesSourceGeometryForSegmentation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=backgroundPixelsMotionAndState
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=backgroundPixelsMotionAndState
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=lowResolutionMaskKeepsColorEdgeAndBlurDoesNotBleedForeground
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=lowResolutionMaskKeepsColorEdgeAndBlurDoesNotBleedForeground
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oesInputCompositesBackgroundAndMotion
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SceneDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=9
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=oesInputCompositesBackgroundAndMotion
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 34.677
+There were 2 failures:
+1) controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(com.beautysdk.demo.SceneControlsDeviceTest)
+java.lang.AssertionError: Final settings did not reach expected state
+	at org.junit.Assert.fail(Assert.java:89)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory$waitFor(SceneControlsDeviceTest.kt:29)
+	at com.beautysdk.demo.SceneControlsDeviceTest.controlsAndRapidEditsReachFinalSettingsAndResetOnlyCurrentCategory(SceneControlsDeviceTest.kt:43)
+2) manualSceneParametersAndOffSurviveReopenAndReachCamera(com.beautysdk.demo.ScenePersistenceDeviceTest)
+java.lang.AssertionError: Restored background must reach actual camera renderer
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.ScenePersistenceDeviceTest.manualSceneParametersAndOffSurviveReopenAndReachCamera(ScenePersistenceDeviceTest.kt:59)
+
+FAILURES!!!
+Tests run: 9,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

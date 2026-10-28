@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.UnifiedInputTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:16.262Z" time="0.011">
+  <properties />
+  <testcase name="latestPendingReplacesIntermediateFramesWithoutOverwritingActiveInput" classname="com.beautysdk.UnifiedInputTest" time="0.004" />
+  <testcase name="publicSessionSharesSmallAnalysisWithLargeTextureWithoutInventingDimensions" classname="com.beautysdk.UnifiedInputTest" time="0.005" />
+  <testcase name="engineCanReleaseSourceImmediatelyAndWorkerUsesDirectRgba" classname="com.beautysdk.UnifiedInputTest" time="0.001" />
+  <testcase name="resetDropsPendingAndOldCompletion" classname="com.beautysdk.UnifiedInputTest" time="0.001" />
+  <system-out />
+  <system-err />
+</testsuite>

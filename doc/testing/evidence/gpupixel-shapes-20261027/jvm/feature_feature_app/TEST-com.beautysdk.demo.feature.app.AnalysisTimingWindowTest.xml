@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="com.beautysdk.demo.feature.app.AnalysisTimingWindowTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-27T05:46:17.267Z" time="0.045">
+  <properties />
+  <testcase name="recordsSlowFramesAndMissingBackendWithoutPretendingZero" classname="com.beautysdk.demo.feature.app.AnalysisTimingWindowTest" time="0.045" />
+  <system-out />
+  <system-err />
+</testsuite>

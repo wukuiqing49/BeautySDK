@@ -1,0 +1,255 @@
+{
+  "runId": "rgb-align-fix-20261027",
+  "date": "2026-10-27",
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "variant": "debug",
+    "versionName": "0.1.0",
+    "versionCode": 1000,
+    "otherDevicesTouched": false
+  },
+  "sourceFingerprint": "8d4c184d35e2aeb3ed89ef683405eef6eca80060a7dbac417b3eefde4152d373",
+  "instrumentation": {
+    "tests": 50,
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 67.449,
+    "cases": {
+      "com.beautysdk.demo.BeautyDeviceTest#rfbDetectsActualPortraitWithoutInventingLandmarks": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#nativeRgbaMatchesReferenceForAllOrientationsAndStride": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#mediaPipeDetectsActualPortraitAndReleases": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#glMatchesCpuAndRestoresHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoLoadsAllSixPngAssetsAndCompositesActualPortrait": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#asyncCameraCadenceKeepsStickersThenHidesExpiredResults": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.BeautyDeviceTest#demoUiRendersImageAndFrameCheck": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#cameraPageProducesProcessedImageAndStopClearsIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraDeviceTest#frontBackFramesRestartAndStop": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.CameraStickerPersistenceDeviceTest#reopenRestoresStylesAndClearRemainsCleared": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#imageControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#cameraControlsScrollWithoutHidingProcessedPreview": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.DemoLayoutDeviceTest#stickerCardsKeepSelectionAndPreviewsSwap": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#webResourcesMergeByTypeAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.EffectResourceDeviceTest#invalidV2DoesNotSilentlyFallBack": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.FaceMotionDeviceTest#nativeMotionTracksPortraitTranslationAndRejectsBlankFrame": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelControlsDeviceTest#extendedControlUpdatesAndCameraUsesGpuPixel": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#oesReshapeAndColorUseSharedTextureContract": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#texturePipelinePreservesTransformAlphaAndHostState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.GpuPixelDeviceTest#extendedColorAndReshapeChangePixelsAndRespectMissingFace": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.HomeNavigationDeviceTest#homeEntriesOpenCameraWorkshopAndDiagnostics": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#cameraGpuOptionProducesAnalysisWhileRendering": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeDelegateDeviceTest#compareCpuGpuOnSameDirectInput": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#directRgbaSupportsAlignedAndNonAlignedWidths": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#compactRgbSupportsAlignedAndNonAlignedWidths": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#alignedInputMatchesReferencePixelsAndReusesBuffers": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.MediaPipeInputContractDeviceTest#cpuGpuDetectOddPortraitOnBothEntrypoints": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ResolutionDeviceTest#glReallocatesOutputAcrossResolutions": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneControlsDeviceTest#sceneControlsDriveSharedPipelineAndReset": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#realModelReturnsBoundedMaskAndResetInvalidatesIt": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#textureOnlyBridgePreservesSourceGeometryForSegmentation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#backgroundPixelsMotionAndState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SceneDeviceTest#oesInputCompositesBackgroundAndMotion": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.SheetScrollDeviceTest#beautyAndWorkshopScrollWithoutDraggingSheet": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#privateDraftRestoresDisabledAndLateLoadCannotUndoClear": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#workshopUiEditsExportsImportsAndRetainsStateOnRecreation": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#invalidPathsMissingImagesVersionsAndOversizedEntriesAreRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#saveReloadUsesPersistedImagesAndEditedManifest": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.StickerResourceDeviceTest#sixSamplesRoundTripEditedLayoutAndReusePixels": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#texture2dDownsamplesTransformsAndRestoresState": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#unifiedEngineCallbackProcessesAndWritesTexture": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#oesSurfaceInputCanGenerateDetectionSmallImage": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.TextureBridgeDeviceTest#staleAndGeometryChangedReadbacksAreDiscarded": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeDemoDeviceTest#importReopenRejectAndClearCompleteTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#completeThemeCapabilitiesSettingsAndRoundTrip": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#malformedThemeAndWrongChildCategoryRejected": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#absentCategoriesResetAndDoNotInheritPreviousTheme": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.ThemeResourceDeviceTest#nestedPixelBudgetRejectedBeforeDecode": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#browserDownloadedHatLoadsWithEditedMetadata": {
+        "status": "passed",
+        "statusCode": 0
+      },
+      "com.beautysdk.demo.WebStickerPackDeviceTest#webExportedSixPacksLoadUsingPublicSdk": {
+        "status": "passed",
+        "statusCode": 0
+      }
+    }
+  },
+  "jvm": {
+    "core/lib_beauty": {
+      "tests": 83,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "feature/feature_app": {
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 125,
+    "Fatal": 0
+  },
+  "builds": [
+    "MediaPipe Release AAR (4 ABI)",
+    "app Debug",
+    "app Debug AndroidTest"
+  ],
+  "nativeElf": "Changed library PT_LOAD >=16KiB in 4 ABI; runtime 16KiB not tested",
+  "settingsRestored": true,
+  "fixed": "PX8-RGB-ALIGN-01",
+  "limits": [
+    "No real person motion/sticker/segmentation visual acceptance",
+    "No sustained three-pipeline performance benchmark",
+    "No vendor SDK or remote encoding test",
+    "No 16KiB-device runtime or host release/R8 test"
+  ]
+}

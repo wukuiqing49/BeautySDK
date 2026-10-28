@@ -1,0 +1,22 @@
+
+com.beautysdk.demo.LabHierarchyDeviceTest:..
+com.beautysdk.demo.CallbackDisplayDeviceTest:..
+com.beautysdk.demo.LabInteractionDeviceTest:.
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.SheetScrollDeviceTest:.
+com.beautysdk.demo.DemoLayoutDeviceTest:...
+com.beautysdk.demo.SceneControlsDeviceTest:.
+com.beautysdk.demo.GpuPixelControlsDeviceTest:.
+com.beautysdk.demo.HomeNavigationDeviceTest:.
+com.beautysdk.demo.ResourceCenterUiDeviceTest:...
+com.beautysdk.demo.ResourceCenterDeviceTest:..........
+com.beautysdk.demo.ResourceDeliveryDeviceTest:...
+com.beautysdk.demo.ThemeDemoDeviceTest:.
+com.beautysdk.demo.CameraStickerPersistenceDeviceTest:.
+com.beautysdk.demo.GestureDeviceTest:.....
+
+Time: 54.397
+
+OK (36 tests)
+
+

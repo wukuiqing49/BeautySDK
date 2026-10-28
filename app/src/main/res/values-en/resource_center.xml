@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="resources_loading">Preparing resources…</string>
+    <string name="resources_import">Import package</string>
+    <string name="resources_online">Online catalog</string>
+    <string name="resources_reset_category">Reset category</string>
+    <string name="resources_defaults">Restore defaults</string>
+    <string name="resources_error">Resource failed: %1$s</string>
+    <string name="resources_progress">%1$s · %2$d KB</string>
+    <string name="resources_ready">%1$d installed · Hold to disable or delete</string>
+    <string name="resources_selected">Selected</string>
+    <string name="resources_installed">Installed</string>
+    <string name="resources_disable">Disable</string>
+    <string name="resources_delete">Delete resource</string>
+    <string name="resources_download">Tap to download</string>
+    <string name="resources_card">%1$s · %2$s</string>
+    <string name="resources_theme">Themes</string>
+    <string name="resources_page_title">Resource center</string>
+    <string name="resources_page_hint">Import and download here. Downloads do not enable effects; select installed items to apply.</string>
+    <string name="resources_empty">No installed items in this category. Add resources in Resource center.</string>
+    <string name="scene_background_off">Background off</string>
+    <string name="scene_background_waiting">Waiting for a valid person mask; showing original background</string>
+    <string name="scene_background_ready">Person mask ready · background active</string>
+    <string name="resources_camera_hint">Installed effects · tap to select, hold to disable</string>
+    <string name="resources_apply_delivery">Apply imported library defaults</string>
+</resources>

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-26",
+  "scope": "rollback-fast-motion-regression",
+  "trigger": "User reported worse real face following after FAST-MOTION-01; prior fixture passes did not establish visual improvement",
+  "changes": [
+    "Restored original single-scale native matching",
+    "Restored original 35ms/large-motion sticker smoothing",
+    "Retained generic engine motion estimator API"
+  ],
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerPoseSmoother.kt": "76c9575852a5f95a3c3fe0a9d424ebda254c7bb79c15a4c8b8bfbdd2591b3683",
+    "core/lib_beauty_mediapipe/src/main/cpp/face_motion.cpp": "b645f6d2b118bfdd55c2ec89d41321660494957133d7f416bf11270a869fe56b",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeFaceMotion.kt": "ef5d53505c06e590715b3657f522ef9d9db9d70e268eb1f8c6c4fcab3efdc65b",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEnginePipeline.kt": "85f9878942196e6c06f6f9efae8ed3b01f4706851327e419db70494ad6dd6bd5",
+    "app/src/androidTest/java/com/beautysdk/demo/FaceMotionDeviceTest.kt": "7ac5f3f9fc676eb209bd0210d10a473f8867901d5ffbbf919095071c4e6df608"
+  },
+  "unit": {
+    "tests": 75,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "tests": 5,
+    "failures": 0,
+    "seconds": 1.054,
+    "classes": [
+      "FaceMotionDeviceTest",
+      "TextureBridgeDeviceTest"
+    ],
+    "result": "passed"
+  },
+  "build": {
+    "result": "passed",
+    "seconds": 101,
+    "coreRelease": true,
+    "mediaPipeRelease": true,
+    "appDebugAndTest": true
+  },
+  "observedBeforeRollback": {
+    "mode": "CPU",
+    "faceContainingWindows": 59,
+    "selectedInferenceMeanMs": [
+      87.321433,
+      73.640052
+    ],
+    "selectedQueueMeanMs": [
+      36.541204,
+      32.127973
+    ],
+    "at180504": {
+      "ready": 7,
+      "stale": 6,
+      "noFace": 11,
+      "tracked": 0
+    },
+    "interpretation": "Age/queue cost and matching failure present; no controlled same-mode A/B causality established"
+  },
+  "checks": {
+    "configuration": "passed"
+  },
+  "logs": [
+    "build/motion-rollback-build.log",
+    "build/motion-rollback-device.log",
+    "build/motion-regression-window.log"
+  ],
+  "limits": [
+    "Real face following after rollback not yet user-accepted",
+    "No controlled CPU/GPU A/B or thermal acceptance",
+    "No vendor engine or remote output verification"
+  ]
+}

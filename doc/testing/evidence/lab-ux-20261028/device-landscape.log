@@ -1,0 +1,55 @@
+
+com.beautysdk.demo.LabInteractionDeviceTest:.
+com.beautysdk.demo.EffectPanelDeviceTest:.
+com.beautysdk.demo.SheetScrollDeviceTest:
+Error in beautyAndWorkshopScrollWithoutDraggingSheet(com.beautysdk.demo.SheetScrollDeviceTest):
+java.lang.IllegalArgumentException: Targeted input event injection from pid 5761 was not directed at a window owned by uid 10322.
+	at android.os.Parcel.createExceptionOrNull(Parcel.java:3374)
+	at android.os.Parcel.createException(Parcel.java:3354)
+	at android.os.Parcel.readException(Parcel.java:3337)
+	at android.os.Parcel.readException(Parcel.java:3279)
+	at android.hardware.input.IInputManager$Stub$Proxy.injectInputEventToTarget(IInputManager.java:2105)
+	at android.hardware.input.InputManagerGlobal.injectInputEvent(InputManagerGlobal.java:1707)
+	at android.app.Instrumentation.syncInputTransactionsAndInjectEventIntoSelf(Instrumentation.java:1312)
+	at android.app.Instrumentation.sendPointerSync(Instrumentation.java:1297)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet$swipe$send(SheetScrollDeviceTest.kt:45)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet$swipe(SheetScrollDeviceTest.kt:47)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet(SheetScrollDeviceTest.kt:51)
+	... 31 trimmed
+Caused by: android.os.RemoteException: Remote stack trace:
+	at com.android.server.input.InputManagerService$$ExternalSyntheticBUOutline0.m(R8$$SyntheticClass:0)
+	at com.android.server.input.InputManagerService.injectInputEventToTarget(InputManagerService.java:1063)
+	at android.hardware.input.IInputManager$Stub.onTransact(IInputManager.java:968)
+	at android.os.Binder.execTransactInternal(Binder.java:1466)
+	at android.os.Binder.execTransact(Binder.java:1411)
+
+
+
+Time: 7.838
+There was 1 failure:
+1) beautyAndWorkshopScrollWithoutDraggingSheet(com.beautysdk.demo.SheetScrollDeviceTest)
+java.lang.IllegalArgumentException: Targeted input event injection from pid 5761 was not directed at a window owned by uid 10322.
+	at android.os.Parcel.createExceptionOrNull(Parcel.java:3374)
+	at android.os.Parcel.createException(Parcel.java:3354)
+	at android.os.Parcel.readException(Parcel.java:3337)
+	at android.os.Parcel.readException(Parcel.java:3279)
+	at android.hardware.input.IInputManager$Stub$Proxy.injectInputEventToTarget(IInputManager.java:2105)
+	at android.hardware.input.InputManagerGlobal.injectInputEvent(InputManagerGlobal.java:1707)
+	at android.app.Instrumentation.syncInputTransactionsAndInjectEventIntoSelf(Instrumentation.java:1312)
+	at android.app.Instrumentation.sendPointerSync(Instrumentation.java:1297)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet$swipe$send(SheetScrollDeviceTest.kt:45)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet$swipe(SheetScrollDeviceTest.kt:47)
+	at com.beautysdk.demo.SheetScrollDeviceTest.beautyAndWorkshopScrollWithoutDraggingSheet(SheetScrollDeviceTest.kt:51)
+	... 31 trimmed
+Caused by: android.os.RemoteException: Remote stack trace:
+	at com.android.server.input.InputManagerService$$ExternalSyntheticBUOutline0.m(R8$$SyntheticClass:0)
+	at com.android.server.input.InputManagerService.injectInputEventToTarget(InputManagerService.java:1063)
+	at android.hardware.input.IInputManager$Stub.onTransact(IInputManager.java:968)
+	at android.os.Binder.execTransactInternal(Binder.java:1466)
+	at android.os.Binder.execTransact(Binder.java:1411)
+
+
+FAILURES!!!
+Tests run: 3,  Failures: 1
+
+

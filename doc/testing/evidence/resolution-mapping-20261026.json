@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-26",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "e695f40f17b9bfc94c387d8f6389c7f0e6336d21df3f4072bfa14ca62e90b39c",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySession.kt": "1e37738d882512580e7a9530882593320ffba0aa26626e0c1dd483aadd5b5a06",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "29c923c13b6dc482ef8b1cc72e66b5cdf32b318e85c6b1169bc9741d5a5fba4e",
+    "core/lib_beauty/src/test/java/com/beautysdk/AnalysisFrameMappingTest.kt": "372b6965d58ecdf5989e634bd421e25ffc829c2f9658f99be85273c7877cb5d6",
+    "app/src/androidTest/java/com/beautysdk/demo/ResolutionDeviceTest.kt": "15fa9fe8ed60756d92eddf41ffaa63e3b77e49dfcef5316685c620abde929069"
+  },
+  "jvm": {
+    "beauty": 37,
+    "feature": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "device": {
+    "model": "Pixel 8",
+    "test": "ResolutionDeviceTest.glReallocatesOutputAcrossResolutions",
+    "passed": true,
+    "seconds": 0.089,
+    "sizes": [
+      "640x480",
+      "1280x720",
+      "720x1280",
+      "1920x1080",
+      "640x480"
+    ]
+  },
+  "build": "app debug and androidTest PASS",
+  "unverified": [
+    "vendor crop adapters and remote output",
+    "real-face motion across resolutions",
+    "beauty strength consistency",
+    "GPU readback of downscaled texture analysis",
+    "release packaging"
+  ]
+}

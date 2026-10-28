@@ -1,0 +1,7 @@
+{
+  "effects.html": "2e326f66dfc1cbb4bd381e0c36d3a55f4575d7ddec1f9a4f473bcc2bc2cae258",
+  "effects.css": "46d8591f9c722539994cab23c0362bf3af7c3b01afb7b341b8716966efcc1eeb",
+  "effects.mjs": "32be68424584f24554789e7d1be75b2460952884e2a9f662cce907e3e049a84d",
+  "pack.mjs": "3933e220027c564b437f91c6815d8d87ab974b794baea7351fb588996255a7f0",
+  "test/effects.test.mjs": "427ba83db29fc41543b43fcfeb3a0d9b177fc1dd88b7e349a29bf64e7cbdf7ec"
+}

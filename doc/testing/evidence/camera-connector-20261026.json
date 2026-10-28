@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-26",
+  "scope": "camera-common-engine-connector-pipeline",
+  "sourceHashes": {
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEngineConnector.kt": "0782429a2f086264169b9ab120970a314ae528ba2b46c8e23c2e6d2466bcf938",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEnginePipeline.kt": "5cb2abbadd4afcf0fddf80bbe9e278777e6650d635def664867c17aaa9f577f3",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyProcessor.kt": "89b2e2cb383a992e03a2fba7330fe339980aa8ed90ba997c50b06967d602cd2d",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySession.kt": "efe519227c6574f18473c51c6db468312eb8ee7955554b84c87d46dfa2d6e50c",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyEngineConnectorTest.kt": "f267fdfb1eab6a6e3749dd036eaf95910a356823a0f9c6ee8e56833846e7c4d2",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyRuntimeTest.kt": "c194cb03e66de1fa768a7ff7fe84aa0ee3afc064d32106ac5cacc77afec99329",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "a022df19e557a0a5a029ea208152d80cb244d560b979becda76cb8ad9d4658f4",
+    "app/src/androidTest/java/com/beautysdk/demo/TextureBridgeDeviceTest.kt": "32d2950046055f8340389bf5971c5b93fb17bf8c43c998ec3876b1aac3fa93cf",
+    "app/src/androidTest/java/com/beautysdk/demo/CameraDeviceTest.kt": "3b76fb4d4a5ba5b528696d28b28646af302ca745335e73aa582a1d5789edf495"
+  },
+  "unitTests": {
+    "core": 74,
+    "featureApp": 8,
+    "new": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "model": "Pixel 8",
+    "android": 16,
+    "api": 36,
+    "classes": [
+      "TextureBridgeDeviceTest",
+      "CameraDeviceTest"
+    ],
+    "count": 6,
+    "result": "passed",
+    "seconds": 4.559,
+    "cameraImagesSaved": false,
+    "scope": "GPU fixtures, CameraX front/back lifecycle, actual MediaPipe camera page analysis"
+  },
+  "build": {
+    "result": "passed",
+    "seconds": 212,
+    "tasks": [
+      ":core:lib_beauty:testDebugUnitTest",
+      ":feature:feature_app:testDebugUnitTest",
+      ":core:lib_beauty:assembleRelease",
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest",
+      ":app:lintDebug"
+    ],
+    "appLint": {
+      "errors": 0,
+      "warnings": 104
+    }
+  },
+  "checks": {
+    "agentStructure": "passed",
+    "agentConfig": "passed",
+    "architectureWarnings": 0
+  },
+  "logs": [
+    "build/sdk-camera-connector-final.log",
+    "build/sdk-camera-connector-device.log"
+  ],
+  "excluded": [
+    "real vendor adapters and remote output",
+    "sustained performance, thermal and real face following acceptance",
+    "cross-context asynchronous consumer synchronization"
+  ],
+  "notes": "No dependencies changed. Independent low-resolution RGBA analysis retained; no extra camera texture readback. Source comment clarification after compile only; runtime code unchanged."
+}

@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "defaultsVersion",
+    "defaultLocale",
+    "localeMode",
+    "enabled",
+    "parameters",
+    "selections",
+    "categoryOrder"
+  ],
+  "properties": {
+    "defaultsVersion": {
+      "const": 1
+    },
+    "defaultLocale": {
+      "type": "string",
+      "pattern": "^[a-zA-Z]{2,8}(-[a-zA-Z0-9]{2,8})*$"
+    },
+    "localeMode": {
+      "enum": [
+        "FOLLOW_HOST",
+        "FIXED"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "beauty.smoothing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "beauty.whitening": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "beauty.rosy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "color.brightness": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "color.contrast": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "color.saturation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "color.sharpening": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reshape.slimFace": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reshape.bigEyes": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reshape.slimNose": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reshape.chinLength": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "reshape.mouthSize": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "makeup.lipstick": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "makeup.blusher": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "makeup.eyelashes": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "selections": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_.]{0,63}$"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        ]
+      }
+    },
+    "categoryOrder": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BEAUTY",
+          "RESHAPE",
+          "MAKEUP",
+          "FILTER",
+          "STICKER",
+          "BACKGROUND",
+          "MOTION",
+          "THEME"
+        ]
+      }
+    }
+  }
+}

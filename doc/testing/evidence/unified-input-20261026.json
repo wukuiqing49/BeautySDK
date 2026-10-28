@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-26",
+  "sourceFingerprint": "cc3901271571c8ba5329c9b6fcf977eec678c230155cbf927fcaa336218533ad",
+  "jvmSuites": [
+    {
+      "suite": "com.beautysdk.BeautyPipelineTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.BeautyProcessorTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.FaceAnalysisHistoryTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.ImageStickerTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.JavaApiTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.ReusableRgbInputTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.UnifiedInputTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.BorrowedCameraFrameTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.CameraTextureTransformTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.RgbaPackingTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.demo.feature.app.PreviewRequestTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.demo.feature.app.PreviewTrackingTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "tests": 6,
+    "failures": 0,
+    "seconds": 7.465
+  },
+  "build": "Debug app/test APK and lib_beauty/lib_beauty_mediapipe Release AAR passed in 2m",
+  "apkSha256": "dc69d374395c1a98a951ad4eef0f7bbd0b9dc08f262ea9c51a1375c281977a74",
+  "staticChecks": [
+    "agent structure passed",
+    "agent configuration passed"
+  ],
+  "notExecuted": [
+    "actual ZEGO/Agora integrations and remote video",
+    "long-duration performance / thermal / face tracking visual acceptance",
+    "host release R8 not repeated; native source/JNI entry unchanged"
+  ],
+  "notes": [
+    "One bounded SDK worker owns model lifecycle for both camera demo and public BeautySession",
+    "A reusable owned RGBA buffer protects source lifetime; this adds one bulk copy at asynchronous boundary",
+    "No Bitmap conversion added",
+    "Default live demo and public session max result age both 150ms; old CPU reference explicit500ms unchanged",
+    "Frames of different sizes require explicit same-viewport opt-in; I420/NV21 adapters not implemented"
+  ]
+}

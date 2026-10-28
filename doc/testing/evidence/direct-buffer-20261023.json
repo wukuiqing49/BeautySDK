@@ -1,0 +1,179 @@
+{
+  "date": "2026-10-23",
+  "sourceFingerprint": "a2bc79d97f0b413778579444e578603a7e6c499151e1dec58fbc9039f36d4507",
+  "jvmSuites": [
+    {
+      "suite": "com.beautysdk.BeautyPipelineTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.BeautyProcessorTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.FaceAnalysisHistoryTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.ImageStickerTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.JavaApiTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.ReusableRgbInputTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.BorrowedCameraFrameTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.CameraTextureTransformTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.camera.RgbaPackingTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.demo.feature.app.PreviewRequestTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "com.beautysdk.demo.feature.app.PreviewTrackingTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "device": {
+    "model": "Pixel 8",
+    "api": 36,
+    "abi": "arm64-v8a",
+    "tests": 5,
+    "failures": 0,
+    "seconds": 6.086
+  },
+  "builds": {
+    "debugAndAarRelease": "passed, 1m35s",
+    "unsignedHostReleaseR8": "passed, 2m35s"
+  },
+  "nativePackaging": {
+    "core\\lib_beauty_mediapipe\\build\\outputs\\aar\\lib_beauty_mediapipe-release.aar": {
+      "jni/arm64-v8a/libbeauty_rgb_input.so": {
+        "size": 4832,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      },
+      "jni/armeabi-v7a/libbeauty_rgb_input.so": {
+        "size": 4908,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      },
+      "jni/x86/libbeauty_rgb_input.so": {
+        "size": 4552,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      },
+      "jni/x86_64/libbeauty_rgb_input.so": {
+        "size": 4976,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      }
+    },
+    "app\\build\\outputs\\apk\\debug\\app-debug.apk": {
+      "lib/arm64-v8a/libbeauty_rgb_input.so": {
+        "size": 4832,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      },
+      "lib/armeabi-v7a/libbeauty_rgb_input.so": {
+        "size": 4924,
+        "loadAlignments": [
+          16384,
+          16384
+        ]
+      }
+    }
+  },
+  "zipalign16KB": {
+    "debug": true,
+    "unsignedRelease": true
+  },
+  "liveSample": {
+    "facePresentSamples": 56,
+    "sampling": "one timing sample per second; not per-frame p95; no controlled before/after benchmark",
+    "ms": {
+      "prepareMs": {
+        "median": 1.410136,
+        "min": 0.918335,
+        "max": 8.420776
+      },
+      "inferMs": {
+        "median": 54.289286000000004,
+        "min": 31.273885,
+        "max": 77.703857
+      },
+      "totalMs": {
+        "median": 57.5480755,
+        "min": 33.569824,
+        "max": 80.581136
+      }
+    },
+    "facePresentTrackingBuckets": 52,
+    "readyFrames": 1541,
+    "staleFrames": 43
+  },
+  "limitations": [
+    "150ms deadline unchanged; occasional stale hiding still observed",
+    "no thermal/long-duration/remote RTC validation",
+    "16KB ELF and packaging checked; not tested on 16KB page device",
+    "upstream CameraX YUV conversion and MediaPipe internal copies remain outside this optimization"
+  ],
+  "firstAttempt": "Two camera tests timed out while device was Dozing; woke and dismissed non-secure keyguard, rerun passed. Model/GL passed on first attempt.",
+  "apkSha256": "4a9aa6d00a31c483fa13bddd4b87a878309b241f33a30533dfd329d70a8c7ab1"
+}

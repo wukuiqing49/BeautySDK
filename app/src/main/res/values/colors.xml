@@ -1,0 +1,4 @@
+<resources>
+    <color name="primary">#1B5E20</color>
+    <color name="on_primary">#FFFFFF</color>
+<color name="demo_preview_background">#111827</color><color name="camera_surface">#101116</color><color name="camera_panel">#202129</color><color name="camera_accent">#BDA4FF</color><color name="camera_muted">#B8B6C4</color><color name="camera_text">#F7F5FC</color></resources>

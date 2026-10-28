@@ -1,0 +1,6 @@
+{
+  "command": "zipalign -c -P 16 4",
+  "exitCode": 0,
+  "artifact": "app-release-unsigned.apk",
+  "demoAlignmentDefault": false
+}
