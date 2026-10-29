@@ -99,3 +99,10 @@ Google Play App Signing 场景绑定应用签名证书，不是上传证书。�
 管理员需填写实际应用包名与发行证书 SHA-256。后台导出的公共配置作为 `-PbeautyLicenseConfig=...` 输入；必须先部署真实 HTTPS 地址并使用匹配信任配置构建发行 SDK。默认本地签发器仅供验证，未部署、未写入正式 SDK。原 CLI 的 JSON 登记源与 CMS 数据库独立，不会自动同步；应选定一套作为客户实际激活服务。
 
 本轮验证为 CMS/API/workerd 与现有 Node 协议兼容，不涉及 Android 算法或授权运行时修改，也未执行客户真机联网激活。完整操作步骤见相邻 CMS 项目的 `ADMIN_DEPLOYMENT.md`。
+
+
+## CMS线上初始化状态（2026-10-29）
+
+用户已授权并完成CMS生产初始化：https://beautystickerworkshop.pages.dev/admin#licenses 。独立D1/R2及管理员/签发Secret已配置，HTTPS端点为 https://beautystickerworkshop.pages.dev/v1/lease 。实际域名登录、签发器密钥自检、公钥配置下载及CSRF/会话撤销验证通过，未创建测试客户记录。
+
+签发密钥沿用本机初始化密钥，仅上传至服务端Secret；尚未据此构建匹配公钥的发行SDK，也未执行客户签名APK联网/离线激活。前文“未部署”是先前源码阶段状态，本段为最新增量；不得把后台上线描述为SDK受信配置、客户激活或商业质量已通过。部署证据在相邻CMS项目.site-audit/production-verification.json。

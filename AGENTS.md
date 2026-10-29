@@ -217,3 +217,8 @@ BeautyResourceManager新增installDeliveryFromAssets（完整ZIP）与installDel
 ## 2026-10-29 CMS 授权签发与下发
 
 用户新增要求授权生成和下发，独立BeautyStickerWorkshop后台新增/admin#licenses、服务端RSA签发、SQLite/D1合同登记、一次性领取链接、续期/撤销/恢复，/v1/lease读取同一登记。私钥仅在服务端运行时，浏览器不持有；此前“CMS不持有私钥”限于旧静态CMS。本地RSA3072签发器已初始化，未部署正式HTTPS、未写入SDK受信配置；原CLI JSON与CMS数据库不同源不自动同步。Web94项、最终后台/授权10项与workerd集成1项通过，SDK原Node9项通过且签名逐字节兼容；浏览器流程与360px验证通过。本轮不改Android运行时，不代表客户真机激活或商业画质验收，详见独立项目ADMIN_DEPLOYMENT.md与.site-audit/licensing-validation.md。
+
+
+## 2026-10-29 CMS生产初始化
+
+用户授权后已完成beautystickerworkshop.pages.dev线上后台初始化：独立D1/R2、0001/0002迁移、管理员与签发Secret、HTTPS端点及实际绑定配置。原账号登录、签发器自检、公钥配置下载、CSRF/退出及实际浏览器验证通过。未创建客户记录，未改SDK信任配置或执行客户APK激活，密钥仍为本机初始化密钥；CMS上线不代表SDK商业资格通过。最新事实与证据见doc/LICENSING.md和相邻CMS的production-verification.json。
