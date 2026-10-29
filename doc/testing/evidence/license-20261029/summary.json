@@ -1,0 +1,868 @@
+{
+  "date": "2026-10-29",
+  "commit": "b924f842693e8eaf6d8858129112f64bb847ee87",
+  "workspaceDirty": true,
+  "sourceFingerprint": "eb439d1fd843c2d5b1f92bf147787948b8f65a57255130bf993228985c408724",
+  "sourceFileHashes": {
+    "build.gradle": "f72d91e41e8ec95efeb2665326126876c848c42085de0412be9dd0b93d334d0c",
+    "core/lib_beauty/build.gradle": "f77d2a97faf895221128a14964868cbd345a4b2a94ef9928003c209994e60c34",
+    "core/lib_beauty/consumer-rules.pro": "68efa8bad3b30d82e0e03841c0dcf3838f3bf289f1273d14700f04291066d20a",
+    "core/lib_beauty/hs_err_pid16728.log": "013b6661bba2efb30b13f17b7e72efe1e2bab24a71d3460109000fa9f7c957a5",
+    "core/lib_beauty/README.md": "b5d1e1b9b2d708fc4fb91ee4254d841e7f7fa4811e60a0800942aafee17c8093",
+    "core/lib_beauty/src/main/AndroidManifest.xml": "571f2735faf5e857752ee057ac8ef63425576a721616c60b86ee5d4c0a2d682f",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisCoordinates.kt": "f35e13ccb5ff72ff8eb9326310a34d7b8eafd14163a4102e5f0378c38aa2c320",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "e695f40f17b9bfc94c387d8f6389c7f0e6336d21df3f4072bfa14ca62e90b39c",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisOrientation.kt": "6a82e30fafb932b86253b3fdd5c2829cbdba7f4f27065bd27ee7ba828ee5a551",
+    "core/lib_beauty/src/main/java/com/beautysdk/AsyncFaceAnalysis.kt": "ae0c5c4bc3453b4fd6261164fa2ea0e486e27633afd21a488364f87a85839d57",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyAnalysisRuntime.kt": "8b5ce0f021c441fc8682b21c82bcabf94850b9ff3db841da8f6d2abaa276a38a",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "89a97826c7b52aeb53ce3fd0db2a4ab28f2d4d1c335ac505337be8ab957ed1bc",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEngineConnector.kt": "0782429a2f086264169b9ab120970a314ae528ba2b46c8e23c2e6d2466bcf938",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEnginePipeline.kt": "e6712dafcaa37c3953d3a4b73e6f8deb0dca3b99d9d04819f5ebb71ecc43efb5",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyFrameWindow.kt": "5e9f47281bbdc4453665422e60a4b3f55ee6c5da6ee38b26e69441763fd4b900",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyPerformanceMeter.kt": "f261c9cbd67888f07cb6c7c3d5bbe50904a6604d436bb6b6b5aee65c515b45e2",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyProcessor.kt": "89b2e2cb383a992e03a2fba7330fe339980aa8ed90ba997c50b06967d602cd2d",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyResourceStore.kt": "df73754f4bd254d84c00473686da7d9f0f84b4985252b3b4e516f75e9197ac3b",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyScene.kt": "74994a0b5d3f30b32381dfa6c05d0560be5b297edd371c59212a24feafc2b986",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySceneRenderer.kt": "2e3c635cb4780c0277bc897426adf01ebd4f9ebade56c9dcd9eb04067b8f6978",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautySession.kt": "d48ec13606b1c7d7e22720d05b3e1f90da2efa9f79e891d0fb217dd3c771dd7f",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyThemePack.kt": "f318831ff0e8c231054df1ffafd6ee2e5244cd5a31e0a78adca1c4cbe955683e",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyTimingWindow.kt": "fd15b206bdec62ecfbbb32a8929d1d3a7854da6d58f1d5c251f5bad5786a0ab8",
+    "core/lib_beauty/src/main/java/com/beautysdk/EffectResourcePack.kt": "ab18f1efdaf3ee1decdb19f7b616f5ebdbe95e950a556786b3968cb0dc62c590",
+    "core/lib_beauty/src/main/java/com/beautysdk/EyeMakeup.kt": "49244c9b94ce699525d81e7231944a0720792de0c31d00e8b290745d9fd734df",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "19e5798e033beaa6c95570f6e8fe3018447b19dee06455b909c68d89e2db6ca6",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysisHistory.kt": "49e9d282f29f2f0132aa4d10799534a7a44e593806a19d472b7d27dbfed076af",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureAnalysis.kt": "8a4a9274c6f58e5a522e11dfd3f0d86429c69fd95f72a03fec4a35ee44954f8e",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureAnalysisRuntime.kt": "599142d297a48a57d5c47540f301016c0e027413b2e0a9f375e9caa2b377f2f2",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureEffectArchive.kt": "6917fc4a3fb99987a0225b01992f0e25c67db2ba08a1c3296c859eee12f6017a",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureEffectRenderer.kt": "d8cd6a7a5aa427382c64fb2eb17a3e13754ac7424ed5b71d960350e6b3b9bf14",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureEffects.kt": "51fc107efa179274cfb4868f640e7511e75dfe435dff70ca4a4565ce88cd21ab",
+    "core/lib_beauty/src/main/java/com/beautysdk/GestureRuleEngine.kt": "fd9960877007809ec3723d3a9f4e740a5718c3aae6837c712dc4c51f5510a45d",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "50a5722d3abe20658474421fe5cf7424e99e6e6cbd5fe5dfe787f642e6c87a3e",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlTextureAnalysisBridge.kt": "eb8d2cde4234ff2e184630a2c747d5e4226930fb864fbf8dc9548de060e7d948",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlTextureOutputPool.kt": "2839ba61b9704e4d38e74076bcd1d519f6b421aa2d58b2aafd3b74c4d4efa1e4",
+    "core/lib_beauty/src/main/java/com/beautysdk/ImageSticker.kt": "46e8dcf8e05e8a8fdccccdcd6268199397141d81ec345dc88ceee032cf12044d",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/BeautyLicensing.kt": "b2d6d3aa7880d343b24dcfa4ddcff1b162b6624d1752c8e59c22ff3c8d2cec2b",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/LicenseEngine.kt": "514555ce79be4b986576a3b2a8027885bba9ce89135adae7fa97103fdc16d499",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/LicenseProtocol.kt": "08e499f45023baddd0d371f30f0807217270893197397f26ed0bf4a30eb5c2cc",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/LicenseTasks.kt": "9981d87af9d2eecbb1b7d6f4e3ea692da11d7364fa3fb365df07e87a86aafd34",
+    "core/lib_beauty/src/main/java/com/beautysdk/MotionTimeline.kt": "a3dd0f6f9056cecb9f9d0697595566e16695b905c072d79351a07d6da3b053c5",
+    "core/lib_beauty/src/main/java/com/beautysdk/ReusableRgbInput.kt": "d5c83504b8994507de4b9b7bd853f8d795bdf2257c3c192261d229e54f58396e",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "7d2ee118994100436dd8e225a1819c732e3c08986257aed9eb50a73f97ee6da5",
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerPoseSmoother.kt": "76c9575852a5f95a3c3fe0a9d424ebda254c7bb79c15a4c8b8bfbdd2591b3683",
+    "core/lib_beauty/src/main/java/com/beautysdk/StickerResourcePack.kt": "89223e63ff607250e38d7af15e2e620fa31db910c275d48f671eeb22043d7b5e",
+    "core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt": "820bfa019a33893167911935c6cfe517db3da7929c7c0b7c28bbba45c4d2bfcb",
+    "core/lib_beauty/src/main/java/com/beautysdk/VideoFrame.kt": "6836239a7cec3a1096e9d465f653a090a991f1e554d024e4f3fda8a469cfa8ea",
+    "core/lib_beauty/src/main/java/com/beautysdk/Yuv420Input.kt": "0071fae77e6d33949d73d0c04d40f7b349839fb532aa2ab78215967e68428460",
+    "core/lib_beauty/src/test/java/com/beautysdk/AnalysisFrameMappingTest.kt": "4662daa69f2d231cd09a1883189f4fca20ae9001632dd591deea5a8c7780d4ab",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyAdjustmentsTest.kt": "b05414b2ad889fc2c2e22cf3dd8af2b9cd21c5470a2234e89decac74fcd6b94c",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyEngineConnectorTest.kt": "f267fdfb1eab6a6e3749dd036eaf95910a356823a0f9c6ee8e56833846e7c4d2",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyPerformanceMeterTest.kt": "7793a168ad265eb726f571a80730b72d2db3142df25ec0b5d40d334a8e70fd9f",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyPipelineTest.kt": "e9d41bb3439162e8999f4fc8881a7e82300b0686b0facf6a4a62b7e9e6b8ec32",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyProcessorTest.kt": "5570f1c78a72984a82c336dbd178d7a2b9f383da567962453d348dbd0213f174",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautyRuntimeTest.kt": "8772b52991b45232882ab8beb9238fc0597adaa28aa4bdae814aa58f79ac8388",
+    "core/lib_beauty/src/test/java/com/beautysdk/BeautySceneTest.kt": "948472c0b4cc75a5d3d9c30479644c8472fe8913bec1a018714bd58573215749",
+    "core/lib_beauty/src/test/java/com/beautysdk/FaceAnalysisHistoryTest.kt": "465c62e4871f7f6dd98184b665249bf0fa3154884eb8ab6748407dabbecc56c3",
+    "core/lib_beauty/src/test/java/com/beautysdk/GestureAnalysisRuntimeTest.kt": "ae912c8b797418e6f5aac5c574dd9f6d0ec65dd6ce597b33723a88fdb2c3099c",
+    "core/lib_beauty/src/test/java/com/beautysdk/GestureEffectPlayerTest.kt": "a2d964c1a3167edd0179e614b4d2488271a6cbad02597a894be4fe844d9364a4",
+    "core/lib_beauty/src/test/java/com/beautysdk/GestureRuleEngineTest.kt": "133223e0bac060994eafc13fc9ac2b4e5477a5bfea5ea026243ebef22aa49d09",
+    "core/lib_beauty/src/test/java/com/beautysdk/ImageStickerTest.kt": "3ff0c1266980e8da57884f0b3f8ffdb488d90f87dd36e21d1288dd8aa7f2fca9",
+    "core/lib_beauty/src/test/java/com/beautysdk/JavaApiTest.java": "60855d506d59633f5148d074ccc26d5c66d9515fb8ec5cc73f0a5d0a827a8bb4",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseEnforcementTest.kt": "ec7c9853296c19d85a06b0f50aeb5b8f17e0bec26f0ffed149e507dbf6222dec",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseEngineTest.kt": "867ad8fd9f50e841669c761cf8362972d07221e74f1040d935e0fd59fcbee1ea",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseTasksTest.kt": "95d95ef3ad2d3666e41421512dc1b7a358d577308f23833aca35c117a8b05e21",
+    "core/lib_beauty/src/test/java/com/beautysdk/MotionTimelineTest.kt": "88a575054fc64541b0b439a2b6776d22f436dd0d9bb8bf5ac888a12fffa09cf2",
+    "core/lib_beauty/src/test/java/com/beautysdk/ReusableRgbInputTest.kt": "303a7ca7dfb27d4fe8ffec4d1c5a50210c23d160f8d104675e99b9fb6ee526a5",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerPoseSmootherTest.kt": "7cde95973cc7e84f8bd3c9e07296332501845348dfbf133d7638a9a6239cb758",
+    "core/lib_beauty/src/test/java/com/beautysdk/StickerResourceGeometryTest.kt": "9cee82e4cb198dd5890dd220a0ba6034c0fad24b2d36b96a665d3ccd34c1aacb",
+    "core/lib_beauty/src/test/java/com/beautysdk/TrackedFaceAnalysisTest.kt": "07435bce116f7ab82f5dc5de27c3eca1bb17be941a03e61d8ad3d11555ca2b92",
+    "core/lib_beauty/src/test/java/com/beautysdk/UnifiedInputTest.kt": "5041a593ebd5a2903983ca5dfa43067fe890c9afcaefdf730718fa4cc6e71390",
+    "core/lib_beauty/src/test/java/com/beautysdk/Yuv420InputTest.kt": "b0c09256cf7e726ed143386af16068749bb165577d7677a00bb73ce38be5c9df",
+    "core/lib_beauty_gpupixel/build.gradle": "09bc92f1a528a888d6423ba9d38aa320de4e728a0a033795f678c35d9fd3a44a",
+    "core/lib_beauty_gpupixel/consumer-rules.pro": "4c64dc71d90ed60d15aa5bc219ec18bea370f57a6922e1f36c71d3f55deaaba8",
+    "core/lib_beauty_gpupixel/README.md": "1584a1a0d6fd1d71eb2732a51aac38c4e919a5102ca4b4ffa581cdd3a5cdc113",
+    "core/lib_beauty_gpupixel/src/main/AndroidManifest.xml": "571f2735faf5e857752ee057ac8ef63425576a721616c60b86ee5d4c0a2d682f",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/NOTICE": "6aa67370d7ec7e57faad170cdf166d0b7d76c2c8da3dd974b93380d2d7479a0e",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/blusher.png": "8dc7bfe44c33fcd790fb62efad1296a159cc0ce04e2b290f8631bdaafc12eecc",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/lookup_gray.png": "9b7b6da3f0d6102dfd454119c108cc5b56e97176eda4c01871b5dfdcd256952b",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/lookup_light.png": "5058b32f12f584152c1a5984767415bdeb128e0ea78c858f3529ba596ba06d3a",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/lookup_origin.png": "b6e8799049eb14482b544861bb444733c22768965f69545893fa8485e85207af",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/lookup_skin.png": "5f898a8fe4997b4831c3c7a29fadd4b307f0bb9dc837a7cc5c6d3f2b870b55f5",
+    "core/lib_beauty_gpupixel/src/main/assets/gpupixel/res/mouth.png": "1b7c86cedd90e75881ff0ae89158d13c36b2a46296f53d75ed2520b002e3795d",
+    "core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp": "3df489a86db771fbe849b10e63dc7e8ad9d0b37d4a06c764704f524f82211b23",
+    "core/lib_beauty_gpupixel/src/main/cpp/CMakeLists.txt": "4aa655ed8a9203e4651b5c278fdadc2a37d1a647f2c1b8737c88ee561ec77102",
+    "core/lib_beauty_gpupixel/src/main/cpp/gpupixel_shaders.h": "0cac4da21b2852291121fc5d7cfe22a9943060b89baf3f91f71de0061ad28353",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/ExtendedReshapeGeometry.kt": "f58b6182b9e8b8a268baad9f67ed81f675518d89a72df80e8b591dab6ca2f9e2",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/EyelashGeometry.kt": "c7fd2220dbe6b149d9bcc694d5828ae80fb9de3378045f5663dcb4375fd18ac6",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "f8c43e6078a6606fdbbf283dd0d4ed6b90e67d212986996fda4e83bf892167e4",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/MakeupGeometry.kt": "aed81ab6a93863f341626cefb97f7c9263e6ff1806d04c4a12db5c14d7c02903",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/TexturedEyelashGeometry.kt": "3f57469083f84312edad756f878f460518583a47d7dbf5fdca8243cd0860ce5b",
+    "core/lib_beauty_gpupixel/src/test/java/com/beautysdk/gpupixel/EyelashGeometryTest.kt": "41f627f25971666a8a4ab68b396276ed2671d314f7caf65cb17f3ac3e8682055",
+    "core/lib_beauty_gpupixel/src/test/java/com/beautysdk/gpupixel/TexturedEyelashGeometryTest.kt": "35a08b5a4d61c9ec273bf81bec4f8e696d5d0c6e23a672961a458138d562b38a",
+    "core/lib_beauty_gpupixel/src/test/resources/eye-geometry.tsv": "1d66cf37bc46e1a551cab4ad7c60284d183e9e83b9d505c7c20b4efc30aca558",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/LICENSE": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/SOURCE.json": "853a49d5a11944b5778241f2d15c51dbfab10f099d30aa0106abef1085e3737a",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/beauty_face_filter.cc": "f85bf269de6867dcb764d83635b7de64d245f0110fb7dc0710cb24f801505389",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/beauty_face_unit_filter.cc": "cd6304a572ab739bbc91c096265437fd2f6f018a3d14a8c4781777e9c64ac72b",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/blusher_filter.cc": "e1a35f5ccdd49128ea9dbb5c9ecc22d983877312bb5189c8986191be3a5b4d61",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/box_blur_filter.cc": "4be6bea359a432bbf383e1522e75facb38c903a569ed6b224392a85112cb102a",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/box_difference_filter.cc": "f0938a21dc72f8649bc536d3d434ef4793d86ca61a7c552f6294d8cd48e0e1f1",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/box_high_pass_filter.cc": "87e959d24a3e8d5930d1fa5953bda4407976e47aad6bd3a2f3088ef95974718f",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/box_mono_blur_filter.cc": "2cbd33472f2fc9a332ba4ffdcda1c132e5d898fbff2674c51b740d1ae5ea6385",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/face_makeup_filter.cc": "6f7dd940aeb0c426f6e6762a0611f565be06be60611753ecc02ad44c7f970c4c",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/face_reshape_filter.cc": "6a8c0fae6508f1a3e9838001f1525d2c16e1bc377125e0729e60d9fcf8df7beb",
+    "core/lib_beauty_gpupixel/third_party/gpupixel/src/filter/lipstick_filter.cc": "97b591de3849f0480a2f05398f1fcc0c35926f4bb51912bc4f92f5bf2c2de680",
+    "core/lib_beauty_mediapipe/build.gradle": "66d2b0010720d3de128662be7cdbe60901ed56dcebf269963f9c07d8e10d9f5a",
+    "core/lib_beauty_mediapipe/consumer-rules.pro": "5ac3092167559adbdba10e45b565e272a3adda6f20beecd4269e9a3ff6559688",
+    "core/lib_beauty_mediapipe/README.md": "45d5a7c11022a7bcccbc5c725be90c59cad8adc0af72d757a5ec3377030dc443",
+    "core/lib_beauty_mediapipe/src/main/AndroidManifest.xml": "571f2735faf5e857752ee057ac8ef63425576a721616c60b86ee5d4c0a2d682f",
+    "core/lib_beauty_mediapipe/src/main/assets/beautysdk_mediapipe/MODEL_SOURCE.txt": "29dbb8cbb4e19148382f2b0efaa626bb6932170a23123f12c9830e46fb02c21e",
+    "core/lib_beauty_mediapipe/src/main/assets/beautysdk_mediapipe/SOURCE_LICENSE": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8",
+    "core/lib_beauty_mediapipe/src/main/assets/face_landmarker.task": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+    "core/lib_beauty_mediapipe/src/main/assets/gesture_recognizer.task": "97952348cf6a6a4915c2ea1496b4b37ebabc50cbbf80571435643c455f2b0482",
+    "core/lib_beauty_mediapipe/src/main/assets/selfie_segmenter.SOURCE.json": "2d5b1197edcedb25c7f453a54d4f95b29eb068dce6d8a3b4a88563a32d218cdf",
+    "core/lib_beauty_mediapipe/src/main/assets/selfie_segmenter.tflite": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+    "core/lib_beauty_mediapipe/src/main/cpp/CMakeLists.txt": "c8874908e48437d9819e651cb77d1d2334d240cad563087a923714c4fdb1629e",
+    "core/lib_beauty_mediapipe/src/main/cpp/face_motion.cpp": "b645f6d2b118bfdd55c2ec89d41321660494957133d7f416bf11270a869fe56b",
+    "core/lib_beauty_mediapipe/src/main/cpp/mask_motion.cpp": "14c79c550f3d12e017d1c86f7aa6cb89d36dc54c3342456532c35179a2ad16f5",
+    "core/lib_beauty_mediapipe/src/main/cpp/mask_output.cpp": "036c10dab1ed2cdc9ace01873ae94c82b66680c50aad9b6c334ce06b7cd2d0ba",
+    "core/lib_beauty_mediapipe/src/main/cpp/rgba_input.cpp": "f6d1532a1b9f092bbd94fff27dd841d0cb856b1d9c3d3da2d77fc28dfb4ae226",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/GlForegroundMaskBridge.kt": "2ae466a5bb2797aa9e91839b538782fff37cdf3c42c86bf18565c0f2f58aef2c",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeFaceAnalyzer.kt": "cb9f0f0888fd796a7d4ee6b958e24ac5d7797e85ca69b9ab3c13b55cf1915d16",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeForegroundMasks.kt": "b8113ca989d883f6610bef8b91fcd6ca54b0726e8e4afe278d64e63ba6731d43",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeGestureAnalyzer.kt": "415f534676271656b030a099eeef2545e6690f474cf69d8bc4653d057dda7bae",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeRgbInput.kt": "80e176af10a9066a997acdd08173f0418adc4d3bbaf58fcbf57c164678b56f7e",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeFaceMotion.kt": "96aa350880e72b4ac6f9ce5398eb7cea35e27fe8d95b08701f47af2081ae4098",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeMaskConverter.kt": "22d9543f40825796c35bb16c1a7e80120ae61852f7bbadb249df6415ab1091b0",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeMaskMotion.kt": "9f41911c955aae89f6ad54408f77cbe81d66fe4ca944de02c544142c62d6c7d7",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeRgbaConverter.kt": "927590050fd2f318dc415c1569604dc3dbb8e7996a3106083efc4a1ffb43f098",
+    "core/lib_beauty_resources/build.gradle": "8afd805712f43dab3f2a826e3fe7556f983818f77e81e45bdd9200bf6647bbcf",
+    "core/lib_beauty_resources/consumer-rules.pro": "19cd59d0fd17ef89a411816c9deecf76a670bff4625aecda1de2dbc9c701add7",
+    "core/lib_beauty_resources/README.md": "a111410bd3afb18136a21c29756f2af799ec74f722fb3a5fdf19007fd344af56",
+    "core/lib_beauty_resources/src/main/AndroidManifest.xml": "8bd85a8fc13f61efab68aeec94a7c3a76cd1946ba63dd01109278e817cf717e5",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/BeautyResourceLibrary.kt": "0459ca5ac540d8f2c42dcbea88780837a02610ce2beadd7d9a0d27b909b3e53c",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/BeautyResourceManager.kt": "b96482cd75c2d514c056cf847a6a46c66c79078b94d3321e458d8b0a73662e06",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/BeautyResourceState.kt": "ce02d09017cbe8b32409098d0071651a5b23aac05f2e683e12abe01146f80791",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/LegacyResourceAdapter.kt": "c1efddee8d60753fcb65aea3621bbd801bcd25712e98c35b3a07d5843d15f95a",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/LibraryGestureResource.kt": "03a560dad71959fe470c2dce140cf1c8055617b116b9fdb21e9f0702addf215c",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/ParameterContract.kt": "e26b276ab180466bdee531830a156bcdfa8a41daeac19c6f6bab3e493f0ffede",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/ResourceArchive.kt": "7241f2858cb51e0e6065ede19cea67b065b4f619be9f7f1f7870e8cd088a3310",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/ResourceDeliveryPack.kt": "d7f5934d244eea927efb2bae211eba5a45072c17365ea30c511cb0a1de16e2f8",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/ResourceLocales.kt": "9617594755934f92b58c1e78ec712ec5bba1df268cd3a558c46730513e432df4",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/ResourceModels.kt": "d9760d44ba8076ee9ffa30cc6fe3ce766421fea58e621a3dd024411a4c916793",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/SignedResourceDelivery.kt": "52909be862d9913e2f99646cd58a2de7eda9e6b0f6bb53647f0de2c70b7211ae",
+    "core/lib_beauty_resources/src/main/java/com/beautysdk/resources/SignedResourceSource.kt": "7f386ad135c1b733a6e7b69659d7c9504d652893c18faf98113f665d55c682ab",
+    "core/lib_beauty_resources/src/test/java/com/beautysdk/resources/ResourceCapabilitiesTest.kt": "98416d60496e889cd5c4c1e89c313ed5868b5617ca68b00c05608f7a88380908",
+    "core/lib_beauty_resources/src/test/java/com/beautysdk/resources/ResourceCompositionTest.kt": "cbb3ad1ad140a7b232846bba0d7cee62e664a2d7307dfdf793e9c1fcc0f29a1a",
+    "core/lib_beauty_sdk/build.gradle": "24981f952fca97d9dcca26446d5117aacd3d3afe479f10c3aeb0951cdf411079",
+    "core/lib_beauty_sdk/src/main/AndroidManifest.xml": "571f2735faf5e857752ee057ac8ef63425576a721616c60b86ee5d4c0a2d682f",
+    "core/lib_beauty_sdk/src/main/java/com/beautysdk/BeautySdk.kt": "77547420c904d3307ac758048a497efe6e0b46170d767adf0d283b660e2952a7",
+    "core/lib_beauty_sdk/src/main/java/com/beautysdk/distribution/BeautySdkDistribution.kt": "94c7950df5974af32376a09184aacb19651c0a30d4cd806b0a15118e7afc3b46",
+    "gradle/beauty-publishing.gradle": "6da36f9507566985249aa0e18487606d7d34f36b5d1f7d18a31b9b3c3d18bfc6",
+    "gradle/libs.versions.toml": "2ab0553460813be680bd986a0d72bc4edd2b341a7b9dd5f6f08b12c17193fa30",
+    "settings.gradle": "6c4bd64634d65872579559425250d0320d5f53493020fea1d892811a0d9a179c",
+    "services/license/admin.mjs": "4ec663eec5af8f4cad61555f1e9075ce6cb4b8435eeb036ac6b77ba942ba7489",
+    "services/license/admin.test.mjs": "62de2395bd6c88108c1aefa8f198b852e0ef3587d994fb1f8106ce914fdb6cbb",
+    "services/license/protocol.mjs": "d6e29c2c371cee4ab2f62fd615842928ff5722488a36bc32a729e3c6c801fbf7",
+    "services/license/protocol.test.mjs": "e5dd3322abaa2278a035db26d5bc94a20a42fbcc16ce25a342667afe4ed70c5e",
+    "services/license/README.md": "946b669ac55f4ac31641b537e1a9f629115bb868dd1dbe471a17556e7aecd698",
+    "services/license/server.mjs": "05f96482073e649f0f83122411662e59b2174b4abba0e03d393bcbad3aeffda8",
+    "services/license/test-fixtures.mjs": "9f71c0e145cb2d74b6102ae0fe8df22240428842862894e62f9c866cd6efadba",
+    "samples/standalone/app/src/main/AndroidManifest.xml": "eda34dcd4515c6246dd8425a03b8380ff82386c7507762b61d648d30d5c72db0",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/MainActivity.kt": "2fc438347588c7f5dd85d549318d05f0b1eb81770198bccc51387ced2d2e4b4f",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/ResourceIntegration.kt": "0ff044f341ce41d1d44cf831ae68be911d241617b3d646b95c65e5141de8fae5",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/TextureIntegration.kt": "f24fe8a41d1fc4901fefb6d6bfbe06ba42f3e64b2dec05d481fc2a560ae181eb",
+    "samples/standalone/app/src/main/res/layout/activity_main.xml": "153b08d81530f7f1556c29e19111531208121b4660be7ac8e5c25946eda9a030",
+    "samples/standalone/app/src/main/res/values/strings.xml": "860066523cca63daa6367f5c1a8c0f6b732933d92a4f69d43aa2e2cccf5d18f6",
+    "samples/standalone/app/src/main/res/values-zh-rCN/strings.xml": "5518fe3a0b71f9b22434c349ab5c77a8cd90c2841016c316ec57cf311bfb6199",
+    "samples/standalone/app/build.gradle": "b56e1f32b26351eb0e5860b671818b7d1d8fa6fb146d824a2869240834fcc389",
+    "scripts/api_surface.py": "f2b803a24bfda5cde744b7f7a88c11cb1d7ff14dd131b007e9d017e1185c90e2",
+    "scripts/package_candidate.py": "2346cc1989a54a9c1c7ad7c4edd2f72a7f63429e1c82f28cc8548e756d14f9da",
+    "scripts/test_trial_contract.py": "c5133460ba2f5f7d1ae1ba37542085822dadb85961169f478b3a318ac3be4f3e"
+  },
+  "environment": {
+    "device": "Pixel 8",
+    "androidApi": 36,
+    "deviceVariant": "debug",
+    "licenseReleaseTests": "JVM injected transport and clock"
+  },
+  "jvmCases": [
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.AnalysisFrameMappingTest.regionsRejectInvalidAndNonFiniteValues",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.AnalysisFrameMappingTest.mappedSessionPreservesAgeCachesCoordinatesAndInvalidatesResolutionChanges",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.AnalysisFrameMappingTest.cropAndLetterboxUseExplicitRegions",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.AnalysisFrameMappingTest.cropDropsOutsideFacesAndAnchorsWithoutClampingThem",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.AnalysisFrameMappingTest.everyRotationAndMirrorMapsToTargetRawCoordinates",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyAdjustmentsTest.neutralPassesThroughAndOnlyReshapeNeedsFaces",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyAdjustmentsTest.additionalShapesAreIndependentFaceEffectsWithSignedControls",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyAdjustmentsTest.invalidAndNonFiniteStrengthsAreRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.engineRejectionAndFallbackFailureAreExplicit",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.unsupportedRedrawDoesNotResubmitProcessor",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.restartResetsBothTimeLinesAndDuplicateFrameBypasses",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.realBeautyIsProcessedAndWrittenThroughOneEntry",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.reentrantWriteCannotCauseDoubleSubmission",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.readFailureFallsBackOnceAndReports",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.processingFailureFallsBackButWritingFailureNeverRetries",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.redrawAppliesSettingsWithoutAdvancingVideoTime",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.identityStillWritesOriginalFrameToEngine",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyEngineConnectorTest.lifecycleAndWrongThreadAreRejectedBeforeTouchingEngine",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPerformanceMeterTest.measuresSuccessfulSamplesWithoutInventingGpuTime",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.rotationAndMirrorMapPixelCentersBackForEveryOrientation",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.schedulerDropsBusyFramesAndRejectsLateResultsAfterReset",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.missingPreciseLipDoesNotInventMoustache",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.analysisSamplingAndTextureGeometryShareOneTimeline",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.reusableOrientationBufferMatchesOwnedPixelsAndDoesNotModifySource",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.sessionResetsTimeAndReportsRendererErrorsWithBypass",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.resultExpiryAndGeometryAreChecked",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.hatTracksEveryOrientationAndMirrorAndHidesWithoutEyes",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.cpuBeautyPreservesAlphaMetadataAndInput",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.copyHandlesBufferPositionAndStride",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyPipelineTest.analysisErrorAndNoFaceHaveDistinctDiagnosticStates",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.rgbaSliceRespectsPositionPaddingAndReadOnlyOwnership",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.rejectsUndersizedAndOverflowSizedBuffers",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.wrongThreadCannotProcessOrCloseOwnerSession",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.textureTransformCannotBeMutatedThroughCallerArrays",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.lifecycleAndRestartPreserveOriginalFrame",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyProcessorTest.duplicateAndBackwardsTimestampsDoNotAdvanceSession",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.frameMetricsSeparateRedrawsAndDoNotInventResultAge",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.borrowedRuntimeSurvivesRenderSessionClose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.enginePipelineCanTrackExternalFramesWithoutCameraTypes",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.borrowedPipelineDoesNotDisableResetOrCloseExternalAnalysis",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.motionBranchReceivesConfiguredAnalysisSize",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.redrawKeepsSamplingTimestampAndRejectsDifferentFrame",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.noStickerSkipsModelAndDemandChangeInvalidatesResults",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautyRuntimeTest.percentilesAreBoundedAndReportMissingStages",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.pushLoopAndSettingsDemandAndValidation",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.maskRejectsFutureStaleAndGeometryAndDefendsPixels",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.explicitlyScaledMaskKeepsRealSampleAgeAndRejectsOtherGeometry",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.alignedMaskKeepsModelExpiryAndRejectsFramesBeforeAlignment",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.bufferMaskCopiesOnlyRemainingBytesAndDoesNotRetainBorrowedStorage",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.BeautySceneTest.motionsStayInsideImageAcrossDirectionsAndReset",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.expiryIsStillMeasuredFromCaptureEvenIfNewerResultIsInFuture",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.ringIsBoundedAndOutOfOrderResultsCannotReplaceNewerSignals",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.producerAheadOfPreviewKeepsNewestNonFutureFaceWithoutChangingAge",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.sharedViewportAllowsScaledFramesButNotDifferentAspectRatio",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.geometryAndExplicitStreamResetInvalidateOldFaces",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.FaceAnalysisHistoryTest.futureMissAndErrorDoNotHideFaceUntilTheirVideoFrameArrives",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.futureExpiredWrongGeometryAndScaledOutputAreHandledExplicitly",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.disabledDoesNotCreateModelAndCloseIsIdempotent",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.borrowedRgbaIsCopiedBeforeReturnAndBusyDropsWithoutAccumulation",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.modelCreationInferenceAndReleaseStayOnSameWorker",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.resetRejectsInFlightResultAndStaleCaptureToken",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.concurrentPollingCannotDeliverTheSameTriggerTwice",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.modelErrorClearsStateAndDoesNotMasqueradeAsNoHands",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureAnalysisRuntimeTest.eventsAreDeliveredOnceNotInFutureAndNoHandsInvalidateSnapshot",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureEffectPlayerTest.staleFutureNonTriggerAndDisabledCannotStart",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureEffectPlayerTest.invalidLayoutDurationAndDuplicateBindingsAreRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureEffectPlayerTest.resetAndBackwardsTimelineClearActiveEffect",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureEffectPlayerTest.playingAndCooldownIgnoreEventsWithoutQueuingOrReplayingIds",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureEffectPlayerTest.atlasAdvancesAndEndsWithoutLooping",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.okAndFingerCountsAreRuleEventsWithNoInventedProbability",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.circleRequiresClosedConsistentTrajectory",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.allSevenModelGesturesNeedStableSamplesAndTriggerOnlyOnceWhileHeld",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.briefHandLossKeepsHeldPoseLatchedEvenAfterCooldownExpires",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.releaseDurationIsRecognizedWhenNextSampleIsAlreadyTheReturningPose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.gapCancelsPinchBeforeRestartingPose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.briefPairLossDoesNotRepeatPrayerAfterCooldown",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.resetGeometryGapAndDuplicateFramesCannotFinishOldStablePose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.twoHandHeartAndPrayerHaveSeparatePositiveFixturesAndSingleHandCannotTriggerThem",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.fingerCountZeroThroughFiveAndFingerHeartHavePositiveFixtures",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.detectionOrderSwapKeepsHandTrackIdentity",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.waveNeedsAlternatingTravelAndDoesNotTriggerFromStillPalm",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.isolatedLateNegativeSampleDoesNotRearmHeldPose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.cooldownRejectionDoesNotPermanentlyConsumeNewCandidate",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.releaseThenReturnRearmsButSingleFrameDropoutDoesNotRepeat",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.twoPinchesProduceScaleAndEndWhenOneReleases",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.lostHandCancelsPinchAndNewHandMustRestabilize",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.pinchAndOkAreInvariantUnderAllRotationsAndMirrors",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.pinchHasStartUpdateDeltaEndAndNoDuplicateStart",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.lowScoreUnknownAndAbsentHandsDoNotTriggerModelEvents",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.degenerateLandmarksCannotStartCustomInteractions",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.briefHandLossCannotBypassTriggerCooldown",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.GestureRuleEngineTest.clapRequiresTwoPalmsSeparatingBeforeApproach",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.ImageStickerTest.asymmetricImageKeepsDisplayOrientationForEveryRotationAndMirror",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.ImageStickerTest.straightAlphaCompositesLayersAndMissingAnchorsHideImages",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.ImageStickerTest.imageAndPackDefensivelyCopyMutableInput",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.JavaApiTest.javaHostCanUseFrameAndLifecycleWithoutKotlinHelpers",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.JavaApiTest.javaEngineCallbackCanUseConnector",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEnforcementTest.commercialReleaseRejectsDirectCpuRendererAndSessionWithoutInitialization",
+      "status": "skipped"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.failedRefreshKeepsValidLeaseAndBackoffSurvivesRestart",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.firstActivationThenManyCallsAndRestartDoNotRequestAgain",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.storageFailureBeforeRequestDoesNotSpamNetwork",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.revocationWriteFailureClearsOldActiveCache",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.tamperedLeaseWrongNonceAndEscalatedFeaturesRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.signedRevocationPersistsAndOfflineCannotReviveActiveLease",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.nodeSignedGrantAndLeaseVerifyInJvm",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.liveLeaseExpiresOnMonotonicClockEvenIfWallClockStops",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.wrongAppCertificateOrSdkRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseEngineTest.cachedClockRollbackDoesNotGrantOfflineAccess",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseTasksTest.repeatedRefreshesUseOneQueuedTask",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.license.LicenseTasksTest.initializationDuringRefreshIsNotLostAndLatestPendingWins",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.MotionTimelineTest.interpolationLoopAndHold",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.MotionTimelineTest.timelineRejectsUnclosedLoopAndDuplicateTime",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.MotionTimelineTest.changingTimelineResetsClockWithoutResettingEveryFrame",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.ReusableRgbInputTest.fusedConversionMatchesReferenceForPaddingScalingAndAllOrientations",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerPoseSmootherTest.smallMotionRemainsVisibleAndFastMotionFollowsImmediately",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerPoseSmootherTest.nullGeometryChangesTimeReversalAndClearDoNotKeepOldPose",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerPoseSmootherTest.angleWrapUsesShortPathAndDoesNotHide",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerPoseSmootherTest.scaleRelativeMotionWorksAcrossResolutions",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerPoseSmootherTest.equalElapsedTimeHasEqualResponseAtDifferentRenderRates",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerResourceGeometryTest.resourceParametersRejectInvalidValuesAndCopyLayerList",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerResourceGeometryTest.layerEditsKeepImageAndDefaultPoseUnchanged",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.StickerResourceGeometryTest.offsetsFollowDisplayAxesAcrossResolutionRotationAndMirror",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.TrackedFaceAnalysisTest.publicSessionUsesOptionalMotionPipelineAndKeepsLifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.TrackedFaceAnalysisTest.freshMotionBridgesStaleDetectionButCannotOutliveCorrectionOrReset",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.TrackedFaceAnalysisTest.failedMotionKeepsLastSuccessWithoutRefreshingTimestamp",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.TrackedFaceAnalysisTest.modelHandoffKeepsNewerCompletedTracking",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.TrackedFaceAnalysisTest.modelHandoffKeepsInFlightTracking",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.UnifiedInputTest.latestPendingReplacesIntermediateFramesWithoutOverwritingActiveInput",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.UnifiedInputTest.publicSessionSharesSmallAnalysisWithLargeTextureWithoutInventingDimensions",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.UnifiedInputTest.engineCanReleaseSourceImmediatelyAndWorkerUsesDirectRgba",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.UnifiedInputTest.resetDropsPendingAndOldCompletion",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.textureLeaseReleaseIsIdempotentAcrossThreads",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.downsamplesBeforeConversionAndReusesBorrowedStorage",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.limitedBlackAndWhitePreserveMetadata",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.nv21OffsetPixelStrideAndOddDimensions",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.matricesDifferAndChromaOrderingMatters",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testDebugUnitTest:com.beautysdk.Yuv420InputTest.invalidPlaneRejectedBeforeRead",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEnforcementTest.commercialReleaseRejectsDirectCpuRendererAndSessionWithoutInitialization",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.failedRefreshKeepsValidLeaseAndBackoffSurvivesRestart",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.firstActivationThenManyCallsAndRestartDoNotRequestAgain",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.storageFailureBeforeRequestDoesNotSpamNetwork",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.revocationWriteFailureClearsOldActiveCache",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.tamperedLeaseWrongNonceAndEscalatedFeaturesRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.signedRevocationPersistsAndOfflineCannotReviveActiveLease",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.nodeSignedGrantAndLeaseVerifyInJvm",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.liveLeaseExpiresOnMonotonicClockEvenIfWallClockStops",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.wrongAppCertificateOrSdkRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseEngineTest.cachedClockRollbackDoesNotGrantOfflineAccess",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseTasksTest.repeatedRefreshesUseOneQueuedTask",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty:testReleaseUnitTest:com.beautysdk.license.LicenseTasksTest.initializationDuringRefreshIsNotLostAndLatestPendingWins",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCapabilitiesTest.rendererAloneDoesNotAdvertiseModelsOrSceneComposition",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCapabilitiesTest.sceneAndFaceAreIndependentAndMissingCapabilitiesAreStructured",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCapabilitiesTest.segmentationCannotBeDeclaredWithoutSceneRenderer",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCapabilitiesTest.completeConfigurationMatchesLegacyDeclaration",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.invalidAndUnknownParametersAreRejected",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.savedResourceScopeWinsOverDefaultParametersUnlessManuallyOverridden",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.savedThemeReplacesDefaultSlotsBeforePreparing",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.eyelashScopePreservesLipstickAndSmoothing",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.languageFallsBackToParentThenDefault",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.defaultMergePreservesExplicitDisableAndHostPriority",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.signedParametersAndNeutralValuesRemainCorrect",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_resources:testDebugUnitTest:com.beautysdk.resources.ResourceCompositionTest.explicitParametersOverrideOnlyMentionedFields",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_gpupixel:testDebugUnitTest:com.beautysdk.gpupixel.EyelashGeometryTest.rawRotationAndMirrorPreserveGeometryOnNonSquareFrames",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_gpupixel:testDebugUnitTest:com.beautysdk.gpupixel.EyelashGeometryTest.missingEyeClearsOnlyItsReusedVerticesAndNullClearsAllLashes",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_gpupixel:testDebugUnitTest:com.beautysdk.gpupixel.EyelashGeometryTest.horizontalLowerLidDriftCannotReopenClosedEye",
+      "status": "passed"
+    },
+    {
+      "id": "core/lib_beauty_gpupixel:testDebugUnitTest:com.beautysdk.gpupixel.TexturedEyelashGeometryTest.allWebVerticesMatchForOpenClosedRotationMirrorAndMissingEye",
+      "status": "passed"
+    }
+  ],
+  "builds": {
+    "license-final-build.txt": "BUILD SUCCESSFUL in 6m 1s",
+    "license-gpu-final-build.txt": "BUILD SUCCESSFUL in 1m 8s",
+    "license-final-tests.txt": "BUILD SUCCESSFUL in 25s",
+    "license-publication-final.txt": "BUILD SUCCESSFUL in 8s",
+    "license-standalone-final.txt": "BUILD SUCCESSFUL in 26s",
+    "license-config-check.txt": "BUILD SUCCESSFUL in 7s",
+    "license-config-restore.txt": "BUILD SUCCESSFUL in 6s"
+  },
+  "nodePassed": 9,
+  "devicePassed": 7,
+  "apiSignatures": 2193,
+  "productionDeployed": false
+}

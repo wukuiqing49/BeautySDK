@@ -1,0 +1,450 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SignedResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.SignedResourceDeliveryDeviceTest:
+INSTRUMENTATION_STATUS: test=authenticPackageInstallsButTamperingAndWrongTrustDoNot
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.SignedResourceDeliveryDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=authenticPackageInstallsButTamperingAndWrongTrustDoNot
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectPanelStabilityDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.EffectPanelStabilityDeviceTest:
+INSTRUMENTATION_STATUS: test=defaultsToPresetsAndKeepsGeometryAcrossTabsAdjustmentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.EffectPanelStabilityDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=defaultsToPresetsAndKeepsGeometryAcrossTabsAdjustmentsAndReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoBuiltinLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.DemoBuiltinLibraryDeviceTest:
+INSTRUMENTATION_STATUS: test=cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.DemoBuiltinLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<0.31> but was:<0.0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport$lambda$8(DemoBuiltinLibraryDeviceTest.kt:53)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.$r8$lambda$GvrPPevjF7Wj9nR9F-8dieZlcDw(DemoBuiltinLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: stream=
+Error in cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport(com.beautysdk.demo.DemoBuiltinLibraryDeviceTest):
+java.lang.AssertionError: expected:<0.31> but was:<0.0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport$lambda$8(DemoBuiltinLibraryDeviceTest.kt:53)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.$r8$lambda$GvrPPevjF7Wj9nR9F-8dieZlcDw(DemoBuiltinLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: test=cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceCenterUiDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stack=java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: stream=
+Error in rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest):
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<9> but was:<8>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$5(ResourceCenterUiDeviceTest.kt:101)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$-BL-YCnoYhi-7fKHCSb1QQISwhc(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda15.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: stream=
+Error in independentPageInstallsSelectsAndPersistsWithoutCamera(com.beautysdk.demo.ResourceCenterUiDeviceTest):
+java.lang.AssertionError: expected:<9> but was:<8>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$5(ResourceCenterUiDeviceTest.kt:101)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$-BL-YCnoYhi-7fKHCSb1QQISwhc(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda15.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceLibraryDeviceTest:
+INSTRUMENTATION_STATUS: test=jsonControlsApplyAndResetAndLibrarySurvivesReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=jsonControlsApplyAndResetAndLibrarySurvivesReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectsMissingTranslationsUnknownParametersAndInvalidRanges
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectsMissingTranslationsUnknownParametersAndInvalidRanges
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stack=org.junit.ComparisonFailure: expected:<[自定义]美颜> but was:<[]美颜>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls$lambda$4(ResourceLibraryDeviceTest.kt:69)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$9b5vqn1kM_iQrXfxDcLUKhVLDSc(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda16.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: stream=
+Error in cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls(com.beautysdk.demo.ResourceLibraryDeviceTest):
+org.junit.ComparisonFailure: expected:<[自定义]美颜> but was:<[]美颜>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls$lambda$4(ResourceLibraryDeviceTest.kt:69)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$9b5vqn1kM_iQrXfxDcLUKhVLDSc(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda16.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+INSTRUMENTATION_STATUS: test=cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=classifiedDeliveryInstallsAndComposesWithLanguageFallback
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=classifiedDeliveryInstallsAndComposesWithLanguageFallback
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rejectsTamperedExpandedFilesAndTraversalAndKeepsLegacyImport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rejectsTamperedExpandedFilesAndTraversalAndKeepsLegacyImport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceContractDeviceTest:
+INSTRUMENTATION_STATUS: test=sameLibraryCasesAsWeb
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sameLibraryCasesAsWeb
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=onlineGesturesShareValidationAndDoNotAutoEnable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=onlineGesturesShareValidationAndDoNotAutoEnable
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=explicitDefaultsControlOrderLanguageAndParameters
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceContractDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=14
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=explicitDefaultsControlOrderLanguageAndParameters
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.14
+There were 4 failures:
+1) cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport(com.beautysdk.demo.DemoBuiltinLibraryDeviceTest)
+java.lang.AssertionError: expected:<0.31> but was:<0.0>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport$lambda$8(DemoBuiltinLibraryDeviceTest.kt:53)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest.$r8$lambda$GvrPPevjF7Wj9nR9F-8dieZlcDw(DemoBuiltinLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.DemoBuiltinLibraryDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+2) rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest)
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda6.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+3) independentPageInstallsSelectsAndPersistsWithoutCamera(com.beautysdk.demo.ResourceCenterUiDeviceTest)
+java.lang.AssertionError: expected:<9> but was:<8>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$5(ResourceCenterUiDeviceTest.kt:101)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$-BL-YCnoYhi-7fKHCSb1QQISwhc(ResourceCenterUiDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda15.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+4) cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls(com.beautysdk.demo.ResourceLibraryDeviceTest)
+org.junit.ComparisonFailure: expected:<[自定义]美颜> but was:<[]美颜>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls$lambda$4(ResourceLibraryDeviceTest.kt:69)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest.$r8$lambda$9b5vqn1kM_iQrXfxDcLUKhVLDSc(ResourceLibraryDeviceTest.kt:0)
+	at com.beautysdk.demo.ResourceLibraryDeviceTest$$ExternalSyntheticLambda16.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2654)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:269)
+	at android.os.Looper.loop(Looper.java:367)
+	at android.app.ActivityThread.main(ActivityThread.java:9333)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+
+FAILURES!!!
+Tests run: 14,  Failures: 4
+
+
+INSTRUMENTATION_CODE: -1

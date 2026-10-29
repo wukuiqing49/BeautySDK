@@ -1,5 +1,9 @@
 # BeautySDK 开发代理入口
 
+## 2026-10-29 单一Maven发行入口
+
+新增core/lib_beauty_sdk，发布坐标com.beautysdk:beautysdk，与四个实现模块共用sdk版本；api传递暴露核心/资源/MediaPipe/GPUPixel，不合并AAR，不引入Demo/WKQ/相机。根任务publishBeautySdkToLocalBuildRepository发布入口与依赖，候选包包含五个制品及元数据。独立示例仅声明入口；发布、三类classpath同版校验、Debug/Release-R8及4项发布契约回归通过。当前本地仓库，未远程发布；Pixel8本轮离线，未复跑设备。详见最新测试报告。
+
 ## 项目事实
 
 - 本项目是 Android 美颜与人脸挂件 SDK，面向直播引擎视频帧处理；Zego、声网是目标适配参考，尚未选定具体 SDK 版本或完成适配。
@@ -165,3 +169,51 @@ Web完整资源库按分类/名称__ID导出，新增library.json定义分类、
 ## 2026-10-28 手势动画纳入完整资源库
 
 libraryVersion=2新增第9类GESTURE和gestureResources，完整本地ZIP含50份常规资源+4组实际透明图集动画，带预览、中英名称、触发规则及默认选择；已保存的自定义绑定随方案交付。Android公共资源管理器验证/安装/组合手势素材，Demo资源页独立第9类选择、互斥、删除、记忆及显式默认应用，旧独立手势包兼容。常规8类枚举/BeautySettings不变，catalog网络协议仅覆盖常规资源。Web53项、资源JVM8项、Pixel8相关18项通过，构建/lint/UI/i18n/架构门禁通过。未发布网页；iOS完整库、真人观感/准确率与持续性能未验收。协议及证据见resources/unified/library-v1/README.md和固定TEST_REPORT。
+
+
+## 2026-10-28 完整交付目录规范
+
+新完整ZIP统一beauty_resources/外层，内部英文分类/稳定ID，JSON名称与多语言不参与文件路径。Web/Android归一化新外层并保留旧中文分类/平铺根包，拒绝混合根；Demo识别新旧catalog入口。Web55、资源JVM8、Pixel8相关12项通过，构建/lint/架构门禁通过；详见固定测试报告。网络baseURL须对应外层目录内部内容，不代表网站已发布或iOS已支持。
+
+
+## 2026-10-28 Android assets资源加载
+
+BeautyResourceManager新增installDeliveryFromAssets（完整ZIP）与installDeliveryDirectoryFromAssets（解压目录），复用完整校验/安装回滚，不自动应用或联网。目录有界收集，默认beauty_resources。开发接入见doc/ANDROID_SDK_USAGE.md及首页链接。资源JVM8、Pixel8相关14项及构建/lint/架构门禁通过；厂商/真人/性能仍待验收。
+
+
+## 2026-10-29 Demo默认资源对接修复
+
+主APK内置最新完整ZIP（50常规+4手势）及library.json，启动通过公共assets API安装一次；默认效果控件读取内置JSON，不再要求手动导入。用户导入清单优先，参数/选择/旧素材删除保留；相机异步清单更新同步切换控件模式。Pixel8相关13项通过，含不导入的真实相机参数生效；构建/lint/UI/架构通过。证据见固定测试报告，不代表真人/持续性能通过。
+## 2026-10-29 效果面板交互
+
+用户最新要求：相机效果弹框默认展示预设，切换分类与关闭重开回到预设；微调保留单项参数强度调整。两种模式固定同一高度，参数状态更新复用滑杆，避免主题展开时重建。Pixel 8 本轮 8 项相关设备回归通过，逐帧位置/尺寸断言通过；不代表横屏字体完整矩阵、真人视觉或持续性能通过，详见测试报告。
+
+## 2026-10-29 SDK/CMS收敛
+
+用户明确CMS仅个人使用，直播引擎暂不接入。参数契约由CMS parameter-contract.json生成双方定义；Web/Android共享清单夹具。目录V2包含普通和手势，安装不启用；V1继续兼容。发布脚本生成不可变快照并同步APK三份内容与marker，preBuild检查一致；本地生成不等于网站部署。Demo弹框窗口职责抽到EffectPanelHost，分类排序以已应用defaults为准。个人版本页保留最多5个版本/64MiB，无账号或服务端。验证与短测限制以最新TEST_REPORT为准，不宣称真人质量/长时性能/iOS已完成。
+## 2026-10-29 商业候选版源码增量（未运行）
+
+用户要求先处理源码、不运行。四个SDK模块新增统一本地Maven发布配置，samples/standalone为不依赖Demo/WKQ的独立消费者验证样例（有意使用平台Activity验证SDK依赖边界，既有宿主仍遵循WKQ约定）。新增候选打包脚本、可选SignedResourceDelivery发行方验签入口、CMS来源凭据记录及长测有效人脸覆盖率门槛。未执行新增构建/测试/签名/打包/真机；不能沿用旧通过基线。资源签名不是客户付费授权，不提供可信时间或防回滚。范围及剩余项以doc/COMMERCIAL_READINESS.md为准；直播引擎仍不接入，CMS仍为个人使用。
+
+## 2026-10-29 真机回归与相机手势入口
+
+用户随后授权真机测试及修复。资源控制器在宿主赋值后显式start；相机效果面板新增第9类手势入口，选择使用既有播放器与独立检测开关。Pixel8最终22项设备回归通过，覆盖相机卡片/参数同步、资源管理恢复、发行签名拒绝篡改及真实ES3动画换帧/过期/旋转镜像。测试逐项唤醒避免相机退出后锁屏影响，保留原断言。结果见最新TEST_REPORT；合成TRIGGER动画测试不等于真人识别准确率或持续性能验收，商业候选打包与正式网络发行源也未由此通过。
+
+
+## 2026-10-29 授权逻辑（0.2.0）
+
+用户明确授权实现联网商业鉴权，覆盖此前不引入联网鉴权的默认约定。新增核心 BeautyLicensing 与统一入口 BeautySdk.initialize；Release 默认拒绝，源码 Debug 为开发模式。RSA 签名文件绑定包名/当前 APK 签名/主版本/功能，默认 24 小时刷新、最长 7 天租约，缓存与退避持久化、请求合并；视频线程只检查内存，不联网。Node 个人服务和发行 CLI 位于 services/license，CMS 不持有私钥，无账号支付/设备配额。发行构建使用 beautyLicenseConfig，商业打包拒绝空/不匹配公钥配置。当前未配置生产密钥或部署服务，本地 Release 默认关闭效果；Debug GPU 7 项通过不代表 Release 正向激活通过。完整 JVM/Node/R8 证据见最新 TEST_REPORT，协议与部署见 doc/LICENSING.md。直播厂商仍不接入。
+
+## 2026-10-29 限定试用收敛
+
+当前能力与限制统一见doc/PRODUCT_STATUS.md；主推基础美颜/调色/静态贴纸，其他能力保留实验体验。resources/commercial/trial-release.json登记待关闭资格，候选打包检查范围与JVM签名基线。首建基线不代表历史版本兼容已验收，javap检查不覆盖Kotlin元数据/native ABI/行为。独立示例补资源准备与调参源码；CMS手机试用和Demo本地完整包导入提供SHA256核对，不代表当前参数仍为默认或真人质量通过。真人调校、多设备长测、外部开发者试用与正式发行待执行，结果以TEST_REPORT为准。直播厂商继续不接入。
+
+
+## 2026-10-29 官网与登录管理系统
+
+用户授权将独立 BeautyStickerWorkshop 改为官网＋个人管理系统并要求管理登录。新增服务端会话/CSRF/限频、官网草稿与发布、完整ZIP归档/发布下载/删除保护和审计。Node本地SQLite/文件与Pages Worker的D1/R2共用处理代码；原编辑器草稿仍在浏览器。验证与部署配置见独立项目ADMIN_DEPLOYMENT.md及.site-audit/validation.md；未部署线上、未创建远端存储、未改Android资源协议，不代表多人协作、实时草稿云同步或商用验收。
+
+
+## 2026-10-29 CMS 授权签发与下发
+
+用户新增要求授权生成和下发，独立BeautyStickerWorkshop后台新增/admin#licenses、服务端RSA签发、SQLite/D1合同登记、一次性领取链接、续期/撤销/恢复，/v1/lease读取同一登记。私钥仅在服务端运行时，浏览器不持有；此前“CMS不持有私钥”限于旧静态CMS。本地RSA3072签发器已初始化，未部署正式HTTPS、未写入SDK受信配置；原CLI JSON与CMS数据库不同源不自动同步。Web94项、最终后台/授权10项与workerd集成1项通过，SDK原Node9项通过且签名逐字节兼容；浏览器流程与360px验证通过。本轮不改Android运行时，不代表客户真机激活或商业画质验收，详见独立项目ADMIN_DEPLOYMENT.md与.site-audit/licensing-validation.md。

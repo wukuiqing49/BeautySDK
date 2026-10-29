@@ -54,3 +54,21 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.constraintlayout
 }
+
+// 内置清单、默认值与ZIP必须来自同一次发布，阻止只复制其中一个文件的APK。
+def verifyBuiltinResources = tasks.register('verifyBuiltinResources') {
+    def assets = file('src/main/assets')
+    inputs.files(fileTree(assets) { include 'resource-release.json', 'resource_delivery.zip', 'resource_center/library.json', 'resource_center/defaults.json' })
+    doLast {
+        def marker = new groovy.json.JsonSlurper().parse(new File(assets, 'resource-release.json'))
+        if (marker.releaseVersion != 1 || !(marker.id ==~ /r-[0-9a-f]{16}/)) throw new GradleException('Invalid resource release marker')
+        def expected = ['resource_delivery.zip','resource_center/library.json','resource_center/defaults.json'] as Set
+        if (marker.files.keySet() != expected) throw new GradleException('Incomplete resource release marker')
+        marker.files.each { path, info ->
+            def bytes = new File(assets, path).bytes
+            def digest = java.security.MessageDigest.getInstance('SHA-256').digest(bytes).encodeHex().toString()
+            if (bytes.length != info.bytes || digest != info.sha256) throw new GradleException("Resource release mismatch: ${path}; run release-library.mjs --sdk <SDK>")
+        }
+    }
+}
+tasks.named('preBuild').configure { dependsOn verifyBuiltinResources }

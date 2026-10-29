@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import kotlin.math.*
 
 /** 单线程规则状态机；可用于离线结果回放。自定义手型/动作是二维启发式，须按业务真人验收。
@@ -83,6 +85,7 @@ class GestureRuleEngine @JvmOverloads constructor(private val config: GestureCon
     }
 
     fun process(info: FrameInfo,hands: List<HandObservation>): List<GestureEvent> {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) { reset(); return emptyList() }
         require(hands.size<=2)
         val old=geometry
         if(old!=null && (old.rotationDegrees!=info.rotationDegrees || old.mirrored!=info.mirrored ||

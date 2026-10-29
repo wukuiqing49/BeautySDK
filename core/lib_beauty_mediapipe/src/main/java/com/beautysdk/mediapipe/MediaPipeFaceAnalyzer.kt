@@ -1,5 +1,7 @@
 package com.beautysdk.mediapipe
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import android.content.Context
 import com.beautysdk.*
 import java.nio.ByteBuffer
@@ -46,6 +48,7 @@ class MediaPipeFaceAnalyzer @JvmOverloads constructor(
         private set
     /** 在所属分析线程执行 VIDEO 推理；输入先转正，输出478点及语义锚点再还原原始空间，不计算表情系数。 */
     override fun analyze(source: AnalysisImage): List<FaceObservation> {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return emptyList()
         checkOwner()
         val started = System.nanoTime()
         if (orientationPixels.size != source.pixels.size) orientationPixels = ByteArray(source.pixels.size)
@@ -65,6 +68,7 @@ class MediaPipeFaceAnalyzer @JvmOverloads constructor(
 
     /** 缩图规格变化才更换缓冲，所有操作仍在统一分析 worker 上执行。 */
     override fun analyzeRgba(frame: RgbaFrame, maxSide: Int): List<FaceObservation> {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return emptyList()
         checkOwner()
         val started = System.nanoTime()
         val buffer = rgbInput.prepare(frame,maxSide)

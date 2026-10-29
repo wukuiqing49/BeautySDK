@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import android.opengl.EGL14
 import android.opengl.GLES30 as GL
 import java.nio.ByteBuffer
@@ -14,6 +16,7 @@ class BeautySceneRenderer(private val delegate: BeautyRenderer,
     private var motionPass: SceneGlPass?=null
     private val motion=CameraMotionController()
     override fun render(frame: VideoFrame,settings: BeautySettings,face: FaceObservation?): VideoFrame {
+        if (!BeautyLicensing.allowsSettings(settings)) return frame
         require(frame is TextureFrame)
         val scene=settings.scene
         if(scene.isIdentity) { motion.reset();return delegate.render(frame,settings,face) }
@@ -51,6 +54,9 @@ internal class SceneGlPass : AutoCloseable {
     init { check(context!=EGL14.EGL_NO_CONTEXT) }
     private fun checkOwner() { check(!closed && owner===Thread.currentThread() && EGL14.eglGetCurrentContext()==context) }
     fun render(frame:TextureFrame,scene:BeautyScene,mask:ForegroundMask?,crop:FloatArray,overlay:GestureEffectFrame?=null):TextureFrame {
+        if (scene.needsSegmentation && !BeautyLicensing.allows(LicensedFeature.BACKGROUND)) return frame
+        if (scene.motion != CameraMotion.NONE && !BeautyLicensing.allows(LicensedFeature.MOTION)) return frame
+        if (overlay != null && !BeautyLicensing.allows(LicensedFeature.GESTURE)) return frame
         checkOwner()
         require(frame.target!=TextureTarget.TEXTURE_2D || frame.textureId!=texture)
         val saved=State()

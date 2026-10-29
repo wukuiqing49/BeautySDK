@@ -1,0 +1,7 @@
+Initial compilation: test accessed internal readDelivery; changed fixture extraction to ZipInputStream.
+Build gate: task named verifyResourceRelease triggered preexisting release signing name detection; renamed verifyBuiltinResources.
+First device run: 19 tests, 7 failures; device dozing blocked lifecycle/UI samples, one test used removed private field. Wake/unlock and getter adjustment: 19 passed.
+Combined run: 26 tests, 3 failures. New order test left active-defaults because backup omitted it. Added default/archive backup; reset only exact test-written English/reverse-order defaults to builtin defaults, preserving user-state. Original defaults bytes were not available, so no byte-for-byte recovery claim. Next combined run: 26 passed.
+Final cross-page refresh fix: 13 affected tests passed.
+Legacy gesture deletion test removed an existing builtin. Added installed-gesture backup. First repair via adb stdin truncated binary package/PNG; 7-test check failed 2. Repaired only victory_sparkles via binary-safe adb push/copy, verified SHA256. Final 7 tests passed and all four builtin packages/previews verified.
+Host memory pressure: JVM native allocation failures and one Node parallel-worker startup failure. Retried bounded workers/heap/compiler threads; APK compilation, final lint/AAR, and Node 75 tests passed. No other project processes terminated.

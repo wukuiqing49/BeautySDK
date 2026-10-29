@@ -1,0 +1,75 @@
+{
+  "effectVersion": 1,
+  "effectType": "LEGACY",
+  "payload": {
+    "schemaVersion": 4,
+    "type": "BEAUTY",
+    "id": "lash_natural",
+    "name": "自然款睫毛",
+    "preview": "preview.png",
+    "config": {
+      "smoothing": 0,
+      "whitening": 0,
+      "filter": "NONE",
+      "adjustments": {
+        "rosy": 0,
+        "brightness": 0,
+        "contrast": 1,
+        "saturation": 1,
+        "sharpening": 0,
+        "slimFace": 0,
+        "bigEyes": 0,
+        "lipstick": 0,
+        "blusher": 0,
+        "slimNose": 0,
+        "chinLength": 0,
+        "mouthSize": 0,
+        "eyelashes": 0.85
+      },
+      "eyeMakeup": {
+        "kind": "EYELASH",
+        "image": "eyelash.png",
+        "root": [
+          [
+            0.03,
+            0.86
+          ],
+          [
+            0.1475,
+            0.8293853254107928
+          ],
+          [
+            0.265,
+            0.8034314575050762
+          ],
+          [
+            0.38249999999999995,
+            0.7860896373990971
+          ],
+          [
+            0.5,
+            0.78
+          ],
+          [
+            0.6174999999999999,
+            0.7860896373990971
+          ],
+          [
+            0.735,
+            0.8034314575050762
+          ],
+          [
+            0.8525,
+            0.8293853254107928
+          ],
+          [
+            0.97,
+            0.86
+          ]
+        ],
+        "length": 0.2,
+        "mirrorRight": true
+      }
+    }
+  }
+}

@@ -15,6 +15,8 @@ enum class ResourceInstallStage { COPYING, DOWNLOADING, VERIFYING, INSTALLING, I
 data class ResourceProgress(val stage:ResourceInstallStage,val completed:Long=0,val total:Long?=null)
 data class InstalledGestureResource(val hash:String,val descriptor:LibraryGestureResource)
 data class InstalledResource(val hash:String,val descriptor:ResourceDescriptor)
+data class CatalogGestureResource(val descriptor:LibraryGestureResource,val url:String,val previewUrl:String)
+data class UnifiedResourceCatalog(val resources:List<CatalogResource>,val gestures:List<CatalogGestureResource> = emptyList())
 data class CatalogResource(val manifest:ResourceDescriptor,val url:String,val previewUrl:String,val bytes:Int,val sha256:String)
 /** HTTP流和连接由close负责释放；宿主可注入已有客户端，避免强依赖网络框架。 */
 interface ResourceDownload:AutoCloseable {val input:InputStream;val length:Long?;override fun close()}
@@ -58,11 +60,38 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
         val added=mutableListOf<InstalledResource>();val addedGestures=mutableListOf<String>()
         try {
             for(item in pack.resources){cancel.check();val r=install(item.bytes.inputStream(),item.entry,cancel);if(before.none{it.hash==r.hash})added+=r}
-            for(item in pack.gestures){cancel.check();val hash=item.descriptor.sha256;val target=File(gestureInstalled,hash)
-                if(!target.isDirectory){val temp=File(staging,java.util.UUID.randomUUID().toString());check(temp.mkdir());try{File(temp,"package.zip").writeBytes(item.bytes);File(temp,"preview.png").writeBytes(item.preview);File(temp,"resource.json").writeBytes(item.descriptor.json);cancel.check();check(temp.renameTo(target));addedGestures+=hash}finally{temp.deleteRecursively()}}
-            }
+            for(item in pack.gestures){val r=installGesture(item.descriptor,item.bytes,item.preview,cancel);if(gestureBefore.none{it.hash==r.hash})addedGestures+=r.hash}
             return ResourceDeliveryResult(pack.resources.map {InstalledResource(it.entry.sha256,it.entry.manifest)},pack.defaults,pack.defaultsJson,pack.library,pack.gestures)
         } catch(t:Throwable){addedGestures.forEach{File(gestureInstalled,it).deleteRecursively()};added.asReversed().forEach {uninstall(it.hash)};throw t}
+    }
+    /** 从APK assets加载完整ZIP；后台调用，不联网、不改变用户选择。 */
+    @JvmOverloads @Synchronized fun installDeliveryFromAssets(
+        assets:android.content.res.AssetManager,assetPath:String="resource_delivery.zip",
+        cancel:ResourceCancellation=ResourceCancellation()
+    ):ResourceDeliveryResult {
+        require(safeLibraryPath(assetPath));cancel.check()
+        return installDelivery(assets.open(assetPath),cancel)
+    }
+    /** 从APK assets读取解压目录；有界收集全部文件后复用完整包校验和回滚。 */
+    @JvmOverloads @Synchronized fun installDeliveryDirectoryFromAssets(
+        assets:android.content.res.AssetManager,directory:String="beauty_resources",
+        cancel:ResourceCancellation=ResourceCancellation()
+    ):ResourceDeliveryResult {
+        require(safeLibraryPath(directory+"/x")&&!directory.endsWith('/'))
+        val files=linkedMapOf<String,ByteArray>();var total=0L
+        fun visit(path:String,relative:String,depth:Int){
+            cancel.check();require(depth<=8){"ASSET_DIRECTORY_DEPTH"}
+            val children=requireNotNull(assets.list(path))
+            if(children.isNotEmpty()){
+                for(name in children){require(safeLibraryPath(name)&&!name.contains('/'));visit("$path/$name",if(relative.isEmpty())name else "$relative/$name",depth+1)}
+            }else{
+                require(relative.isNotEmpty()&&safeLibraryPath(relative)&&files.size<2000){"ASSET_FILE_LIMIT"}
+                val data=assets.open(path).use{bounded(it,(33554432L-total).toInt()){cancel.check()}}
+                total+=data.size;require(total<=33554432);files[relative]=data
+            }
+        }
+        visit(directory,"",0);cancel.check()
+        return installDelivery(ResourceArchive.write(files).inputStream(),cancel)
     }
     @Synchronized fun listGestureResources():List<InstalledGestureResource> = gestureInstalled.listFiles().orEmpty().filter{it.isDirectory&&it.name.matches(Regex("[0-9a-f]{64}"))}.map {dir->
         val descriptor=LibraryGestureResource.parse(File(dir,"resource.json").readBytes());require(descriptor.sha256==dir.name);InstalledGestureResource(dir.name,descriptor)
@@ -71,6 +100,7 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
     /** IO配置阶段准备选择，拒绝重复手势和合计像素超限；从不自动开启检测。 */
     @Synchronized fun prepareGestureSelection(hashes:Collection<String>):com.beautysdk.GestureEffectPack? {
         require(hashes.size<=8&&hashes.toSet().size==hashes.size);if(hashes.isEmpty())return null
+        com.beautysdk.license.BeautyLicensing.requireFeatures(setOf(com.beautysdk.license.LicensedFeature.GESTURE))
         val available=listGestureResources().associateBy{it.hash}
         val rules=hashes.flatMap {hash->val r=requireNotNull(available[hash]);val data=File(gestureInstalled,"$hash/package.zip").readBytes();require(sha256(data)==r.hash);com.beautysdk.GestureEffectArchive.loadZip(data.inputStream()).rules}
         require(rules.sumOf{it.image.width.toLong()*it.image.height}<=8388608){"GESTURE_PIXEL_BUDGET"}
@@ -108,9 +138,32 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
     @Synchronized fun uninstall(hash:String) {require(hash.matches(Regex("[0-9a-f]{64}")));check((references[hash]?:0)==0){"RESOURCE_IN_USE"};val target=File(installed,hash);check(!target.exists()||target.deleteRecursively());prepared.remove(hash)}
     /** 只清理临时安装，绝不清用户状态；不与安装并发。 */
     @Synchronized fun cleanTemporary(){staging.listFiles().orEmpty().forEach {it.deleteRecursively()}}
-    fun catalog(url:String):List<CatalogResource> {
+    /** V1/V2共用入口；旧catalog调用只返回普通资源，新宿主使用完整目录。 */
+    fun catalog(url:String):List<CatalogResource> = unifiedCatalog(url).resources
+    fun unifiedCatalog(url:String):UnifiedResourceCatalog {
         requireHttps(url);val cache=File(catalogs,sha256(url.toByteArray())+".json")
-        return try {val bytes=open(url).use {bounded(it.input,1048576)};parseCatalog(bytes).also {atomic(cache,bytes)}}catch(e:Exception){if(cache.isFile)parseCatalog(cache.readBytes())else throw e}
+        return try {val bytes=open(url).use {bounded(it.input,1048576)};parseUnifiedCatalog(bytes).also {atomic(cache,bytes)}}catch(e:Exception){if(cache.isFile)parseUnifiedCatalog(cache.readBytes())else throw e}
+    }
+    /** 网络与完整ZIP复用手势校验/安装，不自动启用动画。 */
+    fun downloadGesture(entry:CatalogGestureResource,cancel:ResourceCancellation=ResourceCancellation()):InstalledGestureResource {
+        cancel.check()
+        val bytes=open(entry.url).use{bounded(it.input,entry.descriptor.bytes){cancel.check()}}
+        val preview=gesturePreview(entry)
+        return installGesture(entry.descriptor,bytes,preview,cancel)
+    }
+    fun gesturePreview(entry:CatalogGestureResource):ByteArray {
+        val hash=entry.descriptor.previewSha256;val cache=File(catalogs,"gesture-$hash.png")
+        fun validate(bytes:ByteArray):ByteArray {require(sha256(bytes)==hash){"GESTURE_PREVIEW_MISMATCH"};ResourceArchive.validatePreview(bytes);return bytes}
+        return try {validate(open(entry.previewUrl).use{bounded(it.input,4194304)}).also{atomic(cache,it)}}catch(e:Exception){if(cache.isFile)validate(cache.readBytes())else throw e}
+    }
+    @Synchronized fun installGesture(descriptor:LibraryGestureResource,bytes:ByteArray,preview:ByteArray,cancel:ResourceCancellation=ResourceCancellation()):InstalledGestureResource {
+        cancel.check();descriptor.validatePack(bytes);require(sha256(preview)==descriptor.previewSha256){"GESTURE_PREVIEW_MISMATCH"};ResourceArchive.validatePreview(preview)
+        listGestureResources().firstOrNull{it.descriptor.id==descriptor.id&&it.descriptor.revision==descriptor.revision&&it.hash!=descriptor.sha256}?.let{error("GESTURE_REVISION_CONFLICT")}
+        val target=File(gestureInstalled,descriptor.sha256)
+        if(target.isDirectory){require(File(target,"package.zip").readBytes().contentEquals(bytes)){"CORRUPT_INSTALL"};return InstalledGestureResource(descriptor.sha256,LibraryGestureResource.parse(File(target,"resource.json").readBytes()))}
+        val temp=File(staging,UUID.randomUUID().toString());check(temp.mkdir())
+        try {File(temp,"package.zip").writeBytes(bytes);File(temp,"preview.png").writeBytes(preview);File(temp,"resource.json").writeBytes(descriptor.json);cancel.check();check(temp.renameTo(target)){"INSTALL_COMMIT_FAILED"}}finally{temp.deleteRecursively()}
+        return InstalledGestureResource(descriptor.sha256,descriptor)
     }
     /** 独立封面读取，不要求先下载整包；宿主在IO线程调用并控制预取数量。 */
     fun preview(entry:CatalogResource):ByteArray {
@@ -133,10 +186,20 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
     }
     companion object {
         internal fun atomic(file:File,bytes:ByteArray) {check(file.parentFile!!.isDirectory||file.parentFile!!.mkdirs());val tmp=File.createTempFile("pending_",".part",file.parentFile);try{tmp.outputStream().use{it.write(bytes);it.fd.sync()};check(tmp.renameTo(file))}finally{tmp.delete()}}
-        fun parseCatalog(bytes:ByteArray):List<CatalogResource> {
-            require(bytes.size<=1048576);val root=JSONObject(bytes.toString(Charsets.UTF_8));root.fields("resourceCatalogVersion","resources");root.integer("resourceCatalogVersion",1,1)
+        fun parseCatalog(bytes:ByteArray):List<CatalogResource> = parseUnifiedCatalog(bytes).resources
+        private fun parseOrdinaryCatalog(bytes:ByteArray):List<CatalogResource> {
+            require(bytes.size<=1048576);val root=JSONObject(bytes.toString(Charsets.UTF_8));val version=root.integer("resourceCatalogVersion",1,2);if(version==1)root.fields("resourceCatalogVersion","resources")else root.fields("resourceCatalogVersion","resources","gestures")
             val a=root.getJSONArray("resources");require(a.length()<=500)
             return (0 until a.length()).map {i->val e=a.getJSONObject(i);e.fields("manifest","url","previewUrl","bytes","sha256");val d=ResourceArchive.descriptor(e.getJSONObject("manifest"));val url=e.text("url");val preview=e.text("previewUrl");requireHttps(url);requireHttps(preview);val hash=e.text("sha256");require(hash.matches(Regex("[0-9a-f]{64}")));CatalogResource(d,url,preview,e.integer("bytes",1,33554432),hash)}.also {require(it.map{e->e.manifest.id to e.manifest.revision}.toSet().size==it.size)}
+        }
+        fun parseUnifiedCatalog(bytes:ByteArray):UnifiedResourceCatalog {
+            val resources=parseOrdinaryCatalog(bytes);val root=JSONObject(bytes.toString(Charsets.UTF_8))
+            val gestures=if(root.getInt("resourceCatalogVersion")==2){val a=root.getJSONArray("gestures");require(a.length()<=8)
+                (0 until a.length()).map{i->val e=a.getJSONObject(i);e.fields("descriptor","url","previewUrl");val d=LibraryGestureResource.parse(e.getJSONObject("descriptor"));val url=e.text("url");val preview=e.text("previewUrl");requireHttps(url);requireHttps(preview);CatalogGestureResource(d,url,preview)}
+            }else emptyList()
+            val identities=resources.map{it.manifest.id to it.manifest.revision}+gestures.map{it.descriptor.id to it.descriptor.revision}
+            require(identities.toSet().size==identities.size){"CATALOG_DUPLICATE"}
+            return UnifiedResourceCatalog(resources,gestures)
         }
         private fun requireHttps(url:String){val u=URL(url);require(u.protocol=="https"&&u.host.isNotBlank()&&u.userInfo==null&&u.ref==null)}
     }

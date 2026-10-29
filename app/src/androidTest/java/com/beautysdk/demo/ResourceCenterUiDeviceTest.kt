@@ -98,7 +98,7 @@ class ResourceCenterUiDeviceTest {
             inst.runOnMainSync {
                 assertNull(a.findViewById<View>(R.id.camera_gpu_preview))
                 assertEquals(View.VISIBLE,a.findViewById<View>(R.id.resource_management).visibility)
-                val tabs=a.findViewById<LinearLayout>(R.id.resource_categories);assertEquals(8,tabs.childCount)
+                val tabs=a.findViewById<LinearLayout>(R.id.resource_categories);assertEquals(9,tabs.childCount)
                 tabs.getChildAt(2).performClick()
                 val grid=a.findViewById<GridLayout>(R.id.resource_grid);assertTrue(grid.childCount>=3)
                 selectedHash=grid.getChildAt(0).tag.toString().removePrefix("resource_")

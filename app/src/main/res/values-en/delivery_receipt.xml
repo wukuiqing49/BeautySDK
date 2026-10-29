@@ -1,0 +1,3 @@
+<resources>
+    <string name="resources_delivery_receipt">Last successfully imported local delivery (SHA-256): %1$s\nCompare with the workshop download, then apply defaults and check parameters. This identifies the package, not the current effect settings.</string>
+</resources>

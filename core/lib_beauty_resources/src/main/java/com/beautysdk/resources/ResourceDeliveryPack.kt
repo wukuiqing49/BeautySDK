@@ -11,7 +11,8 @@ class ResourceDeliveryPack private constructor(val resources:List<DeliveryResour
         fun read(bytes:ByteArray):ResourceDeliveryPack {
             val files=ResourceArchive.readDelivery(bytes)
             val library=files["library.json"]?.let(BeautyResourceLibrary::parse)
-            val entries=BeautyResourceManager.parseCatalog(requireNotNull(files["catalog.json"]){"DELIVERY_CATALOG_MISSING"})
+            val catalog=BeautyResourceManager.parseUnifiedCatalog(requireNotNull(files["catalog.json"]){"DELIVERY_CATALOG_MISSING"})
+            val entries=catalog.resources
             require(entries.size in 1..99){"DELIVERY_RESOURCE_LIMIT"}
             val json=requireNotNull(files["defaults.json"]){"DELIVERY_DEFAULTS_MISSING"}
             val defaults=BeautyResourceDefaults.parse(json)
@@ -41,6 +42,12 @@ class ResourceDeliveryPack private constructor(val resources:List<DeliveryResour
                 for((path,content)in expanded){val target=ref.directory+path;require(names.add(target));require(files[target]?.contentEquals(content)==true){"GESTURE_EXPANDED_MISMATCH"}}
                 val preview=requireNotNull(files[ref.preview]);require(sha256(preview)==ref.previewSha256){"GESTURE_PREVIEW_MISMATCH"};ResourceArchive.validatePreview(preview)
                 DeliveryGestureResource(ref,data,preview)
+            }
+            if(org.json.JSONObject(files.getValue("catalog.json").toString(Charsets.UTF_8)).getInt("resourceCatalogVersion")==2){
+                require(catalog.gestures.size==gestures.size){"GESTURE_CATALOG_MISMATCH"}
+                for(entry in catalog.gestures){val ref=requireNotNull(gestures.singleOrNull{it.descriptor.id==entry.descriptor.id}).descriptor
+                    require(jsonEquivalent(org.json.JSONObject(ref.json.toString(Charsets.UTF_8)),org.json.JSONObject(entry.descriptor.json.toString(Charsets.UTF_8)))&&URL(entry.url).toURI().path.endsWith("/"+ref.packagePath)&&URL(entry.previewUrl).toURI().path.endsWith("/"+ref.preview)){"GESTURE_CATALOG_MISMATCH"}
+                }
             }
             val defaultRules=gestures.filter{it.descriptor.defaultEnabled}.flatMap{com.beautysdk.GestureEffectArchive.loadZip(it.bytes.inputStream()).rules}
             require(defaultRules.size<=7&&defaultRules.map{it.gesture}.toSet().size==defaultRules.size&&defaultRules.map{it.id}.toSet().size==defaultRules.size){"GESTURE_DEFAULT_CONFLICT"}

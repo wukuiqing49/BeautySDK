@@ -2,7 +2,8 @@
 beauty-ndk = "27.0.12077973"
 beauty-cmake = "3.22.1"
 junit = "4.13.2"
-sdk = "0.1.0"
+json-test = "20240303"
+sdk = "0.2.0"
 mediapipe = "0.10.32"
 test-runner = "1.6.2"
 camerax = "1.4.2"
@@ -23,6 +24,7 @@ wkq-core-base = "v1.3.0"
 wkq-core-utils = "v1.1.1"
 
 [libraries]
+json-test = { module = "org.json:json", version.ref = "json-test" }
 camera-core = { module = "androidx.camera:camera-core", version.ref = "camerax" }
 camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax" }
 camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax" }

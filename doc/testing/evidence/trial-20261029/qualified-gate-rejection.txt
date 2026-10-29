@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\work\AI\BeautySDK\scripts\trial_contract.py", line 48, in <module>
+    record = validate_trial(Path(__file__).resolve().parents[1], args.require_qualified)
+  File "C:\work\AI\BeautySDK\scripts\trial_contract.py", line 39, in validate_trial
+    raise ValueError('Qualification pending: ' + ', '.join(g['id'] for g in gates if g['status'] != 'passed'))
+ValueError: Qualification pending: human-quality, device-soak, external-integration, distribution-rights, signed-release

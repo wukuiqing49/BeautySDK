@@ -1,0 +1,35 @@
+{
+  "resourceCatalogVersion": 1,
+  "resources": [
+    {
+      "manifest": {
+        "packageVersion": 1,
+        "id": "lash_natural",
+        "revision": 1,
+        "category": "MAKEUP",
+        "subcategory": "EYELASH",
+        "slot": "makeup.eyelash",
+        "defaultLocale": "zh-CN",
+        "name": "自然款睫毛",
+        "description": "",
+        "localizations": {},
+        "preview": "preview.png",
+        "effect": "effect.json",
+        "requirements": {
+          "features": [
+            "face.landmarks478",
+            "makeup.eyelash.texture.v1",
+            "makeup.parameters.v1"
+          ]
+        },
+        "scope": [
+          "makeup.eyelashes"
+        ]
+      },
+      "url": "https://example.test/resources/makeup/lash_natural/package.zip",
+      "previewUrl": "https://example.test/resources/makeup/lash_natural/preview.png",
+      "bytes": 29342,
+      "sha256": "63ebb3ab3151d8f08e1a026f11fd573db6f56f77bb562215fbf855fccee9b810"
+    }
+  ]
+}

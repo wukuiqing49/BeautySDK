@@ -1,0 +1,1122 @@
+{
+  "libraryVersion": 2,
+  "defaultLocale": "zh-CN",
+  "localeMode": "FOLLOW_HOST",
+  "localizations": {
+    "zh-CN": {
+      "parameter.strength": "程度",
+      "category.BEAUTY": "美颜",
+      "category.RESHAPE": "美型",
+      "category.MAKEUP": "美妆",
+      "category.FILTER": "调色",
+      "category.STICKER": "贴纸",
+      "category.BACKGROUND": "背景",
+      "category.MOTION": "运镜",
+      "category.THEME": "套装",
+      "effect.beauty.smoothing": "磨皮",
+      "effect.beauty.whitening": "美白",
+      "effect.beauty.rosy": "红润",
+      "effect.color.brightness": "亮度",
+      "effect.color.contrast": "对比度",
+      "effect.color.saturation": "饱和度",
+      "effect.color.sharpening": "锐化",
+      "effect.reshape.slimFace": "瘦脸",
+      "effect.reshape.bigEyes": "大眼",
+      "effect.reshape.slimNose": "瘦鼻",
+      "effect.reshape.chinLength": "下巴长度",
+      "effect.reshape.mouthSize": "嘴型大小",
+      "effect.makeup.lipstick": "口红",
+      "effect.makeup.blusher": "腮红",
+      "effect.makeup.eyelashes": "睫毛",
+      "category.GESTURE": "手势动画"
+    },
+    "en": {
+      "parameter.strength": "Intensity",
+      "category.BEAUTY": "Beauty",
+      "category.RESHAPE": "Reshape",
+      "category.MAKEUP": "Makeup",
+      "category.FILTER": "Color",
+      "category.STICKER": "Stickers",
+      "category.BACKGROUND": "Background",
+      "category.MOTION": "Camera Motion",
+      "category.THEME": "Themes",
+      "effect.beauty.smoothing": "Smoothing",
+      "effect.beauty.whitening": "Whitening",
+      "effect.beauty.rosy": "Rosy",
+      "effect.color.brightness": "Brightness",
+      "effect.color.contrast": "Contrast",
+      "effect.color.saturation": "Saturation",
+      "effect.color.sharpening": "Sharpening",
+      "effect.reshape.slimFace": "Slim Face",
+      "effect.reshape.bigEyes": "Big Eyes",
+      "effect.reshape.slimNose": "Slim Nose",
+      "effect.reshape.chinLength": "Chin Length",
+      "effect.reshape.mouthSize": "Mouth Size",
+      "effect.makeup.lipstick": "Lipstick",
+      "effect.makeup.blusher": "Blusher",
+      "effect.makeup.eyelashes": "Eyelashes",
+      "category.GESTURE": "Gesture Effects"
+    }
+  },
+  "defaults": "defaults.json",
+  "categories": [
+    {
+      "id": "BEAUTY",
+      "nameKey": "category.BEAUTY",
+      "order": 0,
+      "effects": [
+        {
+          "id": "beauty.smoothing",
+          "nameKey": "effect.beauty.smoothing",
+          "parameters": [
+            {
+              "id": "beauty.smoothing",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0.35
+            }
+          ]
+        },
+        {
+          "id": "beauty.whitening",
+          "nameKey": "effect.beauty.whitening",
+          "parameters": [
+            {
+              "id": "beauty.whitening",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0.2
+            }
+          ]
+        },
+        {
+          "id": "beauty.rosy",
+          "nameKey": "effect.beauty.rosy",
+          "parameters": [
+            {
+              "id": "beauty.rosy",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RESHAPE",
+      "nameKey": "category.RESHAPE",
+      "order": 10,
+      "effects": [
+        {
+          "id": "reshape.slimFace",
+          "nameKey": "effect.reshape.slimFace",
+          "parameters": [
+            {
+              "id": "reshape.slimFace",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.bigEyes",
+          "nameKey": "effect.reshape.bigEyes",
+          "parameters": [
+            {
+              "id": "reshape.bigEyes",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.slimNose",
+          "nameKey": "effect.reshape.slimNose",
+          "parameters": [
+            {
+              "id": "reshape.slimNose",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.chinLength",
+          "nameKey": "effect.reshape.chinLength",
+          "parameters": [
+            {
+              "id": "reshape.chinLength",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.mouthSize",
+          "nameKey": "effect.reshape.mouthSize",
+          "parameters": [
+            {
+              "id": "reshape.mouthSize",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MAKEUP",
+      "nameKey": "category.MAKEUP",
+      "order": 20,
+      "effects": [
+        {
+          "id": "makeup.lipstick",
+          "nameKey": "effect.makeup.lipstick",
+          "parameters": [
+            {
+              "id": "makeup.lipstick",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "makeup.blusher",
+          "nameKey": "effect.makeup.blusher",
+          "parameters": [
+            {
+              "id": "makeup.blusher",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "makeup.eyelashes",
+          "nameKey": "effect.makeup.eyelashes",
+          "parameters": [
+            {
+              "id": "makeup.eyelashes",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FILTER",
+      "nameKey": "category.FILTER",
+      "order": 30,
+      "effects": [
+        {
+          "id": "color.brightness",
+          "nameKey": "effect.color.brightness",
+          "parameters": [
+            {
+              "id": "color.brightness",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "color.contrast",
+          "nameKey": "effect.color.contrast",
+          "parameters": [
+            {
+              "id": "color.contrast",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 2,
+              "step": 0.01,
+              "default": 1
+            }
+          ]
+        },
+        {
+          "id": "color.saturation",
+          "nameKey": "effect.color.saturation",
+          "parameters": [
+            {
+              "id": "color.saturation",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 2,
+              "step": 0.01,
+              "default": 1
+            }
+          ]
+        },
+        {
+          "id": "color.sharpening",
+          "nameKey": "effect.color.sharpening",
+          "parameters": [
+            {
+              "id": "color.sharpening",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "STICKER",
+      "nameKey": "category.STICKER",
+      "order": 40,
+      "effects": []
+    },
+    {
+      "id": "BACKGROUND",
+      "nameKey": "category.BACKGROUND",
+      "order": 50,
+      "effects": []
+    },
+    {
+      "id": "MOTION",
+      "nameKey": "category.MOTION",
+      "order": 60,
+      "effects": []
+    },
+    {
+      "id": "THEME",
+      "nameKey": "category.THEME",
+      "order": 70,
+      "effects": []
+    },
+    {
+      "id": "GESTURE",
+      "nameKey": "category.GESTURE",
+      "order": 80,
+      "effects": []
+    }
+  ],
+  "resources": [
+    {
+      "id": "lash_natural",
+      "revision": 1,
+      "category": "MAKEUP",
+      "subcategory": "EYELASH",
+      "name": "自然款睫毛",
+      "localizations": {},
+      "directory": "makeup/lash_natural/",
+      "package": "makeup/lash_natural/package.zip",
+      "preview": "makeup/lash_natural/preview.png",
+      "manifest": "makeup/lash_natural/manifest.json"
+    },
+    {
+      "id": "lash_dense",
+      "revision": 1,
+      "category": "MAKEUP",
+      "subcategory": "EYELASH",
+      "name": "浓密款睫毛",
+      "localizations": {},
+      "directory": "makeup/lash_dense/",
+      "package": "makeup/lash_dense/package.zip",
+      "preview": "makeup/lash_dense/preview.png",
+      "manifest": "makeup/lash_dense/manifest.json"
+    },
+    {
+      "id": "lash_cat",
+      "revision": 1,
+      "category": "MAKEUP",
+      "subcategory": "EYELASH",
+      "name": "眼尾款睫毛",
+      "localizations": {},
+      "directory": "makeup/lash_cat/",
+      "package": "makeup/lash_cat/package.zip",
+      "preview": "makeup/lash_cat/preview.png",
+      "manifest": "makeup/lash_cat/manifest.json"
+    },
+    {
+      "id": "beauty_daily",
+      "revision": 2,
+      "category": "BEAUTY",
+      "subcategory": "PRESET",
+      "name": "日常美颜",
+      "localizations": {},
+      "directory": "beauty/beauty_daily/",
+      "package": "beauty/beauty_daily/package.zip",
+      "preview": "beauty/beauty_daily/preview.png",
+      "manifest": "beauty/beauty_daily/manifest.json"
+    },
+    {
+      "id": "beauty_clear",
+      "revision": 2,
+      "category": "BEAUTY",
+      "subcategory": "PRESET",
+      "name": "清透美颜",
+      "localizations": {},
+      "directory": "beauty/beauty_clear/",
+      "package": "beauty/beauty_clear/package.zip",
+      "preview": "beauty/beauty_clear/preview.png",
+      "manifest": "beauty/beauty_clear/manifest.json"
+    },
+    {
+      "id": "beauty_soft",
+      "revision": 2,
+      "category": "BEAUTY",
+      "subcategory": "PRESET",
+      "name": "柔光美颜",
+      "localizations": {},
+      "directory": "beauty/beauty_soft/",
+      "package": "beauty/beauty_soft/package.zip",
+      "preview": "beauty/beauty_soft/preview.png",
+      "manifest": "beauty/beauty_soft/manifest.json"
+    },
+    {
+      "id": "reshape_natural",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "自然美型",
+      "localizations": {},
+      "directory": "reshape/reshape_natural/",
+      "package": "reshape/reshape_natural/package.zip",
+      "preview": "reshape/reshape_natural/preview.png",
+      "manifest": "reshape/reshape_natural/manifest.json"
+    },
+    {
+      "id": "reshape_refined",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "精致轮廓",
+      "localizations": {},
+      "directory": "reshape/reshape_refined/",
+      "package": "reshape/reshape_refined/package.zip",
+      "preview": "reshape/reshape_refined/preview.png",
+      "manifest": "reshape/reshape_refined/manifest.json"
+    },
+    {
+      "id": "reshape_gentle",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "柔和比例",
+      "localizations": {},
+      "directory": "reshape/reshape_gentle/",
+      "package": "reshape/reshape_gentle/package.zip",
+      "preview": "reshape/reshape_gentle/preview.png",
+      "manifest": "reshape/reshape_gentle/manifest.json"
+    },
+    {
+      "id": "lipstick_daily",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "LIPSTICK",
+      "name": "日常唇色",
+      "localizations": {},
+      "directory": "makeup/lipstick_daily/",
+      "package": "makeup/lipstick_daily/package.zip",
+      "preview": "makeup/lipstick_daily/preview.png",
+      "manifest": "makeup/lipstick_daily/manifest.json"
+    },
+    {
+      "id": "lipstick_light",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "LIPSTICK",
+      "name": "轻透唇色",
+      "localizations": {},
+      "directory": "makeup/lipstick_light/",
+      "package": "makeup/lipstick_light/package.zip",
+      "preview": "makeup/lipstick_light/preview.png",
+      "manifest": "makeup/lipstick_light/manifest.json"
+    },
+    {
+      "id": "lipstick_defined",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "LIPSTICK",
+      "name": "鲜明唇色",
+      "localizations": {},
+      "directory": "makeup/lipstick_defined/",
+      "package": "makeup/lipstick_defined/package.zip",
+      "preview": "makeup/lipstick_defined/preview.png",
+      "manifest": "makeup/lipstick_defined/manifest.json"
+    },
+    {
+      "id": "blusher_soft",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "BLUSHER",
+      "name": "轻柔腮红",
+      "localizations": {},
+      "directory": "makeup/blusher_soft/",
+      "package": "makeup/blusher_soft/package.zip",
+      "preview": "makeup/blusher_soft/preview.png",
+      "manifest": "makeup/blusher_soft/manifest.json"
+    },
+    {
+      "id": "blusher_light",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "BLUSHER",
+      "name": "清淡腮红",
+      "localizations": {},
+      "directory": "makeup/blusher_light/",
+      "package": "makeup/blusher_light/package.zip",
+      "preview": "makeup/blusher_light/preview.png",
+      "manifest": "makeup/blusher_light/manifest.json"
+    },
+    {
+      "id": "blusher_fresh",
+      "revision": 2,
+      "category": "MAKEUP",
+      "subcategory": "BLUSHER",
+      "name": "元气腮红",
+      "localizations": {},
+      "directory": "makeup/blusher_fresh/",
+      "package": "makeup/blusher_fresh/package.zip",
+      "preview": "makeup/blusher_fresh/preview.png",
+      "manifest": "makeup/blusher_fresh/manifest.json"
+    },
+    {
+      "id": "filter_soft",
+      "revision": 2,
+      "category": "FILTER",
+      "subcategory": "PRESET",
+      "name": "柔和调色",
+      "localizations": {},
+      "directory": "filter/filter_soft/",
+      "package": "filter/filter_soft/package.zip",
+      "preview": "filter/filter_soft/preview.png",
+      "manifest": "filter/filter_soft/manifest.json"
+    },
+    {
+      "id": "filter_clear",
+      "revision": 2,
+      "category": "FILTER",
+      "subcategory": "PRESET",
+      "name": "清晰调色",
+      "localizations": {},
+      "directory": "filter/filter_clear/",
+      "package": "filter/filter_clear/package.zip",
+      "preview": "filter/filter_clear/preview.png",
+      "manifest": "filter/filter_clear/manifest.json"
+    },
+    {
+      "id": "filter_muted",
+      "revision": 2,
+      "category": "FILTER",
+      "subcategory": "PRESET",
+      "name": "柔淡调色",
+      "localizations": {},
+      "directory": "filter/filter_muted/",
+      "package": "filter/filter_muted/package.zip",
+      "preview": "filter/filter_muted/preview.png",
+      "manifest": "filter/filter_muted/manifest.json"
+    },
+    {
+      "id": "beauty_bare",
+      "revision": 2,
+      "category": "BEAUTY",
+      "subcategory": "PRESET",
+      "name": "轻裸肤感",
+      "localizations": {},
+      "directory": "beauty/beauty_bare/",
+      "package": "beauty/beauty_bare/package.zip",
+      "preview": "beauty/beauty_bare/preview.png",
+      "manifest": "beauty/beauty_bare/manifest.json"
+    },
+    {
+      "id": "beauty_fresh",
+      "revision": 2,
+      "category": "BEAUTY",
+      "subcategory": "PRESET",
+      "name": "元气提亮",
+      "localizations": {},
+      "directory": "beauty/beauty_fresh/",
+      "package": "beauty/beauty_fresh/package.zip",
+      "preview": "beauty/beauty_fresh/preview.png",
+      "manifest": "beauty/beauty_fresh/manifest.json"
+    },
+    {
+      "id": "reshape_light",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "轻量轮廓",
+      "localizations": {},
+      "directory": "reshape/reshape_light/",
+      "package": "reshape/reshape_light/package.zip",
+      "preview": "reshape/reshape_light/preview.png",
+      "manifest": "reshape/reshape_light/manifest.json"
+    },
+    {
+      "id": "reshape_eyes",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "明眸比例",
+      "localizations": {},
+      "directory": "reshape/reshape_eyes/",
+      "package": "reshape/reshape_eyes/package.zip",
+      "preview": "reshape/reshape_eyes/preview.png",
+      "manifest": "reshape/reshape_eyes/manifest.json"
+    },
+    {
+      "id": "reshape_balance",
+      "revision": 2,
+      "category": "RESHAPE",
+      "subcategory": "PRESET",
+      "name": "舒展比例",
+      "localizations": {},
+      "directory": "reshape/reshape_balance/",
+      "package": "reshape/reshape_balance/package.zip",
+      "preview": "reshape/reshape_balance/preview.png",
+      "manifest": "reshape/reshape_balance/manifest.json"
+    },
+    {
+      "id": "filter_warm",
+      "revision": 2,
+      "category": "FILTER",
+      "subcategory": "PRESET",
+      "name": "暖调日常",
+      "localizations": {},
+      "directory": "filter/filter_warm/",
+      "package": "filter/filter_warm/package.zip",
+      "preview": "filter/filter_warm/preview.png",
+      "manifest": "filter/filter_warm/manifest.json"
+    },
+    {
+      "id": "filter_cinema",
+      "revision": 2,
+      "category": "FILTER",
+      "subcategory": "PRESET",
+      "name": "低饱和对比",
+      "localizations": {},
+      "directory": "filter/filter_cinema/",
+      "package": "filter/filter_cinema/package.zip",
+      "preview": "filter/filter_cinema/preview.png",
+      "manifest": "filter/filter_cinema/manifest.json"
+    },
+    {
+      "id": "background_scene",
+      "revision": 1,
+      "category": "BACKGROUND",
+      "subcategory": "PRESET",
+      "name": "山岚背景",
+      "localizations": {},
+      "directory": "background/background_scene/",
+      "package": "background/background_scene/package.zip",
+      "preview": "background/background_scene/preview.png",
+      "manifest": "background/background_scene/manifest.json"
+    },
+    {
+      "id": "blue_top_hat",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "HAT",
+      "name": "Blue top hat",
+      "localizations": {},
+      "directory": "sticker/blue_top_hat/",
+      "package": "sticker/blue_top_hat/package.zip",
+      "preview": "sticker/blue_top_hat/preview.png",
+      "manifest": "sticker/blue_top_hat/manifest.json"
+    },
+    {
+      "id": "cat_ears",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "HAT",
+      "name": "Cat ears",
+      "localizations": {},
+      "directory": "sticker/cat_ears/",
+      "package": "sticker/cat_ears/package.zip",
+      "preview": "sticker/cat_ears/preview.png",
+      "manifest": "sticker/cat_ears/manifest.json"
+    },
+    {
+      "id": "curled_moustache",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "MOUSTACHE",
+      "name": "Curled moustache",
+      "localizations": {},
+      "directory": "sticker/curled_moustache/",
+      "package": "sticker/curled_moustache/package.zip",
+      "preview": "sticker/curled_moustache/preview.png",
+      "manifest": "sticker/curled_moustache/manifest.json"
+    },
+    {
+      "id": "gold_crown",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "HAT",
+      "name": "Gold crown",
+      "localizations": {},
+      "directory": "sticker/gold_crown/",
+      "package": "sticker/gold_crown/package.zip",
+      "preview": "sticker/gold_crown/preview.png",
+      "manifest": "sticker/gold_crown/manifest.json"
+    },
+    {
+      "id": "heart_glasses",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "GLASSES",
+      "name": "Heart glasses",
+      "localizations": {},
+      "directory": "sticker/heart_glasses/",
+      "package": "sticker/heart_glasses/package.zip",
+      "preview": "sticker/heart_glasses/preview.png",
+      "manifest": "sticker/heart_glasses/manifest.json"
+    },
+    {
+      "id": "motion_scene",
+      "revision": 1,
+      "category": "MOTION",
+      "subcategory": "PRESET",
+      "name": "轻推近",
+      "localizations": {},
+      "directory": "motion/motion_scene/",
+      "package": "motion/motion_scene/package.zip",
+      "preview": "motion/motion_scene/preview.png",
+      "manifest": "motion/motion_scene/manifest.json"
+    },
+    {
+      "id": "round_glasses",
+      "revision": 2,
+      "category": "STICKER",
+      "subcategory": "GLASSES",
+      "name": "Round glasses",
+      "localizations": {},
+      "directory": "sticker/round_glasses/",
+      "package": "sticker/round_glasses/package.zip",
+      "preview": "sticker/round_glasses/preview.png",
+      "manifest": "sticker/round_glasses/manifest.json"
+    },
+    {
+      "id": "daily_theme",
+      "revision": 2,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "日常组合",
+      "localizations": {},
+      "directory": "theme/daily_theme/",
+      "package": "theme/daily_theme/package.zip",
+      "preview": "theme/daily_theme/preview.png",
+      "manifest": "theme/daily_theme/manifest.json"
+    },
+    {
+      "id": "background_lavender",
+      "revision": 1,
+      "category": "BACKGROUND",
+      "subcategory": "PRESET",
+      "name": "柔紫摄影棚",
+      "localizations": {},
+      "directory": "background/background_lavender/",
+      "package": "background/background_lavender/package.zip",
+      "preview": "background/background_lavender/preview.png",
+      "manifest": "background/background_lavender/manifest.json"
+    },
+    {
+      "id": "background_window",
+      "revision": 1,
+      "category": "BACKGROUND",
+      "subcategory": "PRESET",
+      "name": "暖光窗景",
+      "localizations": {},
+      "directory": "background/background_window/",
+      "package": "background/background_window/package.zip",
+      "preview": "background/background_window/preview.png",
+      "manifest": "background/background_window/manifest.json"
+    },
+    {
+      "id": "background_arch",
+      "revision": 1,
+      "category": "BACKGROUND",
+      "subcategory": "PRESET",
+      "name": "薄荷拱门",
+      "localizations": {},
+      "directory": "background/background_arch/",
+      "package": "background/background_arch/package.zip",
+      "preview": "background/background_arch/preview.png",
+      "manifest": "background/background_arch/manifest.json"
+    },
+    {
+      "id": "background_night",
+      "revision": 1,
+      "category": "BACKGROUND",
+      "subcategory": "PRESET",
+      "name": "午夜星幕",
+      "localizations": {},
+      "directory": "background/background_night/",
+      "package": "background/background_night/package.zip",
+      "preview": "background/background_night/preview.png",
+      "manifest": "background/background_night/manifest.json"
+    },
+    {
+      "id": "motion_pan",
+      "revision": 1,
+      "category": "MOTION",
+      "subcategory": "PRESET",
+      "name": "缓慢横移",
+      "localizations": {},
+      "directory": "motion/motion_pan/",
+      "package": "motion/motion_pan/package.zip",
+      "preview": "motion/motion_pan/preview.png",
+      "manifest": "motion/motion_pan/manifest.json"
+    },
+    {
+      "id": "motion_breathe",
+      "revision": 1,
+      "category": "MOTION",
+      "subcategory": "PRESET",
+      "name": "轻柔呼吸",
+      "localizations": {},
+      "directory": "motion/motion_breathe/",
+      "package": "motion/motion_breathe/package.zip",
+      "preview": "motion/motion_breathe/preview.png",
+      "manifest": "motion/motion_breathe/manifest.json"
+    },
+    {
+      "id": "motion_diagonal",
+      "revision": 1,
+      "category": "MOTION",
+      "subcategory": "PRESET",
+      "name": "斜向掠影",
+      "localizations": {},
+      "directory": "motion/motion_diagonal/",
+      "package": "motion/motion_diagonal/package.zip",
+      "preview": "motion/motion_diagonal/preview.png",
+      "manifest": "motion/motion_diagonal/manifest.json"
+    },
+    {
+      "id": "motion_portrait",
+      "revision": 1,
+      "category": "MOTION",
+      "subcategory": "PRESET",
+      "name": "人像推近回场",
+      "localizations": {},
+      "directory": "motion/motion_portrait/",
+      "package": "motion/motion_portrait/package.zip",
+      "preview": "motion/motion_portrait/preview.png",
+      "manifest": "motion/motion_portrait/manifest.json"
+    },
+    {
+      "id": "cheek_stars",
+      "revision": 1,
+      "category": "STICKER",
+      "subcategory": "DECORATION",
+      "name": "星星脸颊",
+      "localizations": {},
+      "directory": "sticker/cheek_stars/",
+      "package": "sticker/cheek_stars/package.zip",
+      "preview": "sticker/cheek_stars/preview.png",
+      "manifest": "sticker/cheek_stars/manifest.json"
+    },
+    {
+      "id": "cheek_hearts",
+      "revision": 1,
+      "category": "STICKER",
+      "subcategory": "DECORATION",
+      "name": "爱心脸颊",
+      "localizations": {},
+      "directory": "sticker/cheek_hearts/",
+      "package": "sticker/cheek_hearts/package.zip",
+      "preview": "sticker/cheek_hearts/preview.png",
+      "manifest": "sticker/cheek_hearts/manifest.json"
+    },
+    {
+      "id": "rabbit_ears",
+      "revision": 1,
+      "category": "STICKER",
+      "subcategory": "HAT",
+      "name": "软萌兔耳",
+      "localizations": {},
+      "directory": "sticker/rabbit_ears/",
+      "package": "sticker/rabbit_ears/package.zip",
+      "preview": "sticker/rabbit_ears/preview.png",
+      "manifest": "sticker/rabbit_ears/manifest.json"
+    },
+    {
+      "id": "party_hat",
+      "revision": 1,
+      "category": "STICKER",
+      "subcategory": "HAT",
+      "name": "彩纸派对帽",
+      "localizations": {},
+      "directory": "sticker/party_hat/",
+      "package": "sticker/party_hat/package.zip",
+      "preview": "sticker/party_hat/preview.png",
+      "manifest": "sticker/party_hat/manifest.json"
+    },
+    {
+      "id": "theme_clear_live",
+      "revision": 1,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "清透直播",
+      "localizations": {},
+      "directory": "theme/theme_clear_live/",
+      "package": "theme/theme_clear_live/package.zip",
+      "preview": "theme/theme_clear_live/preview.png",
+      "manifest": "theme/theme_clear_live/manifest.json"
+    },
+    {
+      "id": "theme_warm_daily",
+      "revision": 1,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "暖光日常",
+      "localizations": {},
+      "directory": "theme/theme_warm_daily/",
+      "package": "theme/theme_warm_daily/package.zip",
+      "preview": "theme/theme_warm_daily/preview.png",
+      "manifest": "theme/theme_warm_daily/manifest.json"
+    },
+    {
+      "id": "theme_night_stars",
+      "revision": 1,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "星夜派对",
+      "localizations": {},
+      "directory": "theme/theme_night_stars/",
+      "package": "theme/theme_night_stars/package.zip",
+      "preview": "theme/theme_night_stars/preview.png",
+      "manifest": "theme/theme_night_stars/manifest.json"
+    },
+    {
+      "id": "theme_playful",
+      "revision": 1,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "薄荷兔兔",
+      "localizations": {},
+      "directory": "theme/theme_playful/",
+      "package": "theme/theme_playful/package.zip",
+      "preview": "theme/theme_playful/preview.png",
+      "manifest": "theme/theme_playful/manifest.json"
+    }
+  ],
+  "gestureResources": [
+    {
+      "id": "victory_sparkles",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "比耶星光",
+      "localizations": {
+        "en": {
+          "name": "Victory Sparkles",
+          "description": ""
+        }
+      },
+      "directory": "gesture/victory_sparkles/",
+      "package": "gesture/victory_sparkles/package.zip",
+      "preview": "gesture/victory_sparkles/preview.png",
+      "manifest": "gesture/victory_sparkles/gestures.json",
+      "sha256": "58d7bca10395209a8a1e1ba9fd7e4b81e6da96140ef2ad384d5e3786d8f7aadc",
+      "bytes": 244253,
+      "previewSha256": "0310ae2f1f4a3577cafdb8db5a1044a82f27cc136a7601e3a886551ae8cf46c6",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "victory_sparkles",
+          "gesture": "VICTORY",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 36,
+          "fps": 20,
+          "durationMs": 1800,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "thumb_confetti",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "点赞彩纸",
+      "localizations": {
+        "en": {
+          "name": "Thumbs Up Confetti",
+          "description": ""
+        }
+      },
+      "directory": "gesture/thumb_confetti/",
+      "package": "gesture/thumb_confetti/package.zip",
+      "preview": "gesture/thumb_confetti/preview.png",
+      "manifest": "gesture/thumb_confetti/gestures.json",
+      "sha256": "ccb0ecec93cdbcc8ca32cff8af54b1871c6079635bd672abf85fe6090f6d2418",
+      "bytes": 156776,
+      "previewSha256": "65503fabfdff63efd184933f00dc457e4e5f899d9c27b21fd2793a42845b62d0",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "thumb_confetti",
+          "gesture": "THUMB_UP",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 44,
+          "fps": 20,
+          "durationMs": 2200,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "palm_ripples",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "开掌光波",
+      "localizations": {
+        "en": {
+          "name": "Open Palm Ripples",
+          "description": ""
+        }
+      },
+      "directory": "gesture/palm_ripples/",
+      "package": "gesture/palm_ripples/package.zip",
+      "preview": "gesture/palm_ripples/preview.png",
+      "manifest": "gesture/palm_ripples/gestures.json",
+      "sha256": "badce5c473dd514139f519e0d4047811a229b8b1adc0a040c29668b3858968a7",
+      "bytes": 211346,
+      "previewSha256": "bac44a44d1a568357c24de56de1df8aaa8aa306a73a7d43807b2e13185053359",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "palm_ripples",
+          "gesture": "OPEN_PALM",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 32,
+          "fps": 20,
+          "durationMs": 1600,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "love_hearts",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "爱意漂浮",
+      "localizations": {
+        "en": {
+          "name": "Floating Hearts",
+          "description": ""
+        }
+      },
+      "directory": "gesture/love_hearts/",
+      "package": "gesture/love_hearts/package.zip",
+      "preview": "gesture/love_hearts/preview.png",
+      "manifest": "gesture/love_hearts/gestures.json",
+      "sha256": "d2ab5e5cffe1becd425f03d4d5623b7e5ac83a7389c1a94b63a8028b946926f7",
+      "bytes": 191711,
+      "previewSha256": "92c7f4643102ce84d3ee7c05e482fccfe2ae394dc87b94c1cf10f2803e93e10e",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "love_hearts",
+          "gesture": "I_LOVE_YOU",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 40,
+          "fps": 20,
+          "durationMs": 2000,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    }
+  ]
+}

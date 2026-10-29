@@ -1,3 +1,15 @@
+# 2026-10-29：应用授权增量
+
+- LICENSE-01：LicenseEngineTest；真实 RSA 签名、应用身份、租约有效期、nonce、权限集合、缓存恢复和网络失败退避。Debug/Release JVM 执行。
+- LICENSE-02：LicenseTasksTest；并发请求合并、初始化在途更新和最新待处理槽，不产生无界队列。
+- LICENSE-03：LicenseEnforcementTest；Release 未授权 RGBA/Session 旁路及手势门禁。Debug 条件跳过，不当作通过。
+- LICENSE-04：services/license/*.test.mjs；签发/续期/撤销/恢复、实际 HTTP 交换、非法请求、登记故障及跨语言签名夹具。
+- LICENSE-05：Pixel 8 定向执行 GpuPixelDeviceTest 全类及手势 GL 动画用例；JNI 包装变化影响纹理/美型/美妆，需实际 GL 夹具回归。保护现有数据，不操作其他设备。
+- LICENSE-06：统一 Maven Release、源码 provenance、独立消费者 Debug/Release-R8/lint、发行配置正例与商业打包拒绝空配置；保留原 API 基线，检查 native 包装前后 JVM 描述符。
+- LICENSE-07（未执行）：正式 HTTPS、实际客户签名 APK、Release GL 授权边界、跨进程断网/到期/撤销与生产密钥轮换。正式域名及发行密钥未配置，不用 Debug 设备或注入传输测试代替。
+
+本轮没有产品页面布局变更；仅独立示例增加授权状态提示并补全中英文。未改动 CMS 素材协议或直播厂商接入。执行证据见固定 TEST_REPORT.md 和 evidence/license-20261029。
+
 # 2026-10-28：分类资源库与JSON参数配置
 
 - LIBRARY-01：Web全量50资源分类ZIP往返、展开文件与package.zip一致、目录摘要；关联delivery/library/pack/workspace-model。
@@ -599,3 +611,94 @@ SceneDeviceTest新增软置信度、同纹理更新、p-offset移出边界不复
 - GLIB-04 兼容回归：旧独立手势包导入/应用/重开、真实ES3动画、常规清单参数/默认、多资源安装和独立资源页。GestureEffects/ResourceLibrary/ResourceDelivery/ResourceCenterUiDeviceTest，并构建/lint、资源JVM8项及UI/i18n/架构门禁。
 
 排除：识别器/GL合成算法本轮未修改，未重跑模型准确率或持续性能；未实现iOS完整库、网络手势单项目录下载。字体缩放和横屏视觉仍待专门矩阵，设备功能通过不替代视觉验收。
+
+
+## PKG：统一英文目录资源包（2026-10-28）
+
+- PKG-01 Web真实ZIP：仅beauty_resources一个外层目录，所有路径ASCII；英文分类/稳定ID与展示语言解耦，50常规/4手势实际包校验；Web新包回读、旧无外层包兼容，混合根/额外文件拒绝。新增package-layout.test.mjs并增量回归npm test。
+- PKG-02 Android解析安装：ResourceArchive仅在完整交付入口去除固定外层，ResourceCenterModel识别新旧catalog位置。真实新Web夹具验证外层与旧无外层、混合拒绝、安装/篡改拒绝/组合。
+- PKG-03 宿主加载与美颜：GestureResourceLibraryDeviceTest4、ResourceLibraryDeviceTest5、ResourceDeliveryDeviceTest3，覆盖新包资源中心导入/手势选择恢复、JSON美颜控件和相机设置、旧中文及旧平铺包兼容；保留宿主数据，备份恢复配置。执行资源JVM8项、debug/APK构建、lint与架构门禁。
+
+不改识别/渲染算法或UI布局，未扩展真人、性能、字体矩阵；iOS完整库仍未实现。网络baseURL指向beauty_resources内部内容部署位置。
+
+
+## ASSET：Android内置资源加载与SDK使用说明（2026-10-28）
+
+- ASSET-01 installDeliveryFromAssets：真实完整ZIP与默认旧ZIP从APK assets读取、同摘要复用；后台入口不启用或写宿主选择。
+- ASSET-02 installDeliveryDirectoryFromAssets：真实解压assets目录与新ZIP安装资源/手势摘要一致、JSON多语言及composer可用；目录有界读取，非法路径/缺失/非交付目录/预取消拒绝，无部分安装。BuiltinResourceAssetsDeviceTest2项，在隔离cache目录测试并清理，不改用户配置。
+- ASSET-03 回归GestureResourceLibraryDeviceTest4、ResourceLibraryDeviceTest5、ResourceDeliveryDeviceTest3，确保新旧ZIP、完整库分类和美颜控件/应用不退化；资源JVM8项，app/APK编译/lint和架构门禁。开发说明链接有效性检查。
+
+资源加载新增API无视频算法/布局改动，不扩展真人和性能测试。文档覆盖模块依赖、ZIP/目录内置、线程、JSON展示、默认/状态、纹理与模型输入、配置寿命及释放。
+
+
+## DEMO-LIB：Demo默认采用最新资源库（2026-10-29）
+
+- DEMO-LIB-01 主APK完整包安装/迁移：Model启动调用公共assets API；包摘要标记防重装，保留旧删除记录，用户参数/显式导入清单不被覆盖；ResourceCenterUiDeviceTest含删除重开和9类展示。
+- DEMO-LIB-02 不手动导入：DemoBuiltinLibraryDeviceTest移除私有清单（规则备份恢复），打开真实相机效果面板，等待内置JSON，断言50资源/4手势/15参数、三类JSON控件以及修改进入预览；兼容ResourceLibraryDeviceTest及GestureResourceLibraryDeviceTest。
+
+执行debug/测试APK构建、lint、UI/架构门禁和上述13项设备回归。视频算法未改，不补跑模型/持续性能；不保存相机图像。用户配置由测试备份恢复，内置新增安装保留为实际版本升级内容。
+## PANEL：效果弹框默认预设与布局稳定性（2026-10-29）
+
+- PANEL-01：首次打开、切换分类、关闭重开默认预设；微调用于单项参数强度，配置重建保留显式选择。
+- PANEL-02：EffectPanelStabilityDeviceTest 在切换模式、连续调参、切换分类等操作后各采样 12 个绘制帧，断言弹框位置/尺寸不变，并检查主题展开后滑杆实例不被重建。
+- 回归 DemoBuiltinLibraryDeviceTest、ResourceLibraryDeviceTest、SceneControlsDeviceTest，共 8 项 Pixel 8 设备测试；执行 APK 构建、lint 和 UI 静态门禁。不保存相机图像。
+
+本轮不改视频算法；横屏、字体缩放完整矩阵、真人观感及持续性能未复测。
+## OPT：SDK/CMS整体收敛（2026-10-29）
+
+用户范围：个人CMS；直播引擎暂不接入。不引入多人账号、审核或服务端。
+
+- OPT-01 参数契约与多语言：生成Web/Kotlin定义，--check验证两端一致；16组同一JSON夹具由Node与ResourceContractDeviceTest执行，含严格字段、范围、路径、语言模式和脚本语言。
+- OPT-02 分类排序与明确应用：真实Web生成的ordered_delivery.zip在资源中心导入，明确应用后断言顺序、en/FIXED和磨皮0.47；原用户设置备份恢复。
+- OPT-03 在线手势：V2目录普通/手势同源，注入ResourceTransport校验真实包/封面摘要、重复复用、篡改拒绝和下载不启用；V1旧包保留回归。真实站点未部署，不冒充HTTPS上线验证。
+- OPT-04 发布与回滚：同输入同版本、发布快照损坏拒绝；Android marker与ZIP/library/defaults preBuild一致性校验；发布快照保留，显式回滚，不改用户状态。
+- OPT-05 个人版本页：完整ZIP校验、去重重命名、5版本/64MiB保护、保存刷新恢复、真实下载、390px布局、页面异常检查；浏览器隔离context不覆盖原草稿。
+- OPT-06 弹框分离：EffectPanelHost独立管理窗口/Insets/尺寸，既有稳定布局、分类、手势及场景控制回归；SceneControls/LabHierarchy测试改为读取属性getter，避免依赖已移除的字段。
+- OPT-07 三组短测：CameraStabilitySoakDeviceTest每组30秒，原图/人脸+手势/检测+基础美颜，额外每组2秒预热；保存PSS/热状态/预览FPS及限频CPU提交采样，不保存图像。可用soakSeconds扩展到每组1200秒；本轮不是热稳态、真人画质或GPU时延验收。
+- OPT-08 文档：更新默认GPUPixel、50+4资源、目录V2、发布/回滚、能力边界；补SDK使用API和个人CMS入口。
+
+执行Node测试、资源JVM、app/APK构建/lint、架构/UI/i18n门禁及Pixel8相关设备组。视频渲染算法未改，原核心算法广泛测试保留历史结果；iOS无法在当前Windows环境验收，真人动态画质与多机型长测未执行。
+
+## 2026-10-29 预设面板视觉优化
+
+- PRESET-UI-01：圆角预览、两行名称、选中描边/勾选；检查真实资源封面及名称未被替换。仅绘制面板 View 到 PNG，不截取相机 Surface。
+- PRESET-UI-02：复用 EffectPanelStabilityDeviceTest，验证默认预设、分类切换、微调、关闭重开及连续布局采样；资源数据由 LabSceneBackup 保护。
+- PRESET-UI-03：复测 ResourceLibraryDeviceTest 与 ResourceCenterUiDeviceTest，覆盖 JSON 参数、选择、管理卡片；公共控制器变更影响两入口。
+- 构建：app assembleDebug / assembleDebugAndroidTest / lintDebug。设备仅 Pixel 8；直播引擎与真人效果画质不属于本轮 UI 验收。
+## 商业候选版增量：待执行
+
+按用户要求本轮仅处理源码，以下用例不运行、不推进通过基线。
+
+- COMM-DELIVERY：发布四个AAR/POM/module/sources，脱离主工程编译samples/standalone Debug与Release/R8，验证传递依赖、模型、native与许可通知。
+- COMM-SIGN：SignedResourceDeliveryDeviceTest以及Node签名→Android验签；错误公钥、篡改ZIP/payload、错误发布ID、有界输入、取消、流关闭和失败无安装副作用。
+- COMM-CMS：provenance.test.mjs及浏览器备份保存/重开/同包改名/换包不继承来源、JSON下载、390px布局；新封面需另增revision后再生成验证。
+- COMM-PANEL：现有EffectPanelStabilityDeviceTest和JSON消费者回归，新增横屏/大字体下模式栏可滚动、关闭和重置可达、卡片选中标记与名称可读。
+- COMM-SOAK：qualification=true、soakSeconds=3600或更长；每组至少一小时，有效人脸观测覆盖率不足80%拒绝负载合格。另行检查GPU/端到端测量、温升与真人画质，不能仅以此用例通过认定商用合格。
+
+## 商业候选版继续增量：待执行
+
+- COMM-CAPABILITY：ResourceCapabilitiesTest验证渲染器单独配置、人脸/场景独立组合、分割前置条件、完整配置与历史声明一致、结构化缺失能力错误。
+- COMM-PUBLICATION：针对有效POM/module/AAR/sources和错版核心依赖、坐标错误、依赖不一致、摘要损坏、缺少变体/源码构造制品，确认打包拒绝无效输入。
+- COMM-CONSUMER-ERROR：独立纹理示例显式错误回调；构造失败与worker失败分别验证，不能把接入回调等同错误恢复已验收。
+
+以上本轮仅添加实现/用例源码与计划，按用户要求不执行。
+# 2026-10-29 手势入口与状态回放回归
+
+- 相机资源控制器在宿主字段赋值后显式start，验证缓存状态回放同步到预览。
+- DemoBuiltinLibraryDeviceTest验证内置JSON参数及相机第9类手势卡片选择；GestureResourceLibraryDeviceTest验证管理页、组合、恢复与默认值。
+- GestureEffectsDeviceTest验证实际Web包、非法包拒绝、真实ES3透明合成/换帧/过期/旋转镜像、暂存与显式应用。
+- 每项使用LabSceneBackup的UI用例先唤醒并请求解除系统锁屏，不绕过安全凭据；不保存相机画面、不清应用数据。设备仍锁定时应判定受阻，不放宽产品断言。
+- 真人手势识别准确率、持续性能、正式HTTPS签名源仍单独验收，不能用合成事件GPU测试代替。
+
+# MAVEN-ENTRY-001 单一依赖交付
+
+关联core/lib_beauty_sdk、gradle/beauty-publishing.gradle、scripts/publication_contract.py与samples/standalone。先运行publishBeautySdkToLocalBuildRepository，再在独立工程执行verifyBeautySdkEntry、assembleDebug、assembleRelease；检查编译/运行依赖全部同版本且宿主仅直接依赖beautysdk。运行scripts/test_entry_publication.py验证合法制品及缺失API依赖/错误scope/错版拒绝。最后候选打包验证所有制品源码摘要。新入口不包含完整实现，必须交付整个Maven仓库，不能只复制入口AAR。
+
+## 2026-10-29 限定试用交付增量
+
+- TRIAL-CONTRACT：试用范围、资格证据摘要、缺失/重复验收项和虚假通过拒绝；scripts/test_trial_contract.py。
+- TRIAL-API：已发布五模块AAR的2033条JVM公开签名初始基线、删改拒绝；scripts/api_surface.py。不覆盖Kotlin元数据/native ABI/行为。
+- TRIAL-CONSUMER：独立Maven单入口、资源准备/调参源码、Debug和Release/R8构建。
+- TRIAL-RECEIPT：DeliveryReceiptDeviceTest.successfulReceiptSurvivesReopenAndFailedImport，完整包成功摘要、页面展示、重开保留、失败导入保留；复用LabSceneBackup，不打开相机。
+- TRIAL-CMS：隔离浏览器真实下载ZIP重新计算SHA256，核对弹框、390px布局与无pageerror；Web全量回归。
+- 真人画质、多设备长测、外部接入和正式发行按TRIAL_ACCEPTANCE.md；没有真实证据不推进资格。

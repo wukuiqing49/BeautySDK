@@ -51,7 +51,7 @@ class LabHierarchyDeviceTest {
                 more(a,R.id.camera_effect_container)
                 assertFalse(a.findViewById<View>(R.id.camera_effect_container).isShown)
                 more(a,R.id.camera_debug)
-                val dialog=CameraTestActivity::class.java.getDeclaredField("settingsDialog").apply{isAccessible=true}.get(a) as android.app.Dialog
+                val dialog=CameraTestActivity::class.java.getDeclaredMethod("getSettingsDialog").apply{isAccessible=true}.invoke(a) as android.app.Dialog
                 assertTrue(dialog.findViewById<View>(R.id.debug_section).isShown)
                 assertEquals(View.GONE,dialog.findViewById<View>(R.id.effect_category_scroll).visibility)
             }

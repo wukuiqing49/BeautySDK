@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="4dp" android:clickable="true" android:focusable="true" android:background="@drawable/bg_preset_touch" android:descendantFocusability="blocksDescendants">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="104dp" android:background="@drawable/bg_preset_preview" android:clipToOutline="true" android:duplicateParentState="true">
+        <ImageView android:id="@+id/preset_preview" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="fitCenter" android:importantForAccessibility="no" />
+        <View android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/bg_preset_selection" android:duplicateParentState="true" android:importantForAccessibility="no" />
+        <ImageView android:id="@+id/preset_check" android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="top|end" android:layout_margin="6dp" android:src="@drawable/ic_preset_selected" android:importantForAccessibility="no" />
+    </FrameLayout>
+    <TextView android:id="@+id/preset_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center" android:minLines="2" android:maxLines="2" android:ellipsize="end" android:textSize="13sp" android:fontFamily="sans-serif-medium" android:textColor="@color/effect_label" android:duplicateParentState="true" android:importantForAccessibility="no" />
+</LinearLayout>

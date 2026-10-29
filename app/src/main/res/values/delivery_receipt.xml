@@ -1,0 +1,3 @@
+<resources>
+    <string name="resources_delivery_receipt">最近成功本地导入的完整包核对码（SHA-256）：%1$s\n请与工坊下载码核对；应用默认配置后再检查参数。此码不表示当前效果仍为默认值。</string>
+</resources>

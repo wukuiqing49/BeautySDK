@@ -1,0 +1,17 @@
+import {generateKeyPairSync} from 'node:crypto';
+import {writeFile,mkdir} from 'node:fs/promises';
+import {dirname} from 'node:path';
+import {envelope,exchange,hash,publicKeys,DAY} from './protocol.mjs';
+const {privateKey,publicKey}=generateKeyPairSync('rsa',{modulusLength:2048});
+const now=1793232000000,certificate='a'.repeat(64),keyId='test-only';
+const claims={licenseId:'test-license',packageName:'com.beautysdk.test',certificates:[certificate],sdkMajor:0,features:['BEAUTY','FILTER','FACE','STICKER'],issuedAt:now-1000,expiresAt:0};
+const grant=envelope('grant',claims,privateKey,keyId),nonce='b'.repeat(64);
+const registry={version:1,licenses:[{licenseId:claims.licenseId,grantSha256:hash(grant),status:'active',expiresAt:0,features:claims.features,leaseMs:7*DAY,refreshMs:DAY}]};
+const request={version:1,grant,nonce,packageName:claims.packageName,certificates:claims.certificates,sdkMajor:0};
+const keys=publicKeys(privateKey,keyId);
+const active=exchange(request,registry,privateKey,keyId,keys,now);
+registry.licenses[0].status='revoked';
+const revoked=exchange(request,registry,privateKey,keyId,keys,now+DAY);
+const out={now,keyId,publicKey:publicKey.export({format:'der',type:'spki'}).toString('base64'),grant,nonce,active,revoked};
+await mkdir(dirname(process.argv[2]),{recursive:true});await writeFile(process.argv[2],JSON.stringify(out));
+console.log('Ephemeral cross-language fixtures generated; no private key written');

@@ -1,0 +1,30 @@
+plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
+android {
+    namespace 'com.beautysdk.sample'
+    compileSdk 36
+    defaultConfig { applicationId 'com.beautysdk.sample'; minSdk 24; targetSdk 36; versionCode 1; versionName '1.0'; ndk { abiFilters 'arm64-v8a', 'armeabi-v7a' } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    buildFeatures { viewBinding true }
+    buildTypes { release { minifyEnabled true; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt') } }
+}
+kotlin { jvmToolchain(17) }
+dependencies {
+    implementation "com.beautysdk:beautysdk:${beautySdkVersion}"
+}
+
+tasks.register('verifyBeautySdkEntry') {
+    group = 'verification'
+    description = 'Verify the single dependency exposes every same-version SDK module to compile and runtime.'
+    doLast {
+        def expected = ['beautysdk', 'lib_beauty', 'lib_beauty_resources', 'lib_beauty_mediapipe', 'lib_beauty_gpupixel'] as Set
+        def declared = configurations.implementation.dependencies.findAll { it.group == 'com.beautysdk' }.collect { it.name }
+        if (declared != ['beautysdk']) throw new GradleException('Consumer must declare only the unified SDK entry')
+        ['debugCompileClasspath', 'debugRuntimeClasspath', 'releaseRuntimeClasspath'].each { name ->
+            def modules = configurations.getByName(name).resolvedConfiguration.resolvedArtifacts.collect { it.moduleVersion.id }.findAll { it.group == 'com.beautysdk' }
+            if ((modules.collect { it.name } as Set) != expected || modules.any { it.version != beautySdkVersion }) {
+                throw new GradleException("Incomplete or mixed SDK dependency graph: ${name}: ${modules}")
+            }
+            logger.lifecycle("Verified ${name}: ${modules.sort { it.name }}")
+        }
+    }
+}

@@ -29,3 +29,4 @@ include ':core:lib_camera'
 include ':core:lib_beauty_gpupixel'
 
 include ':core:lib_beauty_resources'
+include ':core:lib_beauty_sdk'

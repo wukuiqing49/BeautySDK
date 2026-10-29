@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
@@ -44,6 +46,7 @@ class AsyncFaceAnalysis @JvmOverloads constructor(
      */
     @JvmOverloads
     fun submit(frame: RgbaFrame, expectedGeneration: Long? = null): Boolean = synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return@synchronized false
         check(!closed) { "Analysis is closed" }
         if (expectedGeneration != null && expectedGeneration != generation) return false
         if (geometry?.let { !compatible(it,frame.info) } == true) resetLocked()
@@ -143,6 +146,7 @@ class AsyncFaceAnalysis @JvmOverloads constructor(
 
     /** 同一锁内取得结果与诊断，避免界面显示的是新检测结果、渲染却使用上一份数据。 */
     fun snapshot(info: FrameInfo, maxAgeNs: Long): FaceAnalysisSnapshot = synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return@synchronized FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
         require(maxAgeNs >= 0)
         if (closed) FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
         else history.snapshot(info, maxAgeNs,

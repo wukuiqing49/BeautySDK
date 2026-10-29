@@ -1,0 +1,18 @@
+{
+  "isolatedContext": true,
+  "personalVersions": {
+    "importValidation": true,
+    "saveReload": true,
+    "downloadEvent": true,
+    "mobileWidth": 390,
+    "horizontalOverflow": false,
+    "pageErrors": []
+  },
+  "workspace": {
+    "initialized": true,
+    "versionLink": true,
+    "horizontalOverflow": false,
+    "pageErrors": []
+  },
+  "imageSaved": "Only CMS UI screenshot; no camera images"
+}

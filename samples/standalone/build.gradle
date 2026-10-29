@@ -1,0 +1,5 @@
+// 与主工程固定版本一致，升级时随交付配置一起维护。
+plugins {
+    id 'com.android.application' version '8.13.2' apply false
+    id 'org.jetbrains.kotlin.android' version '2.3.10' apply false
+}

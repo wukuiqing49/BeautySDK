@@ -1,0 +1,3 @@
+WARN: samples\standalone: module build file exists but module is not included in settings.
+WARN: samples\standalone\app: module build file exists but module is not included in settings.
+architecture validation passed: 2 warning(s)

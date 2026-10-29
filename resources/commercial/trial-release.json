@@ -1,0 +1,15 @@
+{
+  "manifestVersion": 1,
+  "sdkVersion": "0.2.0",
+  "stage": "limited-trial",
+  "qualified": false,
+  "primaryFeatures": ["beauty.parameters.v1", "filter.basic.v1", "sticker.png.v1"],
+  "excludedDeliverables": ["ios", "live-vendor-adapter", "multi-user-cms"],
+  "gates": [
+    {"id":"human-quality","status":"pending","evidence":[]},
+    {"id":"device-soak","status":"pending","evidence":[]},
+    {"id":"external-integration","status":"pending","evidence":[]},
+    {"id":"distribution-rights","status":"pending","evidence":[]},
+    {"id":"signed-release","status":"pending","evidence":[]}
+  ]
+}

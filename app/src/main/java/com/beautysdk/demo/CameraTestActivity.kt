@@ -26,6 +26,7 @@ import com.wkq.base.activity.BaseActivity
 
 class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private lateinit var controller: GpuBeautyPreview
+    private var displayedLibrary:com.beautysdk.resources.BeautyResourceLibrary?=null
     private lateinit var resourceCenter: ResourceCenterController
     private var applyingResource=false
     private lateinit var effectWorkshop: EffectWorkshopController
@@ -52,7 +53,10 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private var lastFaceCallback = ""
     private var lastGestureCallback = ""
     private var lastGestureEventId = 0L
-    private var settingsDialog: BottomSheetDialog? = null
+    private val effectPanel by lazy {EffectPanelHost(this,binding.root,binding.cameraControlsPanel,binding.controlsScroll){
+        listOf(binding.cameraSettings,binding.cameraStickers,binding.cameraDebug,binding.cameraWorkshop).forEach{it.isSelected=false}
+    }}
+    private val settingsDialog:BottomSheetDialog? get()=effectPanel.dialog
     private var moreMenu: androidx.appcompat.widget.PopupMenu? = null
     private var callbackDialog: BottomSheetDialog? = null
     private val callbackHistory=java.util.ArrayDeque<String>()
@@ -62,7 +66,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private var faceDetectionEnabled = true
     private var effectIsMain = true
     private var effectCategory=0
-    private var adjusting=true
+    private var adjusting=false
     private var parameterCategory=-1
     private var restorePanelSection:Int?=null
     private val parameterViews=mutableMapOf<Int,android.widget.TextView>()
@@ -80,7 +84,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         requested = savedInstanceState?.getBoolean("camera_requested") ?: true
         lens = if (savedInstanceState?.getBoolean("back_camera") == true) CameraLens.BACK else CameraLens.FRONT
         effectCategory=savedInstanceState?.getInt("effect_category",0)?.coerceIn(0,7)?:0
-        adjusting=savedInstanceState?.getBoolean("effect_adjusting",true)?:true
+        adjusting=savedInstanceState?.getBoolean("effect_adjusting",false)?:false
         restorePanelSection=savedInstanceState?.takeIf{it.getBoolean("effect_panel_open",false)}?.getInt("effect_panel_section",0)
         restoredGestureEnabled=savedInstanceState?.getBoolean("gesture_detection_enabled",true)?:true
         faceDetectionEnabled=savedInstanceState?.getBoolean("face_detection_enabled",true)?:true
@@ -187,6 +191,10 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         }
         androidx.lifecycle.ViewModelProvider(this)[ResourceCenterModel::class.java].ui.observe(this) { ui ->
             controller.setGestureEffects(ui.gestureEffects)
+            if(::resourceCenter.isInitialized&&ui.library!==displayedLibrary){
+                displayedLibrary=ui.library
+                if(binding.cameraControlsPanel.isShown)openSettings(if(binding.debugSection.isShown)2 else if(effectCategory==4)1 else 0)
+            }
         }
         controller.onGestures = { snapshot, events ->
             val names=resources.getStringArray(R.array.gesture_names)
@@ -299,7 +307,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         // 弹框复用设置视图，关闭后保留当前参数。
         setupEffectCategories()
         binding.cameraThemeExit.setOnClickListener { effectWorkshop.clear() }
-        binding.cameraSettings.setOnClickListener { openSettings(if(effectCategory==4)1 else 0) }
+        binding.cameraSettings.setOnClickListener { adjusting=false;openSettings(if(effectCategory==4)1 else 0) }
         binding.cameraStickers.setOnClickListener { effectCategory=4;adjusting=false;openSettings(1) }
         binding.cameraPresets.setOnClickListener { adjusting=false;openSettings(if(effectCategory==4)1 else 0) }
         binding.cameraAdjust.setOnClickListener { adjusting=true;openSettings(0) }
@@ -418,9 +426,12 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             applyingResource=false
             updateEffects()
         }
+        resourceCenter.start()
         workshop.restoreDraft()
     }
     /** 底部面板只保留一份，分类切换不重建相机、检测器或渲染资源。 */
+    private var gestureCategorySelected=false
+    private var gestureCategoryView:android.widget.TextView?=null
     private fun setupEffectCategories() {
         val titles=listOf(R.string.effect_category_beauty,R.string.effect_category_reshape,R.string.effect_category_makeup,R.string.effect_category_color,R.string.effect_category_sticker,R.string.effect_category_background,R.string.effect_category_motion,R.string.resources_theme)
         titles.forEachIndexed { index,title ->
@@ -440,13 +451,24 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     fun applyResourceCategoryOrder(order:List<com.beautysdk.resources.ResourceCategory>) {
         val canonical=listOf(com.beautysdk.resources.ResourceCategory.BEAUTY,com.beautysdk.resources.ResourceCategory.RESHAPE,com.beautysdk.resources.ResourceCategory.MAKEUP,com.beautysdk.resources.ResourceCategory.FILTER,com.beautysdk.resources.ResourceCategory.STICKER,com.beautysdk.resources.ResourceCategory.BACKGROUND,com.beautysdk.resources.ResourceCategory.MOTION,com.beautysdk.resources.ResourceCategory.THEME)
         if(categoryViews.size!=8)return
-        canonical.forEachIndexed {i,c->if(::resourceCenter.isInitialized)resourceCenter.categoryName(c)?.let{categoryViews[i].text=it}}
-        val desired=order.map{categoryViews[canonical.indexOf(it)]}
-        if(desired.indices.all{binding.effectCategories.getChildAt(it)===desired[it]})return
+        canonical.forEachIndexed {i,c->if(::resourceCenter.isInitialized)resourceCenter.categoryName(c)?.let{if(categoryViews[i].text.toString()!=it)categoryViews[i].text=it}}
+        val gesture=if(::resourceCenter.isInitialized&&resourceCenter.hasGestureResources){
+            (gestureCategoryView?:android.widget.TextView(this,null,0,R.style.CameraAction).apply {
+                tag="camera_gesture_category"
+                val dp=resources.displayMetrics.density
+                layoutParams=android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,(48*dp).toInt())
+                setPadding((14*dp).toInt(),0,(14*dp).toInt(),0)
+                setOnClickListener{gestureCategorySelected=true;adjusting=false;openSettings(0)}
+            }.also{gestureCategoryView=it}).apply{text=resourceCenter.gestureCategoryName()}
+        }else null
+        if(gesture==null)gestureCategorySelected=false
+        val desired=order.map{categoryViews[canonical.indexOf(it)]}+listOfNotNull(gesture)
+        if(binding.effectCategories.childCount==desired.size&&desired.indices.all{binding.effectCategories.getChildAt(it)===desired[it]})return
         binding.effectCategories.removeAllViews();desired.forEach{binding.effectCategories.addView(it)}
     }
     private fun selectEffectCategory(index:Int) {
-        if(effectCategory!=index)adjusting=index in 0..3
+        gestureCategorySelected=false
+        if(effectCategory!=index)adjusting=false
         effectCategory=index;openSettings(if(index==4) 1 else 0);binding.controlsScroll.scrollTo(0,0)
         categoryViews[index].requestRectangleOnScreen(android.graphics.Rect(0,0,categoryViews[index].width,categoryViews[index].height),true)
     }
@@ -485,7 +507,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     }
     private fun openSettings(section: Int) {
         if(section==3) {startActivity(android.content.Intent(this,ResourceCenterActivity::class.java));return}
-        val editable=effectCategory in 0..3 || effectCategory in 5..6
+        val editable=!gestureCategorySelected&&(effectCategory in 0..3 || effectCategory in 5..6)
         val jsonParameters=resourceCenter.hasLibrary&&effectCategory in 0..3
         resourceCenter.parameterMode(adjusting&&effectCategory in 0..3)
         binding.beautySection.visibility = if (section == 0 && adjusting && editable && !jsonParameters) View.VISIBLE else View.GONE
@@ -508,42 +530,19 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         binding.cameraPanelTitle.setText(if(section==2)R.string.camera_tab_debug else listOf(R.string.effect_category_beauty,R.string.effect_category_reshape,R.string.effect_category_makeup,R.string.effect_category_color,R.string.effect_category_sticker,R.string.effect_category_background,R.string.effect_category_motion,R.string.resources_theme)[effectCategory])
         if(section!=2)resourceCenter.categoryName(com.beautysdk.resources.ResourceCategory.entries[effectCategory])?.let{binding.cameraPanelTitle.text=it}
         listOf(binding.cameraSettings,binding.cameraStickers,binding.cameraDebug,binding.cameraWorkshop).forEachIndexed { index, view -> view.isSelected = index == section }
-        if (settingsDialog?.isShowing == true) {resizeEffectPanel();return}
-        val panel = binding.cameraControlsPanel
-        (panel.parent as? ViewGroup)?.removeView(panel)
-        panel.visibility = View.VISIBLE
-        binding.controlsScroll.visibility=View.VISIBLE
-        val dialog = BottomSheetDialog(this)
-        settingsDialog = dialog
-        dialog.setContentView(panel)
-        dialog.setOnShowListener {
-            // 长内容内部滚动，弹框上方仍可观察相机。
-            resizeEffectPanel()
-            // 设置面板采用固定展开高度；禁止BottomSheet抢占内容区/滑杆的拖动手势。
-            // ScrollView自己消费上下滚动，关闭仍使用按钮、返回键或外部点击。
-            dialog.behavior.isDraggable = false
-            binding.controlsScroll.isNestedScrollingEnabled = false
-            dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            dialog.behavior.skipCollapsed = true
-        }
-        dialog.setOnDismissListener {
-            (panel.parent as? ViewGroup)?.removeView(panel)
-            panel.visibility = View.GONE
-            binding.controlsScroll.visibility=View.GONE
-            binding.root.addView(panel)
-            settingsDialog = null
-            listOf(binding.cameraSettings,binding.cameraStickers,binding.cameraDebug,binding.cameraWorkshop).forEach { it.isSelected = false }
-        }
-        dialog.window?.setDimAmount(.12f)
-        dialog.show()
-        dialog.window?.navigationBarColor = ContextCompat.getColor(this,R.color.camera_surface)
-        // 弹框独立消费导航栏，固定分类/模式栏不会随内容滚动离屏。
-        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(panel){view,insets->
-            val bars=insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
-            view.setPadding(view.paddingLeft,view.paddingTop,view.paddingRight,bars.bottom+8*resources.displayMetrics.density.toInt());insets
-        }
-        androidx.core.view.ViewCompat.requestApplyInsets(panel)
+        if(gestureCategorySelected&&section in 0..1){
+            resourceCenter.parameterMode(false);resourceCenter.gestureCategory()
+            binding.resourceCenter.root.visibility=View.VISIBLE
+            binding.resourceCenter.resourceNone.visibility=View.GONE
+            binding.beautySection.visibility=View.GONE;binding.workshopSection.visibility=View.GONE
+            binding.cameraClearStickers.visibility=View.GONE
+            binding.cameraPanelTitle.text=resourceCenter.gestureCategoryName()
+            categoryViews.forEach{it.isSelected=false}
+        }else binding.resourceCenter.resourceNone.visibility=View.VISIBLE
+        gestureCategoryView?.isSelected=gestureCategorySelected
+        effectPanel.show()
     }
+
     override fun initData() {
         if (requested && !hasPermission()) permission.launch(Manifest.permission.CAMERA)
         val initial = intent.getIntExtra("initial_section", -1)
@@ -769,19 +768,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         binding.cameraSmoothingControl.visibility=if(index==0)View.VISIBLE else View.GONE
         binding.cameraWhiteningControl.visibility=if(index==1)View.VISIBLE else View.GONE
     }
-    /** 参数页较矮，资源页稍高；横屏窗口靠右显示，保留左侧预览。 */
-    private fun resizeEffectPanel() {
-        val dialog=settingsDialog?:return
-        val landscape=binding.root.width>binding.root.height
-        val dp=resources.displayMetrics.density
-        val ratio=if(landscape).92f else if(adjusting && binding.debugSection.visibility!=View.VISIBLE).36f else .48f
-        val height=maxOf((binding.root.height*ratio).toInt(),(240*dp).toInt()).coerceAtMost(binding.root.height)
-        binding.cameraControlsPanel.layoutParams=binding.cameraControlsPanel.layoutParams.apply {this.height=height}
-        if(landscape) {
-            dialog.window?.setLayout(minOf((420*dp).toInt(),(binding.root.width*.56f).toInt()),ViewGroup.LayoutParams.MATCH_PARENT)
-            dialog.window?.setGravity(android.view.Gravity.END or android.view.Gravity.BOTTOM)
-        }
-    }
+    /** 同一次弹框固定高度，切分类和调参只更新内容；横屏保留左侧预览。 */
     /** 只保存有界的文字事件，不保存人脸、手部图像或逐帧检测数据。 */
     private fun recordCallback(message:String) {
         val time=android.text.format.DateFormat.format("HH:mm:ss",System.currentTimeMillis()).toString()
@@ -866,7 +853,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         moreMenu?.dismiss();moreMenu=null
         callbackDialog?.dismiss();callbackDialog=null
         resetDialog?.dismiss();resetDialog=null
-        settingsDialog?.dismiss();settingsDialog=null
+        settingsDialog?.dismiss()
         if (::controller.isInitialized) controller.close()
         super.onDestroy()
     }

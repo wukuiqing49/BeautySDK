@@ -29,3 +29,4 @@ dependencies {
     api project(':core:lib_beauty')
     implementation libs.mediapipe.vision
 }
+apply from: rootProject.file('gradle/beauty-publishing.gradle')

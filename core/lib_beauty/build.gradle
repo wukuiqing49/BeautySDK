@@ -1,41 +1,56 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id 'maven-publish'
 }
 
+// 发行方公共配置在构建时固定；不读取宿主可覆盖的assets公钥，不包含私钥。
+def licenseConfigPath = providers.gradleProperty('beautyLicenseConfig').orNull
+def licenseConfig = licenseConfigPath ? new groovy.json.JsonSlurper().parse(rootProject.file(licenseConfigPath), 'UTF-8') : [endpoint:'', keys:[:]]
+if (licenseConfig.keySet() != ['endpoint','keys'] as Set) throw new GradleException('License config must contain only endpoint and keys')
+if (licenseConfigPath) {
+    def endpoint = new URI(licenseConfig.endpoint)
+    if (endpoint.scheme != 'https' || !endpoint.host || endpoint.userInfo || endpoint.fragment || endpoint.query) throw new GradleException('License endpoint must be fixed HTTPS without credentials/query')
+    if (!(licenseConfig.keys instanceof Map) || licenseConfig.keys.isEmpty() || licenseConfig.keys.size()>8) throw new GradleException('License keys missing')
+    licenseConfig.keys.each { id, encoded ->
+        if (!(id ==~ /[A-Za-z0-9_-]{1,64}/)) throw new GradleException('Invalid license key id')
+        def key = java.security.KeyFactory.getInstance('RSA').generatePublic(new java.security.spec.X509EncodedKeySpec(encoded.decodeBase64()))
+        if (key.modulus.bitLength()<2048 || key.modulus.bitLength()>4096) throw new GradleException('Invalid license RSA key size')
+    }
+}
+def licenseJson = groovy.json.JsonOutput.toJson(licenseConfig)
+ext.beautyLicensePublicConfig = licenseJson
 android {
     namespace = 'com.beautysdk'
     compileSdk = libs.versions.compileSdk.get().toInteger()
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInteger()
         consumerProguardFiles 'consumer-rules.pro'
+        buildConfigField 'String', 'LICENSE_CONFIG', groovy.json.JsonOutput.toJson(licenseJson)
+        buildConfigField 'int', 'LICENSE_SDK_MAJOR', libs.versions.sdk.get().tokenize('.')[0]
+    }
+    buildFeatures { buildConfig true }
+    buildTypes {
+        debug { buildConfigField 'boolean', 'LICENSE_ENFORCED', 'false' }
+        release { buildConfigField 'boolean', 'LICENSE_ENFORCED', 'true' }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    publishing { singleVariant('release') { withSourcesJar() } }
 }
 kotlin { jvmToolchain(17) }
-dependencies { testImplementation libs.junit }
+dependencies { testImplementation libs.junit; testImplementation libs.json.test }
 
-// 仅本地验证坐标，正式发布前确认归属。
-group = 'com.beautysdk'
-version = libs.versions.sdk.get()
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                artifactId = 'lib_beauty'
-            }
-        }
-        repositories {
-            maven {
-                name = 'localBuild'
-                url = rootProject.layout.buildDirectory.dir('repo').get().asFile.toURI()
-            }
-        }
-    }
+apply from: rootProject.file('gradle/beauty-publishing.gradle')
+
+// 测试密钥仅在Node进程内生成；夹具只含公钥与签名消息，不参与发行构建。
+def licenseFixtures = tasks.register('generateLicenseTestFixtures', Exec) {
+    workingDir rootProject.projectDir
+    commandLine 'node', 'services/license/test-fixtures.mjs', layout.buildDirectory.file('license-fixtures.json').get().asFile.absolutePath
+    inputs.files(rootProject.fileTree('services/license') { include '*.mjs' })
+    outputs.file(layout.buildDirectory.file('license-fixtures.json'))
+}
+tasks.withType(Test).configureEach {
+    dependsOn licenseFixtures
+    systemProperty 'beauty.license.fixtures', layout.buildDirectory.file('license-fixtures.json').get().asFile.absolutePath
 }

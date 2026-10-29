@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 /** 统一有界分析运行时，可由相机采集线程提交、渲染线程读取。
  * 仅持有 worker 独占副本；不接管相机、不读取 GPU，不延长宿主帧寿命。
  * 一个视频源对应一个实例。借给 BeautySession 时由创建方负责 close。
@@ -38,6 +40,7 @@ class BeautyAnalysisRuntime @JvmOverloads constructor(
     @Synchronized fun generationToken(): Long = tracked?.generationToken() ?: detector!!.generationToken()
     /** 限频只限制模型；轻量跟踪继续读取新图像，不用时钟外推代替实际匹配。 */
     @JvmOverloads @Synchronized fun submit(frame: RgbaFrame, expectedGeneration: Long? = null): Boolean {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return false
         check(!closed) { "Analysis runtime is closed" }
         if(!enabled || expectedGeneration!=null && expectedGeneration!=generationToken()) return false
         val previous=geometry
@@ -54,6 +57,7 @@ class BeautyAnalysisRuntime @JvmOverloads constructor(
         return accepted
     }
     @Synchronized fun snapshot(info: FrameInfo,maxAgeNs: Long): FaceAnalysisSnapshot {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
         require(maxAgeNs>=0)
         if(closed || !enabled) return FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
         return tracked?.snapshot(info,maxAgeNs) ?: detector!!.snapshot(info,maxAgeNs)

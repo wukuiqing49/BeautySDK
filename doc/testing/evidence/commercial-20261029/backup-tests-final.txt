@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: configuration diff identifies changed values and ignores object key order
+ok 1 - configuration diff identifies changed values and ignores object key order
+  ---
+  duration_ms: 2.3614
+  type: 'test'
+  ...
+# Subtest: empty backup round trip and trailing data rejection
+ok 2 - empty backup round trip and trailing data rejection
+  ---
+  duration_ms: 3.5442
+  type: 'test'
+  ...
+# Subtest: reject malformed header and unbounded version list
+ok 3 - reject malformed header and unbounded version list
+  ---
+  duration_ms: 1.4774
+  type: 'test'
+  ...
+# Subtest: compare by kind and ID; same name does not conflate gesture and effect
+ok 4 - compare by kind and ID; same name does not conflate gesture and effect
+  ---
+  duration_ms: 1.721
+  type: 'test'
+  ...
+# Subtest: workspace preserves binary assets, defaults and Unicode
+ok 5 - workspace preserves binary assets, defaults and Unicode
+  ---
+  duration_ms: 15.0642
+  type: 'test'
+  ...
+# Subtest: workspace rejects damage, trailing bytes, duplicates and excessive depth
+ok 6 - workspace rejects damage, trailing bytes, duplicates and excessive depth
+  ---
+  duration_ms: 3.9003
+  type: 'test'
+  ...
+# Subtest: prototype-shaped keys remain inert own properties
+ok 7 - prototype-shaped keys remain inert own properties
+  ---
+  duration_ms: 0.8631
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 185.5398

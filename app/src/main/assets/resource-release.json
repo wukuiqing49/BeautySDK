@@ -1,0 +1,18 @@
+{
+  "releaseVersion": 1,
+  "id": "r-2186b343f0f9c403",
+  "files": {
+    "resource_delivery.zip": {
+      "bytes": 3850115,
+      "sha256": "92af50dead968fe2ca4ecacff7e5da5dc2cdf13ccaee8d7bd91bb597944a0e24"
+    },
+    "resource_center/library.json": {
+      "bytes": 33614,
+      "sha256": "46bc5ca448d19112978d3006c047e8b4bd87420cbcb39fd1262cf711bdf70a60"
+    },
+    "resource_center/defaults.json": {
+      "bytes": 347,
+      "sha256": "8ab47da5aa4fbfa881aa5a19ce570f9c92a937b7d7b5f7c6603127304e80e9b6"
+    }
+  }
+}

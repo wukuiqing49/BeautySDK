@@ -34,7 +34,7 @@ class SceneControlsDeviceTest {
             waitFor {model.ui.value?.settings!=null && model.ui.value?.busy==false}
             inst.runOnMainSync {
                 a.findViewById<View>(R.id.camera_settings).performClick()
-                val dialog=CameraTestActivity::class.java.getDeclaredField("settingsDialog").apply{isAccessible=true}.get(a) as android.app.Dialog
+                val dialog=CameraTestActivity::class.java.getDeclaredMethod("getSettingsDialog").apply{isAccessible=true}.invoke(a) as android.app.Dialog
                 panel=dialog.findViewById(R.id.camera_controls_panel)
                 panel.findViewById<LinearLayout>(R.id.effect_categories).getChildAt(5).performClick()
                 panel.findViewById<View>(R.id.camera_adjust).performClick()

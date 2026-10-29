@@ -1,5 +1,7 @@
 package com.beautysdk.mediapipe
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import com.beautysdk.*
 import java.nio.ByteBuffer
 import kotlin.math.roundToInt
@@ -19,6 +21,7 @@ class NativeFaceMotion : FaceMotionEstimator {
         return MotionImage(frame.info,w,h,pixels)
     }
     override fun estimate(reference: MotionImage,current: MotionImage,face: FaceObservation): FaceObservation? {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return null
         if(reference.width!=current.width || reference.height!=current.height) return null
         val indices=intArrayOf(33,133,362,263,1,61,291,0,4,168,197,50,280,205,425,152)
         if(face.landmarks.size<478) return null

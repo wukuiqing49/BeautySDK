@@ -1,0 +1,1 @@
+architecture validation passed: 0 warning(s)

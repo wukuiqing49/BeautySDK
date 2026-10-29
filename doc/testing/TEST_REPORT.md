@@ -1,3 +1,127 @@
+# 2026-10-29 最新：0.2.0 应用授权
+
+已实现签名授权文件、首次联网激活、最长 7 天缓存租约、默认 24 小时刷新、重启复用退避计划、签名撤销、功能权限和未授权原帧旁路。提供 Node 服务、签发/续期/撤销 CLI、统一 Maven 初始化入口与开发文档。正式服务尚未部署。
+
+本次通过：核心 Debug JVM 136 项（另 1 项 Release 专属用例跳过）、Release 授权 JVM 13 项、资源 12 项、GPUPixel 4 项、Node 9 项；Pixel 8 API36 的 Debug GPU/手势 7 项。主 Demo 构建/lint、独立消费者三类 classpath/Debug/Release-R8/lint、5 个本地 Maven 制品与源码摘要、2193 项 JVM 签名检查、13 项发布/试用检查器测试通过。空发行配置的商业打包反例按预期拒绝，无商业 ZIP 产出。
+
+详细命令、逐项证据、两处已修复的验证失败及限制见 [本轮授权报告](evidence/license-20261029/README.md)。Release/R8 为未正式签名的构建验证；设备测试使用 Debug 开发模式，不能代表商业 Release 的正向激活。未执行正式 HTTPS、生产密钥、客户 APK 激活及跨重启真机离线验收；直播引擎、iOS、真人持续性能不在本轮范围。当前本地 Release 未配置正式公钥，默认关闭效果。
+
+以下为历史轮次记录，不能替代本轮结果。
+
+# 2026-10-29 限定试用产品收敛
+
+落实主推范围与当前状态入口、首次接入任务卡、真人/设备/外部试用流程、发布回退规则；保留实验能力，未更改算法参数冒充真人调校。新增ResourceIntegration.kt独立资源示例、CMS下载摘要与Android最近成功本地导入完整包摘要展示/持久化。
+
+验证：Demo assembleDebug/assembleDebugAndroidTest/lintDebug通过（5m46s）；独立Maven单入口检查、Debug和Release/R8通过（1m14s），最终使用已有配置兼容的2048m Gradle进程。首次样例内存不足、一次PowerShell属性参数解析错误、一次低内存进程未正常结束均保留失败日志，不计通过。
+
+试用门禁8项、发布契约4项通过；JVM2033条签名初始基线检查通过。qualified门禁按预期拒绝全部5项pending验收。UI/i18n均0警告；架构通过，独立sample未纳入根settings的2项提示符合设计。代理结构与配置通过。
+
+CMS84项全量测试、静态构建通过；隔离Playwright选择轻量美颜、下载ZIP、重新计算摘要与手机试用弹框一致，390px弹框无横向超出，零pageerror。未修改资源包协议或现有渲染默认值。
+
+Pixel8明确offline，未安装运行新APK，未操作其他设备。DeliveryReceiptDeviceTest已编译但未执行；Android字体/横屏、实际两端导入核对、真人默认预设调校、多设备持续性能、外部开发者试用及正式签名发行未验收。未更新设备通过基线，未接直播厂商、未部署网站或远程Maven。
+
+证据：[Demo构建](evidence/trial-20261029/app-build.txt)、[独立消费者](evidence/trial-20261029/sample-build.txt)、[门禁](evidence/trial-20261029/contract-tests.txt)、[API](evidence/trial-20261029/api-check.txt)、[Web](evidence/trial-20261029/cms-tests.txt)、[浏览器](evidence/trial-20261029/browser.json)。当前交付结论见[TRIAL_BUILD_REPORT](TRIAL_BUILD_REPORT.md)。
+
+---
+# 2026-10-29 单一Maven依赖入口
+
+新增com.beautysdk:beautysdk:0.1.0（core/lib_beauty_sdk），api暴露四个同版模块。独立sample仅一条implementation，不复制模型/native库、不合并AAR。新增发行版本常量BeautySdkDistribution.VERSION。根任务统一发布5个制品；候选打包器同步入口、来源摘要与API/runtime变体检查，完整本地候选包build/beautysdk-single-entry-20261029.zip生成成功。
+
+验证通过：publishBeautySdkToLocalBuildRepository（1m7s）；独立工程verifyBeautySdkEntry、assembleDebug、assembleRelease（1m43s，含R8）。debugCompileClasspath/debugRuntimeClasspath/releaseRuntimeClasspath均恰含入口与四个0.1.0模块。Python发布契约4项通过，覆盖真实制品、错误scope、API依赖缺失及混合版本。首次打包检查误把sources documentation变体视作runtime库，修正为明确library类别并要求api/runtime双变体后通过，未放松运行依赖校验。
+
+设备尝试仅指定Pixel8，adb报告offline，安装未执行；其他在线设备/模拟器未使用，不沿用上一轮真机成功作为新入口证据。未上传远程Maven、未发布网站、未提交push；Release是未签名验证制品。依赖入口不代表功能/性能新增验收。
+
+[发布日志](evidence/maven-entry-20261029/publish.txt)、[单依赖图及Debug/Release构建](evidence/maven-entry-20261029/consumer.txt)、[发布契约测试](evidence/maven-entry-20261029/contract-tests.txt)。配置与接入方式见doc/ANDROID_SDK_USAGE.md及samples/standalone/README.md。未提升历史设备通过基线。
+
+---
+# 2026-10-29 独立交付与CMS工作区可靠性
+
+四模块本地Maven发布通过（完整Kotlin编译）；候选打包器通过POM/module/AAR/sources结构、依赖及源码摘要核对，产物build/beautysdk-candidate-20261029.zip。初次增量编译未识别已有顶层函数，完整编译后通过，未删改SDK业务代码规避。
+
+独立工程 `gradlew.bat -p samples/standalone :app:assembleDebug :app:assembleRelease -Pkotlin.incremental=false --max-workers=1 --console=plain` 通过（5m6s），包含Release/R8。Debug APK覆盖安装Pixel8，启动com.beautysdk.sample/.MainActivity，UI实际显示“本地帧处理完成”。只验证生成色卡RGBA路径；未验证独立GPU示例运行，Release为未签名制品，不能称为正式发布或完整native运行验收。
+
+CMS：全量83项测试通过；随后增加具体配置字段差异，相关7项测试再次通过。最终静态构建通过。补齐原遗漏release-backup.mjs及新增workspace-backup.mjs的发布复制，构建逐一检查相对模块引用存在。新增工作区备份/摘要校验/结构预算/单事务补缺失恢复、逐字段defaults/library差异。
+
+隔离Playwright浏览器（新context，未使用用户草稿）：真实IndexedDB写入二进制测试素材；备份/读回后merge恢复1项，保留1项，二进制字节一致。最终dist/releases.html实际点击“备份整个工作区”下载beauty_workspace.bsworkspace，再用文件控件导入，状态“恢复完成：补充0项，保留本机已有1项”，pageerror为空。首次获取远程下载path不支持，改为下载流后完成，不计失败尝试为通过。所有隔离context已关闭。
+
+[发布日志](evidence/commercial-20261029/publish-full.txt)、[独立Debug/Release构建](evidence/commercial-20261029/standalone.txt)、[Pixel8页面文本](evidence/commercial-20261029/sample-ui.xml)、[Web83项](evidence/commercial-20261029/cms-tests.txt)、[最后7项](evidence/commercial-20261029/backup-tests-final.txt)、[静态构建](evidence/commercial-20261029/cms-build-final.txt)。未发布网站/远程Maven，未提交push。能力清单移除过时的“不支持手势播放器”声明，保留真人资格pending。
+
+剩余：运行状态与能力卡片完整联动、统一错误模型/API兼容门禁、GPU独立宿主运行、正式网络签名跨端发行验证、CMS多页并发与配额耗尽及所有编辑器恢复、模型素材商业凭据、真人画质和多设备长测。工作区备份只含已保存数据，不认证来源、不覆盖已存在草稿。旧基线不整体提升。
+
+---
+# 2026-10-29 状态回放与相机手势分类修复
+
+Pixel 8 / Android16 API36最终22项设备回归全部通过（31.605秒），包括上一轮失败的4个用例。新增相机第9类手势特效入口，内置卡片可选择并更新动画配置；资源控制器改为宿主赋值后显式start，避免初始状态回放访问未初始化字段。补齐发行下载按钮values-en翻译。
+
+先前连续测试存在相机退出后设备重新锁屏的问题；本轮每项LabSceneBackup UI测试先唤醒/请求dismiss-keyguard，保留所有原断言。独立资源页3项复跑通过，最终8个测试类22项完整通过。首轮修复构建的22项仍有5项失败，日志保留，不计入通过。构建曾遇Kotlin增量缓存未识别已有扩展函数，关闭增量后通过源码编译；后续一次构建中断，最终以单worker重建安装，未把旧APK算作新入口验证。
+
+最终通过范围：SignedResourceDeliveryDeviceTest 1、EffectPanelStabilityDeviceTest 1、DemoBuiltinLibraryDeviceTest 1（增加相机手势入口/可见卡片/选择配置断言）、ResourceCenterUiDeviceTest 3、ResourceLibraryDeviceTest 5、ResourceContractDeviceTest 3、GestureResourceLibraryDeviceTest 4、GestureEffectsDeviceTest 4。覆盖GPU透明合成/动画换帧/结束过期/旋转镜像、手势资源导入/显式应用/恢复；动画GPU使用合成TRIGGER事件，不代表真人识别准确率验收。
+
+构建命令：`gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -Pkotlin.incremental=false --max-workers=1 --console=plain`。两个APK构建与覆盖安装通过，UI门禁0警告。最终lintDebug通过，整体BUILD SUCCESSFUL（7m57s）。[构建日志](evidence/fix-20261029/build.txt)。adb只操作Pixel8，未清数据，测试恢复宿主状态；恢复测试前亮屏超时，未保存相机帧。未接直播引擎。
+
+证据：[最终22项](evidence/fix-20261029/device-final.txt)、[中间失败记录](evidence/fix-20261029/device.txt)、[工作区文件摘要与APK摘要](evidence/fix-20261029/summary.json)、[UI门禁](evidence/fix-20261029/ui-final.txt)。保留旧用例基线，本轮证据单独归档。未覆盖正式HTTPS发行源、CMS浏览器、真人动态观感、长时性能和iOS。
+
+---
+# 2026-10-29 最新源码 Pixel 8 真机回归
+
+用户本轮明确要求真机测试，解除此前不运行限制。采用 android-functional-test-workflow。目标 Pixel 8 / Android 16 / API 36；另一在线设备未操作。覆盖安装debug与测试APK成功，未清空应用数据；相关用例使用LabSceneBackup恢复宿主配置。不保存相机图像。
+
+结果：资源模块12项JVM通过（ResourceCompositionTest 8、ResourceCapabilitiesTest 4）；assembleDebug、assembleDebugAndroidTest通过。lintDebug失败：official_resources.xml 的 resources_official_download 缺少 values-en 翻译（1 error / 169 warnings）。整体Gradle命令因此失败，不能写作构建全通过。
+
+设备首轮14项，9通过/5失败，期间设备熄屏。临时延长screen_off_timeout至600000并唤醒复跑，最终14项10通过/4失败；随后恢复原亮屏超时。保留两轮原始日志。最终失败：
+
+- DemoBuiltinLibraryDeviceTest.cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport：模型参数0.31已就绪，预览鼻子参数仍0.0。
+- ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable：资源Grid首个卡片为空，getChildAt空引用。
+- ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera：分类预期9，实际8。
+- ResourceLibraryDeviceTest.cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls：预期“自定义美颜”，实际“美颜”。
+
+通过范围包括签名真实包安装/篡改及错误公钥拒绝、预设默认展示/切换/重开/滑杆调节期间面板位置采样、资源删除重开、JSON参数应用与重置、包校验与旧格式兼容、默认语言/顺序、在线手势校验。位置采样通过不代表真人画质或全部屏幕视觉通过。
+
+执行：`gradlew.bat :core:lib_beauty_resources:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug --max-workers=2 --console=plain`；adb指定Pixel 8覆盖安装，AndroidJUnitRunner选择SignedResourceDeliveryDeviceTest、EffectPanelStabilityDeviceTest、DemoBuiltinLibraryDeviceTest、ResourceCenterUiDeviceTest、ResourceLibraryDeviceTest、ResourceContractDeviceTest。
+
+证据：[最终设备日志](evidence/device-20261029/device-awake.txt)、[首次设备日志](evidence/device-20261029/device.txt)、[构建与lint日志](evidence/device-20261029/build.txt)。本轮只测试/记录，未修业务源码。因尚未生成可靠完整工作区指纹，不推进TEST_BASELINE，旧通过记录不覆盖当前失败。未测试正式HTTPS发行源（未配置）、CMS浏览器、横屏/大字体矩阵、持续性能、真人动态画质、直播引擎及iOS。
+
+---
+# 2026-10-29 Demo默认接入最新完整资源库（本轮）
+
+> 后续源码增量：增加实际组件能力配置、结构化不支持错误、商业能力分级、候选发布制品结构检查和独立示例显式错误回调。新增ResourceCapabilitiesTest尚未运行；未构建、未操作真机，历史通过基线不覆盖这些改动。
+
+> 最新增量状态（2026-10-29，用户要求“先不运行”）：统一Maven发布、独立消费者、候选打包脚本、资源验签、CMS来源记录、长测覆盖率门槛和预设模式栏适配仅修改源码，**本轮未构建、未执行测试、未运行真机**。以下历史通过记录不覆盖这些变更；TEST_BASELINE不推进。新增验签设备用例与CMS来源记录用例均待执行。范围及剩余项见 [COMMERCIAL_READINESS.md](../COMMERCIAL_READINESS.md)。
+
+根因：之前只新增公共assets加载API，Demo启动仍使用旧resource_center/catalog.json，缺少library.json时回退旧控件。修复：主APK加入最新resource_delivery.zip与对应内置library.json，Model启动经installDeliveryFromAssets完成一次安装；未显式导入时默认采用内置JSON，导入清单仍优先。启动安装按完整包摘要标记，保留用户参数/选择和旧内置删除记录；相机面板在异步清单到达时刷新参数模式，不继续显示旧控件。
+
+本次通过Pixel8 Android16设备13项（14.814秒，0失败）：DemoBuiltinLibraryDeviceTest1、ResourceLibraryDeviceTest5、ResourceCenterUiDeviceTest3、GestureResourceLibraryDeviceTest4。新增真实相机用例不手动导入，断言50常规/4手势/15参数、美颜磨皮/美妆口红/美型鼻子JSON滑杆可见，旧控件隐藏，鼻子参数0.31进入预览settings。回归导入覆盖、参数默认/恢复、资源页9类、删除后重开不重装、手势选择。测试保留/恢复宿主设置，不清空应用数据。
+
+app debug/测试APK构建与lint通过，UI/架构门禁0警告。APK实际assets/resource_delivery.zip与源文件逐字节一致，SHA256见证据。构建命令：`.\gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。adb显式指定Pixel8安装后用AndroidJUnitRunner选择上述4类。已覆盖安装修复版并启动相机；额外uiautomator读取动态相机页面因无法idle失败，未把旧XML当当前页面，也未拍摄保存摄像头画面。
+
+[证据及源码指纹](evidence/demo-builtin-library-20261029/summary.json)、[13项设备日志](evidence/demo-builtin-library-20261029/device.txt)、[最终构建](evidence/demo-builtin-library-20261029/build.txt)。未测真人观感、持续性能、厂商推流、横屏/字体完整矩阵，功能断言不代表这些已通过。
+
+---
+
+# 2026-10-28 Android assets内置加载与开发说明（本轮）
+
+新增公共installDeliveryFromAssets与installDeliveryDirectoryFromAssets，默认读取APK assets/resource_delivery.zip或beauty_resources目录；后台调用、可取消、完整校验和回滚、按摘要复用，不联网、不改变用户状态。目录限2000文件、8层及32MiB，再复用ZIP校验。新增doc/ANDROID_SDK_USAGE.md，从首页/核心及资源模块文档可达。
+
+通过：资源模块8项JVM、Pixel8 Android16 API36设备14项（13.113秒）零失败；app debug/测试APK构建、lint与架构门禁通过（0警告），使用说明本地文档链接通过。设备包含BuiltinResourceAssetsDeviceTest2、GestureResourceLibraryDeviceTest4、ResourceLibraryDeviceTest5、ResourceDeliveryDeviceTest3。新用例实际读APK assets内ZIP和解压目录，对比普通/手势摘要、重复安装、多语言和准备效果，覆盖缺失/非法路径/非完整目录/取消后无安装。隔离cache且清理，旧宿主回归备份恢复配置。
+
+命令：`.\gradlew.bat :core:lib_beauty_resources:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`；adb显式Pixel8目标覆盖安装，以AndroidJUnitRunner -e class选择上述4类。未改视频算法/采集/厂商接口。
+
+证据：[摘要与源码指纹](evidence/builtin-assets-20261028/summary.json)、[14项设备日志](evidence/builtin-assets-20261028/device.txt)、[构建](evidence/builtin-assets-20261028/build.txt)。本次源码仍未提交，基线按ASSET用例独立记录。未做真实引擎、真人观感、持续性能或iOS完整库验证。
+
+---
+
+# 2026-10-28 统一外层文件夹与英文稳定路径（本轮）
+
+新完整ZIP仅含beauty_resources/外层；内部使用beauty/reshape/makeup/filter/sticker/background/motion/theme/gesture等英文分类和稳定资源ID。中文与多语言仅保留JSON展示字段；library引用相对清单位置。Web及Android兼容新外层、旧中文分类根目录和旧平铺包；单项包不变。Demo导入仍只安装，显式选择/采用默认后应用。
+
+通过：Web55项、资源JVM8项，Pixel8 Android16 API36设备12项（11.336秒）零失败。设备类GestureResourceLibraryDeviceTest4、ResourceLibraryDeviceTest5、ResourceDeliveryDeviceTest3，含新包导入/组合/选择恢复、旧包兼容、混合根拒绝、JSON美颜控件/相机配置和篡改无部分安装。debug及androidTest APK构建、lint通过，架构门禁0警告。未清空应用，相关配置与本轮安装测试后恢复。
+
+命令：npm test / npm run build / node scripts/export-library.mjs；`.\gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest :core:lib_beauty_resources:testDebugUnitTest :app:lintDebug`；adb使用明确Pixel8目标覆盖安装后，以AndroidJUnitRunner -e class选择上述3类。
+
+实际本地交付包：258个文件、所有路径ASCII、9类/50常规/4手势，3,838,687字节。输出C:/work/AI/BeautyStickerWorkshop/build/resource_delivery.zip及library.json。[证据与源码指纹](evidence/package-layout-20261028/summary.json)、[设备日志](evidence/package-layout-20261028/device.txt)、[Web日志](evidence/package-layout-20261028/web-tests.txt)、[构建日志](evidence/package-layout-20261028/build.txt)。未发布网站；iOS完整库、真人观感和持续性能不在本轮范围。
+
+---
+
 # 2026-10-28 手势动画完整资源库 V2（本轮）
 
 完整ZIP新增GESTURE第9类，50份常规资源+4组透明图集动画；根library.json记录触发规则、预览、多语言与默认选择。Web已保存绑定随方案导出，导入可恢复；导出等待草稿恢复/保存。Android校验、安装、显式选择/删除、重开恢复及默认配置应用完成；旧独立手势包仍兼容。详细边界见resources/unified/library-v1/README.md。
@@ -1471,3 +1595,30 @@ JVM与完整构建命令见TEST_PLAN，主构建 `BUILD SUCCESSFUL in 1m 27s`。
 - assembleDebug、lintDebug、feature_app JVM测试通过，PreviewRequestTest共8项零失败（含显式观察/关闭门控及原图旁路）。UI/i18n脚本0 warning。
 - Pixel 8 Android16，DemoLayoutDeviceTest两项通过：diagnosticsKeepBoundsAndMoreControlsDefaultDetection、originalHoldReleasesAndDiagnosticsStayBelowButton。覆盖长手势状态/123.4 FPS与9999ms下卡片全局矩形不变、默认开关及独立切换、长按松开/取消与重置。日志build-ui-diagnostics-device.log。
 - 未验证大字体/横屏小屏视觉，未执行默认双检测的持续温升与性能验收；自动断言尺寸稳定不等同主观美观验收。
+## 2026-10-29 效果弹框默认预设与抖动修复
+
+本次通过：PANEL-01/PANEL-02 及相关回归共 8 项 Pixel 8 设备测试，11.61 秒，最终 0 失败；APK 构建、lint、UI 静态门禁通过（0 UI 警告）。修复版已安装到 Pixel 8。测试完成后设备断开，最后一次启动 Demo 的命令受阻（device not found），不影响已完成的设备断言。
+
+默认打开/切换分类/关闭重开进入预设；微调保留单项强度设置。预设与微调使用同一固定面板高度，避免重复标题、padding 和尺寸写入；资源状态变化复用参数控件，避免拖动中重建滑杆。设备测试在模式切换、连续调参、分类切换后分别采样 12 个绘制帧，面板位置和尺寸一致，滑杆实例保持。
+
+首次设备测试 8 项中 1 项失败：主题首次展开为子资源后重建了滑杆；增加独立参数控件缓存后上述 8 项复测全部通过。首次最终构建在 lint 阶段 Gradle daemon 消失，单 worker/1536 MiB 重试构建和 lint 成功。未将这些首次失败隐去。
+
+证据：[summary.json](evidence/effect-panel-20261029/summary.json)，包含实际源码指纹、APK 摘要和初次/最终日志。未保存相机图像。横屏/字体完整矩阵、真人观感、持续性能、直播厂商链路未复测，逐帧布局断言不等于所有场景视觉验收。
+## 2026-10-29 SDK / 个人CMS整体优化
+
+本次完成参数生成契约、排序/语言与跨页刷新、在线手势V2、个人版本备份、统一发布/回滚、APK资源一致性门禁、弹框窗口职责分离与文档更新。用户明确仅个人使用CMS，直播引擎暂不接入。
+
+最终通过：Web75项、资源JVM8项；Pixel8完整26项（130.77秒），最后刷新改动13项补测、测试备份修订7项补测均0失败。APK及资源库Release AAR、lint、架构/UI/i18n通过。发布版本r-2186b343f0f9c403与APK内资源逐字节一致。完整组先于最后小修，补测对应变化范围，不叠加为独立用例数量。
+
+每组约31秒短测：原图24.05FPS、检测24.05FPS、检测加基础美颜24.04FPS，热状态0。无检测到人脸，因此不代表美型/贴妆实际负载、真人画质、长时热稳态或远端推流；没有相机图像落盘。
+
+初次失败及修复包含：息屏导致UI观察失效、测试反射字段变化、默认配置/删除手势的测试隔离遗漏、一次补偿恢复二进制截断及主机内存不足。最终补偿恢复仅针对本轮测试配置/样例，用户参数保留，4组手势包及封面摘要均核对；旧默认文件未保存原文，不声称逐字节恢复。详情与限制见[本轮交付报告](../SDK_CMS_OPTIMIZATION_20261029.md)。
+
+证据：[summary.json](evidence/sdk-cms-optimization-20261029/summary.json)。本轮未部署网站、未提交push，iOS/真人/多机型长测未验收，直播厂商接入排除。
+
+
+## 2026-10-29 CMS 授权签发与下发验证
+
+相邻BeautyStickerWorkshop新增受登录保护的授权生成、下载、一次性领取链接、续期/撤销/恢复及同源/v1/lease登记查询。Web94项、最终受影响后台/授权10项、实际bundle/workerd/D1/R2集成1项通过；原SDK services/license两组Node测试9项通过，CMS WebCrypto与SDK原工具的grant及4种租约逐字节一致。浏览器14项流程检查、1440px/360px布局及实际管理员登录验证通过，具体记录见相邻项目.site-audit/licensing-validation.md。
+
+本地签发器已初始化并由8090预览加载；密钥未写入SDK、未创建实际客户授权、未部署生产服务。原CLI JSON登记与CMS数据库不自动同步。未修改Android授权运行时，也未执行Android构建/R8/GPU/客户真机激活；先前这些证据不得替代本轮尚未执行的正式HTTPS与发行公钥验证。

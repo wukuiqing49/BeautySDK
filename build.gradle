@@ -3,3 +3,11 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
 }
+
+tasks.register('publishBeautySdkToLocalBuildRepository') {
+    group = 'publishing'
+    description = 'Publish the single SDK entry and its four same-version modules to build/repo.'
+    dependsOn(['lib_beauty', 'lib_beauty_resources', 'lib_beauty_mediapipe', 'lib_beauty_gpupixel', 'lib_beauty_sdk'].collect {
+        ":core:${it}:publishReleasePublicationToLocalBuildRepository"
+    })
+}

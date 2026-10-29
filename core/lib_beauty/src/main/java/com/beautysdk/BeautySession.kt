@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 /** 一路视频对应一个 session。生命周期/渲染同线程；异步后端由独立 worker 管理。
  * 输出所有权由 renderer 约定：CPU 独占副本；GL 输出仅有效至下一次 render/close。
  * @param factory 分析后端工厂，null表示只做美颜；后端由独立分析线程创建和释放。
@@ -72,7 +74,14 @@ class BeautySession @JvmOverloads constructor(
         require(lastFrameInfo==frame.info) { "redraw requires the most recently processed frame geometry and timestamp" }
         return renderCurrent(frame)
     }
+    private var licenseDenied = false
     private fun renderCurrent(frame: VideoFrame): VideoFrame {
+        if (!BeautyLicensing.allowsSettings(settings)) {
+            lastFrameAnalysis = FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
+            if (!licenseDenied) { licenseDenied = true; try { onError(SecurityException("LICENSE_FEATURE_UNAVAILABLE")) } catch (_: Exception) {} }
+            return frame
+        }
+        licenseDenied = false
         lastFrameAnalysis = snapshotForOutput(frame.info)
         val face = lastFrameAnalysis.result?.faces?.firstOrNull()
         return try { renderer.render(frame, settings, face) } catch (error: Exception) {

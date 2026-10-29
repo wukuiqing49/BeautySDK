@@ -1,0 +1,24 @@
+Starting a Gradle Daemon, 17 busy and 1 incompatible and 5 stopped Daemons could not be reused, use --status for details
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Unable to start the daemon process.
+This problem might be caused by incorrect configuration of the daemon.
+For example, an unrecognized jvm option is used.For more details on the daemon, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html in the Gradle documentation.
+Process command line: C:\develop\Java\jdk17\bin\java.exe --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED -Xmx1536m -Dfile.encoding=UTF-8 -Duser.country=CN -Duser.language=zh -Duser.variant -cp C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.13-bin\5xuhj0ry160q40clulazy9h7d\gradle-8.13\lib\gradle-daemon-main-8.13.jar -javaagent:C:\Users\Administrator\.gradle\wrapper\dists\gradle-8.13-bin\5xuhj0ry160q40clulazy9h7d\gradle-8.13\lib\agents\gradle-instrumentation-agent-8.13.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 8.13
+Please read the following process output to find out more:
+-----------------------
+Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000000a0000000, 530579456, 0) failed; error='ҳ���ļ�̫С���޷���ɲ�����' (DOS error/errno=1455)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 530579456 bytes for G1 virtual space
+# An error report file with more information is saved as:
+# C:\Users\Administrator\.gradle\daemon\8.13\hs_err_pid23132.log
+
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.

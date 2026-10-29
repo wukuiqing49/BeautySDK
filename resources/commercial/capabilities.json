@@ -1,0 +1,19 @@
+{
+  "manifestVersion": 1,
+  "platform": "android",
+  "commercialQualification": "pending",
+  "purpose": "Product scope declaration; not runtime detection or a compatibility certificate",
+  "features": [
+    {"id":"beauty.parameters.v1","tier":"candidate","qualification":"pending","requires":["gpupixel"]},
+    {"id":"filter.basic.v1","tier":"candidate","qualification":"pending","requires":["gpupixel"]},
+    {"id":"sticker.png.v1","tier":"candidate","qualification":"pending","requires":["gpupixel","face-analysis"]},
+    {"id":"reshape.parameters.v1","tier":"experimental","qualification":"pending","requires":["gpupixel","face-analysis"]},
+    {"id":"makeup.parameters.v1","tier":"experimental","qualification":"pending","requires":["gpupixel","face-analysis"]},
+    {"id":"makeup.eyelash.texture.v1","tier":"experimental","qualification":"pending","requires":["gpupixel","face-analysis"]},
+    {"id":"background.v1","tier":"experimental","qualification":"pending","requires":["scene-renderer","segmentation"]},
+    {"id":"motion.v1","tier":"experimental","qualification":"pending","requires":["scene-renderer"]},
+    {"id":"theme.v1","tier":"candidate","qualification":"pending","requires":["all-child-resource-capabilities"]},
+    {"id":"gesture.effects.v1","tier":"experimental","qualification":"pending","requires":["gesture-analysis","gesture-effect-renderer"],"evidence":"Pixel 8 synthetic-trigger GPU animation and resource selection verified; human recognition and sustained performance pending"}
+  ],
+  "excludedClaims": ["qualified-ios-runtime", "live-vendor-integration", "qualified-human-gesture-accuracy", "zero-copy-analysis", "guaranteed-fps", "whole-dependency-chain-no-telemetry"]
+}

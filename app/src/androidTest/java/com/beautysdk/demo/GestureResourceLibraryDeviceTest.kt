@@ -16,6 +16,17 @@ class GestureResourceLibraryDeviceTest {
     private val inst=InstrumentationRegistry.getInstrumentation()
     private val context=inst.targetContext
     private fun bytes()=inst.context.assets.open("gesture_library_delivery.zip").use{it.readBytes()}
+    @Test fun englishWrapperAndLegacyRootBothLoadButMixedRootsReject(){
+        val raw=linkedMapOf<String,ByteArray>()
+        java.util.zip.ZipInputStream(bytes().inputStream()).use{z->while(true){val e=z.nextEntry?:break;raw[e.name]=z.readBytes()}}
+        assertTrue(raw.keys.all{it.startsWith("beauty_resources/")&&it.matches(Regex("[A-Za-z0-9_./-]+"))})
+        assertTrue(raw.containsKey("beauty_resources/library.json"))
+        val plain=raw.entries.associate{it.key.removePrefix("beauty_resources/") to it.value}
+        assertEquals(4,ResourceDeliveryPack.read(bytes()).gestures.size)
+        assertEquals(4,ResourceDeliveryPack.read(ResourceArchive.write(plain)).gestures.size)
+        raw["catalog.json"]=plain.getValue("catalog.json")
+        try{ResourceDeliveryPack.read(ResourceArchive.write(raw));fail("Mixed root accepted")}catch(_:IllegalArgumentException){}
+    }
     @Test fun installsNineCategoryLibraryAndCombinesFourValidatedAnimations(){
         val root=File(context.cacheDir,"gesture-library-${System.nanoTime()}")
         try{
@@ -33,7 +44,7 @@ class GestureResourceLibraryDeviceTest {
         for(kind in listOf("preview","atlas","rules")){
             val root=File(context.cacheDir,"gesture-reject-${System.nanoTime()}")
             try{
-                val files=linkedMapOf<String,ByteArray>().also{out->java.util.zip.ZipInputStream(bytes().inputStream()).use{z->while(true){val e=z.nextEntry?:break;out[e.name]=z.readBytes()}}};val lib=JSONObject(files.getValue("library.json").toString(Charsets.UTF_8));val ref=lib.getJSONArray("gestureResources").getJSONObject(0)
+                val files=linkedMapOf<String,ByteArray>().also{out->java.util.zip.ZipInputStream(bytes().inputStream()).use{z->while(true){val e=z.nextEntry?:break;out[e.name.removePrefix("beauty_resources/")]=z.readBytes()}}};val lib=JSONObject(files.getValue("library.json").toString(Charsets.UTF_8));val ref=lib.getJSONArray("gestureResources").getJSONObject(0)
                 when(kind){
                     "preview"->files[ref.getString("preview")]=byteArrayOf(0)
                     "atlas"->files[ref.getString("directory")+"asset_0.png"]=byteArrayOf(0)

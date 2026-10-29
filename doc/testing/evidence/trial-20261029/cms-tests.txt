@@ -1,0 +1,517 @@
+TAP version 13
+# Subtest: V3 preserves every signed shape/makeup field through ZIP and theme
+ok 1 - V3 preserves every signed shape/makeup field through ZIP and theme
+  ---
+  duration_ms: 94.7043
+  type: 'test'
+  ...
+# Subtest: V3 rejects incomplete fields, signed range, false numbers and cross-category versions
+ok 2 - V3 rejects incomplete fields, signed range, false numbers and cross-category versions
+  ---
+  duration_ms: 1.4167
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: valid
+ok 3 - shared Android/Web library contract: valid
+  ---
+  duration_ms: 7.418
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: unknown-field
+ok 4 - shared Android/Web library contract: unknown-field
+  ---
+  duration_ms: 1.5969
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-mode
+ok 5 - shared Android/Web library contract: invalid-mode
+  ---
+  duration_ms: 0.9791
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: missing-translation
+ok 6 - shared Android/Web library contract: missing-translation
+  ---
+  duration_ms: 0.6409
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: empty-parameters
+ok 7 - shared Android/Web library contract: empty-parameters
+  ---
+  duration_ms: 1.0657
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-range
+ok 8 - shared Android/Web library contract: invalid-range
+  ---
+  duration_ms: 1.0841
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-step
+ok 9 - shared Android/Web library contract: invalid-step
+  ---
+  duration_ms: 4.4006
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: fractional-order
+ok 10 - shared Android/Web library contract: fractional-order
+  ---
+  duration_ms: 1.4408
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: negative-order
+ok 11 - shared Android/Web library contract: negative-order
+  ---
+  duration_ms: 1.595
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-name
+ok 12 - shared Android/Web library contract: invalid-name
+  ---
+  duration_ms: 2.8178
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-revision
+ok 13 - shared Android/Web library contract: invalid-revision
+  ---
+  duration_ms: 1.6076
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: invalid-translation
+ok 14 - shared Android/Web library contract: invalid-translation
+  ---
+  duration_ms: 1.1376
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: traversal
+ok 15 - shared Android/Web library contract: traversal
+  ---
+  duration_ms: 0.9728
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: missing-gesture-list
+ok 16 - shared Android/Web library contract: missing-gesture-list
+  ---
+  duration_ms: 1.1693
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: unknown-parameter
+ok 17 - shared Android/Web library contract: unknown-parameter
+  ---
+  duration_ms: 3.685
+  type: 'test'
+  ...
+# Subtest: shared Android/Web library contract: script-locale
+ok 18 - shared Android/Web library contract: script-locale
+  ---
+  duration_ms: 1.7143
+  type: 'test'
+  ...
+# Subtest: 自定义排序及默认语言经过交付与回读保持一致
+ok 19 - 自定义排序及默认语言经过交付与回读保持一致
+  ---
+  duration_ms: 116.9015
+  type: 'test'
+  ...
+# Subtest: 内置 50 份资源的摘要、分类预设数和全部参数作用域完整
+ok 20 - 内置 50 份资源的摘要、分类预设数和全部参数作用域完整
+  ---
+  duration_ms: 366.0068
+  type: 'test'
+  ...
+# Subtest: 完整资源库 ZIP 往返包含目录、封面和独立默认配置
+ok 21 - 完整资源库 ZIP 往返包含目录、封面和独立默认配置
+  ---
+  duration_ms: 27.5648
+  type: 'test'
+  ...
+# Subtest: 交付拒绝缺少默认资源、错误槽位、冲突身份、非法地址和套装单项混开
+ok 22 - 交付拒绝缺少默认资源、错误槽位、冲突身份、非法地址和套装单项混开
+  ---
+  duration_ms: 46.6975
+  type: 'test'
+  ...
+# Subtest: 统一预演合并美颜美型口红腮红与睫毛，保留独立贴纸和默认覆盖
+ok 23 - 统一预演合并美颜美型口红腮红与睫毛，保留独立贴纸和默认覆盖
+  ---
+  duration_ms: 85.3947
+  type: 'test'
+  ...
+# Subtest: 套装预演展开并拒绝重复槽位，交付资源本身不被修改
+ok 24 - 套装预演展开并拒绝重复槽位，交付资源本身不被修改
+  ---
+  duration_ms: 47.3468
+  type: 'test'
+  ...
+# Subtest: 工作台预览分别保留四类贴纸，超出旧合包三层限制后仍可合成且不改变交付包
+ok 25 - 工作台预览分别保留四类贴纸，超出旧合包三层限制后仍可合成且不改变交付包
+  ---
+  duration_ms: 85.9637
+  type: 'test'
+  ...
+# Subtest: V2三个类型导出回读并生成Android/iOS共用夹具
+ok 26 - V2三个类型导出回读并生成Android/iOS共用夹具
+  ---
+  duration_ms: 39.64
+  type: 'test'
+  ...
+# Subtest: V2严格拒绝未知字段、跨类别内容、非闭合循环、重复时间和伪数字
+ok 27 - V2严格拒绝未知字段、跨类别内容、非闭合循环、重复时间和伪数字
+  ---
+  duration_ms: 2.8947
+  type: 'test'
+  ...
+# Subtest: 时间轴端点、插值、循环和非循环停留
+ok 28 - 时间轴端点、插值、循环和非循环停留
+  ---
+  duration_ms: 3.7668
+  type: 'test'
+  ...
+# Subtest: 全部50份素材可一次打包并回读，目录摘要与套装默认配置完整
+ok 29 - 全部50份素材可一次打包并回读，目录摘要与套装默认配置完整
+  ---
+  duration_ms: 838.3379
+  type: 'test'
+  ...
+# Subtest: 四套新主题可展开预演、导出并固定默认引用，槽位与参数不冲突
+ok 30 - 四套新主题可展开预演、导出并固定默认引用，槽位与参数不冲突
+  ---
+  duration_ms: 341.4464
+  type: 'test'
+  ...
+# Subtest: 新增背景引用各自PNG，运镜支持闭合循环与单次结束停留
+ok 31 - 新增背景引用各自PNG，运镜支持闭合循环与单次结束停留
+  ---
+  duration_ms: 88.2381
+  type: 'test'
+  ...
+# Subtest: 手势动画包明确为宿主格式，严格限制事件、图集预算、时长和兼容声明
+ok 32 - 手势动画包明确为宿主格式，严格限制事件、图集预算、时长和兼容声明
+  ---
+  duration_ms: 5.8607
+  type: 'test'
+  ...
+# Subtest: 四种动画帧确定性、有终止状态且绘制坐标有限
+ok 33 - 四种动画帧确定性、有终止状态且绘制坐标有限
+  ---
+  duration_ms: 5.3187
+  type: 'test'
+  ...
+# Subtest: V4三款图片睫毛导出回读、主题组合与关键点能力
+ok 34 - V4三款图片睫毛导出回读、主题组合与关键点能力
+  ---
+  duration_ms: 385.2587
+  type: 'test'
+  ...
+# Subtest: V4拒绝错版本、未知字段、伪数字、乱序/缺失根部、路径、错误类型与缺图
+ok 35 - V4拒绝错版本、未知字段、伪数字、乱序/缺失根部、路径、错误类型与缺图
+  ---
+  duration_ms: 21.5641
+  type: 'test'
+  ...
+# Subtest: 眼部网格旋转镜像、单眼清理与跨端完整向量
+ok 36 - 眼部网格旋转镜像、单眼清理与跨端完整向量
+  ---
+  duration_ms: 49.4413
+  type: 'test'
+  ...
+# Subtest: 固定手势目录覆盖SDK全部22种，模型7种与实验性15种分别标注且均有示意
+ok 37 - 固定手势目录覆盖SDK全部22种，模型7种与实验性15种分别标注且均有示意
+  ---
+  duration_ms: 10.3957
+  type: 'test'
+  ...
+# Subtest: V2手势分类包含四组实际动画、预览、展开规则和中英文名称
+ok 38 - V2手势分类包含四组实际动画、预览、展开规则和中英文名称
+  ---
+  duration_ms: 564.1404
+  type: 'test'
+  ...
+# Subtest: 默认手势组往返保留，仅显式采用默认时启用，重复触发拒绝
+ok 39 - 默认手势组往返保留，仅显式采用默认时启用，重复触发拒绝
+  ---
+  duration_ms: 1284.8099
+  type: 'test'
+  ...
+# Subtest: 手势封面、展开图集及顶层规则篡改均拒绝重新导入
+ok 40 - 手势封面、展开图集及顶层规则篡改均拒绝重新导入
+  ---
+  duration_ms: 1175.7338
+  type: 'test'
+  ...
+# Subtest: V1无手势库继续往返，不伪造手势分类
+ok 41 - V1无手势库继续往返，不伪造手势分类
+  ---
+  duration_ms: 31.6267
+  type: 'test'
+  ...
+# Subtest: 网页实际导出的动画和定点贴纸可无损往返，供 Android 共用
+ok 42 - 网页实际导出的动画和定点贴纸可无损往返，供 Android 共用
+  ---
+  duration_ms: 228.1878
+  type: 'test'
+  ...
+# Subtest: 手势绑定拒绝重复、实验规则、未知字段、伪数字、错图集和路径
+ok 43 - 手势绑定拒绝重复、实验规则、未知字段、伪数字、错图集和路径
+  ---
+  duration_ms: 264.095
+  type: 'test'
+  ...
+# Subtest: 分类资源目录包含原始配置和图片，参数定义与中英文文字完整
+ok 44 - 分类资源目录包含原始配置和图片，参数定义与中英文文字完整
+  ---
+  duration_ms: 205.27
+  type: 'test'
+  ...
+# Subtest: 属性白名单、默认语言、范围、步长、重复参数与路径校验
+ok 45 - 属性白名单、默认语言、范围、步长、重复参数与路径校验
+  ---
+  duration_ms: 105.8079
+  type: 'test'
+  ...
+# Subtest: 展开文件被篡改或目录引用不一致时，Web重新导入拒绝
+ok 46 - 展开文件被篡改或目录引用不一致时，Web重新导入拒绝
+  ---
+  duration_ms: 183.0605
+  type: 'test'
+  ...
+# Subtest: 资源名称中的百分号与井号被编码为路径，不误当URL片段
+ok 47 - 资源名称中的百分号与井号被编码为路径，不误当URL片段
+  ---
+  duration_ms: 169.5505
+  type: 'test'
+  ...
+# Subtest: 六个Android样例导入、编辑和网页ZIP导出往返
+ok 48 - 六个Android样例导入、编辑和网页ZIP导出往返
+  ---
+  duration_ms: 911.756
+  type: 'test'
+  ...
+# Subtest: 非法版本、未知字段、非法锚点、路径、数字、图层均拒绝
+ok 49 - 非法版本、未知字段、非法锚点、路径、数字、图层均拒绝
+  ---
+  duration_ms: 42.494
+  type: 'test'
+  ...
+# Subtest: 局部位置、旋转、镜像、宽高比在共同夹具中一致
+ok 50 - 局部位置、旋转、镜像、宽高比在共同夹具中一致
+  ---
+  duration_ms: 5.9146
+  type: 'test'
+  ...
+# Subtest: 离线交付包含六模板且脚本语法有效、没有外部依赖
+ok 51 - 离线交付包含六模板且脚本语法有效、没有外部依赖
+  ---
+  duration_ms: 399.8324
+  type: 'test'
+  ...
+# Subtest: 物理ZIP仅一个英文外层目录，资源路径与展示语言无关
+ok 52 - 物理ZIP仅一个英文外层目录，资源路径与展示语言无关
+  ---
+  duration_ms: 103.9991
+  type: 'test'
+  ...
+# Subtest: 旧无外层分类包继续导入，混合根目录及额外文件拒绝
+ok 53 - 旧无外层分类包继续导入，混合根目录及额外文件拒绝
+  ---
+  duration_ms: 111.0802
+  type: 'test'
+  ...
+# Subtest: old backups remain pending; recorded evidence is not legal approval
+ok 54 - old backups remain pending; recorded evidence is not legal approval
+  ---
+  duration_ms: 3.0954
+  type: 'test'
+  ...
+# Subtest: renaming the same package preserves provenance unless explicitly replaced
+ok 55 - renaming the same package preserves provenance unless explicitly replaced
+  ---
+  duration_ms: 0.8603
+  type: 'test'
+  ...
+# Subtest: configuration diff identifies changed values and ignores object key order
+ok 56 - configuration diff identifies changed values and ignores object key order
+  ---
+  duration_ms: 1.9599
+  type: 'test'
+  ...
+# Subtest: empty backup round trip and trailing data rejection
+ok 57 - empty backup round trip and trailing data rejection
+  ---
+  duration_ms: 2.8056
+  type: 'test'
+  ...
+# Subtest: reject malformed header and unbounded version list
+ok 58 - reject malformed header and unbounded version list
+  ---
+  duration_ms: 0.771
+  type: 'test'
+  ...
+# Subtest: compare by kind and ID; same name does not conflate gesture and effect
+ok 59 - compare by kind and ID; same name does not conflate gesture and effect
+  ---
+  duration_ms: 0.9862
+  type: 'test'
+  ...
+# Subtest: 统一发布可重复生成，完整快照损坏时拒绝回滚
+ok 60 - 统一发布可重复生成，完整快照损坏时拒绝回滚
+  ---
+  duration_ms: 17148.4736
+  type: 'test'
+  ...
+# Subtest: 个人版本校验、去重重命名、容量保护不改变原记录
+ok 61 - 个人版本校验、去重重命名、容量保护不改变原记录
+  ---
+  duration_ms: 5287.6984
+  type: 'test'
+  ...
+# Android assets synchronized: r-2186b343f0f9c403
+# Android assets synchronized: r-78820361a3764a19
+# Android assets synchronized: r-2186b343f0f9c403
+# Subtest: 发布同步与历史回滚同时恢复ZIP、清单、默认值及marker
+ok 62 - 发布同步与历史回滚同时恢复ZIP、清单、默认值及marker
+  ---
+  duration_ms: 15881.331
+  type: 'test'
+  ...
+# Subtest: 统一包保留名称翻译和睫毛单项作用域，套装独立锁定子包
+ok 63 - 统一包保留名称翻译和睫毛单项作用域，套装独立锁定子包
+  ---
+  duration_ms: 62.0313
+  type: 'test'
+  ...
+# Subtest: 统一包拒绝身份类型、额外文件、错误作用域、冲突槽位和摘要
+ok 64 - 统一包拒绝身份类型、额外文件、错误作用域、冲突槽位和摘要
+  ---
+  duration_ms: 33.2545
+  type: 'test'
+  ...
+# Subtest: 参数预设与默认配置严格范围，显式关闭和全部分类保留
+ok 65 - 参数预设与默认配置严格范围，显式关闭和全部分类保留
+  ---
+  duration_ms: 14.5254
+  type: 'test'
+  ...
+# Subtest: 旧完整主题迁移为统一套装，旧读取器仍负责验证
+ok 66 - 旧完整主题迁移为统一套装，旧读取器仍负责验证
+  ---
+  duration_ms: 109.1521
+  type: 'test'
+  ...
+# Subtest: JSON对象字段不能用空数组或字符串绕过跨平台类型校验
+ok 67 - JSON对象字段不能用空数组或字符串绕过跨平台类型校验
+  ---
+  duration_ms: 1.0633
+  type: 'test'
+  ...
+# Subtest: 共用运镜示意覆盖推近、摇移和跟随，循环采样方向与倍率有效
+ok 68 - 共用运镜示意覆盖推近、摇移和跟随，循环采样方向与倍率有效
+  ---
+  duration_ms: 3.9681
+  type: 'test'
+  ...
+# Subtest: 连续拖动合并，撤销重做独立于后续编辑，原配置不会被改写
+ok 69 - 连续拖动合并，撤销重做独立于后续编辑，原配置不会被改写
+  ---
+  duration_ms: 2.5539
+  type: 'test'
+  ...
+# Subtest: 历史有界、超过拖动间隔分段、切换素材后重置引用
+ok 70 - 历史有界、超过拖动间隔分段、切换素材后重置引用
+  ---
+  duration_ms: 0.6316
+  type: 'test'
+  ...
+# Subtest: 完整主题四类别导出、回读、能力推导与跨端夹具
+ok 71 - 完整主题四类别导出、回读、能力推导与跨端夹具
+  ---
+  duration_ms: 357.2692
+  type: 'test'
+  ...
+# Subtest: 主题拒绝未知版本、空主题、目录引用、跨类子包、额外文件与嵌套主题
+ok 72 - 主题拒绝未知版本、空主题、目录引用、跨类子包、额外文件与嵌套主题
+  ---
+  duration_ms: 432.9209
+  type: 'test'
+  ...
+# Subtest: 只有运镜的主题不要求分割且不继承旧贴纸
+ok 73 - 只有运镜的主题不要求分割且不继承旧贴纸
+  ---
+  duration_ms: 176.0171
+  type: 'test'
+  ...
+# Subtest: 主题在解码前拒绝累计像素超限，子包各自合法也不能绕过预算
+ok 74 - 主题在解码前拒绝累计像素超限，子包各自合法也不能绕过预算
+  ---
+  duration_ms: 216.9741
+  type: 'test'
+  ...
+# Subtest: workspace preserves binary assets, defaults and Unicode
+ok 75 - workspace preserves binary assets, defaults and Unicode
+  ---
+  duration_ms: 26.4728
+  type: 'test'
+  ...
+# Subtest: workspace rejects damage, trailing bytes, duplicates and excessive depth
+ok 76 - workspace rejects damage, trailing bytes, duplicates and excessive depth
+  ---
+  duration_ms: 18.4011
+  type: 'test'
+  ...
+# Subtest: prototype-shaped keys remain inert own properties
+ok 77 - prototype-shaped keys remain inert own properties
+  ---
+  duration_ms: 1.5772
+  type: 'test'
+  ...
+# Subtest: 新建图片睫毛能经过真实V4转换、严格读取和完整交付，参数类型保持独立作用域
+ok 78 - 新建图片睫毛能经过真实V4转换、严格读取和完整交付，参数类型保持独立作用域
+  ---
+  duration_ms: 176.2122
+  type: 'test'
+  ...
+# Subtest: 修改内置参数生成独立副本，重复调整仅递增个人修订并清除同域旧覆盖
+ok 79 - 修改内置参数生成独立副本，重复调整仅递增个人修订并清除同域旧覆盖
+  ---
+  duration_ms: 71.3831
+  type: 'test'
+  ...
+# Subtest: 不同槽位快速连续选择、移除、撤销重做及旧草稿恢复保持一致
+ok 80 - 不同槽位快速连续选择、移除、撤销重做及旧草稿恢复保持一致
+  ---
+  duration_ms: 77.5469
+  type: 'test'
+  ...
+# Subtest: 套装切换单项保留其他子项，身份冲突时保持原始搭配不变
+ok 81 - 套装切换单项保留其他子项，身份冲突时保持原始搭配不变
+  ---
+  duration_ms: 117.1842
+  type: 'test'
+  ...
+# Subtest: 自动保存有序且隔离快照；一次失败不阻断后续保存
+ok 82 - 自动保存有序且隔离快照；一次失败不阻断后续保存
+  ---
+  duration_ms: 1.9331
+  type: 'test'
+  ...
+# Subtest: 默认导出仅当前搭配，回读完整资源包后参数、摘要与默认选择一致
+ok 83 - 默认导出仅当前搭配，回读完整资源包后参数、摘要与默认选择一致
+  ---
+  duration_ms: 104.8299
+  type: 'test'
+  ...
+# Subtest: 导入资源库拒绝错误默认槽位与同身份重复资源
+ok 84 - 导入资源库拒绝错误默认槽位与同身份重复资源
+  ---
+  duration_ms: 342.7265
+  type: 'test'
+  ...
+1..84
+# tests 84
+# suites 0
+# pass 84
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 54609.4006

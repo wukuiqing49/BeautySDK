@@ -1,0 +1,592 @@
+{
+  "base": {
+    "libraryVersion": 1,
+    "defaultLocale": "en",
+    "localeMode": "FIXED",
+    "localizations": {
+      "zh-CN": {
+        "parameter.strength": "程度",
+        "category.BEAUTY": "美颜",
+        "category.RESHAPE": "美型",
+        "category.MAKEUP": "美妆",
+        "category.FILTER": "调色",
+        "category.STICKER": "贴纸",
+        "category.BACKGROUND": "背景",
+        "category.MOTION": "运镜",
+        "category.THEME": "套装",
+        "effect.beauty.smoothing": "磨皮",
+        "effect.beauty.whitening": "美白",
+        "effect.beauty.rosy": "红润",
+        "effect.color.brightness": "亮度",
+        "effect.color.contrast": "对比度",
+        "effect.color.saturation": "饱和度",
+        "effect.color.sharpening": "锐化",
+        "effect.reshape.slimFace": "瘦脸",
+        "effect.reshape.bigEyes": "大眼",
+        "effect.reshape.slimNose": "瘦鼻",
+        "effect.reshape.chinLength": "下巴长度",
+        "effect.reshape.mouthSize": "嘴型大小",
+        "effect.makeup.lipstick": "口红",
+        "effect.makeup.blusher": "腮红",
+        "effect.makeup.eyelashes": "睫毛"
+      },
+      "en": {
+        "parameter.strength": "Intensity",
+        "category.BEAUTY": "Beauty",
+        "category.RESHAPE": "Reshape",
+        "category.MAKEUP": "Makeup",
+        "category.FILTER": "Color",
+        "category.STICKER": "Stickers",
+        "category.BACKGROUND": "Background",
+        "category.MOTION": "Camera Motion",
+        "category.THEME": "Themes",
+        "effect.beauty.smoothing": "Smoothing",
+        "effect.beauty.whitening": "Whitening",
+        "effect.beauty.rosy": "Rosy",
+        "effect.color.brightness": "Brightness",
+        "effect.color.contrast": "Contrast",
+        "effect.color.saturation": "Saturation",
+        "effect.color.sharpening": "Sharpening",
+        "effect.reshape.slimFace": "Slim Face",
+        "effect.reshape.bigEyes": "Big Eyes",
+        "effect.reshape.slimNose": "Slim Nose",
+        "effect.reshape.chinLength": "Chin Length",
+        "effect.reshape.mouthSize": "Mouth Size",
+        "effect.makeup.lipstick": "Lipstick",
+        "effect.makeup.blusher": "Blusher",
+        "effect.makeup.eyelashes": "Eyelashes"
+      }
+    },
+    "defaults": "defaults.json",
+    "categories": [
+      {
+        "id": "THEME",
+        "nameKey": "category.THEME",
+        "order": 0,
+        "effects": []
+      },
+      {
+        "id": "MOTION",
+        "nameKey": "category.MOTION",
+        "order": 10,
+        "effects": []
+      },
+      {
+        "id": "BACKGROUND",
+        "nameKey": "category.BACKGROUND",
+        "order": 20,
+        "effects": []
+      },
+      {
+        "id": "STICKER",
+        "nameKey": "category.STICKER",
+        "order": 30,
+        "effects": []
+      },
+      {
+        "id": "FILTER",
+        "nameKey": "category.FILTER",
+        "order": 40,
+        "effects": [
+          {
+            "id": "color.brightness",
+            "nameKey": "effect.color.brightness",
+            "parameters": [
+              {
+                "id": "color.brightness",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": -1,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "color.contrast",
+            "nameKey": "effect.color.contrast",
+            "parameters": [
+              {
+                "id": "color.contrast",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 2,
+                "step": 0.01,
+                "default": 1
+              }
+            ]
+          },
+          {
+            "id": "color.saturation",
+            "nameKey": "effect.color.saturation",
+            "parameters": [
+              {
+                "id": "color.saturation",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 2,
+                "step": 0.01,
+                "default": 1
+              }
+            ]
+          },
+          {
+            "id": "color.sharpening",
+            "nameKey": "effect.color.sharpening",
+            "parameters": [
+              {
+                "id": "color.sharpening",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MAKEUP",
+        "nameKey": "category.MAKEUP",
+        "order": 50,
+        "effects": [
+          {
+            "id": "makeup.lipstick",
+            "nameKey": "effect.makeup.lipstick",
+            "parameters": [
+              {
+                "id": "makeup.lipstick",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "makeup.blusher",
+            "nameKey": "effect.makeup.blusher",
+            "parameters": [
+              {
+                "id": "makeup.blusher",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "makeup.eyelashes",
+            "nameKey": "effect.makeup.eyelashes",
+            "parameters": [
+              {
+                "id": "makeup.eyelashes",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RESHAPE",
+        "nameKey": "category.RESHAPE",
+        "order": 60,
+        "effects": [
+          {
+            "id": "reshape.slimFace",
+            "nameKey": "effect.reshape.slimFace",
+            "parameters": [
+              {
+                "id": "reshape.slimFace",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "reshape.bigEyes",
+            "nameKey": "effect.reshape.bigEyes",
+            "parameters": [
+              {
+                "id": "reshape.bigEyes",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "reshape.slimNose",
+            "nameKey": "effect.reshape.slimNose",
+            "parameters": [
+              {
+                "id": "reshape.slimNose",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "reshape.chinLength",
+            "nameKey": "effect.reshape.chinLength",
+            "parameters": [
+              {
+                "id": "reshape.chinLength",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": -1,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          },
+          {
+            "id": "reshape.mouthSize",
+            "nameKey": "effect.reshape.mouthSize",
+            "parameters": [
+              {
+                "id": "reshape.mouthSize",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": -1,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "BEAUTY",
+        "nameKey": "category.BEAUTY",
+        "order": 70,
+        "effects": [
+          {
+            "id": "beauty.smoothing",
+            "nameKey": "effect.beauty.smoothing",
+            "parameters": [
+              {
+                "id": "beauty.smoothing",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0.35
+              }
+            ]
+          },
+          {
+            "id": "beauty.whitening",
+            "nameKey": "effect.beauty.whitening",
+            "parameters": [
+              {
+                "id": "beauty.whitening",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0.2
+              }
+            ]
+          },
+          {
+            "id": "beauty.rosy",
+            "nameKey": "effect.beauty.rosy",
+            "parameters": [
+              {
+                "id": "beauty.rosy",
+                "nameKey": "parameter.strength",
+                "type": "float",
+                "control": "slider",
+                "min": 0,
+                "max": 1,
+                "step": 0.01,
+                "default": 0
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "id": "lash_natural",
+        "revision": 1,
+        "category": "MAKEUP",
+        "subcategory": "EYELASH",
+        "name": "自然款睫毛",
+        "localizations": {},
+        "directory": "makeup/lash_natural/",
+        "package": "makeup/lash_natural/package.zip",
+        "preview": "makeup/lash_natural/preview.png",
+        "manifest": "makeup/lash_natural/manifest.json"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "valid",
+      "accepted": true,
+      "changes": []
+    },
+    {
+      "id": "unknown-field",
+      "accepted": false,
+      "changes": [
+        [
+          "extra",
+          true
+        ]
+      ]
+    },
+    {
+      "id": "invalid-mode",
+      "accepted": false,
+      "changes": [
+        [
+          "localeMode",
+          "INVALID"
+        ]
+      ]
+    },
+    {
+      "id": "missing-translation",
+      "accepted": false,
+      "changes": [
+        [
+          "localizations",
+          "en",
+          "category.BEAUTY",
+          null
+        ]
+      ]
+    },
+    {
+      "id": "empty-parameters",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          7,
+          "effects",
+          0,
+          "parameters",
+          []
+        ]
+      ]
+    },
+    {
+      "id": "invalid-range",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          7,
+          "effects",
+          0,
+          "parameters",
+          0,
+          "max",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "invalid-step",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          7,
+          "effects",
+          0,
+          "parameters",
+          0,
+          "step",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "fractional-order",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          0,
+          "order",
+          1.5
+        ]
+      ]
+    },
+    {
+      "id": "negative-order",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          0,
+          "order",
+          -1
+        ]
+      ]
+    },
+    {
+      "id": "invalid-name",
+      "accepted": false,
+      "changes": [
+        [
+          "resources",
+          0,
+          "name",
+          "\u0001"
+        ]
+      ]
+    },
+    {
+      "id": "invalid-revision",
+      "accepted": false,
+      "changes": [
+        [
+          "resources",
+          0,
+          "revision",
+          0
+        ]
+      ]
+    },
+    {
+      "id": "invalid-translation",
+      "accepted": false,
+      "changes": [
+        [
+          "resources",
+          0,
+          "localizations",
+          {
+            "en": {
+              "name": "Name",
+              "description": 5
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "traversal",
+      "accepted": false,
+      "changes": [
+        [
+          "resources",
+          0,
+          "package",
+          "../outside.zip"
+        ]
+      ]
+    },
+    {
+      "id": "missing-gesture-list",
+      "accepted": false,
+      "changes": [
+        [
+          "libraryVersion",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "unknown-parameter",
+      "accepted": false,
+      "changes": [
+        [
+          "categories",
+          7,
+          "effects",
+          0,
+          "id",
+          "beauty.unknown"
+        ]
+      ]
+    },
+    {
+      "id": "script-locale",
+      "accepted": true,
+      "changes": [
+        [
+          "localizations",
+          "zh-Hant",
+          {
+            "parameter.strength": "Intensity",
+            "category.BEAUTY": "Beauty",
+            "category.RESHAPE": "Reshape",
+            "category.MAKEUP": "Makeup",
+            "category.FILTER": "Color",
+            "category.STICKER": "Stickers",
+            "category.BACKGROUND": "Background",
+            "category.MOTION": "Camera Motion",
+            "category.THEME": "Themes",
+            "effect.beauty.smoothing": "Smoothing",
+            "effect.beauty.whitening": "Whitening",
+            "effect.beauty.rosy": "Rosy",
+            "effect.color.brightness": "Brightness",
+            "effect.color.contrast": "Contrast",
+            "effect.color.saturation": "Saturation",
+            "effect.color.sharpening": "Sharpening",
+            "effect.reshape.slimFace": "Slim Face",
+            "effect.reshape.bigEyes": "Big Eyes",
+            "effect.reshape.slimNose": "Slim Nose",
+            "effect.reshape.chinLength": "Chin Length",
+            "effect.reshape.mouthSize": "Mouth Size",
+            "effect.makeup.lipstick": "Lipstick",
+            "effect.makeup.blusher": "Blusher",
+            "effect.makeup.eyelashes": "Eyelashes"
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BeautySDK Integration</string>
+    <string name="sample_hint">RGBA integration sample. The generated color chart checks frame processing; it does not evaluate face beauty or GPU performance.</string>
+    <string name="before">Input</string><string name="after">Output</string>
+    <string name="processing">Processing…</string><string name="complete">Frame processed locally.</string>
+    <string name="failed">Processing failed: %1$s</string>
+    <string name="license_state">License: %1$s. A valid issuer configuration and app-bound license are required to enable effects.</string>
+</resources>

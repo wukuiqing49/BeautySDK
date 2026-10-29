@@ -12,13 +12,11 @@ data class LibraryCategory(val id:ResourceCategory,val nameKey:String,val order:
 data class LibraryResource(val id:String,val revision:Int,val category:ResourceCategory,val directory:String,val packagePath:String,val preview:String,val manifest:String,val name:String,val localizations:Map<String,ResourceText>)
 class BeautyResourceLibrary private constructor(val defaultLocale:String,val localizations:Map<String,Map<String,String>>,val categories:List<LibraryCategory>,val resources:List<LibraryResource>,val json:ByteArray,val gestureCategory:LibraryGestureCategory?=null,val gestureResources:List<LibraryGestureResource> = emptyList()) {
     fun text(key:String,locale:String):String {
-        val tag=Locale.forLanguageTag(locale)
-        val candidates=listOf(tag.toLanguageTag(),tag.language,defaultLocale)
+        val candidates=resourceLocaleCandidates(locale,defaultLocale)
         return candidates.firstNotNullOfOrNull { candidate->localizations.entries.firstOrNull{it.key.equals(candidate,true)}?.value?.get(key) }?:error("LIBRARY_TEXT_MISSING: $key")
     }
     fun resourceName(resource:LibraryResource,locale:String):String {
-        val tag=Locale.forLanguageTag(locale)
-        return listOf(tag.toLanguageTag(),tag.language,defaultLocale).firstNotNullOfOrNull {candidate->resource.localizations.entries.firstOrNull{it.key.equals(candidate,true)}?.value?.name}?:resource.name
+        return resourceLocaleCandidates(locale,defaultLocale).firstNotNullOfOrNull {candidate->resource.localizations.entries.firstOrNull{it.key.equals(candidate,true)}?.value?.name}?:resource.name
     }
     /** 参数修改保留其他槽位与用户值；JSON不能绕过SDK执行白名单。 */
     fun updateParameters(state:BeautyResourceState,values:Map<String,Float>):BeautyResourceState {
@@ -65,8 +63,10 @@ class BeautyResourceLibrary private constructor(val defaultLocale:String,val loc
             val rs=o.getJSONArray("resources");require(rs.length() in 1..99)
             val resources=(0 until rs.length()).map {i->val r=rs.getJSONObject(i)
                 r.fields("id","revision","category","subcategory","name","localizations","directory","package","preview","manifest")
+                r.text("subcategory")
                 val dir=r.text("directory");require(dir.endsWith('/')&&safeLibraryPath(dir+"x"))
                 fun path(key:String)=r.text(key).also{require(safeLibraryPath(it)&&it.startsWith(dir)&&!it.removePrefix(dir).contains('/'))}
+                require(path("preview")==dir+"preview.png"&&path("manifest")==dir+"manifest.json")
                 val displayName=r.text("name");require(displayName.isNotBlank()&&displayName.length<=80&&!displayName.any(Char::isISOControl))
                 val rt=r.getJSONObject("localizations");require(rt.length()<=30)
                 val resourceTexts=rt.keys().asSequence().associateWith {tag->

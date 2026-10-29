@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import com.beautysdk.*
 import com.beautysdk.resources.*
 import com.beautysdk.demo.databinding.ViewResourceCenterBinding
+import com.beautysdk.demo.databinding.ItemEffectPresetBinding
 
 /** 分类资源面板。资源管理与状态保存调用公共库；列表不参与视频帧线程。 */
 class ResourceCenterController(private val activity:androidx.appcompat.app.AppCompatActivity,private val binding:ViewResourceCenterBinding,private val management:Boolean=false,private val orderChanged:(List<ResourceCategory>)->Unit={},private val changed:(BeautySettings,Boolean)->Unit) {
@@ -23,6 +24,7 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
     private val picker=if(management)activity.registerForActivityResult(ActivityResultContracts.OpenDocument()){uri->uri?.let(model::import)}else null
     private val libraryControls=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL}
     private var renderedKey:List<Any?>?=null
+    private var libraryControlsKey:List<Any?>?=null
     private var parametersOnly=false
     private var gestureCategorySelected=false
     init {
@@ -37,11 +39,21 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
         binding.resourceDefaults.setOnClickListener{model.resetDefaults()}
         binding.resourceReset.setOnClickListener{model.resetCategory(category)}
         binding.resourceCancel.setOnClickListener{model.cancel()}
+        binding.resourceOfficial.setOnClickListener{model.downloadOfficial()}
         binding.resourceOnline.setOnClickListener{
             val input=EditText(activity).apply{setText(activity.getSharedPreferences("resource_network",android.content.Context.MODE_PRIVATE).getString("catalog_url",""));hint=activity.getString(R.string.resource_catalog_url);inputType=android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_URI}
             AlertDialog.Builder(activity).setTitle(R.string.resources_online).setView(input).setPositiveButton(android.R.string.ok){_,_->val url=input.text.toString().trim();activity.getSharedPreferences("resource_network",android.content.Context.MODE_PRIVATE).edit().putString("catalog_url",url).apply();model.catalog(url)}.setNegativeButton(android.R.string.cancel,null).show()
         }
+    }
+    private var started=false
+    /** 宿主完成字段赋值后订阅，避免LiveData立即回放时访问未初始化的控制器。 */
+    fun start(){
+        if(started)return
+        started=true
         model.ui.observe(activity){ui->
+            binding.resourceDeliveryReceipt.visibility=if(management&&ui.lastImportedDeliverySha256!=null)View.VISIBLE else View.GONE
+            binding.resourceDeliveryReceipt.text=ui.lastImportedDeliverySha256?.let{activity.getString(R.string.resources_delivery_receipt,it)}
+            binding.resourceOfficial.isEnabled=!ui.busy
             binding.resourceGestureApply.isEnabled=!ui.busy
             binding.resourceGestureClear.isEnabled=!ui.busy
             binding.resourceGestureApply.visibility=if(management&&ui.pendingGestureEffects)View.VISIBLE else View.GONE
@@ -67,14 +79,14 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
     fun enabled(value:Boolean)=model.enabled(value)
     fun category(value:ResourceCategory){gestureCategorySelected=false;category=value;render(model.ui.value?:ResourceCenterModel.Ui())}
     fun gestureCategory(){gestureCategorySelected=true;render(model.ui.value?:ResourceCenterModel.Ui())}
-    val hasGestureResources:Boolean get()=model.ui.value?.gestureResources?.isNotEmpty()==true
+    val hasGestureResources:Boolean get()=model.ui.value?.let{it.gestureResources.isNotEmpty()||management&&it.onlineGestures.isNotEmpty()}==true
     fun gestureCategoryName():String {
         val ui=model.ui.value;val library=ui?.library;val category=library?.gestureCategory
         return if(library!=null&&category!=null)library.text(category.nameKey,ui.locale?:activity.resources.configuration.locales[0].toLanguageTag())else activity.getString(R.string.resources_gesture_category)
     }
     private fun renderGestureResources(ui:ResourceCenterModel.Ui){
         libraryControls.visibility=View.GONE;binding.resourceGrid.visibility=View.VISIBLE
-        binding.resourceEmpty.visibility=if(ui.gestureResources.isEmpty())View.VISIBLE else View.GONE
+        binding.resourceEmpty.visibility=if(ui.gestureResources.isEmpty()&&(!management||ui.onlineGestures.isEmpty()))View.VISIBLE else View.GONE
         val locale=ui.locale?:activity.resources.configuration.locales[0].toLanguageTag()
         val order=ui.library?.gestureResources?.mapIndexed{i,r->r.sha256 to i}?.toMap().orEmpty()
         for(resource in ui.gestureResources.sortedBy{order[it.hash]?:Int.MAX_VALUE}){
@@ -85,8 +97,16 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
             val status=activity.getString(if(active)R.string.resources_gesture_active else R.string.resources_gesture_available,triggers)
             card(name,status,resource.hash,active){model.selectGesture(resource)}.also{view->
                 view.tag="gesture_resource_${resource.hash}"
-                ui.gesturePreviews[resource.hash]?.let{data->(view.getChildAt(0) as ImageView).setImageBitmap(thumbnails.getOrPut(resource.hash){modelPreview(data)})}
+                ui.gesturePreviews[resource.hash]?.let{data->preview(view).setImageBitmap(thumbnails.getOrPut(resource.hash){modelPreview(data)})}
                 view.setOnLongClickListener {AlertDialog.Builder(activity).setItems(arrayOf(activity.getString(R.string.resources_delete))){_,_->model.deleteGesture(resource)}.show();true}
+            }
+        }
+        val installed=ui.gestureResources.map{it.hash}.toSet()
+        for(entry in ui.onlineGestures.filter{management&&it.descriptor.sha256 !in installed}){
+            val d=entry.descriptor
+            card(d.localizedName(locale),activity.getString(R.string.resources_download),d.sha256){model.downloadGesture(entry)}.also{view->
+                view.tag="gesture_download_${d.sha256}"
+                ui.gesturePreviews[d.sha256]?.let{data->preview(view).setImageBitmap(thumbnails.getOrPut(d.sha256){modelPreview(data)})}
             }
         }
     }
@@ -107,18 +127,23 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
             val bar=libraryControls.getChildAt(i*2+1) as? SeekBar?:return@forEachIndexed
             val value=values[p.id]?:p.default
             if(!bar.isPressed)bar.progress=((value-p.min)/p.step).toInt().coerceIn(0,bar.max)
-            (libraryControls.getChildAt(i*2) as? TextView)?.text=activity.getString(R.string.resource_parameter_value,library.text(effect.nameKey,locale),library.text(p.nameKey,locale),value)
+            val label=libraryControls.getChildAt(i*2) as? TextView
+            val text=activity.getString(R.string.resource_parameter_value,library.text(effect.nameKey,locale),library.text(p.nameKey,locale),value)
+            if(label!=null&&label.text.toString()!=text)label.text=text
         }
     }
     private fun renderLibraryControls(ui:ResourceCenterModel.Ui) {
         if(libraryControls.parent==null)(binding.resourceGrid.parent as ViewGroup).addView(libraryControls,0)
-        libraryControls.removeAllViews()
         val library=ui.library
         libraryControls.visibility=if(!management&&library!=null&&parametersOnly)View.VISIBLE else View.GONE
+        val key=listOf(category,library,ui.locale,parametersOnly,management)
+        if(libraryControlsKey==key){updateLibraryValues(ui);return}
+        libraryControlsKey=key
+        libraryControls.removeAllViews()
         if(management||library==null)return
         val locale=ui.locale?:activity.resources.configuration.locales[0].toLanguageTag()
         for(effect in library.categories.firstOrNull{it.id==category}?.effects.orEmpty())for(p in effect.parameters) {
-            val label=TextView(activity).apply {setTextAppearance(R.style.EffectParameter);maxLines=2}
+            val label=TextView(activity).apply {setTextAppearance(R.style.EffectParameter);minLines=2;maxLines=2}
             val bar=SeekBar(activity).apply {max=kotlin.math.ceil((p.max-p.min)/p.step).toInt()}
             fun display(value:Float){label.text=activity.getString(R.string.resource_parameter_value,library.text(effect.nameKey,locale),library.text(p.nameKey,locale),value)}
             val value=ui.settings?.let{BeautyParameters.read(it)[p.id]}?:p.default
@@ -135,12 +160,12 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
         if(parameters.isNotEmpty())libraryControls.addView(Button(activity).apply {setText(R.string.resource_parameter_defaults);setOnClickListener{model.parameters(parameters.associate{it.id to it.default})}})
     }
     private fun render(ui:ResourceCenterModel.Ui){
-        val key=listOf(category,ui.installed,ui.online,ui.selection,ui.locale,ui.previews,ui.library,parametersOnly,gestureCategorySelected,ui.gestureResources,ui.gestureSelection,ui.gesturePreviews)
+        val key=listOf(category,ui.installed,ui.online,ui.selection,ui.locale,ui.previews,ui.library,parametersOnly,gestureCategorySelected,ui.gestureResources,ui.gestureSelection,ui.gesturePreviews,ui.onlineGestures)
         if(key==renderedKey)return
         renderedKey=key
         binding.resourceGrid.removeAllViews()
         // 已删除且不在在线目录中的封面不再由页面持有，避免多次导入/删除后缓存持续增长。
-        thumbnails.keys.retainAll(ui.installed.map{it.hash}.toSet()+ui.online.map{it.sha256}+ui.gestureResources.map{it.hash})
+        thumbnails.keys.retainAll(ui.installed.map{it.hash}.toSet()+ui.online.map{it.sha256}+ui.gestureResources.map{it.hash}+ui.onlineGestures.map{it.descriptor.sha256})
         if(gestureCategorySelected){renderGestureResources(ui);return}
         renderLibraryControls(ui)
         binding.resourceGrid.visibility=if(!management&&parametersOnly&&ui.library!=null)View.GONE else View.VISIBLE
@@ -153,12 +178,12 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
                 if(!management&&active)model.disable(d.slot)else model.select(resource,enableBeauty=!management&&category in setOf(ResourceCategory.BEAUTY,ResourceCategory.RESHAPE,ResourceCategory.MAKEUP,ResourceCategory.FILTER))
             }.also {card->
                 val bitmap=thumbnails.getOrPut(resource.hash){modelPreview(requireNotNull(ui.previews[resource.hash]))}
-                (card.getChildAt(0) as ImageView).setImageBitmap(bitmap)
+                preview(card).setImageBitmap(bitmap)
                 card.setOnLongClickListener{if(management)AlertDialog.Builder(activity).setItems(arrayOf(activity.getString(R.string.resources_disable),activity.getString(R.string.resources_delete))){_,i->if(i==0)model.disable(d.slot)else model.uninstall(resource)}.show() else model.disable(d.slot);true}
             }
         }
         for(entry in ui.online.filter{management&&it.manifest.category==category&&it.sha256 !in byHash}){val d=entry.manifest;val view=card(d.localized(ui.locale?:activity.resources.configuration.locales[0].toLanguageTag()).name,activity.getString(R.string.resources_download),entry.sha256){model.download(entry)}
-            ui.previews[entry.sha256]?.let{bytes->(view.getChildAt(0) as ImageView).setImageBitmap(thumbnails.getOrPut(entry.sha256){modelPreview(bytes)})}}
+            ui.previews[entry.sha256]?.let{bytes->preview(view).setImageBitmap(thumbnails.getOrPut(entry.sha256){modelPreview(bytes)})}}
         val count=binding.resourceGrid.childCount
         if(count>0)repeat((3-count%3)%3) {offset ->
             binding.resourceGrid.addView(android.widget.Space(activity),GridLayout.LayoutParams().apply {
@@ -172,7 +197,28 @@ class ResourceCenterController(private val activity:androidx.appcompat.app.AppCo
         var sample=1;while(bounds.outWidth/sample>256||bounds.outHeight/sample>256)sample*=2
         return BitmapFactory.decodeByteArray(bytes,0,bytes.size,BitmapFactory.Options().apply{inSampleSize=sample})?:android.graphics.Bitmap.createBitmap(1,1,android.graphics.Bitmap.Config.ARGB_8888)
     }
+    private fun preview(card:LinearLayout):ImageView = if(management)card.getChildAt(0) as ImageView else card.findViewById(R.id.preset_preview)
+    private fun presetCard(name:String,status:String,hash:String,selected:Boolean,click:()->Unit):LinearLayout {
+        val item=ItemEffectPresetBinding.inflate(activity.layoutInflater,binding.resourceGrid,false)
+        val dp=activity.resources.displayMetrics.density
+        item.root.apply {
+            isSelected=selected;tag="resource_$hash"
+            contentDescription=activity.getString(R.string.resources_card,name,status)
+            setOnClickListener{click()}
+            layoutParams=GridLayout.LayoutParams().apply {
+                width=0;height=ViewGroup.LayoutParams.WRAP_CONTENT
+                columnSpec=GridLayout.spec(binding.resourceGrid.childCount%3,1f)
+                rowSpec=GridLayout.spec(binding.resourceGrid.childCount/3)
+                setMargins((2*dp).toInt(),(4*dp).toInt(),(2*dp).toInt(),(4*dp).toInt())
+            }
+        }
+        item.presetName.text=name
+        item.presetCheck.visibility=if(selected)View.VISIBLE else View.GONE
+        binding.resourceGrid.addView(item.root)
+        return item.root
+    }
     private fun card(name:String,status:String,hash:String,selected:Boolean=false,click:()->Unit):LinearLayout {
+        if(!management)return presetCard(name,status,hash,selected,click)
         val density=activity.resources.displayMetrics.density
         val compact=!management || activity.resources.configuration.screenHeightDp<500
         val card=LinearLayout(activity).apply{orientation=LinearLayout.VERTICAL;setPadding((8*density).toInt(),(8*density).toInt(),(8*density).toInt(),(8*density).toInt());setBackgroundResource(if(management)R.drawable.bg_camera_chip else R.drawable.bg_effect_parameter);isSelected=selected;minimumHeight=((if(!management)112 else if(compact)104 else 140)*density).toInt();isClickable=true;isFocusable=true;contentDescription=activity.getString(R.string.resources_card,name,status);tag="resource_$hash";setOnClickListener{click()};layoutParams=GridLayout.LayoutParams().apply{width=0;height=ViewGroup.LayoutParams.WRAP_CONTENT;columnSpec=GridLayout.spec(binding.resourceGrid.childCount%3,1f);rowSpec=GridLayout.spec(binding.resourceGrid.childCount/3);setMargins((3*density).toInt(),(4*density).toInt(),(3*density).toInt(),(4*density).toInt())}}

@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.nio.ByteBuffer
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicReference
@@ -80,12 +82,14 @@ class TrackedFaceAnalysis(
     @Synchronized fun generationToken()=detector.generationToken()
     /** 两支路复制各自拥有的RGBA缓冲，跟踪忙时直接丢帧；不增加无界队列。 */
     @Synchronized fun submit(frame: RgbaFrame,expectedGeneration: Long? = null,runDetection: Boolean = true): Boolean {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return false
         if(expectedGeneration!=null && expectedGeneration!=detector.generationToken()) return false
         val accepted=if(runDetection) detector.submit(frame,expectedGeneration) else false
         if(enabled) tracker.submit(frame)
         return accepted
     }
     @Synchronized fun snapshot(info: FrameInfo,maxAgeNs: Long): FaceAnalysisSnapshot {
+        if (!BeautyLicensing.allows(LicensedFeature.FACE)) return FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
         val detected=detector.snapshot(info,maxAgeNs)
         if(!enabled) return detected
         // 模型错误或新无脸结果不可被旧跟踪结果覆盖。

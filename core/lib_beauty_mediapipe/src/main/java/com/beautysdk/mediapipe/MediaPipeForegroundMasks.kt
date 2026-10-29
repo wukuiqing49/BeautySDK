@@ -1,5 +1,7 @@
 package com.beautysdk.mediapipe
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import android.content.Context
 import com.beautysdk.*
 import com.google.mediapipe.framework.image.ByteBufferImageBuilder
@@ -75,6 +77,7 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
         mappedSource=null;mappedResult=null
     }
     override fun snapshot(info:FrameInfo):ForegroundMask? = synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.BACKGROUND)) return@synchronized null
         val latest=result
         // 独立RGBA小图可能比当前视频纹理更新：回到同一次模型的原始像素，避免提前应用位移或闪回原背景。
         val source=if(latest!=null && info.timestampNs<latest.alignmentTimestampNs)unalignedResult else latest
@@ -102,6 +105,7 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
         }
     }
     private fun enqueue(info:FrameInfo,copy:(InputSlot)->Unit):Boolean = synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.BACKGROUND)) return@synchronized false
         if(closed || !enabled || lastSubmitted?.let{info.timestampNs<=it}==true)return false
         // 推理只读取active；生产者只能覆写pending，固定两槽，不创建帧历史。
         val slot=pending ?: slots.first{it!==active}

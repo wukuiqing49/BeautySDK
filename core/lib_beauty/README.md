@@ -1,5 +1,7 @@
 # 共享美颜库
 
+完整主线接入、Android assets资源加载和JSON效果展示见[Android SDK 使用说明](../../doc/ANDROID_SDK_USAGE.md)。本文件保留公共帧API及基础渲染参考，GPUPixel/MediaPipe能力请以主线说明和模块文档为准。
+
 `lib_beauty` 提供统一帧 API、异步人脸分析调度、CPU/ES3 渲染，不依赖相机、直播引擎或宿主基础框架。
 
 ## 最小接入

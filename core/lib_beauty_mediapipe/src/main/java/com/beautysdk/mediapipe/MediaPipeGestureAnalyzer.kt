@@ -1,5 +1,7 @@
 package com.beautysdk.mediapipe
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import android.content.Context
 import com.beautysdk.*
 import com.google.mediapipe.framework.image.ByteBufferImageBuilder
@@ -25,6 +27,7 @@ class MediaPipeGestureAnalyzer @JvmOverloads constructor(
             .setMinHandDetectionConfidence(.6f).setMinHandPresenceConfidence(.6f).setMinTrackingConfidence(.6f).build())
 
     override fun analyzeRgba(frame: RgbaFrame,maxSide: Int): List<HandObservation> {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) return emptyList()
         check(Thread.currentThread()===owner && !closed){"Gesture analyzer must run on its owner worker"}
         val buffer=rgb.prepare(frame,maxSide)
         val image=ByteBufferImageBuilder(buffer,rgb.width,rgb.height,MPImage.IMAGE_FORMAT_RGB).build()

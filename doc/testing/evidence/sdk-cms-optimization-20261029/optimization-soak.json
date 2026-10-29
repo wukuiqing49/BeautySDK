@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "mode": "original",
+      "seconds": 31.562884781,
+      "previewFrames": 759,
+      "previewFps": 24.047231590722575,
+      "startPssKiB": 421195,
+      "maxPssKiB": 433912,
+      "endPssKiB": 404340,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 0
+    },
+    {
+      "mode": "face_and_gesture",
+      "seconds": 31.437031795,
+      "previewFrames": 756,
+      "previewFps": 24.048071870456944,
+      "startPssKiB": 412116,
+      "maxPssKiB": 413604,
+      "endPssKiB": 404407,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 30,
+      "cpuSubmissionP50Ms": 0.131103,
+      "cpuSubmissionP95Ms": 0.212077
+    },
+    {
+      "mode": "face_and_gesture_beauty",
+      "seconds": 31.409456762,
+      "previewFrames": 755,
+      "previewFps": 24.03734664120072,
+      "startPssKiB": 405559,
+      "maxPssKiB": 414304,
+      "endPssKiB": 396281,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 30,
+      "cpuSubmissionP50Ms": 1.493571,
+      "cpuSubmissionP95Ms": 3.691569
+    }
+  ],
+  "limits": "Sampled CPU submission, not GPU\/remote latency; uncontrolled camera scene; no image saved"
+}

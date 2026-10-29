@@ -1,0 +1,58 @@
+// 所有独立 SDK 模块使用相同坐标和版本；只发布到本地交付仓库。
+apply plugin: 'maven-publish'
+
+group = 'com.beautysdk'
+version = libs.versions.sdk.get()
+android.publishing { singleVariant('release') { withSourcesJar() } }
+
+// 将实际构建输入摘要写入AAR，打包时拒绝旧AAR混入当前源码交付。
+def sdkModules = ['lib_beauty', 'lib_beauty_resources', 'lib_beauty_mediapipe', 'lib_beauty_gpupixel', 'lib_beauty_sdk']
+def sourceFiles = files(sdkModules.collect { module ->
+    rootProject.fileTree("core/${module}") {
+        exclude '**/build/**', '**/.cxx/**', '**/.gradle/**', '**/.kotlin/**'
+    }
+}, rootProject.file('build.gradle'), rootProject.file('settings.gradle'),
+   rootProject.file('gradle/libs.versions.toml'), rootProject.file('gradle/beauty-publishing.gradle'))
+def provenanceAssets = layout.buildDirectory.dir('generated/beautyProvenance/assets')
+def provenanceTask = tasks.register('generateBeautyProvenance') {
+    inputs.files(sourceFiles)
+    inputs.property('sdkVersion', project.version.toString())
+    inputs.property('licensePublicConfig', provider { project(':core:lib_beauty').beautyLicensePublicConfig })
+    outputs.dir(provenanceAssets)
+    doLast {
+        def hashes = new TreeMap<String, String>()
+        sourceFiles.files.findAll { it.isFile() }.each { input ->
+            def name = rootProject.projectDir.toPath().relativize(input.toPath()).toString().replace('\\', '/')
+            hashes[name] = java.security.MessageDigest.getInstance('SHA-256').digest(input.bytes).encodeHex().toString()
+        }
+        def publicConfig = new groovy.json.JsonSlurper().parseText(project(':core:lib_beauty').beautyLicensePublicConfig)
+        def licensePolicy = [enforcedRelease:true, configured:!publicConfig.keys.isEmpty(), publicConfig:publicConfig]
+        def record = [licensePolicy:licensePolicy, recordVersion: 1, module: project.name, sdkVersion: project.version.toString(), sourceHashes: hashes]
+        def target = new File(provenanceAssets.get().asFile, "beautysdk-build/${project.name}.json")
+        target.parentFile.mkdirs()
+        target.setText(groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(record)), 'UTF-8')
+    }
+}
+android.sourceSets.main.assets.srcDir(provenanceAssets)
+tasks.named('preBuild').configure { dependsOn(provenanceTask) }
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                artifactId = project.findProperty('sdkArtifactId') ?: project.name
+                pom {
+                    name = project.name
+                    description = 'BeautySDK Android candidate. Qualification and third-party notices accompany the delivery.'
+                }
+            }
+        }
+        repositories {
+            maven {
+                name = 'localBuild'
+                url = rootProject.layout.buildDirectory.dir('repo').get().asFile.toURI()
+            }
+        }
+    }
+}

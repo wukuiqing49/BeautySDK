@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import android.opengl.EGL14
 import android.opengl.GLES30 as GL
 import java.nio.ByteBuffer
@@ -33,6 +35,7 @@ class GlBeautyRenderer : BeautyRenderer {
 
     /** 在当前 EGL 上下文采样 OES/2D 纹理并由 Shader 合成；输出 FBO 复用至下次 render/close，结束后恢复宿主 GL 状态。 */
     override fun render(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
+        if (!BeautyLicensing.allowsSettings(settings)) return frame
         checkContext(); check(!closed)
         require(frame is TextureFrame) { "GlBeautyRenderer only accepts TextureFrame" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }

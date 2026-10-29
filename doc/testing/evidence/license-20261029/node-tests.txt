@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: issuer CLI issues, renews, revokes and resumes without overwriting customer grant
+ok 1 - issuer CLI issues, renews, revokes and resumes without overwriting customer grant
+  ---
+  duration_ms: 5165.7118
+  type: 'test'
+  ...
+# Subtest: active lease binds grant and nonce with 24h refresh / 7d cap
+ok 2 - active lease binds grant and nonce with 24h refresh / 7d cap
+  ---
+  duration_ms: 8.0684
+  type: 'test'
+  ...
+# Subtest: tampered grant and wrong domain rejected
+ok 3 - tampered grant and wrong domain rejected
+  ---
+  duration_ms: 2.4429
+  type: 'test'
+  ...
+# Subtest: app signer and SDK identity cannot be substituted
+ok 4 - app signer and SDK identity cannot be substituted
+  ---
+  duration_ms: 1.0933
+  type: 'test'
+  ...
+# Subtest: revocation and expiry produce signed denial, not transport failure
+ok 5 - revocation and expiry produce signed denial, not transport failure
+  ---
+  duration_ms: 2.3174
+  type: 'test'
+  ...
+# Subtest: lease cannot extend contract expiry and features are intersected
+ok 6 - lease cannot extend contract expiry and features are intersected
+  ---
+  duration_ms: 1.9646
+  type: 'test'
+  ...
+# Subtest: invalid registry budgets and duplicate ids rejected
+ok 7 - invalid registry budgets and duplicate ids rejected
+  ---
+  duration_ms: 1.0861
+  type: 'test'
+  ...
+# Subtest: unregistered grant returns signed denial
+ok 8 - unregistered grant returns signed denial
+  ---
+  duration_ms: 1.6033
+  type: 'test'
+  ...
+# Subtest: HTTP endpoint exchanges signed lease; malformed request cannot grant; unavailable registry is transient
+ok 9 - HTTP endpoint exchanges signed lease; malformed request cannot grant; unavailable registry is transient
+  ---
+  duration_ms: 1130.3691
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6254.5586

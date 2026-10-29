@@ -1,6 +1,8 @@
 package com.beautysdk.resources
 
 import com.beautysdk.*
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.util.Locale
 
 /** 稳定产品分类；分类不等于后端执行器或已支持能力。 */
@@ -12,31 +14,48 @@ data class ResourceDescriptor(val id:String,val revision:Int,val category:Resour
     val features:Set<String>,val scope:Set<String>) {
     /** 按宿主语言和父语言回退，不跨简繁脚本替换。 */
     fun localized(locale:String):ResourceText {
-        val tag=Locale.forLanguageTag(locale).toLanguageTag()
-        val candidates=mutableListOf(tag)
-        val parsed=Locale.forLanguageTag(tag)
-        if(parsed.script.isNotEmpty()) candidates+=parsed.language+"-"+parsed.script
-        else if(parsed.language!="zh" || parsed.country !in setOf("TW","HK","MO")) candidates+=parsed.language
-        candidates+=defaultLocale
+        val candidates=resourceLocaleCandidates(locale,defaultLocale)
         return candidates.firstNotNullOfOrNull { key->localizations.entries.firstOrNull { it.key.equals(key,true) }?.value } ?: text
     }
 }
 /** 资源能力是执行器能力，不会由包内声明自动开启模型。 */
 data class ResourceCapabilities(val features:Set<String>) {
-    fun requireSupported(d:ResourceDescriptor) { require(features.containsAll(d.features)) { "UNSUPPORTED: ${d.features-features}" } }
-    companion object {
-        @JvmStatic fun androidGpuPixel()=ResourceCapabilities(setOf("face.landmarks478","segmentation","beauty.parameters.v1","reshape.parameters.v1","makeup.parameters.v1","makeup.eyelash.texture.v1","filter.basic.v1","sticker.png.v1","background.v1","motion.v1","theme.v1"))
+    /** 可用于UI置灰和接入诊断；不加载模型、不改变资源选择。 */
+    fun missingFeatures(d:ResourceDescriptor):Set<String> = java.util.Collections.unmodifiableSet((d.features-features).toSortedSet())
+    fun requireSupported(d:ResourceDescriptor) {
+        val missing=missingFeatures(d)
+        if(missing.isNotEmpty())throw UnsupportedResourceException(d.id,missing)
     }
+    companion object {
+        /** 历史全能力配置：要求宿主实际接好了人脸、场景及分割组件，不是自动探测或质量认证。 */
+        @JvmStatic fun androidGpuPixel()=ResourceCapabilities(setOf("face.landmarks478","segmentation","beauty.parameters.v1","reshape.parameters.v1","makeup.parameters.v1","makeup.eyelash.texture.v1","filter.basic.v1","sticker.png.v1","background.v1","motion.v1","theme.v1"))
+        /** 根据宿主实际装配声明能力；faceAnalysis要求478点后端，不接受仅有人脸框的检测器。
+         * 默认仅不依赖人脸/场景的GPUPixel处理，不代表运行时自动探测或质量认证。
+         */
+        @JvmStatic @JvmOverloads fun configuredGpuPixel(
+            faceAnalysis:Boolean=false,sceneRenderer:Boolean=false,segmentation:Boolean=false,
+        ):ResourceCapabilities {
+            require(!segmentation||sceneRenderer){"Segmentation requires scene renderer"}
+            val available=linkedSetOf("beauty.parameters.v1","filter.basic.v1","theme.v1")
+            if(faceAnalysis)available.addAll(listOf("face.landmarks478","reshape.parameters.v1","makeup.parameters.v1","makeup.eyelash.texture.v1","sticker.png.v1"))
+            if(sceneRenderer)available.add("motion.v1")
+            if(segmentation)available.addAll(listOf("segmentation","background.v1"))
+            return ResourceCapabilities(java.util.Collections.unmodifiableSet(available))
+        }
+    }
+}
+/** 保持IllegalArgumentException兼容；宿主无需解析英文message判断缺失能力。 */
+class UnsupportedResourceException(val resourceId:String,missing:Set<String>):IllegalArgumentException("UNSUPPORTED: ${missing.sorted()}") {
+    val code:String get()="UNSUPPORTED_RESOURCE"
+    val missingFeatures:Set<String> = java.util.Collections.unmodifiableSet(missing.toSortedSet())
 }
 /** 参数作用域统一表；新执行器需先扩充该表，不能接受任意反射字段。 */
 object BeautyParameters {
-    val neutral:Map<String,Float> = java.util.Collections.unmodifiableMap(linkedMapOf("beauty.smoothing" to 0f,"beauty.whitening" to 0f,"beauty.rosy" to 0f,
-        "color.brightness" to 0f,"color.contrast" to 1f,"color.saturation" to 1f,"color.sharpening" to 0f,
-        "reshape.slimFace" to 0f,"reshape.bigEyes" to 0f,"reshape.slimNose" to 0f,"reshape.chinLength" to 0f,"reshape.mouthSize" to 0f,
-        "makeup.lipstick" to 0f,"makeup.blusher" to 0f,"makeup.eyelashes" to 0f))
-    fun category(key:String)=when(key.substringBefore('.')) {"beauty"->ResourceCategory.BEAUTY;"color"->ResourceCategory.FILTER;"reshape"->ResourceCategory.RESHAPE;"makeup"->ResourceCategory.MAKEUP;else->error("Unknown parameter")}
+    val neutral:Map<String,Float> = java.util.Collections.unmodifiableMap(ParameterContract.definitions.mapValues{it.value.neutral})
+    fun category(key:String)=requireNotNull(ParameterContract.definitions[key]){"Unknown parameter"}.category
     fun validate(values:Map<String,Float>) { values.forEach { (key,v)->
-        require(key in neutral);val range=when(key){"color.brightness","reshape.chinLength","reshape.mouthSize"->-1f..1f;"color.contrast","color.saturation"->0f..2f;else->0f..1f};require(v in range) {"Invalid parameter $key"}
+        val p=requireNotNull(ParameterContract.definitions[key]){"Unknown parameter $key"}
+        require(v.isFinite() && v in p.min..p.max) {"Invalid parameter $key"}
     } }
     fun read(s:BeautySettings):Map<String,Float> {val a=s.adjustments;return linkedMapOf("beauty.smoothing" to s.smoothing,"beauty.whitening" to s.whitening,"beauty.rosy" to a.rosy,
         "color.brightness" to a.brightness,"color.contrast" to a.contrast,"color.saturation" to a.saturation,"color.sharpening" to a.sharpening,
@@ -57,6 +76,18 @@ class PreparedResource internal constructor(val descriptor:ResourceDescriptor,pr
     fun previewPng()=preview.copyOf()
     fun applyTo(base:BeautySettings,capabilities:ResourceCapabilities):BeautySettings {
         capabilities.requireSupported(descriptor)
+        val permissions = descriptor.features.mapNotNull { feature -> when(feature) {
+            "beauty.parameters.v1" -> LicensedFeature.BEAUTY
+            "filter.basic.v1" -> LicensedFeature.FILTER
+            "face.landmarks478" -> LicensedFeature.FACE
+            "reshape.parameters.v1" -> LicensedFeature.RESHAPE
+            "makeup.parameters.v1", "makeup.eyelash.texture.v1" -> LicensedFeature.MAKEUP
+            "sticker.png.v1" -> LicensedFeature.STICKER
+            "background.v1", "segmentation" -> LicensedFeature.BACKGROUND
+            "motion.v1" -> LicensedFeature.MOTION
+            else -> null // 容器theme由每个子资源分别校验，不额外赋予权限。
+        } }.toSet()
+        BeautyLicensing.requireFeatures(permissions)
         if(descriptor.category==ResourceCategory.THEME) return children.fold(BeautySettings()) { state,child->child.applyTo(state,capabilities) }
         var result=BeautyParameters.apply(base,values)
         val p=payload ?: return result

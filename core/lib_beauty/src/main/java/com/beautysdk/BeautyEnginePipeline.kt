@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 /** 公共引擎处理编排，组合已有分析、纹理桥接及Session，不依赖直播厂商。
  * 默认GL渲染器要求创建时已有当前ES3上下文；启停、处理、释放都在该线程/上下文。
  * factory和sharedAnalysis均为空时仅做基础美颜；独立RGBA支路配置textureAnalysis=false，避免GPU读回。
@@ -60,7 +62,7 @@ class BeautyEnginePipeline @JvmOverloads constructor(
         val current=settings
         session.settings=current
         if(ownsAnalysis) analysis?.setEnabled(current.requiresFaceAnalysis)
-        if(frame is TextureFrame && bridge!=null) {
+        if(frame is TextureFrame && bridge!=null && BeautyLicensing.allows(LicensedFeature.FACE)) {
             try { bridge.submit(frame,current.requiresFaceAnalysis) }
             catch(e: Exception) {
                 // 分析支路失败不截断本帧美颜；清除旧人脸后继续合成并报告。

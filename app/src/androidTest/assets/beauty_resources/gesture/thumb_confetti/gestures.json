@@ -1,0 +1,23 @@
+{
+  "format": "beauty-gesture-effects",
+  "version": 1,
+  "rules": [
+    {
+      "id": "thumb_confetti",
+      "gesture": "THUMB_UP",
+      "kind": "ANIMATION",
+      "image": "asset_0.png",
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "columns": 6,
+      "frameCount": 44,
+      "fps": 20,
+      "durationMs": 2200,
+      "position": [
+        0.5,
+        0.5
+      ],
+      "width": 0.6
+    }
+  ]
+}

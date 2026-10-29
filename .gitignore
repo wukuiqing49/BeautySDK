@@ -8,6 +8,9 @@
 *.jks
 *.keystore
 /keystore.properties
+# 发行签名私钥必须保存在仓库之外；此规则仅为额外防误提交保护。
+*.private.pem
+*.private.der
 __pycache__/
 *.pyc
 
@@ -16,3 +19,13 @@ __pycache__/
 /.playwright-mcp/
 **/node_modules/
 .DS_Store
+
+# Issuer secrets must stay outside source/customer packages
+.license-private/
+*.private.pem
+
+# 独立示例同样排除本机 Gradle/IDE 缓存与 SDK 路径
+**/.gradle/
+**/.kotlin/
+**/.idea/
+**/local.properties

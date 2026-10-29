@@ -23,6 +23,7 @@ class ResourceCenterActivity : BaseActivity<ActivityResourceCenterBinding>() {
         }
         binding.resourceBack.setOnClickListener {finish()}
         center=ResourceCenterController(this,binding.resourceCenter,management=true,orderChanged=::categories) {_,_->}
+        center.start()
         categories(ResourceCategory.entries)
     }
     private var renderedNames:List<String?> = emptyList()

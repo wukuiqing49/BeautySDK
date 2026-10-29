@@ -1,0 +1,23 @@
+{
+  "format": "beauty-gesture-effects",
+  "version": 1,
+  "rules": [
+    {
+      "id": "victory_sparkles",
+      "gesture": "VICTORY",
+      "kind": "ANIMATION",
+      "image": "asset_0.png",
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "columns": 6,
+      "frameCount": 36,
+      "fps": 20,
+      "durationMs": 1800,
+      "position": [
+        0.5,
+        0.5
+      ],
+      "width": 0.6
+    }
+  ]
+}

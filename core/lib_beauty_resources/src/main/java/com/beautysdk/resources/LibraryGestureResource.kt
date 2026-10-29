@@ -9,8 +9,7 @@ import java.util.Locale
 data class LibraryGestureCategory(val nameKey:String,val order:Int)
 class LibraryGestureResource private constructor(val id:String,val revision:Int,val name:String,val localizations:Map<String,ResourceText>,val directory:String,val packagePath:String,val preview:String,val manifest:String,val sha256:String,val bytes:Int,val previewSha256:String,val defaultEnabled:Boolean,val rulesJson:String,val json:ByteArray) {
     fun localizedName(locale:String,defaultLocale:String="zh-CN"):String {
-        val tag=Locale.forLanguageTag(locale)
-        return listOf(tag.toLanguageTag(),tag.language,defaultLocale).firstNotNullOfOrNull{candidate->localizations.entries.firstOrNull{it.key.equals(candidate,true)}?.value?.name}?:name
+        return resourceLocaleCandidates(locale,defaultLocale).firstNotNullOfOrNull{candidate->localizations.entries.firstOrNull{it.key.equals(candidate,true)}?.value?.name}?:name
     }
     internal fun validatePack(data:ByteArray):Map<String,ByteArray> {
         require(data.size==bytes&&sha256(data)==sha256){"GESTURE_DIGEST_MISMATCH"}

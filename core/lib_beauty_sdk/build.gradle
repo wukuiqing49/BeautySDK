@@ -1,0 +1,29 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace = 'com.beautysdk.distribution'
+    compileSdk = libs.versions.compileSdk.get().toInteger()
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInteger()
+        buildConfigField 'String', 'SDK_VERSION', '"' + libs.versions.sdk.get() + '"'
+    }
+    buildFeatures { buildConfig true }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+kotlin { jvmToolchain(17) }
+
+// 统一入口公开现有API；不复制代码、模型或native库，由Maven传递依赖解析。
+dependencies {
+    api project(':core:lib_beauty')
+    api project(':core:lib_beauty_resources')
+    api project(':core:lib_beauty_mediapipe')
+    api project(':core:lib_beauty_gpupixel')
+}
+ext.sdkArtifactId = 'beautysdk'
+apply from: rootProject.file('gradle/beauty-publishing.gradle')

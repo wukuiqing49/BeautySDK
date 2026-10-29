@@ -1,0 +1,534 @@
+{
+  "libraryVersion": 2,
+  "defaultLocale": "zh-CN",
+  "localeMode": "FOLLOW_HOST",
+  "localizations": {
+    "zh-CN": {
+      "parameter.strength": "程度",
+      "category.BEAUTY": "美颜",
+      "category.RESHAPE": "美型",
+      "category.MAKEUP": "美妆",
+      "category.FILTER": "调色",
+      "category.STICKER": "贴纸",
+      "category.BACKGROUND": "背景",
+      "category.MOTION": "运镜",
+      "category.THEME": "套装",
+      "effect.beauty.smoothing": "磨皮",
+      "effect.beauty.whitening": "美白",
+      "effect.beauty.rosy": "红润",
+      "effect.color.brightness": "亮度",
+      "effect.color.contrast": "对比度",
+      "effect.color.saturation": "饱和度",
+      "effect.color.sharpening": "锐化",
+      "effect.reshape.slimFace": "瘦脸",
+      "effect.reshape.bigEyes": "大眼",
+      "effect.reshape.slimNose": "瘦鼻",
+      "effect.reshape.chinLength": "下巴长度",
+      "effect.reshape.mouthSize": "嘴型大小",
+      "effect.makeup.lipstick": "口红",
+      "effect.makeup.blusher": "腮红",
+      "effect.makeup.eyelashes": "睫毛",
+      "category.GESTURE": "手势动画"
+    },
+    "en": {
+      "parameter.strength": "Intensity",
+      "category.BEAUTY": "Beauty",
+      "category.RESHAPE": "Reshape",
+      "category.MAKEUP": "Makeup",
+      "category.FILTER": "Color",
+      "category.STICKER": "Stickers",
+      "category.BACKGROUND": "Background",
+      "category.MOTION": "Camera Motion",
+      "category.THEME": "Themes",
+      "effect.beauty.smoothing": "Smoothing",
+      "effect.beauty.whitening": "Whitening",
+      "effect.beauty.rosy": "Rosy",
+      "effect.color.brightness": "Brightness",
+      "effect.color.contrast": "Contrast",
+      "effect.color.saturation": "Saturation",
+      "effect.color.sharpening": "Sharpening",
+      "effect.reshape.slimFace": "Slim Face",
+      "effect.reshape.bigEyes": "Big Eyes",
+      "effect.reshape.slimNose": "Slim Nose",
+      "effect.reshape.chinLength": "Chin Length",
+      "effect.reshape.mouthSize": "Mouth Size",
+      "effect.makeup.lipstick": "Lipstick",
+      "effect.makeup.blusher": "Blusher",
+      "effect.makeup.eyelashes": "Eyelashes",
+      "category.GESTURE": "Gesture Effects"
+    }
+  },
+  "defaults": "defaults.json",
+  "categories": [
+    {
+      "id": "BEAUTY",
+      "nameKey": "category.BEAUTY",
+      "order": 0,
+      "effects": [
+        {
+          "id": "beauty.smoothing",
+          "nameKey": "effect.beauty.smoothing",
+          "parameters": [
+            {
+              "id": "beauty.smoothing",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0.35
+            }
+          ]
+        },
+        {
+          "id": "beauty.whitening",
+          "nameKey": "effect.beauty.whitening",
+          "parameters": [
+            {
+              "id": "beauty.whitening",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0.2
+            }
+          ]
+        },
+        {
+          "id": "beauty.rosy",
+          "nameKey": "effect.beauty.rosy",
+          "parameters": [
+            {
+              "id": "beauty.rosy",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RESHAPE",
+      "nameKey": "category.RESHAPE",
+      "order": 10,
+      "effects": [
+        {
+          "id": "reshape.slimFace",
+          "nameKey": "effect.reshape.slimFace",
+          "parameters": [
+            {
+              "id": "reshape.slimFace",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.bigEyes",
+          "nameKey": "effect.reshape.bigEyes",
+          "parameters": [
+            {
+              "id": "reshape.bigEyes",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.slimNose",
+          "nameKey": "effect.reshape.slimNose",
+          "parameters": [
+            {
+              "id": "reshape.slimNose",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.chinLength",
+          "nameKey": "effect.reshape.chinLength",
+          "parameters": [
+            {
+              "id": "reshape.chinLength",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "reshape.mouthSize",
+          "nameKey": "effect.reshape.mouthSize",
+          "parameters": [
+            {
+              "id": "reshape.mouthSize",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MAKEUP",
+      "nameKey": "category.MAKEUP",
+      "order": 20,
+      "effects": [
+        {
+          "id": "makeup.lipstick",
+          "nameKey": "effect.makeup.lipstick",
+          "parameters": [
+            {
+              "id": "makeup.lipstick",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "makeup.blusher",
+          "nameKey": "effect.makeup.blusher",
+          "parameters": [
+            {
+              "id": "makeup.blusher",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "makeup.eyelashes",
+          "nameKey": "effect.makeup.eyelashes",
+          "parameters": [
+            {
+              "id": "makeup.eyelashes",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FILTER",
+      "nameKey": "category.FILTER",
+      "order": 30,
+      "effects": [
+        {
+          "id": "color.brightness",
+          "nameKey": "effect.color.brightness",
+          "parameters": [
+            {
+              "id": "color.brightness",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": -1,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "color.contrast",
+          "nameKey": "effect.color.contrast",
+          "parameters": [
+            {
+              "id": "color.contrast",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 2,
+              "step": 0.01,
+              "default": 1
+            }
+          ]
+        },
+        {
+          "id": "color.saturation",
+          "nameKey": "effect.color.saturation",
+          "parameters": [
+            {
+              "id": "color.saturation",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 2,
+              "step": 0.01,
+              "default": 1
+            }
+          ]
+        },
+        {
+          "id": "color.sharpening",
+          "nameKey": "effect.color.sharpening",
+          "parameters": [
+            {
+              "id": "color.sharpening",
+              "nameKey": "parameter.strength",
+              "type": "float",
+              "control": "slider",
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "STICKER",
+      "nameKey": "category.STICKER",
+      "order": 40,
+      "effects": []
+    },
+    {
+      "id": "BACKGROUND",
+      "nameKey": "category.BACKGROUND",
+      "order": 50,
+      "effects": []
+    },
+    {
+      "id": "MOTION",
+      "nameKey": "category.MOTION",
+      "order": 60,
+      "effects": []
+    },
+    {
+      "id": "THEME",
+      "nameKey": "category.THEME",
+      "order": 70,
+      "effects": []
+    },
+    {
+      "id": "GESTURE",
+      "nameKey": "category.GESTURE",
+      "order": 80,
+      "effects": []
+    }
+  ],
+  "resources": [
+    {
+      "id": "lash_natural",
+      "revision": 1,
+      "category": "MAKEUP",
+      "subcategory": "EYELASH",
+      "name": "自然款睫毛",
+      "localizations": {},
+      "directory": "makeup/lash_natural/",
+      "package": "makeup/lash_natural/package.zip",
+      "preview": "makeup/lash_natural/preview.png",
+      "manifest": "makeup/lash_natural/manifest.json"
+    }
+  ],
+  "gestureResources": [
+    {
+      "id": "victory_sparkles",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "比耶星光",
+      "localizations": {
+        "en": {
+          "name": "Victory Sparkles",
+          "description": ""
+        }
+      },
+      "directory": "gesture/victory_sparkles/",
+      "package": "gesture/victory_sparkles/package.zip",
+      "preview": "gesture/victory_sparkles/preview.png",
+      "manifest": "gesture/victory_sparkles/gestures.json",
+      "sha256": "58d7bca10395209a8a1e1ba9fd7e4b81e6da96140ef2ad384d5e3786d8f7aadc",
+      "bytes": 244253,
+      "previewSha256": "0310ae2f1f4a3577cafdb8db5a1044a82f27cc136a7601e3a886551ae8cf46c6",
+      "defaultEnabled": true,
+      "rules": [
+        {
+          "id": "victory_sparkles",
+          "gesture": "VICTORY",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 36,
+          "fps": 20,
+          "durationMs": 1800,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "thumb_confetti",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "点赞彩纸",
+      "localizations": {
+        "en": {
+          "name": "Thumbs Up Confetti",
+          "description": ""
+        }
+      },
+      "directory": "gesture/thumb_confetti/",
+      "package": "gesture/thumb_confetti/package.zip",
+      "preview": "gesture/thumb_confetti/preview.png",
+      "manifest": "gesture/thumb_confetti/gestures.json",
+      "sha256": "ccb0ecec93cdbcc8ca32cff8af54b1871c6079635bd672abf85fe6090f6d2418",
+      "bytes": 156776,
+      "previewSha256": "65503fabfdff63efd184933f00dc457e4e5f899d9c27b21fd2793a42845b62d0",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "thumb_confetti",
+          "gesture": "THUMB_UP",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 44,
+          "fps": 20,
+          "durationMs": 2200,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "palm_ripples",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "开掌光波",
+      "localizations": {
+        "en": {
+          "name": "Open Palm Ripples",
+          "description": ""
+        }
+      },
+      "directory": "gesture/palm_ripples/",
+      "package": "gesture/palm_ripples/package.zip",
+      "preview": "gesture/palm_ripples/preview.png",
+      "manifest": "gesture/palm_ripples/gestures.json",
+      "sha256": "badce5c473dd514139f519e0d4047811a229b8b1adc0a040c29668b3858968a7",
+      "bytes": 211346,
+      "previewSha256": "bac44a44d1a568357c24de56de1df8aaa8aa306a73a7d43807b2e13185053359",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "palm_ripples",
+          "gesture": "OPEN_PALM",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 32,
+          "fps": 20,
+          "durationMs": 1600,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    },
+    {
+      "id": "love_hearts",
+      "revision": 1,
+      "category": "GESTURE",
+      "name": "爱意漂浮",
+      "localizations": {
+        "en": {
+          "name": "Floating Hearts",
+          "description": ""
+        }
+      },
+      "directory": "gesture/love_hearts/",
+      "package": "gesture/love_hearts/package.zip",
+      "preview": "gesture/love_hearts/preview.png",
+      "manifest": "gesture/love_hearts/gestures.json",
+      "sha256": "d2ab5e5cffe1becd425f03d4d5623b7e5ac83a7389c1a94b63a8028b946926f7",
+      "bytes": 191711,
+      "previewSha256": "92c7f4643102ce84d3ee7c05e482fccfe2ae394dc87b94c1cf10f2803e93e10e",
+      "defaultEnabled": false,
+      "rules": [
+        {
+          "id": "love_hearts",
+          "gesture": "I_LOVE_YOU",
+          "kind": "ANIMATION",
+          "image": "asset_0.png",
+          "frameWidth": 192,
+          "frameHeight": 192,
+          "columns": 6,
+          "frameCount": 40,
+          "fps": 20,
+          "durationMs": 2000,
+          "position": [
+            0.5,
+            0.5
+          ],
+          "width": 0.6
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 package com.beautysdk.gpupixel
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
+import com.beautysdk.license.LicenseException
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.opengl.EGL14
@@ -60,6 +63,11 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
 
     /** 先执行 GPUPixel 磨皮/美白，再执行原有色调和贴纸；不会重复应用基础磨皮、美白。 */
     override fun render(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
+        if (!BeautyLicensing.allowsSettings(settings)) return frame
+        return try { renderLicensed(frame, settings, face) } catch (_: LicenseException) { frame }
+    }
+
+    private fun renderLicensed(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
         checkOwner(); check(handle != 0L) { "Renderer is closed" }
         require(frame is TextureFrame) { "GPUPixel only accepts TextureFrame" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }
@@ -171,12 +179,29 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
 internal object NativeBeauty {
     init { System.loadLibrary("beauty_gpupixel") }
     external fun create(luts: Array<ByteBuffer>, dimensions: IntArray): Long
-    external fun render(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+    private external fun renderNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
         transform: FloatArray, smoothing: Float, whitening: Float, controls: FloatArray): Int
-    external fun reshape(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+    private external fun reshapeNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
         transform: FloatArray, strengths: FloatArray, geometry: FloatArray): Int
-    external fun makeup(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+    private external fun makeupNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
         transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray): Int
+    fun render(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+        transform: FloatArray, smoothing: Float, whitening: Float, controls: FloatArray): Int {
+        require(controls.size == 5)
+        if ((smoothing != 0f || whitening != 0f || controls[0] != 0f) && !BeautyLicensing.allows(LicensedFeature.BEAUTY)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.BEAUTY))
+        if ((controls[1] != 0f || controls[2] != 1f || controls[3] != 1f || controls[4] != 0f) && !BeautyLicensing.allows(LicensedFeature.FILTER)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.FILTER))
+        return renderNative(handle, texture, oes, width, height, transform, smoothing, whitening, controls)
+    }
+    fun reshape(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+        transform: FloatArray, strengths: FloatArray, geometry: FloatArray): Int {
+        if (!BeautyLicensing.allows(LicensedFeature.RESHAPE) || !BeautyLicensing.allows(LicensedFeature.FACE)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.RESHAPE, LicensedFeature.FACE))
+        return reshapeNative(handle, texture, oes, width, height, transform, strengths, geometry)
+    }
+    fun makeup(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray): Int {
+        if (!BeautyLicensing.allows(LicensedFeature.MAKEUP) || !BeautyLicensing.allows(LicensedFeature.FACE)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.MAKEUP, LicensedFeature.FACE))
+        return makeupNative(handle, texture, oes, width, height, transform, lipstick, blusher, eyelashes, eyeTexture, vertices)
+    }
     external fun release(handle: Long, abandon: Boolean)
 }
 

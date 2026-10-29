@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BeautySDK 接入示例</string>
+    <string name="sample_hint">RGBA 接入示例。生成色卡用于检查帧处理，不代表真人美颜或 GPU 性能验收。</string>
+    <string name="before">输入</string><string name="after">输出</string>
+    <string name="processing">处理中…</string><string name="complete">本地帧处理完成。</string>
+    <string name="failed">处理失败：%1$s</string>
+    <string name="license_state">授权状态：%1$s。需要有效发行配置和绑定本应用的授权文件，才能启用效果。</string>
+</resources>

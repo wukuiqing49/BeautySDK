@@ -458,7 +458,7 @@ Java_com_beautysdk_gpupixel_NativeBeauty_create(JNIEnv* env,jobject,jobjectArray
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_beautysdk_gpupixel_NativeBeauty_render(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
+Java_com_beautysdk_gpupixel_NativeBeauty_renderNative(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
     jint width,jint height,jfloatArray transform,jfloat smoothing,jfloat whitening,jfloatArray adjustments) {
     try {
         if (!handle || texture<=0 || !transform || env->GetArrayLength(transform)!=16 ||
@@ -477,7 +477,7 @@ Java_com_beautysdk_gpupixel_NativeBeauty_render(JNIEnv* env,jobject,jlong handle
 }
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_beautysdk_gpupixel_NativeBeauty_reshape(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
+Java_com_beautysdk_gpupixel_NativeBeauty_reshapeNative(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
     jint width,jint height,jfloatArray transform,jfloatArray strengths,jfloatArray geometry) {
     try {
         if(!handle || texture<=0 || !transform || env->GetArrayLength(transform)!=16 ||
@@ -498,7 +498,7 @@ Java_com_beautysdk_gpupixel_NativeBeauty_reshape(JNIEnv* env,jobject,jlong handl
 
 // 固定长度数组和有限数校验，防止不可信坐标越界访问native内存。
 extern "C" JNIEXPORT jint JNICALL
-Java_com_beautysdk_gpupixel_NativeBeauty_makeup(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
+Java_com_beautysdk_gpupixel_NativeBeauty_makeupNative(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
     jint width,jint height,jfloatArray transform,jfloat lipstick,jfloat blusher,jfloat eyelashes,jint eyeTexture,jfloatArray vertices) {
     try {
         if(!handle || texture<=0 || !transform || env->GetArrayLength(transform)!=16 ||

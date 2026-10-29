@@ -1,0 +1,14 @@
+{
+  "candidate": "beautysdk-trial-reviewed-20261029.zip",
+  "sha256": "c2de0072463d9e322adafb4ea6d1b3a2463d9230321dc181b3c762aa92953f49",
+  "qualified": false,
+  "deviceStatus": "Pixel 8 offline; device tests not run",
+  "checks": {
+    "trialTests": 8,
+    "publicationTests": 4,
+    "jvmSignatures": 2033,
+    "webTests": 84,
+    "appBuild": "passed",
+    "consumerDebugReleaseR8": "passed"
+  }
+}

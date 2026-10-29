@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
 
@@ -51,6 +53,7 @@ class GestureAnalysisRuntime @JvmOverloads constructor(
     /** 无需求、重复/逆序、限频或worker忙时返回false；不拷贝不入队。 */
     @JvmOverloads
     fun submit(frame: RgbaFrame,expectedGeneration: Long?=null): Boolean=synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) return@synchronized false
         check(!closed)
         if(!enabled || expectedGeneration!=null && expectedGeneration!=generation)return false
         if(geometry?.let {!compatible(it,frame.info)}==true)resetLocked()
@@ -112,6 +115,7 @@ class GestureAnalysisRuntime @JvmOverloads constructor(
     }
     /** 不返回未来结果；保留少量历史应对分析快于纹理显示。 */
     fun snapshot(info: FrameInfo): GestureSnapshot=synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) return@synchronized GestureSnapshot(GestureAnalysisState.DISABLED)
         if(closed || !enabled)return GestureSnapshot(GestureAnalysisState.DISABLED)
         val entry=history.lastOrNull {it.result.info.timestampNs<=info.timestampNs && compatible(it.result.info,info)}
             ?:return GestureSnapshot(GestureAnalysisState.PROCESSING)
@@ -127,6 +131,7 @@ class GestureAnalysisRuntime @JvmOverloads constructor(
      * END/CANCEL也受有效期约束。失联/STALE/ERROR/DISABLED时宿主必须自行取消拖动，不等待终止事件。
      */
     fun pollEvents(info: FrameInfo): List<GestureEvent> = synchronized(lock) {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) { events.clear(); return@synchronized emptyList() }
         if(closed || !enabled || geometry?.let {compatible(it,info)}!=true)return emptyList()
         val ready=mutableListOf<GestureEvent>()
         while(events.isNotEmpty()) {

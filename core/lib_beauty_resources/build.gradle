@@ -10,3 +10,4 @@ android {
 }
 kotlin { jvmToolchain(17) }
 dependencies { api project(':core:lib_beauty'); testImplementation libs.junit }
+apply from: rootProject.file('gradle/beauty-publishing.gradle')

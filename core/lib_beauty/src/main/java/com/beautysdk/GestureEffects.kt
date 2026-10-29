@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.util.Collections
 
 /** 一次触发的画面坐标素材。位置为旋转/镜像后的画面归一化中心，width为画面宽度比例。 */
@@ -29,6 +31,7 @@ class GestureEffectPlayer {
     fun configure(value:GestureEffectPack?) {if(pack!==value){reset();pack=value}}
     fun reset(){active=null;started=0;lastId=-1;lastAccepted=Long.MIN_VALUE}
     fun accept(events:List<GestureEvent>,timestampNs:Long) {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) { reset(); return }
         frame(timestampNs)
         for(event in events){
             if(event.id<=lastId)continue
@@ -40,6 +43,7 @@ class GestureEffectPlayer {
         }
     }
     fun frame(timestampNs:Long):GestureEffectFrame? {
+        if (!BeautyLicensing.allows(LicensedFeature.GESTURE)) { reset(); return null }
         val rule=active?:return null
         val elapsed=timestampNs-started
         if(elapsed<0 || elapsed>=rule.durationMs*1_000_000L){active=null;return null}

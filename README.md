@@ -1,12 +1,14 @@
 # BeautySDK
 
+当前版本为限定范围试用版。单一 Maven 入口、本地发布和独立消费者 Debug/Release/R8 已验证；真人画质、多设备持续性能和商业资格仍待验收。当前能力与限制统一见 [产品状态](doc/PRODUCT_STATUS.md)，首次接入见 [任务卡](doc/FIRST_INTEGRATION.md)。
+
 **面向直播与实时视频的 Android 美颜、贴纸和场景效果 SDK，配套可视化效果工坊。**
 
 以 **MediaPipe + GPUPixel + OpenGL ES 3** 为主要处理链路，提供美颜、美型、美妆、调色、人脸贴纸、虚拟背景、数字运镜和手势事件能力。通过统一资源包，把素材制作、效果搭配、资源交付与 Android 加载连接起来。
 
 SDK 接收宿主提供的视频帧，处理后交回宿主；摄像头、音频、编码和推流由宿主或直播引擎管理。仓库附带 CameraX Demo，便于调试和验证。
 
-[效果工坊](https://beautystickerworkshop.pages.dev/) · [工坊源码](https://github.com/wukuiqing49/BeautyStickerWorkshop) · [SDK 接入文档](core/lib_beauty/README.md) · [资源协议](resources/unified/v1/README.md) · [测试报告](doc/testing/TEST_REPORT.md)
+[效果工坊](https://beautystickerworkshop.pages.dev/) · [工坊源码](https://github.com/wukuiqing49/BeautyStickerWorkshop) · [Android SDK 使用说明](doc/ANDROID_SDK_USAGE.md) · [公共帧 API](core/lib_beauty/README.md) · [资源协议](resources/unified/v1/README.md) · [测试报告](doc/testing/TEST_REPORT.md)
 
 > 当前处于原型与集成验证阶段。Android 已有构建、单元测试和 Pixel 8 设备夹具证据；真实直播引擎接入、真人动态画质与持续性能仍待验收。详细验证范围以测试报告为准。
 
@@ -52,7 +54,7 @@ Android 主线使用 GPUPixel 固定版本的 Shader/LUT 源码适配，由 C++/
 - 实验性规则支持 OK、伸指数量 0～5、单/双手比心、合十、挥手、拍手、画圈、捏合拖动及双手缩放。
 - 输出稳定触发及 `START / UPDATE / END / CANCEL` 等事件，供宿主连接动画、交互或业务逻辑。
 
-**SDK 输出识别结果和事件，动画播放由宿主实现。** 自定义手势是二维几何与时序规则，不是额外训练的模型。公共手势运行时默认关闭；相机 Demo 按体验需求默认开启。接入与事件去重见 [手势文档](doc/SDK_GESTURES.md)。
+**SDK 输出识别事件；可选 GestureEffectPlayer / GestureEffectRenderer 已支持绑定透明图集动画，须由宿主显式接入。** 自定义手势是二维几何与时序规则，不是额外训练的模型。公共手势运行时默认关闭；相机 Demo 按体验需求默认开启。接入与事件去重见 [手势文档](doc/SDK_GESTURES.md)。
 
 ### 统一资源管理
 
@@ -187,3 +189,12 @@ AAR 输出在各库的 `build/outputs/aar/`，Demo APK 在 `app/build/outputs/ap
 | 虚拟背景与运镜 | [SDK_SCENE_EFFECTS](doc/SDK_SCENE_EFFECTS.md) |
 | 手势事件与宿主接入 | [SDK_GESTURES](doc/SDK_GESTURES.md) |
 | 构建与设备证据 | [TEST_REPORT](doc/testing/TEST_REPORT.md) |
+
+资源的统一版本、离线/网络交付与回滚见[资源发布说明](doc/RESOURCE_RELEASE.md)。个人CMS新增本机版本备份，无服务端账号；直播引擎按当前要求暂不接入。
+# 统一 Maven 接入
+
+客户只需声明 `implementation("com.beautysdk:beautysdk:0.2.0")`，自动解析核心、资源、MediaPipe、GPUPixel四个同版本模块。当前发布位置为本地`build/repo`，尚未上传远程仓库；配置方法见[Android SDK 使用说明](doc/ANDROID_SDK_USAGE.md)。发行构建使用`gradlew.bat publishBeautySdkToLocalBuildRepository`。
+
+### 0.2.0 商业授权
+
+Release 接入须初始化授权；服务默认每天刷新签名租约，有效缓存最长支持 7 天离线，视频线程不联网。发行工具与部署说明见 [商业授权](doc/LICENSING.md)。当前未部署正式授权服务，未配置公钥的 Release 默认拒绝效果。

@@ -20,7 +20,12 @@ internal fun bounded(input:InputStream,max:Int,cancel:()->Unit={}):ByteArray {va
 object ResourceArchive {
     fun read(bytes:ByteArray):LinkedHashMap<String,ByteArray> = readEntries(bytes,40,65536,16777216)
     /** 完整交付包单独限额，单项/套装原校验规则不放宽。 */
-    internal fun readDelivery(bytes:ByteArray)=readEntries(bytes,2000,1048576,33554432,true)
+    internal fun readDelivery(bytes:ByteArray):LinkedHashMap<String,ByteArray> {
+        val files=readEntries(bytes,2000,1048576,33554432,true);val prefix="beauty_resources/"
+        if(files.keys.none{it.startsWith(prefix)})return files
+        require(files.keys.all{it.startsWith(prefix)}){"DELIVERY_MIXED_ROOT"}
+        return files.entries.associateTo(linkedMapOf()){it.key.removePrefix(prefix) to it.value}
+    }
     private fun readEntries(bytes:ByteArray,maxFiles:Int,maxJson:Int,maxNested:Int,delivery:Boolean=false):LinkedHashMap<String,ByteArray> {
         require(bytes.size<=33554432);val files=linkedMapOf<String,ByteArray>();var total=0L
         ZipInputStream(bytes.inputStream()).use {z->while(true){val e=z.nextEntry?:break

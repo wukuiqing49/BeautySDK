@@ -1,5 +1,7 @@
 package com.beautysdk
 
+import com.beautysdk.license.BeautyLicensing
+import com.beautysdk.license.LicensedFeature
 import java.nio.ByteBuffer
 import kotlin.math.*
 
@@ -13,6 +15,7 @@ class RgbaBeautyRenderer : BeautyRenderer {
     }
     /** 对 RGBA 执行边缘权重磨皮、美白、色调及挂件叠加；非旁路返回独占紧凑缓冲，保持原始方向元数据。 */
     override fun render(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
+        if (!BeautyLicensing.allowsSettings(settings)) return frame
         require(frame is RgbaFrame) { "RgbaBeautyRenderer only accepts RGBA frames" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }
         require(settings.adjustments.isIdentity) { "Select GPUPixel for extended beauty adjustments" }

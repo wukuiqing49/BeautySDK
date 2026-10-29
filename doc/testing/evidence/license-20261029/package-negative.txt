@@ -1,0 +1,1 @@
+beautysdk: commercial license policy/configuration missing or mismatched; rebuild with -PbeautyLicenseConfig
