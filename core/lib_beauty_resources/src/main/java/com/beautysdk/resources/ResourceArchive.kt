@@ -71,7 +71,14 @@ object ResourceArchive {
             return PreparedResource(d,preview,emptyMap(),null,children)
         }
         if(kind=="PARAMETERS") {
-            payload.fields("parameters");require(files.keys==setOf("manifest.json","preview.png","effect.json"));val values=parseParameters(payload.getJSONObject("parameters"));require(values.keys==d.scope&&d.category in setOf(ResourceCategory.BEAUTY,ResourceCategory.RESHAPE,ResourceCategory.MAKEUP,ResourceCategory.FILTER));require(d.features==featuresFor(d.category,values.keys,false));return PreparedResource(d,preview,values,null)
+            val colors=if(payload.has("colors"))MakeupColorOverrides.read(payload.getJSONObject("colors"))else emptyMap()
+            payload.fields(*if(payload.has("colors"))arrayOf("parameters","colors")else arrayOf("parameters"))
+            require(files.keys==setOf("manifest.json","preview.png","effect.json"))
+            val values=parseParameters(payload.getJSONObject("parameters"))
+            require(values.keys==d.scope&&d.category in setOf(ResourceCategory.BEAUTY,ResourceCategory.RESHAPE,ResourceCategory.MAKEUP,ResourceCategory.FILTER))
+            if(colors.isNotEmpty())require(d.category==ResourceCategory.MAKEUP&&colors.keys==setOf(d.subcategory.lowercase(java.util.Locale.ROOT)))
+            require(d.features==featuresFor(d.category,values.keys,false)+(if(colors.isNotEmpty())setOf("makeup.colors.v1")else emptySet()))
+            return PreparedResource(d,preview,values,null,colors=colors)
         }
         require(kind=="LEGACY");val legacy=linkedMapOf("manifest.json" to payload.toString().toByteArray())
         files.filterKeys {it !in setOf("manifest.json","effect.json")}.forEach {(k,v)->legacy[k]=v}

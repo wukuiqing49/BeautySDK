@@ -1,4 +1,4 @@
 <resources>
-<color name="preset_preview_surface">#EEEAF4</color><color name="preset_ripple">#26BDA4FF</color><color name="preset_mode_selected">#3C334E</color>
-<style name="PresetMode" parent="EffectText"><item name="android:background">@drawable/bg_preset_mode</item><item name="android:paddingStart">16dp</item><item name="android:paddingEnd">16dp</item><item name="android:fontFamily">sans-serif-medium</item></style>
+<color name="preset_preview_surface">#272833</color><color name="preset_ripple">#26BDA4FF</color><color name="preset_mode_selected">#3C334E</color>
+<style name="PresetMode" parent="EffectText"><item name="android:background">@drawable/bg_preset_mode</item><item name="android:paddingStart">12dp</item><item name="android:paddingEnd">12dp</item><item name="android:textSize">12sp</item><item name="android:includeFontPadding">false</item></style>
 </resources>

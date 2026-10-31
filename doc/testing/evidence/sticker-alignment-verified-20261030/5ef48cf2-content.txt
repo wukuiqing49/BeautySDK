@@ -1,0 +1,6 @@
+I/BeautyContent( 8460): lens=FRONT request=SD identity=0.9971305314766195 best=0.9971305314766195 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-99.981354
+I/BeautyContent( 8460): lens=FRONT request=HD identity=0.9932483167708129 best=0.9932483167708129 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-66.654271
+I/BeautyContent( 8460): lens=FRONT request=FULL_HD identity=0.9881388973235766 best=0.9881388973235766 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-66.654219
+I/BeautyContent( 8460): lens=BACK request=SD identity=0.9967093311936831 best=0.9967093311936831 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-66.654219
+I/BeautyContent( 8460): lens=BACK request=HD identity=0.9941220937704423 best=0.9941220937704423 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-99.981354
+I/BeautyContent( 8460): lens=BACK request=FULL_HD identity=0.9847242838559649 best=0.9847242838559649 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-66.654219

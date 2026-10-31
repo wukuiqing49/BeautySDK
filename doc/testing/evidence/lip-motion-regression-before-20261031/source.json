@@ -1,0 +1,7 @@
+{
+  "core/lib_beauty_gpupixel/src/main/cpp/beauty_bridge.cpp": "94dbd278d3a264743211a00b34d3a55bffb36fcdb90697d2ad1d69a9bd9d31ce",
+  "core/lib_beauty_mediapipe/src/main/cpp/face_motion.cpp": "198066f133b50e344416ae31320597dfb07c6bb5bd647aa5936e8538a58804a3",
+  "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/NativeFaceMotion.kt": "e91dd8fbfa1e540c58e200fe93c428a5aa4ad286d6c26e025e81f4d8e7c0abcc",
+  "app/src/androidTest/java/com/beautysdk/demo/LipMotionDeviceTest.kt": "e56e5dbbb2ff68193b53ad6941be6cff7581c282c1c0cbdb1ebcdccbec650e6a",
+  "app/src/androidTest/java/com/beautysdk/demo/GpuPixelDeviceTest.kt": "e415b081088e6a7ec5a75e32a0fefb958bae04f6bb5cfe1276836cd9db8fe335"
+}

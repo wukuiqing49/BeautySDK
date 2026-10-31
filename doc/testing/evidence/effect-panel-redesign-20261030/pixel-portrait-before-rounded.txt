@@ -1,0 +1,63 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceExperienceDeviceTest:
+INSTRUMENTATION_STATUS: test=resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=parameterSelectionUsesOneStableSliderAndPanelCanExpand
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=parameterSelectionUsesOneStableSliderAndPanelCanExpand
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=threeDShowsPausedStateAndRestoresNormalResourceBrowser
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceExperienceDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalStateException: Initial sticker sheet must open after layout
+	at com.beautysdk.demo.ResourceExperienceDeviceTest.threeDShowsPausedStateAndRestoresNormalResourceBrowser(ResourceExperienceDeviceTest.kt:118)
+
+INSTRUMENTATION_STATUS: stream=
+Error in threeDShowsPausedStateAndRestoresNormalResourceBrowser(com.beautysdk.demo.ResourceExperienceDeviceTest):
+java.lang.IllegalStateException: Initial sticker sheet must open after layout
+	at com.beautysdk.demo.ResourceExperienceDeviceTest.threeDShowsPausedStateAndRestoresNormalResourceBrowser(ResourceExperienceDeviceTest.kt:118)
+
+INSTRUMENTATION_STATUS: test=threeDShowsPausedStateAndRestoresNormalResourceBrowser
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.75
+There was 1 failure:
+1) threeDShowsPausedStateAndRestoresNormalResourceBrowser(com.beautysdk.demo.ResourceExperienceDeviceTest)
+java.lang.IllegalStateException: Initial sticker sheet must open after layout
+	at com.beautysdk.demo.ResourceExperienceDeviceTest.threeDShowsPausedStateAndRestoresNormalResourceBrowser(ResourceExperienceDeviceTest.kt:118)
+
+FAILURES!!!
+Tests run: 3,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@color/camera_surface">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:paddingHorizontal="16dp" android:paddingVertical="0dp">
+    <TextView android:id="@+id/resource_back" style="@style/EffectText" android:text="@string/camera_back" />
+    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:text="@string/resources_page_title" android:textColor="@color/camera_text" android:textSize="18sp" android:textStyle="bold" />
+    <TextView android:id="@+id/resource_add" style="@style/EffectText" android:text="@string/ui_import" />
+    <TextView android:id="@+id/resource_more" style="@style/EffectText" android:text="@string/ui_more" />
+  </LinearLayout>
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+  <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="16dp">
+    <TextView android:id="@+id/resource_local_tab" style="@style/PresetMode" android:text="@string/ui_installed" />
+    <TextView android:id="@+id/resource_online_tab" style="@style/PresetMode" android:text="@string/ui_online" />
+  </LinearLayout>
+  <HorizontalScrollView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:scrollbars="none" android:fadingEdgeLength="24dp" android:requiresFadingEdge="horizontal" android:paddingHorizontal="16dp">
+    <LinearLayout android:id="@+id/resource_categories" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" />
+  </HorizontalScrollView>
+  </LinearLayout>
+  <include android:id="@+id/resource_center" layout="@layout/view_resource_center" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginHorizontal="16dp" />
+</LinearLayout>

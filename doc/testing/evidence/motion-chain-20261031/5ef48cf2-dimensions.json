@@ -1,0 +1,58 @@
+[
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "FRONT",
+    "renderedFrames": 10
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  },
+  {
+    "requested": "1920x1080",
+    "actual": "1920x1080",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  },
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 8
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 8
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  }
+]

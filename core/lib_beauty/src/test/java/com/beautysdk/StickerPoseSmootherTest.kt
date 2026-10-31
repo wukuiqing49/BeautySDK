@@ -9,6 +9,19 @@ class StickerPoseSmootherTest {
         StickerPlacement(StickerPose(FacePoint(x,.5f),span,angle),null)
     private fun info(t: Long, size: Int=1000)=FrameInfo(size,size,t)
 
+    @Test fun mouthTranslationDoesNotLagWhileEyesKeepTheirSmoothing() {
+        val filter=StickerPoseSmoother()
+        fun pair(x:Float)=StickerPlacement(StickerPose(FacePoint(x,.5f),100f,0f),StickerPose(FacePoint(x,.7f),100f,0f))
+        filter.update(pair(.5f),info(1))
+        for(step in 1..8) {
+            val current=pair(.5f+step*.002f)
+            val result=filter.update(current,info(1+step*16_000_000L))
+            assertEquals(current.moustache!!.center,result.moustache!!.center)
+            assertTrue(result.glasses!!.center.x<current.glasses!!.center.x)
+        }
+        assertNull(filter.update(StickerPlacement(null,null),info(150_000_001)).moustache)
+    }
+
     @Test fun smallMotionRemainsVisibleAndFastMotionFollowsImmediately() {
         val filter=StickerPoseSmoother()
         filter.update(pose(.5f),info(1))

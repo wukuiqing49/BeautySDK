@@ -19,14 +19,18 @@ data class FaceBounds(val left: Float, val top: Float, val right: Float, val bot
 /** LEFT/RIGHT 指转正后的画面左右，而非人物解剖学左右；坐标仍在原始空间。 */
 enum class FaceAnchor { LEFT_EYE, RIGHT_EYE, NOSE, LEFT_MOUTH, RIGHT_MOUTH, UPPER_LIP }
 /** 分析后端真实支持的能力集合；缺少能力时隐藏依赖它的挂件。 */
-enum class FaceCapability { BOUNDS, EYES, MOUTH_CORNERS, UPPER_LIP, DENSE_LANDMARKS }
+enum class FaceCapability { BOUNDS, EYES, MOUTH_CORNERS, UPPER_LIP, DENSE_LANDMARKS, GEOMETRY_3D }
 
 /** 不可变人脸观测：复制语义锚点及关键点列表，所有坐标位于原始帧归一化空间。 */
 class FaceObservation(
     val bounds: FaceBounds,
     anchors: Map<FaceAnchor, FacePoint> = emptyMap(),
     landmarks: List<FacePoint> = emptyList(),
+    /** 可选模型三维观测；二维跟踪不得伪造或刷新此数据。 */
+    val geometry3D: FaceGeometry3D?,
 ) {
+    @JvmOverloads constructor(bounds: FaceBounds, anchors: Map<FaceAnchor, FacePoint> = emptyMap(),
+        landmarks: List<FacePoint> = emptyList()) : this(bounds,anchors,landmarks,null)
     val anchors: Map<FaceAnchor, FacePoint> = Collections.unmodifiableMap(
         EnumMap<FaceAnchor, FacePoint>(FaceAnchor::class.java).apply { putAll(anchors) }
     )

@@ -16,6 +16,8 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     val ui=MutableLiveData(Ui())
     // 多页面/重开共用串行队列，旧页面已接受的保存完成后，新页面才读取。
     private val io=resourceIo;private val main=Handler(Looper.getMainLooper())
+    private val parameterLock=Any()
+    private var pendingParameters:MutableMap<String,Float>?=null
     private val manager=BeautyResourceManager(File(app.filesDir,"beauty_resources"))
     private val libraryFile=File(app.filesDir,"beauty_resources/library.json")
     private val builtinLibrary by lazy {BeautyResourceLibrary.parse(app.assets.open("resource_center/library.json").use{it.readBytes()})}
@@ -89,7 +91,19 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
         publish(token,state,false,reloadResources=false)
         if(resolved.missingSlots.isNotEmpty())main.post {if(token==generation&&!closed)ui.value=ui.value?.copy(error="RESOURCE_MISSING: ${resolved.missingSlots.joinToString()}")}
     } }
-    fun select(resource:InstalledResource,enableBeauty:Boolean=false)=task {token->
+    fun select(resource:InstalledResource,enableBeauty:Boolean=false,toggleSticker:Boolean=false,toggleMakeup:Boolean=false)=task {token->
+        // 在串行队列中判断最新选择，连续两次点击也不会被过时UI快照合并成一次启用。
+        if(toggleSticker&&resource.descriptor.category==ResourceCategory.STICKER&&
+            state.selections[resource.descriptor.slot]==resource.hash) {
+            val editable=composer.materialize(state)
+            publish(token,editable.copy(selections=editable.selections+(resource.descriptor.slot to null)),true)
+            return@task
+        }
+        if(toggleMakeup&&resource.descriptor.category==ResourceCategory.MAKEUP&&
+            state.selections[resource.descriptor.slot]==resource.hash) {
+            publish(token,disableSlot(composer.materialize(state),resource.descriptor.slot),true)
+            return@task
+        }
         when(resource.descriptor.category) {
             ResourceCategory.BACKGROUND->backgroundOverride=null
             ResourceCategory.MOTION->motionOverride=null
@@ -123,7 +137,10 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     fun disable(slot:String)=task {token->
         // 取消整套主题不能先拆成子项，否则卡片取消后子效果仍会保留。
         val editable=if(slot=="theme")state else composer.materialize(state)
-        publish(token,editable.copy(selections=editable.selections+(slot to null)),true)
+        publish(token,disableSlot(editable,slot),true)
+    }
+    private fun disableSlot(editable:BeautyResourceState,slot:String):BeautyResourceState {
+        return BeautyResourceEdits.disable(editable,slot,manager.list())
     }
     /** 显式关闭当前类别，保留其他类别；与“恢复默认值”使用不同语义。 */
     fun disableCategory(category:ResourceCategory)=task {token->
@@ -133,10 +150,7 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
             publish(token,state.copy(selections=state.selections+("theme" to null)),true);return@task
         }
         val editable=composer.materialize(state)
-        val neutral=BeautyParameters.neutral.filterKeys {BeautyParameters.category(it)==category}
-        val slots=manager.list().filter {it.descriptor.category==category}.map {it.descriptor.slot}
-        publish(token,editable.copy(parameters=editable.parameters+neutral,
-            selections=editable.selections+slots.associateWith {null}),true)
+        publish(token,BeautyResourceEdits.disableCategory(editable,category,manager.list()),true)
     }
     fun resetCategory(category:ResourceCategory)=task {token->
         if(category==ResourceCategory.BACKGROUND)backgroundOverride=BeautyScene()
@@ -145,19 +159,38 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
         val editable=composer.materialize(state)
         val keys=BeautyParameters.neutral.keys.filter{BeautyParameters.category(it)==category}
         val slots=manager.list().filter{it.descriptor.category==category}.map{it.descriptor.slot}
-        publish(token,editable.copy(parameters=(editable.parameters-keys)+requireNotNull(defaults).state.parameters.filterKeys{it in keys},selections=(editable.selections-slots)+requireNotNull(defaults).state.selections.filterKeys{it in slots}),true)
+        publish(token,editable.copy(parameters=(editable.parameters-keys)+requireNotNull(defaults).state.parameters.filterKeys{it in keys},makeupColors=if(category==ResourceCategory.MAKEUP)emptyMap()else editable.makeupColors,selections=(editable.selections-slots)+requireNotNull(defaults).state.selections.filterKeys{it in slots}),true)
     }
     fun resetDefaults()=task {token->backgroundOverride=null;motionOverride=null;publish(token,requireNotNull(defaults).state,true)}
     fun parameters(changes:Map<String,Float>) {
-        if(changes.isEmpty())return
+        if(changes.isEmpty()||closed)return
         // 防止调用方复用可变Map，导致排队中的历史输入被后续拖动改写。
         val input=changes.toMap()
-        task {token->
-            // 主题首次拆分会安装子资源；此时仍须刷新目录，不能只走参数快照。
-            val materializing=state.selections["theme"]!=null
-            val editable=composer.materialize(state)
-            publish(token,library?.updateParameters(editable,input)?:editable.copy(parameters=editable.parameters+input),true,reloadResources=materializing)
+        synchronized(parameterLock) {
+            pendingParameters?.let {it.putAll(input);return}
+            val batch=input.toMutableMap()
+            task {token->
+                val latest=synchronized(parameterLock) {
+                    if(pendingParameters===batch)pendingParameters=null
+                    batch.toMap()
+                }
+                // 主题首次拆分会安装子资源；此时仍须刷新目录，不能只走参数快照。
+                val materializing=state.selections["theme"]!=null
+                val editable=composer.materialize(state)
+                val checked=library?.updateParameters(editable,latest)?.parameters?.filterKeys {it in latest} ?: latest
+                val next=checked.entries.groupBy {BeautyParameters.category(it.key)}.entries.fold(editable) { value,(category,entries)->
+                    BeautyResourceEdits.parameters(value,category,entries.associate {it.key to it.value})
+                }
+                publish(token,next,true,reloadResources=materializing)
+            }
+            // worker取走前只保留各字段最后一次输入，避免80次滑动排成80次解码/落盘。
+            pendingParameters=batch
         }
+    }
+    fun makeupColor(region:String,color:MakeupColor)=task {token->
+        val update=mapOf(region to color);MakeupColorOverrides.validate(update)
+        val editable=composer.materialize(state)
+        publish(token,editable.copy(makeupColors=editable.makeupColors+update),true)
     }
     fun clearStickers()=task {token->
         val editable=composer.materialize(state)
@@ -242,7 +275,7 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     fun downloadGesture(entry:CatalogGestureResource)=task {token->val cancel=ResourceCancellation();cancellation=cancel;manager.downloadGesture(entry,cancel);if(token==generation)publish(token,state,false)}
     fun download(entry:CatalogResource)=task {token->val cancel=ResourceCancellation();cancellation=cancel;val resource=manager.download(entry,cancel) {p->main.post {if(token==generation&&!closed)ui.value=ui.value?.copy(progress=p)}};if(token==generation)publish(token,state,false)}
     fun uninstall(resource:InstalledResource)=task {token->
-        val next=state.copy(selections=state.selections.mapValues{if(it.value==resource.hash)null else it.value})
+        val next=BeautyResourceEdits.remove(state,resource.hash,manager.list())
         // 已解码的图片由快照持有；Demo发布新状态后不再读取旧目录。
         publish(token,next,true);manager.uninstall(resource.hash)
         refreshResources()
@@ -272,6 +305,8 @@ class ResourceCenterModel(app:Application):AndroidViewModel(app) {
     }
     private fun task(action:(Long)->Unit) {
         if(closed)return
+        // 选择资源、重置和开关是顺序边界，后来的滑杆不得合并到边界之前。
+        synchronized(parameterLock){pendingParameters=null}
         val token=++generation;cancellation?.cancel();ui.value=(ui.value?:Ui()).copy(busy=true,error=null)
         io.execute {try{action(token)}catch(e:Exception){main.post {if(token==generation&&!closed)ui.value=ui.value?.copy(busy=false,error=e.message?:e.javaClass.simpleName)}}}
     }

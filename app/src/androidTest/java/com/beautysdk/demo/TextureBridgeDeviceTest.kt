@@ -15,6 +15,124 @@ import org.junit.Test
 
 /** 纯GPU固定图案测试，不采集/保存摄像头画面；glFinish仅用于测试制造确定的完成条件。 */
 class TextureBridgeDeviceTest {
+    @Test fun workerOwnsFrameWhileMappedPboSlotsAreReused()=withGl {
+        val entered=CountDownLatch(1);val release=CountDownLatch(1)
+        val observed=java.util.concurrent.LinkedBlockingQueue<Int>()
+        val runtime=BeautyAnalysisRuntime(FaceAnalyzerFactory{object:FaceAnalyzer {
+            override val id="borrowed-pbo-ownership"
+            override val capabilities=emptySet<FaceCapability>()
+            override fun analyze(image:AnalysisImage):List<FaceObservation> = error("RGBA required")
+            override fun analyzeRgba(frame:RgbaFrame,maxSide:Int):List<FaceObservation> {
+                if(frame.info.timestampNs==1L){entered.countDown();check(release.await(5,TimeUnit.SECONDS))}
+                observed.add(frame.readOnlyPixels().get(0).toInt() and 255)
+                return emptyList()
+            }
+            override fun close()=Unit
+        }},intervalNs=0,allowScaledFrames=true)
+        val ids=IntArray(1);GL.glGenTextures(1,ids,0);GL.glBindTexture(GL.GL_TEXTURE_2D,ids[0])
+        val bridge=GlTextureAnalysisBridge(runtime,maxSide=16,intervalNs=0)
+        fun deliver(t:Long,value:Int) {
+            val pixels=ByteBuffer.allocateDirect(32*16*4)
+            repeat(32*16){pixels.put(value.toByte()).put(0).put(0).put(255.toByte())};pixels.flip()
+            GL.glActiveTexture(GL.GL_TEXTURE0);GL.glBindTexture(GL.GL_TEXTURE_2D,ids[0])
+            GL.glTexImage2D(GL.GL_TEXTURE_2D,0,GL.GL_RGBA,32,16,0,GL.GL_RGBA,GL.GL_UNSIGNED_BYTE,pixels)
+            bridge.submit(TextureFrame(FrameInfo(32,16,t),ids[0],TextureTarget.TEXTURE_2D,identity),true)
+            GL.glFinish();assertTrue(bridge.poll(t+1))
+        }
+        try {
+            deliver(1,71);assertTrue(entered.await(5,TimeUnit.SECONDS))
+            // 模型仍在读取首帧时，多次复用PBO及可替换待处理槽。
+            deliver(10,81);deliver(20,91);deliver(30,99)
+            release.countDown()
+            assertEquals(71,observed.poll(5,TimeUnit.SECONDS))
+            assertEquals(99,observed.poll(5,TimeUnit.SECONDS))
+            assertNull(observed.poll(30,TimeUnit.MILLISECONDS))
+        } finally {release.countDown();bridge.close();runtime.close();GL.glDeleteTextures(1,ids,0)}
+    }
+    @Test fun borrowedPboFailureUnmapsAndLaterSamplesRecover()=withGl {
+        val ids=IntArray(1);GL.glGenTextures(1,ids,0);GL.glBindTexture(GL.GL_TEXTURE_2D,ids[0])
+        val pixels=ByteBuffer.allocateDirect(32*16*4)
+        repeat(32*16){pixels.put(71).put(82).put(93).put(255.toByte())};pixels.flip()
+        GL.glTexImage2D(GL.GL_TEXTURE_2D,0,GL.GL_RGBA,32,16,0,GL.GL_RGBA,GL.GL_UNSIGNED_BYTE,pixels)
+        var calls=0
+        val bridge=GlTextureAnalysisBridge(maxSide=16,intervalNs=0,onAnalysisFrame={frame,_->
+            calls++
+            assertTrue(frame.readOnlyPixels().isReadOnly)
+            assertEquals(71,frame.readOnlyPixels().get(0).toInt() and 255)
+            if(calls==1)throw IllegalStateException("fixture consumer failure")
+            true
+        })
+        try {
+            bridge.submit(TextureFrame(FrameInfo(32,16,1),ids[0],TextureTarget.TEXTURE_2D,identity),true);GL.glFinish()
+            try {bridge.poll(2);fail("Consumer failure must propagate")}catch(e:IllegalStateException){assertEquals("fixture consumer failure",e.message)}
+            repeat(3){i->
+                val t=10L+i*10
+                bridge.submit(TextureFrame(FrameInfo(32,16,t),ids[0],TextureTarget.TEXTURE_2D,identity),true);GL.glFinish()
+                assertTrue(bridge.poll(t+1))
+            }
+            assertEquals(4,calls);assertEquals(GL.GL_NO_ERROR,GL.glGetError())
+        } finally {bridge.close();GL.glDeleteTextures(1,ids,0)}
+    }
+    @Test fun completedSmallImagePollAvoidsExtraCapturePeriod()=withGl {
+        val ids=IntArray(1);GL.glGenTextures(1,ids,0);GL.glBindTexture(GL.GL_TEXTURE_2D,ids[0])
+        GL.glTexImage2D(GL.GL_TEXTURE_2D,0,GL.GL_RGBA,640,360,0,GL.GL_RGBA,GL.GL_UNSIGNED_BYTE,ByteBuffer.allocateDirect(640*360*4))
+        fun run(early:Boolean):List<Double> {
+            val ages=mutableListOf<Double>()
+            val bridge=GlTextureAnalysisBridge(maxSide=320,intervalNs=0,onAnalysisFrame={frame,_->ages.add((System.nanoTime()-frame.info.timestampNs)/1e6);true})
+            try {
+                repeat(16) {
+                    val start=System.nanoTime()
+                    bridge.submit(TextureFrame(FrameInfo(640,360,start),ids[0],TextureTarget.TEXTURE_2D,identity),true)
+                    if(early){Thread.sleep(8);bridge.poll(System.nanoTime())}
+                    val remaining=33_333_333L-(System.nanoTime()-start)
+                    if(remaining>0)Thread.sleep(remaining/1_000_000,(remaining%1_000_000).toInt())
+                }
+                bridge.poll(System.nanoTime())
+                return ages.drop(2)
+            } finally {bridge.close()}
+        }
+        try {
+            val normal=run(false);val early=run(true)
+            assertTrue(normal.size>=10);assertTrue(early.size>=10)
+            fun median(values:List<Double>)=values.sorted()[values.size/2]
+            assertTrue("Early delivery must avoid next-frame wait on this fixture",median(early)<median(normal))
+            val message=listOf("next_frame" to normal,"early_poll" to early).joinToString("\n"){(mode,values)->
+                val sorted=values.sorted();"READBACK mode=$mode samples=${values.size} meanMs=${values.average()} p50Ms=${median(values)} p95Ms=${sorted[((sorted.size-1)*.95).toInt()]}"
+            }
+            androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().sendStatus(0,android.os.Bundle().apply{putString("stream","\n$message\n")})
+        } finally {GL.glDeleteTextures(1,ids,0)}
+    }
+    @Test fun earlyPollDeliversWithoutNextVideoFrameAndKeepsTimestamp()=withGl {
+        val ids=IntArray(1);GL.glGenTextures(1,ids,0);GL.glBindTexture(GL.GL_TEXTURE_2D,ids[0])
+        GL.glTexImage2D(GL.GL_TEXTURE_2D,0,GL.GL_RGBA,32,16,0,GL.GL_RGBA,GL.GL_UNSIGNED_BYTE,ByteBuffer.allocateDirect(32*16*4))
+        val delivered=mutableListOf<FrameInfo>()
+        val bridge=GlTextureAnalysisBridge(maxSide=16,intervalNs=0,onAnalysisFrame={frame,_->delivered.add(frame.info);true})
+        fun frame(t:Long)=TextureFrame(FrameInfo(32,16,t,90,true),ids[0],TextureTarget.TEXTURE_2D,identity)
+        try {
+            assertFalse(bridge.submit(frame(1),true));GL.glFinish() // 仅夹具保证GPU完成。
+            GL.glViewport(2,3,7,9);GL.glActiveTexture(GL.GL_TEXTURE3)
+            assertTrue("No second video frame is needed to deliver",bridge.poll(8_000_001))
+            assertEquals(listOf(FrameInfo(16,8,1,90,true)),delivered)
+            assertFalse("Polling must not sample again",bridge.poll(9_000_001))
+            val value=IntArray(1);GL.glGetIntegerv(GL.GL_ACTIVE_TEXTURE,value,0);assertEquals(GL.GL_TEXTURE3,value[0])
+            val viewport=IntArray(4);GL.glGetIntegerv(GL.GL_VIEWPORT,viewport,0);assertArrayEquals(intArrayOf(2,3,7,9),viewport)
+            bridge.submit(frame(40_000_001),true);GL.glFinish();bridge.reset()
+            assertFalse("Reset must discard queued sample",bridge.poll(48_000_001))
+            bridge.submit(frame(80_000_001),true);GL.glFinish()
+            assertFalse("Readback expiration still applies",bridge.poll(190_000_001))
+            bridge.submit(frame(220_000_001),true);GL.glFinish();bridge.submit(frame(220_000_002),false)
+            assertFalse("Disabled bridge cannot deliver old sample",bridge.poll(228_000_001))
+            assertEquals(1,delivered.size)
+            // 实机30fps时间戳间隔可略低于33,333,333ns，Demo显式0间隔不得隔帧采样。
+            repeat(3){i->
+                val time=1_000_000_000L+i*33_327_109L
+                bridge.submit(frame(time),true);GL.glFinish()
+                assertTrue(bridge.poll(time+8_000_000L))
+                assertEquals(time,delivered.last().timestampNs)
+            }
+            assertEquals(4,delivered.size)
+        } finally {bridge.close();GL.glDeleteTextures(1,ids,0)}
+    }
     private val identity=floatArrayOf(1f,0f,0f,0f,0f,1f,0f,0f,0f,0f,1f,0f,0f,0f,0f,1f)
     private fun withGl(block: () -> Unit) {
         val display=EGL14.eglGetDisplay(EGL14.EGL_DEFAULT_DISPLAY)

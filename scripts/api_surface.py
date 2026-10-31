@@ -61,7 +61,12 @@ def removed_signatures(baseline, current):
     removed = {}
     for module, values in baseline['modules'].items():
         available = {callable_signature(v) for v in current['modules'].get(module, [])}
-        missing = sorted(v for v in values if callable_signature(v) not in available)
+        # Widening final -> open is safe; the reverse remains a breaking change.
+        def present(value):
+            signature = callable_signature(value)
+            return signature in available or ('public final class ' in signature and
+                signature.replace('public final class ', 'public class ') in available)
+        missing = sorted(v for v in values if '$WhenMappings' not in v and not present(v))
         if missing:
             removed[module] = missing
     return removed

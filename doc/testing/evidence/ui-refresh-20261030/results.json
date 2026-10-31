@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-30",
+  "scope": "Demo UI and resource interactions; uncommitted workspace",
+  "sourceFingerprint": "be50439074a0a5c8852377583e982f07674622be4411beb1d056605652e7b838",
+  "sourceFileHashes": {
+    "app/build.gradle": "605a57a8dee3503f419d978739507fb49c254c61a8b55a4ced2a5298c36ae594",
+    "app/src/androidTest/java/com/beautysdk/demo/DemoBuiltinLibraryDeviceTest.kt": "0d42807c585899a91e185cae68f18d20eade232cb6eb5676e8b1d55c621a3acc",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceCenterUiDeviceTest.kt": "07ac755962e9e3c3fe1fe3b4116e68369846c605db8a0f53bcb3d5458770baa5",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceExperienceDeviceTest.kt": "577bfcbe276bf706b3be970ee15025080d672d2fbe7a6e5625ada223c772d4d2",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceLibraryDeviceTest.kt": "9bff038ac6c5d6763999f3c5777cacb384be07235203782ba09c34d4d2cb16e8",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DDeviceTest.kt": "3c9bde6e937e3004130ef6bca43acd0cec4d7634e73ec2db173f98786b41ffff",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DUiDeviceTest.kt": "fa3147b9b4254af9e8af435c1b368aaf31a79bd8891585b15565423c79d4cfcc",
+    "app/src/androidTest/java/com/beautysdk/demo/UiPreviewConfigurationRule.kt": "b3f5f818a1d3615bb03f918c4cc4555995597180c6ead7c1979c6e04dbfd3897",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "9f1d97462984dd38d183b4015268daf447593f31d4aac18d0a64d5cdb0955765",
+    "app/src/main/java/com/beautysdk/demo/EffectPanelHost.kt": "6bcffd296ae878fc79b8c6d5cbfa502a1ce57607d2a0f4f529317f70e0b80edb",
+    "app/src/main/java/com/beautysdk/demo/ResourceCardAdapter.kt": "e1d6cbebe4ba638d6e8483c02fec91c98b82a34019c543b51f1e3a0428214514",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterActivity.kt": "0de0f6503068600920c1143633292fe54c5f601794c649b1695aef366301ec16",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterController.kt": "cd408ee5c758bdbf68b81ac4b4969017060d36acf5f6ee5b92f5fc5a31c3b49d",
+    "app/src/main/java/com/beautysdk/demo/ResourceParameterPanel.kt": "acff2f628ba9cbcf3391c3afffcbe5e47289012999909f5ece7b3602c7e0986a",
+    "app/src/main/res/drawable/bg_effect_cover.xml": "afbf8b83b039e987dc0a72ecaf76415c6a5b64c8b2025c3641ce8d06a12151d5",
+    "app/src/main/res/drawable/bg_panel_handle.xml": "217aae89a88e4324f0f48c276e4f50216ac88c972fabfd617d178b6f06f76a38",
+    "app/src/main/res/drawable/ic_effect_off.xml": "668152ede0872d276fac28fdc1a1e59240bae0ecad266a636af7a6869f9d2195",
+    "app/src/main/res/drawable/ic_sticker_hat.xml": "c5c244c2324d1e36be635258aed736e80f9ffc8b83abade3cad0ce0c66b860b2",
+    "app/src/main/res/layout-land/activity_resource_center.xml": "731c20f360fb4ee821fba3f397e6aa0fd90dc4d2b93e1aac4166c027eba4903c",
+    "app/src/main/res/layout/activity_camera_test.xml": "3220db34357ee612dd160c16e7dd0d5a5e02736adf43f6bae4620daa9e201c6e",
+    "app/src/main/res/layout/activity_resource_center.xml": "84f309d735dab4f74084ba7a055f1496ecfaeef7e99155cf63c44110b6f55aee",
+    "app/src/main/res/layout/item_effect_preset.xml": "00d24d2576485fd414d68dc5166e1ae03628cbf8715e5b8cbab4a6588d14dbd9",
+    "app/src/main/res/layout/view_resource_center.xml": "d3077f1737913bf346760f8486baeec84a05b9454c1a0746650e785c6b8489f3",
+    "app/src/main/res/values-en/strings.xml": "afdecb0682f4939924711cef926250ad854e5a1d50e92454f18d6609e177d041",
+    "app/src/main/res/values-en/strings_ui_refresh.xml": "aa8109f45255ca03d68b78cc48f997f2f7ff72ceffc881098399bc0e892d851c",
+    "app/src/main/res/values-zh-rCN/strings.xml": "17153a79d0075a763d945af072e81351e1dc18f6ca8775892b33aca35077fc83",
+    "app/src/main/res/values-zh-rCN/strings_ui_refresh.xml": "917e355d51ea4b3cd5b5e662e47f21149c8efbbcbc548743553d84b21cb9134a",
+    "app/src/main/res/values/preset_styles.xml": "5f17ac22db8ad6d05f9cc6bbed18c8c6ff43adfdc1228244790cbcfe8760510f",
+    "app/src/main/res/values/strings.xml": "974843caeb874af39355af72d1277e3f186a72acef11f2607269e56811db4a58",
+    "app/src/main/res/values/strings_ui_refresh.xml": "aa8109f45255ca03d68b78cc48f997f2f7ff72ceffc881098399bc0e892d851c",
+    "build.gradle": "f72d91e41e8ec95efeb2665326126876c848c42085de0412be9dd0b93d334d0c",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisCoordinates.kt": "539ca643c4745130bd1087faa07dca9693e372669bfdd8ac2907ff8bc8552b15",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "a2b19608245b0b923148d20672c0713d1adaa2897773f4786ccbce9721859e84",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "501156b12e34fb0cc5641273124b8eac4368620c21a3fc3dc091d988769d378c",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "fe7880957ea07a349c11afe643db5db07853263487bcfe34081e482b9fd8865b",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceGeometry3D.kt": "cdf2870c07e615b6112f560c7faca9101d5eb338edb2b0bc4557f41717dfa95d",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "58855e884c5279925018d52e1633c2bf9a3ec954674f037eeda4f5146bbc3455",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlSticker3DRenderer.kt": "0a226c50d1a1f23e6cfa2eee345a0b91eef07abf5de1d7e3f1183801506f2a72",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "09fd8096726986b3cae7a3cabb4fbd1b4956303ebf30d59ce33ff52c3aeaae98",
+    "core/lib_beauty/src/main/java/com/beautysdk/Sticker3D.kt": "89aae16acf7890029919ef6aa3b5f56e696d198e9923755a1ad603bf45a7ce07",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/BeautyLicensing.kt": "0335fd6296d849750fcf0e99fdc19004f95d79f448236c667192b1978363e2eb",
+    "core/lib_beauty/src/test/java/com/beautysdk/Sticker3DTest.kt": "d8e755f8f8e53f57c2f9179880d984ef183eca525de232ba3c70dd642772746e",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseEnforcementTest.kt": "ef3ebdc9ad6a416d4c10f24dbee35e480a052463c1c7ccc3258ab622c4d1e7ee",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "df9a4cff9e86390edbc1049774caa2b11d8f476650bc01f2de6c4781113816a8",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeFaceAnalyzer.kt": "3dac7cb47314a63b228dd8501c4703bc0ed6d40e2fd29a20a4303cea3dac465b",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/CameraBeautyController.kt": "00ba4d5938be79323b51bb3efd9a2a486a15155fd82d163502dfe199c4502ad8",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "58beb015338ba80323159bdd722d139eeb5f9d231eb777d6e81ac991fe618380",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "078d5744f349f3efa9d97c841ad3903637c1f6eeba283b5d9304f0e5f2ef259d",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "88472e57426710e64828b86011dfce24a48ae0cfbb4e6b94020181056ca4aacb",
+    "gradle.properties": "678c35a27eeda302d6a960484179d118d08fb1edf05c1b40745bc7aed6e88f03",
+    "gradle/libs.versions.toml": "2ab0553460813be680bd986a0d72bc4edd2b341a7b9dd5f6f08b12c17193fa30",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/TextureIntegration.kt": "b0ad378c8a23761dc42376a9f67f287c643faa37ac6409508c23092b419cb0c0",
+    "settings.gradle": "6c4bd64634d65872579559425250d0320d5f53493020fea1d892811a0d9a179c"
+  },
+  "build": "assembleDebug / assembleDebugAndroidTest / lintDebug passed",
+  "runs": [
+    {
+      "device": "5ef48cf2",
+      "mode": "normal",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "passed": true,
+      "count": 14,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "5ef48cf2",
+      "mode": "landscape",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "passed": true,
+      "count": 3,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "normal",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": false,
+      "count": 0,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "portrait",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": true,
+      "count": 3,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "landscape",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": true,
+      "count": 3,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    }
+  ],
+  "oppo": {
+    "uniqueCasesPassed": 14,
+    "passedExecutions": 17,
+    "fontScale": 1.0
+  },
+  "pixel8": {
+    "uniqueCasesPassed": 14,
+    "passedExecutions": 20,
+    "normalBatchPassed": 12,
+    "normalBatchFailed": 2,
+    "unchangedIsolatedRetryPassed": 2,
+    "matrix": "actual system font 1.3 portrait and landscape, 3 cases each"
+  },
+  "limitations": [
+    "Pixel batch draw/list timing failures retained; isolated passes do not establish batch stability",
+    "OPPO font 1.3 not verified due system permission restriction",
+    "No human visual quality, sustained performance, Release/R8, iOS or engine validation in this UI round"
+  ],
+  "artifacts": {
+    "app/build/outputs/apk/debug/app-debug.apk": {
+      "sha256": "28f70f400b064b32a9ae70e0b07b4ba4b487d38f6ac83acce57b1ff94e16140a",
+      "bytes": 47190929
+    },
+    "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk": {
+      "sha256": "051d8ef2f8e02075127d3eedf731f030258d6d90e5eaf9083111c3a62a701059",
+      "bytes": 5801501
+    }
+  }
+}

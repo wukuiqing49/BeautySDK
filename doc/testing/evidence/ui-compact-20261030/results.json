@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-30",
+  "scope": "Demo card density, spacing, parameter controls and sheet sizing only",
+  "sourceFingerprint": "710aa997463646102b7374450cd9a769315068eb0fd35196d8a3bed12399f2da",
+  "sourceFileHashes": {
+    "app/build.gradle": "605a57a8dee3503f419d978739507fb49c254c61a8b55a4ced2a5298c36ae594",
+    "app/src/androidTest/java/com/beautysdk/demo/DemoBuiltinLibraryDeviceTest.kt": "0d42807c585899a91e185cae68f18d20eade232cb6eb5676e8b1d55c621a3acc",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceCenterUiDeviceTest.kt": "07ac755962e9e3c3fe1fe3b4116e68369846c605db8a0f53bcb3d5458770baa5",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceExperienceDeviceTest.kt": "ac36acd49c6c7a7b2e6e8ad63709832af0e71f17326f993f51c16f3a48ab47d2",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceLibraryDeviceTest.kt": "9bff038ac6c5d6763999f3c5777cacb384be07235203782ba09c34d4d2cb16e8",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DDeviceTest.kt": "c0f049eb7afdd8c19e29aecce199f483f2c7bf525064e0fb6fa5cdb6083dc919",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DUiDeviceTest.kt": "fa3147b9b4254af9e8af435c1b368aaf31a79bd8891585b15565423c79d4cfcc",
+    "app/src/androidTest/java/com/beautysdk/demo/UiPreviewConfigurationRule.kt": "b3f5f818a1d3615bb03f918c4cc4555995597180c6ead7c1979c6e04dbfd3897",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "29b07f0036aa5665e131fc0be53c21a25505870a2d56b81cc92fdd04b4278879",
+    "app/src/main/java/com/beautysdk/demo/EffectPanelHost.kt": "d06ecc38dd38e6ceccda64e2c1a24c2db2f79bda2243d60e6682f10214bcad76",
+    "app/src/main/java/com/beautysdk/demo/ResourceCardAdapter.kt": "56b87d8708653b34c2f25e06035b2e18f74d235795bafc0cd7f8b5c211352545",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterActivity.kt": "606d4a33285f92a09364d1ee9bb66147cc300f72f28bc164b37db055e0702e30",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterController.kt": "d3238581131b4454c310e31215e62644a152ba6a28dad8f907a2cf3f912f91f8",
+    "app/src/main/java/com/beautysdk/demo/ResourceParameterPanel.kt": "82aad44f1410e228f31d72d54ab079be5fbbcd1452a49e4261e26e3caa829b53",
+    "app/src/main/res/drawable/bg_effect_cover.xml": "f2fb5d51df5657079b82aa82173bc8321ee9633bfa6d92f7811a40073499cad1",
+    "app/src/main/res/drawable/bg_panel_handle.xml": "217aae89a88e4324f0f48c276e4f50216ac88c972fabfd617d178b6f06f76a38",
+    "app/src/main/res/drawable/bg_preset_mode.xml": "e153566cdd655bd8888624ecfc811bdf608f2469fbbcc96ea27c3f67506c6acf",
+    "app/src/main/res/drawable/bg_preset_modes.xml": "d72930d925af3112194b22be38b40c73917d18d4b7019fc1a21631f4372855df",
+    "app/src/main/res/drawable/bg_preset_preview.xml": "57cf0a462b45b21866016abf55bce7ca9fd2622b253ea2434ec83f63ada89fa7",
+    "app/src/main/res/drawable/bg_preset_selection.xml": "fb70362576876c123b3bc2a3aa108cda57866ee0c550c53ae7e1df98252d2688",
+    "app/src/main/res/drawable/ic_effect_off.xml": "49831052f8e9885b1fc677acf0031b0102c70db46eb2189bf898ec421ae2a55b",
+    "app/src/main/res/drawable/ic_preset_bare.xml": "f89e1421683938b4c7ea45be3c210858202ee0a467907b6a1147bdf65d92c42b",
+    "app/src/main/res/drawable/ic_preset_clear.xml": "95eb835fc1c08e1f38b3ff78e59ded8b4bf38637ec9f486c2e1424b9e6ba3e04",
+    "app/src/main/res/drawable/ic_preset_fresh.xml": "80e36fa27977f3809d5f06f82031931fa2de3d109bca4d8e48d5657df90a58ef",
+    "app/src/main/res/drawable/ic_preset_soft.xml": "55ecc2e0159ade67d498747fd247198540a4d2313c50598432984258f9adfe9d",
+    "app/src/main/res/drawable/ic_sticker_hat.xml": "c5c244c2324d1e36be635258aed736e80f9ffc8b83abade3cad0ce0c66b860b2",
+    "app/src/main/res/layout-land/activity_resource_center.xml": "30bf82271d20e27d3f9782921657c0541e636fef916832dfe3aefdaefa2b611a",
+    "app/src/main/res/layout/activity_camera_test.xml": "a00f26abeaa8a39e2d71e39cc14b67bb34f47506cbe09ff13f199885982dc688",
+    "app/src/main/res/layout/activity_resource_center.xml": "335282082eade2f0a93352500324f3ca9f028fbc657c64e90ff4461f8a34a42e",
+    "app/src/main/res/layout/item_effect_preset.xml": "b09ff0caa27f018a09494608e8c453cda9de1035113fdb163086aa538102d6ca",
+    "app/src/main/res/layout/view_resource_center.xml": "ecf3686f56070a090949e2c322a63881c538a56d0585959daa27882b7da77962",
+    "app/src/main/res/values-en/strings.xml": "afdecb0682f4939924711cef926250ad854e5a1d50e92454f18d6609e177d041",
+    "app/src/main/res/values-en/strings_ui_refresh.xml": "6de392c28f25ff12ec1222e2956835f8164ecb04f9c600ce3bf546e18a3a308e",
+    "app/src/main/res/values-zh-rCN/strings.xml": "17153a79d0075a763d945af072e81351e1dc18f6ca8775892b33aca35077fc83",
+    "app/src/main/res/values-zh-rCN/strings_ui_refresh.xml": "c1db97f93b00ef493495f203427a152bad00e3db3deb2732187670a95e21b08b",
+    "app/src/main/res/values/preset_styles.xml": "3ec8d611f367fdcabf2caa389d9907624a894624a03c2c770cc5c280998da060",
+    "app/src/main/res/values/strings.xml": "974843caeb874af39355af72d1277e3f186a72acef11f2607269e56811db4a58",
+    "app/src/main/res/values/strings_ui_refresh.xml": "6de392c28f25ff12ec1222e2956835f8164ecb04f9c600ce3bf546e18a3a308e",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisCoordinates.kt": "539ca643c4745130bd1087faa07dca9693e372669bfdd8ac2907ff8bc8552b15",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "a2b19608245b0b923148d20672c0713d1adaa2897773f4786ccbce9721859e84",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "501156b12e34fb0cc5641273124b8eac4368620c21a3fc3dc091d988769d378c",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "fe7880957ea07a349c11afe643db5db07853263487bcfe34081e482b9fd8865b",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceGeometry3D.kt": "cdf2870c07e615b6112f560c7faca9101d5eb338edb2b0bc4557f41717dfa95d",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "58855e884c5279925018d52e1633c2bf9a3ec954674f037eeda4f5146bbc3455",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlSticker3DRenderer.kt": "11a0916654f9a81c2affdca53927bce04c9d941e3d381c2b229845f19ebe8c18",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "09fd8096726986b3cae7a3cabb4fbd1b4956303ebf30d59ce33ff52c3aeaae98",
+    "core/lib_beauty/src/main/java/com/beautysdk/Sticker3D.kt": "7a78571615b3dd074298a392fdbae17f0fbc2ef8ab415fa18f88a059bba21f85",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/BeautyLicensing.kt": "0335fd6296d849750fcf0e99fdc19004f95d79f448236c667192b1978363e2eb",
+    "core/lib_beauty/src/test/java/com/beautysdk/Sticker3DTest.kt": "d8e755f8f8e53f57c2f9179880d984ef183eca525de232ba3c70dd642772746e",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseEnforcementTest.kt": "ef3ebdc9ad6a416d4c10f24dbee35e480a052463c1c7ccc3258ab622c4d1e7ee",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "df9a4cff9e86390edbc1049774caa2b11d8f476650bc01f2de6c4781113816a8",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeFaceAnalyzer.kt": "3dac7cb47314a63b228dd8501c4703bc0ed6d40e2fd29a20a4303cea3dac465b",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/CameraBeautyController.kt": "00ba4d5938be79323b51bb3efd9a2a486a15155fd82d163502dfe199c4502ad8",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "58beb015338ba80323159bdd722d139eeb5f9d231eb777d6e81ac991fe618380",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "078d5744f349f3efa9d97c841ad3903637c1f6eeba283b5d9304f0e5f2ef259d",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "88472e57426710e64828b86011dfce24a48ae0cfbb4e6b94020181056ca4aacb",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/TextureIntegration.kt": "b0ad378c8a23761dc42376a9f67f287c643faa37ac6409508c23092b419cb0c0"
+  },
+  "runs": [
+    {
+      "device": "5ef48cf2",
+      "mode": "normal",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "passed": true,
+      "count": 14,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "5ef48cf2",
+      "mode": "landscape",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "passed": true,
+      "count": 3,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "1"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "portrait",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": false,
+      "count": 0,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "landscape",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": true,
+      "count": 3,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    },
+    {
+      "device": "39061FDJH00D3J",
+      "mode": "portrait-isolated",
+      "before": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "passed": true,
+      "count": 1,
+      "resourceBackupRestored": true,
+      "after": {
+        "font_scale": "1.0",
+        "accelerometer_rotation": "1",
+        "user_rotation": "0"
+      },
+      "settingsRestored": true
+    }
+  ],
+  "passedExecutions": 23,
+  "uniqueCases": 14,
+  "build": "assembleDebug / assembleDebugAndroidTest / lintDebug passed",
+  "ui": "0 warnings",
+  "i18n": "0 warnings",
+  "initialAttempts": "Pixel matrix initial sheet startup failures retained. Visible-sheet bounded wait and whole-batch orientation locking did not resolve portrait batch failure. Final portrait 2/3; unchanged isolated case 1/1. Root cause unresolved; no batch stability claim.",
+  "limits": [
+    "OPPO large font not verified",
+    "Pixel full 14-case batch not rerun in this round",
+    "no new JVM, Release/R8, human visual effect quality or sustained performance validation",
+    "Pixel portrait matrix batch startup failure unresolved"
+  ],
+  "cases": {
+    "5ef48cf2-normal": [
+      "resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable",
+      "parameterSelectionUsesOneStableSliderAndPanelCanExpand",
+      "threeDShowsPausedStateAndRestoresNormalResourceBrowser",
+      "defaultsToPresetsAndKeepsGeometryAcrossTabsAdjustmentsAndReopen",
+      "stickerPanelSelectsPersistsAndDisables3D",
+      "rapidParametersKeepResourceCardsAndCallerInputStable",
+      "deletingBuiltinDoesNotReinstallItOnReopen",
+      "independentPageInstallsSelectsAndPersistsWithoutCamera",
+      "jsonControlsApplyAndResetAndLibrarySurvivesReopen",
+      "rejectsMissingTranslationsUnknownParametersAndInvalidRanges",
+      "cameraUsesJsonNamesRangesAndParametersWithoutReplacingSceneControls",
+      "classifiedDeliveryInstallsAndComposesWithLanguageFallback",
+      "rejectsTamperedExpandedFilesAndTraversalAndKeepsLegacyImport",
+      "cameraUsesLatestBuiltinJsonAndAppliesControlsWithoutManualImport"
+    ],
+    "5ef48cf2-landscape": [
+      "resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable",
+      "parameterSelectionUsesOneStableSliderAndPanelCanExpand",
+      "threeDShowsPausedStateAndRestoresNormalResourceBrowser"
+    ],
+    "39061FDJH00D3J-portrait": [
+      "resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable",
+      "parameterSelectionUsesOneStableSliderAndPanelCanExpand"
+    ],
+    "39061FDJH00D3J-landscape": [
+      "resourceDetailsDoNotApplyUntilExplicitUseAndLastCardIsReachable",
+      "parameterSelectionUsesOneStableSliderAndPanelCanExpand",
+      "threeDShowsPausedStateAndRestoresNormalResourceBrowser"
+    ],
+    "39061FDJH00D3J-portrait-isolated": [
+      "threeDShowsPausedStateAndRestoresNormalResourceBrowser"
+    ]
+  },
+  "failedExecutions": 1,
+  "apkSha256": "25c8ea0b7b6a184859b288d58633f757b92cbb270c9fbdd3fb1c824dba88b2b2"
+}

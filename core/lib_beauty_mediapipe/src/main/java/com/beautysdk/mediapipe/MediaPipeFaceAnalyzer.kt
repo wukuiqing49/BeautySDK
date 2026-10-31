@@ -15,11 +15,15 @@ import com.google.mediapipe.tasks.vision.facelandmarker.FaceLandmarker
 /** CPU/GPU VIDEO 模式在 SDK 的有界 worker 上同步调用；不阻塞引擎线程，不叠加第二套异步队列。
  * 分析图按元数据转正，再把结果逆变换回原始像素空间。模型在 assets 中本地加载。
  */
-class MediaPipeFaceAnalyzer @JvmOverloads constructor(
+class MediaPipeFaceAnalyzer(
     context: Context,
     modelAsset: String = "face_landmarker.task",
     val execution: Execution = Execution.CPU,
+    /** 仅三维饰品宿主显式开启；旧调用不增加姿态矩阵输出。 */
+    val output3D: Boolean,
 ) : FaceAnalyzer {
+    @JvmOverloads constructor(context: Context, modelAsset: String = "face_landmarker.task",
+        execution: Execution = Execution.CPU) : this(context,modelAsset,execution,false)
     /** SDK 自有枚举，不向宿主暴露 MediaPipe 类型；GPU 仍使用 RGB 输入，并非纹理零拷贝。 */
     enum class Execution { CPU, GPU }
     private val ownerThread = Thread.currentThread()
@@ -31,13 +35,14 @@ class MediaPipeFaceAnalyzer @JvmOverloads constructor(
     }
     override val id = "mediapipe-face-landmarker"
     override val capabilities = setOf(FaceCapability.BOUNDS, FaceCapability.EYES,
-        FaceCapability.MOUTH_CORNERS, FaceCapability.UPPER_LIP, FaceCapability.DENSE_LANDMARKS)
+        FaceCapability.MOUTH_CORNERS, FaceCapability.UPPER_LIP, FaceCapability.DENSE_LANDMARKS) +
+        if(output3D) setOf(FaceCapability.GEOMETRY_3D) else emptySet()
     private val detector = FaceLandmarker.createFromOptions(context.applicationContext,
         FaceLandmarker.FaceLandmarkerOptions.builder()
             .setBaseOptions(BaseOptions.builder().setModelAssetPath(modelAsset)
                 .setDelegate(if (execution == Execution.GPU) Delegate.GPU else Delegate.CPU).build())
             .setRunningMode(RunningMode.VIDEO).setNumFaces(1)
-            .setOutputFaceBlendshapes(false).setOutputFacialTransformationMatrixes(false).build())
+            .setOutputFaceBlendshapes(false).setOutputFacialTransformationMatrixes(output3D).build())
     private val rgbInput = MediaPipeRgbInput()
     private var previousMs = -1L
     private var orientationPixels = ByteArray(0)
@@ -87,20 +92,22 @@ class MediaPipeFaceAnalyzer @JvmOverloads constructor(
                 val inferenceStarted = System.nanoTime()
                 val result = detector.detectForVideo(mpImage, timestampMs)
                 lastInferenceNs = System.nanoTime() - inferenceStarted
-                return result.faceLandmarks().mapNotNull { landmarks ->
+                return result.faceLandmarks().mapIndexedNotNull { index, landmarks ->
                     val points = landmarks.map { FacePoint(it.x(), it.y()) }
-                    if (points.size < 478) return@mapNotNull null
+                    if (points.size < 478) return@mapIndexedNotNull null
                     val left = points.minOf { it.x }.coerceIn(0f, 1f)
                     val top = points.minOf { it.y }.coerceIn(0f, 1f)
                     val right = points.maxOf { it.x }.coerceIn(0f, 1f)
                     val bottom = points.maxOf { it.y }.coerceIn(0f, 1f)
-                    if (right <= left || bottom <= top) return@mapNotNull null
+                    if (right <= left || bottom <= top) return@mapIndexedNotNull null
                     val eyes = listOf(points[468], points[473]).sortedBy { it.x }
                     val mouth = listOf(points[61], points[291]).sortedBy { it.x }
                     FaceObservation(FaceBounds(left, top, right, bottom), mapOf(
                         FaceAnchor.LEFT_EYE to eyes[0], FaceAnchor.RIGHT_EYE to eyes[1],
                         FaceAnchor.NOSE to points[1], FaceAnchor.LEFT_MOUTH to mouth[0],
-                        FaceAnchor.RIGHT_MOUTH to mouth[1], FaceAnchor.UPPER_LIP to points[0]), points)
+                        FaceAnchor.RIGHT_MOUTH to mouth[1], FaceAnchor.UPPER_LIP to points[0]), points,
+                        if(output3D) FaceGeometry3D(landmarks.map { FacePoint3D(it.x(),it.y(),it.z()) },
+                            info.timestampNs,result.facialTransformationMatrixes().orElse(emptyList()).getOrNull(index)) else null)
                 }.map { coordinates.toRaw(it) }
         } finally { mpImage.close() }
     }
@@ -116,9 +123,13 @@ class MediaPipeFaceAnalyzer @JvmOverloads constructor(
         /** 保存 applicationContext 并返回模型工厂；实际检测器在调用 create 的分析线程创建。 */
         @JvmStatic @JvmOverloads
         fun factory(context: Context, modelAsset: String = "face_landmarker.task",
-                    execution: Execution = Execution.CPU): FaceAnalyzerFactory {
+                    execution: Execution = Execution.CPU): FaceAnalyzerFactory = factory(context,modelAsset,execution,false)
+
+        @JvmStatic @JvmOverloads
+        fun factory(context: Context, modelAsset: String = "face_landmarker.task",
+                    execution: Execution = Execution.CPU, output3D: Boolean): FaceAnalyzerFactory {
             val app = context.applicationContext
-            return FaceAnalyzerFactory { MediaPipeFaceAnalyzer(app, modelAsset, execution) }
+            return FaceAnalyzerFactory { MediaPipeFaceAnalyzer(app, modelAsset, execution, output3D) }
         }
     }
 }

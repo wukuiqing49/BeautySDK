@@ -1,0 +1,74 @@
+
+> Task :app:dependencies
+
+------------------------------------------------------------
+Project ':app'
+------------------------------------------------------------
+
+sdkReleaseRuntimeClasspath - Resolved configuration for runtime for variant: sdkRelease
+\--- com.beautysdk:beautysdk:0.2.0
+     +--- com.beautysdk:lib_beauty:0.2.0
+     |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10
+     |         \--- org.jetbrains:annotations:13.0
+     +--- com.beautysdk:lib_beauty_resources:0.2.0
+     |    +--- com.beautysdk:lib_beauty:0.2.0 (*)
+     |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
+     +--- com.beautysdk:lib_beauty_mediapipe:0.2.0
+     |    +--- com.google.mediapipe:tasks-vision:0.10.32
+     |    |    +--- androidx.annotation:annotation:1.1.0
+     |    |    +--- com.google.guava:guava:27.0.1-android
+     |    |    |    +--- com.google.guava:failureaccess:1.0.1
+     |    |    |    +--- com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
+     |    |    |    +--- com.google.code.findbugs:jsr305:3.0.2
+     |    |    |    +--- org.checkerframework:checker-compat-qual:2.5.2 -> 2.5.3
+     |    |    |    +--- com.google.errorprone:error_prone_annotations:2.2.0
+     |    |    |    +--- com.google.j2objc:j2objc-annotations:1.1
+     |    |    |    \--- org.codehaus.mojo:animal-sniffer-annotations:1.17
+     |    |    \--- com.google.mediapipe:tasks-core:0.10.32
+     |    |         +--- com.google.flogger:flogger:0.6
+     |    |         |    \--- org.checkerframework:checker-compat-qual:2.5.3
+     |    |         +--- com.google.flogger:flogger-system-backend:0.6
+     |    |         |    +--- com.google.flogger:flogger:0.6 (*)
+     |    |         |    \--- org.checkerframework:checker-compat-qual:2.5.3
+     |    |         +--- com.google.guava:guava:27.0.1-android (*)
+     |    |         +--- com.google.protobuf:protobuf-javalite:4.26.1
+     |    |         +--- com.google.android.datatransport:transport-api:3.0.0
+     |    |         |    \--- androidx.annotation:annotation:1.1.0
+     |    |         +--- com.google.android.datatransport:transport-backend-cct:3.1.0
+     |    |         |    +--- androidx.annotation:annotation:1.1.0
+     |    |         |    +--- com.google.android.datatransport:transport-api:3.0.0 (*)
+     |    |         |    +--- com.google.android.datatransport:transport-runtime:3.1.0
+     |    |         |    |    +--- androidx.annotation:annotation:1.1.0
+     |    |         |    |    +--- com.google.android.datatransport:transport-api:3.0.0 (*)
+     |    |         |    |    +--- com.google.firebase:firebase-encoders:17.0.0
+     |    |         |    |    |    \--- androidx.annotation:annotation:1.1.0
+     |    |         |    |    +--- com.google.firebase:firebase-encoders-proto:16.0.0
+     |    |         |    |    |    +--- androidx.annotation:annotation:1.1.0
+     |    |         |    |    |    \--- com.google.firebase:firebase-encoders:17.0.0 (*)
+     |    |         |    |    \--- javax.inject:javax.inject:1
+     |    |         |    +--- com.google.firebase:firebase-encoders:17.0.0 (*)
+     |    |         |    \--- com.google.firebase:firebase-encoders-json:18.0.0
+     |    |         |         +--- androidx.annotation:annotation:1.1.0
+     |    |         |         \--- com.google.firebase:firebase-encoders:17.0.0 (*)
+     |    |         \--- com.google.android.datatransport:transport-runtime:3.1.0 (*)
+     |    +--- com.beautysdk:lib_beauty:0.2.0 (*)
+     |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
+     +--- com.beautysdk:lib_beauty_gpupixel:0.2.0
+     |    +--- com.beautysdk:lib_beauty:0.2.0 (*)
+     |    \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
+     \--- org.jetbrains.kotlin:kotlin-stdlib:2.3.10 (*)
+
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+[Incubating] Problems report is available at: file:///C:/work/AI/BeautySDK/build/sdk-size-probe/host/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 834ms
+1 actionable task: 1 executed

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="makeup_color_value">Color %1$s</string>
+    <string name="makeup_color_title">Makeup color</string>
+    <string name="makeup_color_invalid">Enter a color such as #C45060</string>
+    <string-array name="makeup_color_names"><item>Rose</item><item>Berry</item><item>Coral</item><item>Mauve</item><item>Nude</item><item>Custom color…</item></string-array>
+</resources>

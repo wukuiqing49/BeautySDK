@@ -28,7 +28,7 @@ data class ResourceCapabilities(val features:Set<String>) {
     }
     companion object {
         /** 历史全能力配置：要求宿主实际接好了人脸、场景及分割组件，不是自动探测或质量认证。 */
-        @JvmStatic fun androidGpuPixel()=ResourceCapabilities(setOf("face.landmarks478","segmentation","beauty.parameters.v1","reshape.parameters.v1","makeup.parameters.v1","makeup.eyelash.texture.v1","filter.basic.v1","sticker.png.v1","background.v1","motion.v1","theme.v1"))
+        @JvmStatic fun androidGpuPixel()=ResourceCapabilities(setOf("face.landmarks478","segmentation","beauty.parameters.v1","reshape.parameters.v1","makeup.parameters.v1","makeup.colors.v1","makeup.eyelash.texture.v1","filter.basic.v1","sticker.png.v1","background.v1","motion.v1","theme.v1"))
         /** 根据宿主实际装配声明能力；faceAnalysis要求478点后端，不接受仅有人脸框的检测器。
          * 默认仅不依赖人脸/场景的GPUPixel处理，不代表运行时自动探测或质量认证。
          */
@@ -37,7 +37,7 @@ data class ResourceCapabilities(val features:Set<String>) {
         ):ResourceCapabilities {
             require(!segmentation||sceneRenderer){"Segmentation requires scene renderer"}
             val available=linkedSetOf("beauty.parameters.v1","filter.basic.v1","theme.v1")
-            if(faceAnalysis)available.addAll(listOf("face.landmarks478","reshape.parameters.v1","makeup.parameters.v1","makeup.eyelash.texture.v1","sticker.png.v1"))
+            if(faceAnalysis)available.addAll(listOf("face.landmarks478","reshape.parameters.v1","makeup.parameters.v1","makeup.colors.v1","makeup.eyelash.texture.v1","sticker.png.v1"))
             if(sceneRenderer)available.add("motion.v1")
             if(segmentation)available.addAll(listOf("segmentation","background.v1"))
             return ResourceCapabilities(java.util.Collections.unmodifiableSet(available))
@@ -72,7 +72,9 @@ object BeautyParameters {
 }
 /** 已准备的不可变资源；只在IO配置阶段解码，不在process回调加载。 */
 class PreparedResource internal constructor(val descriptor:ResourceDescriptor,private val preview:ByteArray,
-    internal val values:Map<String,Float>,internal val payload:BeautySettings?,internal val children:List<PreparedResource> = emptyList()) {
+    internal val values:Map<String,Float>,internal val payload:BeautySettings?,internal val children:List<PreparedResource> = emptyList(),internal val colors:Map<String,MakeupColor>) {
+    internal constructor(descriptor:ResourceDescriptor,preview:ByteArray,values:Map<String,Float>,payload:BeautySettings?,children:List<PreparedResource> = emptyList()):
+        this(descriptor,preview,values,payload,children,emptyMap())
     fun previewPng()=preview.copyOf()
     fun applyTo(base:BeautySettings,capabilities:ResourceCapabilities):BeautySettings {
         capabilities.requireSupported(descriptor)
@@ -81,26 +83,13 @@ class PreparedResource internal constructor(val descriptor:ResourceDescriptor,pr
             "filter.basic.v1" -> LicensedFeature.FILTER
             "face.landmarks478" -> LicensedFeature.FACE
             "reshape.parameters.v1" -> LicensedFeature.RESHAPE
-            "makeup.parameters.v1", "makeup.eyelash.texture.v1" -> LicensedFeature.MAKEUP
+            "makeup.parameters.v1", "makeup.colors.v1", "makeup.eyelash.texture.v1" -> LicensedFeature.MAKEUP
             "sticker.png.v1" -> LicensedFeature.STICKER
             "background.v1", "segmentation" -> LicensedFeature.BACKGROUND
             "motion.v1" -> LicensedFeature.MOTION
             else -> null // 容器theme由每个子资源分别校验，不额外赋予权限。
         } }.toSet()
         BeautyLicensing.requireFeatures(permissions)
-        if(descriptor.category==ResourceCategory.THEME) return children.fold(BeautySettings()) { state,child->child.applyTo(state,capabilities) }
-        var result=BeautyParameters.apply(base,values)
-        val p=payload ?: return result
-        result=when(descriptor.category) {
-            ResourceCategory.STICKER->result.copy(stickerPack=StickerPack((base.stickerPack?.layers.orEmpty()+p.stickerPack?.layers.orEmpty())))
-            ResourceCategory.BACKGROUND->result.copy(scene=result.scene.copy(background=p.scene.background,backgroundColor=p.scene.backgroundColor,backgroundImage=p.scene.backgroundImage,blurRadius=p.scene.blurRadius,backgroundFocusX=p.scene.backgroundFocusX,backgroundFocusY=p.scene.backgroundFocusY))
-            ResourceCategory.MOTION->result.copy(scene=result.scene.copy(motion=p.scene.motion,zoom=p.scene.zoom,periodMs=p.scene.periodMs,timeline=p.scene.timeline))
-            ResourceCategory.FILTER->result.copy(filter=p.filter)
-            ResourceCategory.MAKEUP->if(descriptor.subcategory=="EYELASH") result.copy(eyeMakeup=p.eyeMakeup) else result
-            ResourceCategory.BEAUTY->if(descriptor.subcategory=="LEGACY") result.copy(filter=p.filter,eyeMakeup=p.eyeMakeup) else result
-            else->result
-        }
-        return result
+        return ResourceEffectApplication.apply(this,base,capabilities)
     }
 }
-

@@ -1,0 +1,53 @@
+{
+  "source": "Live adb metadata observed during user-confirmed reproduction; retained tool output at 13:47:49–54, earlier ring-buffer lines later overwritten.",
+  "rendererWindows": [
+    {
+      "time": "13:47:49.421",
+      "n": 31,
+      "faceUnavailable": 25,
+      "invalidEyes": 0,
+      "submitted": 6
+    },
+    {
+      "time": "13:47:50.426",
+      "n": 50,
+      "faceUnavailable": 0,
+      "invalidEyes": 0,
+      "submitted": 50
+    },
+    {
+      "time": "13:47:51.429",
+      "n": 50,
+      "faceUnavailable": 0,
+      "invalidEyes": 0,
+      "submitted": 50
+    },
+    {
+      "time": "13:47:52.434",
+      "n": 50,
+      "faceUnavailable": 0,
+      "invalidEyes": 0,
+      "submitted": 50
+    },
+    {
+      "time": "13:47:53.443",
+      "n": 42,
+      "faceUnavailable": 3,
+      "invalidEyes": 0,
+      "submitted": 39
+    },
+    {
+      "time": "13:47:54.446",
+      "n": 34,
+      "faceUnavailable": 15,
+      "invalidEyes": 0,
+      "submitted": 19
+    }
+  ],
+  "notes": [
+    "Renderer faceUnavailable includes absent/stale analysis; it does not prove the model reported NO_FACE.",
+    "Valid eyes did not hit geometry rejection in these windows.",
+    "These aggregate windows do not uniquely attribute every subjective flicker.",
+    "No frames or landmark coordinates captured."
+  ]
+}

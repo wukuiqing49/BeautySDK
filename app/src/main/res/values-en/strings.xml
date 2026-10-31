@@ -168,4 +168,16 @@
     <string name="resources_gesture_active">Enabled · %1$s</string>
     <string name="resources_gesture_available">Tap to enable · %1$s</string>
     <string name="resources_list_separator">, </string>
+    <string name="sticker_3d_title">3D stickers (experimental)</string>
+    <string name="sticker_3d_none">Off</string>
+    <string name="sticker_3d_glasses">3D glasses</string>
+    <string name="sticker_3d_hat">3D hat</string>
+    <string name="sticker_3d_hint">3D follows head rotation with approximate face occlusion. While enabled, 2D stickers, face reshaping and 2D motion tracking are paused; their settings are kept.</string>
+    <string name="sticker_3d_crown">3D crown</string>
+    <string name="sticker_3d_cat">3D cat ears</string>
+    <string name="sticker_3d_headphones">3D headphones</string>
+    <string name="sticker_mode_2d">2D stickers</string>
+    <string name="sticker_mode_3d">3D stickers</string>
+    <string name="ui_effect_applied">Applied</string>
+    <string name="sticker_3d_cap">3D baseball cap</string>
 </resources>

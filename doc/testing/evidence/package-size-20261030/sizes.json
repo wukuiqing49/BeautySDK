@@ -1,0 +1,494 @@
+{
+  "debug/arm64-v8a": {
+    "file": "C:\\work\\AI\\BeautySDK\\build\\size-analysis-20261030\\app-arm64-v8a-debug.apk",
+    "bytes": 37280155,
+    "MiB": 35.5531,
+    "sha256": "f3f19e1b921ede48ce902bf82583a3a6d7d8e373c945554aaeb3bb5919d8ef01",
+    "groups": {
+      "other": {
+        "raw": 2335894,
+        "packed": 1854718
+      },
+      "dex": {
+        "raw": 24907556,
+        "packed": 9957665
+      },
+      "native": {
+        "raw": 11468328,
+        "packed": 11468328
+      },
+      "assets": {
+        "raw": 17789306,
+        "packed": 13746953
+      }
+    },
+    "libs": [
+      {
+        "name": "lib/arm64-v8a/libbeauty_gpupixel.so",
+        "raw": 429616,
+        "packed": 429616
+      },
+      {
+        "name": "lib/arm64-v8a/libbeauty_rgb_input.so",
+        "raw": 82856,
+        "packed": 82856
+      },
+      {
+        "name": "lib/arm64-v8a/libimage_processing_util_jni.so",
+        "raw": 29008,
+        "packed": 29008
+      },
+      {
+        "name": "lib/arm64-v8a/libmediapipe_tasks_vision_jni.so",
+        "raw": 10325016,
+        "packed": 10325016
+      },
+      {
+        "name": "lib/arm64-v8a/libmmkv.so",
+        "raw": 597000,
+        "packed": 597000
+      },
+      {
+        "name": "lib/arm64-v8a/libsurface_util_jni.so",
+        "raw": 4832,
+        "packed": 4832
+      }
+    ],
+    "largestAssets": [
+      {
+        "name": "assets/gesture_recognizer.task",
+        "raw": 8373440,
+        "packed": 6548487
+      },
+      {
+        "name": "assets/face_landmarker.task",
+        "raw": 3758596,
+        "packed": 3349729
+      },
+      {
+        "name": "assets/resource_delivery.zip",
+        "raw": 3429590,
+        "packed": 2343555
+      },
+      {
+        "name": "assets/gpupixel/res/lookup_light.png",
+        "raw": 461835,
+        "packed": 461835
+      },
+      {
+        "name": "assets/selfie_segmenter.tflite",
+        "raw": 249537,
+        "packed": 249537
+      },
+      {
+        "name": "assets/effects/full_theme.zip",
+        "raw": 120563,
+        "packed": 43488
+      },
+      {
+        "name": "assets/resource_center/lash_dense_1.zip",
+        "raw": 45517,
+        "packed": 22465
+      },
+      {
+        "name": "assets/effects/lash_dense.zip",
+        "raw": 44733,
+        "packed": 22208
+      },
+      {
+        "name": "assets/resource_center/daily_theme_2.zip",
+        "raw": 51370,
+        "packed": 21090
+      },
+      {
+        "name": "assets/resource_center/gold_crown_2.zip",
+        "raw": 42593,
+        "packed": 20974
+      },
+      {
+        "name": "assets/sticker_packs/gold_crown.zip",
+        "raw": 40725,
+        "packed": 20787
+      },
+      {
+        "name": "assets/beauty_stickers/gold_crown.png",
+        "raw": 20650,
+        "packed": 20650
+      }
+    ]
+  },
+  "debug/armeabi-v7a": {
+    "file": "C:\\work\\AI\\BeautySDK\\build\\size-analysis-20261030\\app-armeabi-v7a-debug.apk",
+    "bytes": 33756215,
+    "MiB": 32.1924,
+    "sha256": "4aa9b731bce09601036c92cc34699fa3026b1f4e023a2ef363b9eacbe6e6ec22",
+    "groups": {
+      "other": {
+        "raw": 2335894,
+        "packed": 1854718
+      },
+      "dex": {
+        "raw": 24907556,
+        "packed": 9957665
+      },
+      "native": {
+        "raw": 7957976,
+        "packed": 7957976
+      },
+      "assets": {
+        "raw": 17789306,
+        "packed": 13746953
+      }
+    },
+    "libs": [
+      {
+        "name": "lib/armeabi-v7a/libbeauty_gpupixel.so",
+        "raw": 263384,
+        "packed": 263384
+      },
+      {
+        "name": "lib/armeabi-v7a/libbeauty_rgb_input.so",
+        "raw": 61956,
+        "packed": 61956
+      },
+      {
+        "name": "lib/armeabi-v7a/libimage_processing_util_jni.so",
+        "raw": 20380,
+        "packed": 20380
+      },
+      {
+        "name": "lib/armeabi-v7a/libmediapipe_tasks_vision_jni.so",
+        "raw": 7237484,
+        "packed": 7237484
+      },
+      {
+        "name": "lib/armeabi-v7a/libmmkv.so",
+        "raw": 371332,
+        "packed": 371332
+      },
+      {
+        "name": "lib/armeabi-v7a/libsurface_util_jni.so",
+        "raw": 3440,
+        "packed": 3440
+      }
+    ],
+    "largestAssets": [
+      {
+        "name": "assets/gesture_recognizer.task",
+        "raw": 8373440,
+        "packed": 6548487
+      },
+      {
+        "name": "assets/face_landmarker.task",
+        "raw": 3758596,
+        "packed": 3349729
+      },
+      {
+        "name": "assets/resource_delivery.zip",
+        "raw": 3429590,
+        "packed": 2343555
+      },
+      {
+        "name": "assets/gpupixel/res/lookup_light.png",
+        "raw": 461835,
+        "packed": 461835
+      },
+      {
+        "name": "assets/selfie_segmenter.tflite",
+        "raw": 249537,
+        "packed": 249537
+      },
+      {
+        "name": "assets/effects/full_theme.zip",
+        "raw": 120563,
+        "packed": 43488
+      },
+      {
+        "name": "assets/resource_center/lash_dense_1.zip",
+        "raw": 45517,
+        "packed": 22465
+      },
+      {
+        "name": "assets/effects/lash_dense.zip",
+        "raw": 44733,
+        "packed": 22208
+      },
+      {
+        "name": "assets/resource_center/daily_theme_2.zip",
+        "raw": 51370,
+        "packed": 21090
+      },
+      {
+        "name": "assets/resource_center/gold_crown_2.zip",
+        "raw": 42593,
+        "packed": 20974
+      },
+      {
+        "name": "assets/sticker_packs/gold_crown.zip",
+        "raw": 40725,
+        "packed": 20787
+      },
+      {
+        "name": "assets/beauty_stickers/gold_crown.png",
+        "raw": 20650,
+        "packed": 20650
+      }
+    ]
+  },
+  "release/arm64-v8a": {
+    "file": "C:\\work\\AI\\BeautySDK\\build\\size-analysis-20261030\\app-arm64-v8a-release-unsigned.apk",
+    "bytes": 27763963,
+    "MiB": 26.4778,
+    "sha256": "428db07a77920c97b2c2bb413999e9f5f6979de7d3e0d74fda9f25494b52c079",
+    "groups": {
+      "other": {
+        "raw": 1819182,
+        "packed": 1401263
+      },
+      "assets": {
+        "raw": 17792062,
+        "packed": 13498583
+      },
+      "dex": {
+        "raw": 2653700,
+        "packed": 1278307
+      },
+      "native": {
+        "raw": 11409520,
+        "packed": 11409520
+      }
+    },
+    "libs": [
+      {
+        "name": "lib/arm64-v8a/libbeauty_gpupixel.so",
+        "raw": 371096,
+        "packed": 371096
+      },
+      {
+        "name": "lib/arm64-v8a/libbeauty_rgb_input.so",
+        "raw": 82568,
+        "packed": 82568
+      },
+      {
+        "name": "lib/arm64-v8a/libimage_processing_util_jni.so",
+        "raw": 29008,
+        "packed": 29008
+      },
+      {
+        "name": "lib/arm64-v8a/libmediapipe_tasks_vision_jni.so",
+        "raw": 10325016,
+        "packed": 10325016
+      },
+      {
+        "name": "lib/arm64-v8a/libmmkv.so",
+        "raw": 597000,
+        "packed": 597000
+      },
+      {
+        "name": "lib/arm64-v8a/libsurface_util_jni.so",
+        "raw": 4832,
+        "packed": 4832
+      }
+    ],
+    "largestAssets": [
+      {
+        "name": "assets/gesture_recognizer.task",
+        "raw": 8373440,
+        "packed": 6361404
+      },
+      {
+        "name": "assets/face_landmarker.task",
+        "raw": 3758596,
+        "packed": 3332599
+      },
+      {
+        "name": "assets/resource_delivery.zip",
+        "raw": 3429590,
+        "packed": 2307112
+      },
+      {
+        "name": "assets/gpupixel/res/lookup_light.png",
+        "raw": 461835,
+        "packed": 461835
+      },
+      {
+        "name": "assets/selfie_segmenter.tflite",
+        "raw": 249537,
+        "packed": 249537
+      },
+      {
+        "name": "assets/effects/full_theme.zip",
+        "raw": 120563,
+        "packed": 41591
+      },
+      {
+        "name": "assets/resource_center/lash_dense_1.zip",
+        "raw": 45517,
+        "packed": 22367
+      },
+      {
+        "name": "assets/effects/lash_dense.zip",
+        "raw": 44733,
+        "packed": 22120
+      },
+      {
+        "name": "assets/resource_center/gold_crown_2.zip",
+        "raw": 42593,
+        "packed": 20924
+      },
+      {
+        "name": "assets/sticker_packs/gold_crown.zip",
+        "raw": 40725,
+        "packed": 20759
+      },
+      {
+        "name": "assets/resource_center/daily_theme_2.zip",
+        "raw": 51370,
+        "packed": 20747
+      },
+      {
+        "name": "assets/beauty_stickers/gold_crown.png",
+        "raw": 20650,
+        "packed": 20650
+      }
+    ]
+  },
+  "release/armeabi-v7a": {
+    "file": "C:\\work\\AI\\BeautySDK\\build\\size-analysis-20261030\\app-armeabi-v7a-release-unsigned.apk",
+    "bytes": 24272791,
+    "MiB": 23.1483,
+    "sha256": "d5b2a66e54c4806c55ccf2bbefff05f6d8cb380d62fc2a79f896f46a1ff5370c",
+    "groups": {
+      "other": {
+        "raw": 1819182,
+        "packed": 1401263
+      },
+      "assets": {
+        "raw": 17792062,
+        "packed": 13498583
+      },
+      "dex": {
+        "raw": 2653700,
+        "packed": 1278307
+      },
+      "native": {
+        "raw": 7927080,
+        "packed": 7927080
+      }
+    },
+    "libs": [
+      {
+        "name": "lib/armeabi-v7a/libbeauty_gpupixel.so",
+        "raw": 232488,
+        "packed": 232488
+      },
+      {
+        "name": "lib/armeabi-v7a/libbeauty_rgb_input.so",
+        "raw": 61956,
+        "packed": 61956
+      },
+      {
+        "name": "lib/armeabi-v7a/libimage_processing_util_jni.so",
+        "raw": 20380,
+        "packed": 20380
+      },
+      {
+        "name": "lib/armeabi-v7a/libmediapipe_tasks_vision_jni.so",
+        "raw": 7237484,
+        "packed": 7237484
+      },
+      {
+        "name": "lib/armeabi-v7a/libmmkv.so",
+        "raw": 371332,
+        "packed": 371332
+      },
+      {
+        "name": "lib/armeabi-v7a/libsurface_util_jni.so",
+        "raw": 3440,
+        "packed": 3440
+      }
+    ],
+    "largestAssets": [
+      {
+        "name": "assets/gesture_recognizer.task",
+        "raw": 8373440,
+        "packed": 6361404
+      },
+      {
+        "name": "assets/face_landmarker.task",
+        "raw": 3758596,
+        "packed": 3332599
+      },
+      {
+        "name": "assets/resource_delivery.zip",
+        "raw": 3429590,
+        "packed": 2307112
+      },
+      {
+        "name": "assets/gpupixel/res/lookup_light.png",
+        "raw": 461835,
+        "packed": 461835
+      },
+      {
+        "name": "assets/selfie_segmenter.tflite",
+        "raw": 249537,
+        "packed": 249537
+      },
+      {
+        "name": "assets/effects/full_theme.zip",
+        "raw": 120563,
+        "packed": 41591
+      },
+      {
+        "name": "assets/resource_center/lash_dense_1.zip",
+        "raw": 45517,
+        "packed": 22367
+      },
+      {
+        "name": "assets/effects/lash_dense.zip",
+        "raw": 44733,
+        "packed": 22120
+      },
+      {
+        "name": "assets/resource_center/gold_crown_2.zip",
+        "raw": 42593,
+        "packed": 20924
+      },
+      {
+        "name": "assets/sticker_packs/gold_crown.zip",
+        "raw": 40725,
+        "packed": 20759
+      },
+      {
+        "name": "assets/resource_center/daily_theme_2.zip",
+        "raw": 51370,
+        "packed": 20747
+      },
+      {
+        "name": "assets/beauty_stickers/gold_crown.png",
+        "raw": 20650,
+        "packed": 20650
+      }
+    ]
+  },
+  "debug/universal": {
+    "file": "C:\\work\\AI\\BeautySDK\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "bytes": 45291049,
+    "MiB": 43.1929,
+    "sha256": "be9995d5f25f3bb6061fc84f519d6d8e3be09e61d8e30a63f95cebccb5e80810",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a"
+    ]
+  },
+  "release/universal": {
+    "file": "C:\\work\\AI\\BeautySDK\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk",
+    "bytes": 35742089,
+    "MiB": 34.0863,
+    "sha256": "d4cb74e8d6d962c1deb23d4d43f6bc8743d80763a603d6de87319f7c601affc6",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a"
+    ]
+  }
+}

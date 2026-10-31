@@ -20,6 +20,10 @@ class AnalysisCoordinates(private val original: FrameInfo) {
             FacePoint(b.left,b.bottom),FacePoint(b.right,b.bottom)).map(::toRaw)
         return FaceObservation(FaceBounds(corners.minOf { it.x },corners.minOf { it.y },
             corners.maxOf { it.x },corners.maxOf { it.y }), face.anchors.mapValues { toRaw(it.value) },
-            face.landmarks.map(::toRaw))
+            face.landmarks.map(::toRaw), face.geometry3D?.map { point ->
+                val p = toRaw(FacePoint(point.x, point.y))
+                val uprightWidth = if (original.rotationDegrees % 180 == 0) original.width else original.height
+                FacePoint3D(p.x, p.y, point.z * uprightWidth / original.width)
+            })
     }
 }

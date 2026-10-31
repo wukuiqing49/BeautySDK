@@ -1,0 +1,827 @@
+{
+  "date": "2026-10-30",
+  "scope": "Built-in 3D accessories and smooth stylized lighting, not 3D face reshaping",
+  "sourceFingerprint": "dfd651347e0c69759605ef63a68e2c79119f1ea634760862ee187e9f10d03138",
+  "sourceFileHashes": {
+    "app/build.gradle": "605a57a8dee3503f419d978739507fb49c254c61a8b55a4ced2a5298c36ae594",
+    "app/src/androidTest/java/com/beautysdk/demo/DemoBuiltinLibraryDeviceTest.kt": "0d42807c585899a91e185cae68f18d20eade232cb6eb5676e8b1d55c621a3acc",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceCenterUiDeviceTest.kt": "07ac755962e9e3c3fe1fe3b4116e68369846c605db8a0f53bcb3d5458770baa5",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceExperienceDeviceTest.kt": "577bfcbe276bf706b3be970ee15025080d672d2fbe7a6e5625ada223c772d4d2",
+    "app/src/androidTest/java/com/beautysdk/demo/ResourceLibraryDeviceTest.kt": "9bff038ac6c5d6763999f3c5777cacb384be07235203782ba09c34d4d2cb16e8",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DDeviceTest.kt": "c0f049eb7afdd8c19e29aecce199f483f2c7bf525064e0fb6fa5cdb6083dc919",
+    "app/src/androidTest/java/com/beautysdk/demo/Sticker3DUiDeviceTest.kt": "fa3147b9b4254af9e8af435c1b368aaf31a79bd8891585b15565423c79d4cfcc",
+    "app/src/androidTest/java/com/beautysdk/demo/UiPreviewConfigurationRule.kt": "b3f5f818a1d3615bb03f918c4cc4555995597180c6ead7c1979c6e04dbfd3897",
+    "app/src/main/java/com/beautysdk/demo/CameraTestActivity.kt": "9f1d97462984dd38d183b4015268daf447593f31d4aac18d0a64d5cdb0955765",
+    "app/src/main/java/com/beautysdk/demo/EffectPanelHost.kt": "6bcffd296ae878fc79b8c6d5cbfa502a1ce57607d2a0f4f529317f70e0b80edb",
+    "app/src/main/java/com/beautysdk/demo/ResourceCardAdapter.kt": "2c33c9b71226b51e2ecaf712da26df148d8518e806465778e9c1b85644c396e3",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterActivity.kt": "0de0f6503068600920c1143633292fe54c5f601794c649b1695aef366301ec16",
+    "app/src/main/java/com/beautysdk/demo/ResourceCenterController.kt": "36ba6660f72ffa50a30f25112c777abf460faccf33034250c9e670a0a5fa6358",
+    "app/src/main/java/com/beautysdk/demo/ResourceParameterPanel.kt": "acff2f628ba9cbcf3391c3afffcbe5e47289012999909f5ece7b3602c7e0986a",
+    "app/src/main/res/drawable/bg_effect_cover.xml": "afbf8b83b039e987dc0a72ecaf76415c6a5b64c8b2025c3641ce8d06a12151d5",
+    "app/src/main/res/drawable/bg_panel_handle.xml": "217aae89a88e4324f0f48c276e4f50216ac88c972fabfd617d178b6f06f76a38",
+    "app/src/main/res/drawable/ic_effect_off.xml": "49831052f8e9885b1fc677acf0031b0102c70db46eb2189bf898ec421ae2a55b",
+    "app/src/main/res/drawable/ic_preset_bare.xml": "f89e1421683938b4c7ea45be3c210858202ee0a467907b6a1147bdf65d92c42b",
+    "app/src/main/res/drawable/ic_preset_clear.xml": "95eb835fc1c08e1f38b3ff78e59ded8b4bf38637ec9f486c2e1424b9e6ba3e04",
+    "app/src/main/res/drawable/ic_preset_fresh.xml": "80e36fa27977f3809d5f06f82031931fa2de3d109bca4d8e48d5657df90a58ef",
+    "app/src/main/res/drawable/ic_preset_soft.xml": "55ecc2e0159ade67d498747fd247198540a4d2313c50598432984258f9adfe9d",
+    "app/src/main/res/drawable/ic_sticker_hat.xml": "c5c244c2324d1e36be635258aed736e80f9ffc8b83abade3cad0ce0c66b860b2",
+    "app/src/main/res/layout-land/activity_resource_center.xml": "731c20f360fb4ee821fba3f397e6aa0fd90dc4d2b93e1aac4166c027eba4903c",
+    "app/src/main/res/layout/activity_camera_test.xml": "3220db34357ee612dd160c16e7dd0d5a5e02736adf43f6bae4620daa9e201c6e",
+    "app/src/main/res/layout/activity_resource_center.xml": "84f309d735dab4f74084ba7a055f1496ecfaeef7e99155cf63c44110b6f55aee",
+    "app/src/main/res/layout/item_effect_preset.xml": "be110bde36e0a3efc0d947d240d6f322e57bc31bd88da9a27a028443fd2421c4",
+    "app/src/main/res/layout/view_resource_center.xml": "d3077f1737913bf346760f8486baeec84a05b9454c1a0746650e785c6b8489f3",
+    "app/src/main/res/values-en/strings.xml": "afdecb0682f4939924711cef926250ad854e5a1d50e92454f18d6609e177d041",
+    "app/src/main/res/values-en/strings_ui_refresh.xml": "61d9012fbcf39fd00399fe85a782b10615261d832e56b8ca242a3ef005154ef7",
+    "app/src/main/res/values-zh-rCN/strings.xml": "17153a79d0075a763d945af072e81351e1dc18f6ca8775892b33aca35077fc83",
+    "app/src/main/res/values-zh-rCN/strings_ui_refresh.xml": "f3618ae316675087f3723b2cb18ad96b73e5e474414f823961d06db0aeeb1b1f",
+    "app/src/main/res/values/preset_styles.xml": "5f17ac22db8ad6d05f9cc6bbed18c8c6ff43adfdc1228244790cbcfe8760510f",
+    "app/src/main/res/values/strings.xml": "974843caeb874af39355af72d1277e3f186a72acef11f2607269e56811db4a58",
+    "app/src/main/res/values/strings_ui_refresh.xml": "61d9012fbcf39fd00399fe85a782b10615261d832e56b8ca242a3ef005154ef7",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisCoordinates.kt": "539ca643c4745130bd1087faa07dca9693e372669bfdd8ac2907ff8bc8552b15",
+    "core/lib_beauty/src/main/java/com/beautysdk/AnalysisFrameMapping.kt": "a2b19608245b0b923148d20672c0713d1adaa2897773f4786ccbce9721859e84",
+    "core/lib_beauty/src/main/java/com/beautysdk/BeautyEffects.kt": "501156b12e34fb0cc5641273124b8eac4368620c21a3fc3dc091d988769d378c",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceAnalysis.kt": "fe7880957ea07a349c11afe643db5db07853263487bcfe34081e482b9fd8865b",
+    "core/lib_beauty/src/main/java/com/beautysdk/FaceGeometry3D.kt": "cdf2870c07e615b6112f560c7faca9101d5eb338edb2b0bc4557f41717dfa95d",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlBeautyRenderer.kt": "58855e884c5279925018d52e1633c2bf9a3ec954674f037eeda4f5146bbc3455",
+    "core/lib_beauty/src/main/java/com/beautysdk/GlSticker3DRenderer.kt": "11a0916654f9a81c2affdca53927bce04c9d941e3d381c2b229845f19ebe8c18",
+    "core/lib_beauty/src/main/java/com/beautysdk/RgbaBeautyRenderer.kt": "09fd8096726986b3cae7a3cabb4fbd1b4956303ebf30d59ce33ff52c3aeaae98",
+    "core/lib_beauty/src/main/java/com/beautysdk/Sticker3D.kt": "7a78571615b3dd074298a392fdbae17f0fbc2ef8ab415fa18f88a059bba21f85",
+    "core/lib_beauty/src/main/java/com/beautysdk/license/BeautyLicensing.kt": "0335fd6296d849750fcf0e99fdc19004f95d79f448236c667192b1978363e2eb",
+    "core/lib_beauty/src/test/java/com/beautysdk/Sticker3DTest.kt": "d8e755f8f8e53f57c2f9179880d984ef183eca525de232ba3c70dd642772746e",
+    "core/lib_beauty/src/test/java/com/beautysdk/license/LicenseEnforcementTest.kt": "ef3ebdc9ad6a416d4c10f24dbee35e480a052463c1c7ccc3258ab622c4d1e7ee",
+    "core/lib_beauty_gpupixel/src/main/java/com/beautysdk/gpupixel/GpuPixelBeautyRenderer.kt": "df9a4cff9e86390edbc1049774caa2b11d8f476650bc01f2de6c4781113816a8",
+    "core/lib_beauty_mediapipe/src/main/java/com/beautysdk/mediapipe/MediaPipeFaceAnalyzer.kt": "3dac7cb47314a63b228dd8501c4703bc0ed6d40e2fd29a20a4303cea3dac465b",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/CameraBeautyController.kt": "00ba4d5938be79323b51bb3efd9a2a486a15155fd82d163502dfe199c4502ad8",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/GpuBeautyPreview.kt": "58beb015338ba80323159bdd722d139eeb5f9d231eb777d6e81ac991fe618380",
+    "feature/feature_app/src/main/java/com/beautysdk/demo/feature/app/PreviewRequest.kt": "078d5744f349f3efa9d97c841ad3903637c1f6eeba283b5d9304f0e5f2ef259d",
+    "feature/feature_app/src/test/java/com/beautysdk/demo/feature/app/PreviewRequestTest.kt": "88472e57426710e64828b86011dfce24a48ae0cfbb4e6b94020181056ca4aacb",
+    "samples/standalone/app/src/main/java/com/beautysdk/sample/TextureIntegration.kt": "b0ad378c8a23761dc42376a9f67f287c643faa37ac6409508c23092b419cb0c0"
+  },
+  "jvm": {
+    "passed": 143,
+    "skipped": 1,
+    "failed": 0,
+    "cases": [
+      {
+        "class": "com.beautysdk.AnalysisFrameMappingTest",
+        "name": "regionsRejectInvalidAndNonFiniteValues",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.AnalysisFrameMappingTest",
+        "name": "mappedSessionPreservesAgeCachesCoordinatesAndInvalidatesResolutionChanges",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.AnalysisFrameMappingTest",
+        "name": "cropAndLetterboxUseExplicitRegions",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.AnalysisFrameMappingTest",
+        "name": "cropDropsOutsideFacesAndAnchorsWithoutClampingThem",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.AnalysisFrameMappingTest",
+        "name": "everyRotationAndMirrorMapsToTargetRawCoordinates",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyAdjustmentsTest",
+        "name": "neutralPassesThroughAndOnlyReshapeNeedsFaces",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyAdjustmentsTest",
+        "name": "additionalShapesAreIndependentFaceEffectsWithSignedControls",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyAdjustmentsTest",
+        "name": "invalidAndNonFiniteStrengthsAreRejected",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "engineRejectionAndFallbackFailureAreExplicit",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "unsupportedRedrawDoesNotResubmitProcessor",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "restartResetsBothTimeLinesAndDuplicateFrameBypasses",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "realBeautyIsProcessedAndWrittenThroughOneEntry",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "reentrantWriteCannotCauseDoubleSubmission",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "readFailureFallsBackOnceAndReports",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "processingFailureFallsBackButWritingFailureNeverRetries",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "redrawAppliesSettingsWithoutAdvancingVideoTime",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "identityStillWritesOriginalFrameToEngine",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyEngineConnectorTest",
+        "name": "lifecycleAndWrongThreadAreRejectedBeforeTouchingEngine",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPerformanceMeterTest",
+        "name": "measuresSuccessfulSamplesWithoutInventingGpuTime",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "rotationAndMirrorMapPixelCentersBackForEveryOrientation",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "schedulerDropsBusyFramesAndRejectsLateResultsAfterReset",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "missingPreciseLipDoesNotInventMoustache",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "analysisSamplingAndTextureGeometryShareOneTimeline",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "reusableOrientationBufferMatchesOwnedPixelsAndDoesNotModifySource",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "sessionResetsTimeAndReportsRendererErrorsWithBypass",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "resultExpiryAndGeometryAreChecked",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "hatTracksEveryOrientationAndMirrorAndHidesWithoutEyes",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "cpuBeautyPreservesAlphaMetadataAndInput",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "copyHandlesBufferPositionAndStride",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyPipelineTest",
+        "name": "analysisErrorAndNoFaceHaveDistinctDiagnosticStates",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "rgbaSliceRespectsPositionPaddingAndReadOnlyOwnership",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "rejectsUndersizedAndOverflowSizedBuffers",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "wrongThreadCannotProcessOrCloseOwnerSession",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "textureTransformCannotBeMutatedThroughCallerArrays",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "lifecycleAndRestartPreserveOriginalFrame",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyProcessorTest",
+        "name": "duplicateAndBackwardsTimestampsDoNotAdvanceSession",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "frameMetricsSeparateRedrawsAndDoNotInventResultAge",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "borrowedRuntimeSurvivesRenderSessionClose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "enginePipelineCanTrackExternalFramesWithoutCameraTypes",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "borrowedPipelineDoesNotDisableResetOrCloseExternalAnalysis",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "motionBranchReceivesConfiguredAnalysisSize",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "redrawKeepsSamplingTimestampAndRejectsDifferentFrame",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "noStickerSkipsModelAndDemandChangeInvalidatesResults",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautyRuntimeTest",
+        "name": "percentilesAreBoundedAndReportMissingStages",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "pushLoopAndSettingsDemandAndValidation",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "maskRejectsFutureStaleAndGeometryAndDefendsPixels",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "explicitlyScaledMaskKeepsRealSampleAgeAndRejectsOtherGeometry",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "alignedMaskKeepsModelExpiryAndRejectsFramesBeforeAlignment",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "bufferMaskCopiesOnlyRemainingBytesAndDoesNotRetainBorrowedStorage",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.BeautySceneTest",
+        "name": "motionsStayInsideImageAcrossDirectionsAndReset",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "expiryIsStillMeasuredFromCaptureEvenIfNewerResultIsInFuture",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "ringIsBoundedAndOutOfOrderResultsCannotReplaceNewerSignals",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "producerAheadOfPreviewKeepsNewestNonFutureFaceWithoutChangingAge",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "sharedViewportAllowsScaledFramesButNotDifferentAspectRatio",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "geometryAndExplicitStreamResetInvalidateOldFaces",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.FaceAnalysisHistoryTest",
+        "name": "futureMissAndErrorDoNotHideFaceUntilTheirVideoFrameArrives",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "futureExpiredWrongGeometryAndScaledOutputAreHandledExplicitly",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "disabledDoesNotCreateModelAndCloseIsIdempotent",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "borrowedRgbaIsCopiedBeforeReturnAndBusyDropsWithoutAccumulation",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "modelCreationInferenceAndReleaseStayOnSameWorker",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "resetRejectsInFlightResultAndStaleCaptureToken",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "concurrentPollingCannotDeliverTheSameTriggerTwice",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "modelErrorClearsStateAndDoesNotMasqueradeAsNoHands",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureAnalysisRuntimeTest",
+        "name": "eventsAreDeliveredOnceNotInFutureAndNoHandsInvalidateSnapshot",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureEffectPlayerTest",
+        "name": "staleFutureNonTriggerAndDisabledCannotStart",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureEffectPlayerTest",
+        "name": "invalidLayoutDurationAndDuplicateBindingsAreRejected",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureEffectPlayerTest",
+        "name": "resetAndBackwardsTimelineClearActiveEffect",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureEffectPlayerTest",
+        "name": "playingAndCooldownIgnoreEventsWithoutQueuingOrReplayingIds",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureEffectPlayerTest",
+        "name": "atlasAdvancesAndEndsWithoutLooping",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "okAndFingerCountsAreRuleEventsWithNoInventedProbability",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "circleRequiresClosedConsistentTrajectory",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "allSevenModelGesturesNeedStableSamplesAndTriggerOnlyOnceWhileHeld",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "briefHandLossKeepsHeldPoseLatchedEvenAfterCooldownExpires",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "releaseDurationIsRecognizedWhenNextSampleIsAlreadyTheReturningPose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "gapCancelsPinchBeforeRestartingPose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "briefPairLossDoesNotRepeatPrayerAfterCooldown",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "resetGeometryGapAndDuplicateFramesCannotFinishOldStablePose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "twoHandHeartAndPrayerHaveSeparatePositiveFixturesAndSingleHandCannotTriggerThem",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "fingerCountZeroThroughFiveAndFingerHeartHavePositiveFixtures",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "detectionOrderSwapKeepsHandTrackIdentity",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "waveNeedsAlternatingTravelAndDoesNotTriggerFromStillPalm",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "isolatedLateNegativeSampleDoesNotRearmHeldPose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "cooldownRejectionDoesNotPermanentlyConsumeNewCandidate",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "releaseThenReturnRearmsButSingleFrameDropoutDoesNotRepeat",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "twoPinchesProduceScaleAndEndWhenOneReleases",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "lostHandCancelsPinchAndNewHandMustRestabilize",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "pinchAndOkAreInvariantUnderAllRotationsAndMirrors",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "pinchHasStartUpdateDeltaEndAndNoDuplicateStart",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "lowScoreUnknownAndAbsentHandsDoNotTriggerModelEvents",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "degenerateLandmarksCannotStartCustomInteractions",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "briefHandLossCannotBypassTriggerCooldown",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.GestureRuleEngineTest",
+        "name": "clapRequiresTwoPalmsSeparatingBeforeApproach",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.ImageStickerTest",
+        "name": "asymmetricImageKeepsDisplayOrientationForEveryRotationAndMirror",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.ImageStickerTest",
+        "name": "straightAlphaCompositesLayersAndMissingAnchorsHideImages",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.ImageStickerTest",
+        "name": "imageAndPackDefensivelyCopyMutableInput",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.JavaApiTest",
+        "name": "javaHostCanUseFrameAndLifecycleWithoutKotlinHelpers",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.JavaApiTest",
+        "name": "javaEngineCallbackCanUseConnector",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEnforcementTest",
+        "name": "commercialReleaseRejectsDirectCpuRendererAndSessionWithoutInitialization",
+        "status": "skipped"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "failedRefreshKeepsValidLeaseAndBackoffSurvivesRestart",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "firstActivationThenManyCallsAndRestartDoNotRequestAgain",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "storageFailureBeforeRequestDoesNotSpamNetwork",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "revocationWriteFailureClearsOldActiveCache",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "tamperedLeaseWrongNonceAndEscalatedFeaturesRejected",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "signedRevocationPersistsAndOfflineCannotReviveActiveLease",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "nodeSignedGrantAndLeaseVerifyInJvm",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "liveLeaseExpiresOnMonotonicClockEvenIfWallClockStops",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "wrongAppCertificateOrSdkRejected",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseEngineTest",
+        "name": "cachedClockRollbackDoesNotGrantOfflineAccess",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseTasksTest",
+        "name": "repeatedRefreshesUseOneQueuedTask",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.license.LicenseTasksTest",
+        "name": "initializationDuringRefreshIsNotLostAndLatestPendingWins",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.MotionTimelineTest",
+        "name": "interpolationLoopAndHold",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.MotionTimelineTest",
+        "name": "timelineRejectsUnclosedLoopAndDuplicateTime",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.MotionTimelineTest",
+        "name": "changingTimelineResetsClockWithoutResettingEveryFrame",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.ReusableRgbInputTest",
+        "name": "fusedConversionMatchesReferenceForPaddingScalingAndAllOrientations",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "builtInsHaveTrueDepthAndDemandFaceAnalysis",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "absentStaleFutureAndDegeneratePoseHideImmediately",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "crossResolutionAndCropPreserveDepthButStretchDrops3D",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "geometryIsImmutableAndKeepsRealSamplingTime",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "yawChangesProjectedWidthAndDepthWithoutFlatteningTheModel",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "rotationsAndMirrorsMapXYAndDepthInPixelUnits",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Sticker3DTest",
+        "name": "meshCopiesBuffersAndRejectsInvalidData",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerPoseSmootherTest",
+        "name": "smallMotionRemainsVisibleAndFastMotionFollowsImmediately",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerPoseSmootherTest",
+        "name": "nullGeometryChangesTimeReversalAndClearDoNotKeepOldPose",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerPoseSmootherTest",
+        "name": "angleWrapUsesShortPathAndDoesNotHide",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerPoseSmootherTest",
+        "name": "scaleRelativeMotionWorksAcrossResolutions",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerPoseSmootherTest",
+        "name": "equalElapsedTimeHasEqualResponseAtDifferentRenderRates",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerResourceGeometryTest",
+        "name": "resourceParametersRejectInvalidValuesAndCopyLayerList",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerResourceGeometryTest",
+        "name": "layerEditsKeepImageAndDefaultPoseUnchanged",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.StickerResourceGeometryTest",
+        "name": "offsetsFollowDisplayAxesAcrossResolutionRotationAndMirror",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.TrackedFaceAnalysisTest",
+        "name": "publicSessionUsesOptionalMotionPipelineAndKeepsLifecycle",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.TrackedFaceAnalysisTest",
+        "name": "freshMotionBridgesStaleDetectionButCannotOutliveCorrectionOrReset",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.TrackedFaceAnalysisTest",
+        "name": "failedMotionKeepsLastSuccessWithoutRefreshingTimestamp",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.TrackedFaceAnalysisTest",
+        "name": "modelHandoffKeepsNewerCompletedTracking",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.TrackedFaceAnalysisTest",
+        "name": "modelHandoffKeepsInFlightTracking",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.UnifiedInputTest",
+        "name": "latestPendingReplacesIntermediateFramesWithoutOverwritingActiveInput",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.UnifiedInputTest",
+        "name": "publicSessionSharesSmallAnalysisWithLargeTextureWithoutInventingDimensions",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.UnifiedInputTest",
+        "name": "engineCanReleaseSourceImmediatelyAndWorkerUsesDirectRgba",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.UnifiedInputTest",
+        "name": "resetDropsPendingAndOldCompletion",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "textureLeaseReleaseIsIdempotentAcrossThreads",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "downsamplesBeforeConversionAndReusesBorrowedStorage",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "limitedBlackAndWhitePreserveMetadata",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "nv21OffsetPixelStrideAndOddDimensions",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "matricesDifferAndChromaOrderingMatters",
+        "status": "passed"
+      },
+      {
+        "class": "com.beautysdk.Yuv420InputTest",
+        "name": "invalidPlaneRejectedBeforeRead",
+        "status": "passed"
+      }
+    ]
+  },
+  "build": "assembleDebug / assembleDebugAndroidTest / lintDebug passed",
+  "devices": [
+    {
+      "device": "OPPO PCAM00",
+      "api": 30,
+      "passed": 8,
+      "cases": [
+        "restoresHostDepthVaoFramebufferAndViewport",
+        "existingMediaPipeModelOutputsReal3DOnlyWhenRequested",
+        "realDepthOccludesRearTrianglesAndPreservesVideoAlpha",
+        "rigidMeshesTurnInDepthAndCanSwitchRepeatedly",
+        "curvedBuiltInsKeepShadingAndDepthAcrossThreeViews",
+        "rotationsMirrorsAndFboResizePreserveProjection",
+        "nativeBeautyAndFinalCameraMotionComposeWith3D",
+        "stickerPanelSelectsPersistsAndDisables3D"
+      ]
+    },
+    {
+      "device": "Pixel 8",
+      "api": 36,
+      "passed": 8,
+      "cases": [
+        "restoresHostDepthVaoFramebufferAndViewport",
+        "existingMediaPipeModelOutputsReal3DOnlyWhenRequested",
+        "realDepthOccludesRearTrianglesAndPreservesVideoAlpha",
+        "rigidMeshesTurnInDepthAndCanSwitchRepeatedly",
+        "curvedBuiltInsKeepShadingAndDepthAcrossThreeViews",
+        "rotationsMirrorsAndFboResizePreserveProjection",
+        "nativeBeautyAndFinalCameraMotionComposeWith3D",
+        "stickerPanelSelectsPersistsAndDisables3D"
+      ]
+    }
+  ],
+  "limits": [
+    "weak perspective and approximate face-fan occlusion unchanged",
+    "no real-time human visual acceptance or sustained performance",
+    "no PBR, environment reflections, transparent lenses, physical shadows, GLB or skeletal animation",
+    "no Release/R8, iOS, publishing or CMS changes"
+  ],
+  "apkSha256": "7e28c5c09342bdc3a074a406eed1fc62b2b08c3ff5b71353c693aed8d2a5b0b4"
+}

@@ -1,0 +1,122 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraConfigurationDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.CameraConfigurationDeviceTest:
+INSTRUMENTATION_STATUS: test=eyelashSelectionAndMakeupStrengthSurviveNewCamera
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraConfigurationDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stack=java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.View android.view.ViewGroup.findViewWithTag(java.lang.Object)' on a null object reference
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.eyelashSelectionAndMakeupStrengthSurviveNewCamera$lambda$3(CameraConfigurationDeviceTest.kt:44)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.$r8$lambda$0qEBbxN7DSTljFR2vCsvJpJmmJA(Unknown Source:0)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: stream=
+Error in eyelashSelectionAndMakeupStrengthSurviveNewCamera(com.beautysdk.demo.CameraConfigurationDeviceTest):
+java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.View android.view.ViewGroup.findViewWithTag(java.lang.Object)' on a null object reference
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.eyelashSelectionAndMakeupStrengthSurviveNewCamera$lambda$3(CameraConfigurationDeviceTest.kt:44)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.$r8$lambda$0qEBbxN7DSTljFR2vCsvJpJmmJA(Unknown Source:0)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: test=eyelashSelectionAndMakeupStrengthSurviveNewCamera
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LASH_VISIBLE case=5 pixels=19 material=false
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LASH_VISIBLE case=6 pixels=0 material=true
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Textured eyelashes must visibly change the eye region, case=6 count=0
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+INSTRUMENTATION_STATUS: stream=
+Error in actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest):
+java.lang.AssertionError: Textured eyelashes must visibly change the eye region, case=6 count=0
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.161
+There were 2 failures:
+1) eyelashSelectionAndMakeupStrengthSurviveNewCamera(com.beautysdk.demo.CameraConfigurationDeviceTest)
+java.lang.NullPointerException: Attempt to invoke virtual method 'android.view.View android.view.ViewGroup.findViewWithTag(java.lang.Object)' on a null object reference
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.eyelashSelectionAndMakeupStrengthSurviveNewCamera$lambda$3(CameraConfigurationDeviceTest.kt:44)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.$r8$lambda$0qEBbxN7DSTljFR2vCsvJpJmmJA(Unknown Source:0)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest$$ExternalSyntheticLambda5.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+2) actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest)
+java.lang.AssertionError: Textured eyelashes must visibly change the eye region, case=6 count=0
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+FAILURES!!!
+Tests run: 2,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

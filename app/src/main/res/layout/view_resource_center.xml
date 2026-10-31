@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingVertical="8dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingTop="0dp">
   <TextView android:id="@+id/resource_status" style="@style/CameraLabel" android:text="@string/resources_loading" android:accessibilityLiveRegion="polite" />
   <LinearLayout android:id="@+id/resource_management" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
     <TextView android:id="@+id/resource_delivery_receipt" style="@style/CameraLabel" android:textIsSelectable="true" android:visibility="gone" />
@@ -19,5 +19,6 @@
   </LinearLayout>
   <TextView android:id="@+id/resource_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:text="@string/resources_empty" android:textColor="@color/camera_muted" android:visibility="gone" />
   <TextView android:id="@+id/resource_none" android:layout_gravity="end" style="@style/CameraQuiet" android:text="@string/camera_category_off" android:visibility="gone" />
-  <GridLayout android:id="@+id/resource_grid" android:layout_width="match_parent" android:layout_height="wrap_content" android:columnCount="3" />
+  <FrameLayout android:id="@+id/resource_parameter_host" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:visibility="gone" />
+  <androidx.recyclerview.widget.RecyclerView android:id="@+id/resource_grid" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:paddingBottom="8dp" android:scrollbars="none" />
 </LinearLayout>

@@ -1,0 +1,57 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LASH_VISIBLE case=5 pixels=19 material=false
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Eyelashes must visibly change the eye region, case=5 count=19
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+INSTRUMENTATION_STATUS: stream=
+Error in actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest):
+java.lang.AssertionError: Eyelashes must visibly change the eye region, case=5 count=19
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+INSTRUMENTATION_STATUS: test=actualPortraitMakeupUsesDetectedLipAndCheekLandmarks
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 1.199
+There was 1 failure:
+1) actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(com.beautysdk.demo.GpuPixelDeviceTest)
+java.lang.AssertionError: Eyelashes must visibly change the eye region, case=5 count=19
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$_jqR5YTbfnRQhtYtM74QPi39ra4(Unknown Source:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:666)
+	at com.beautysdk.demo.GpuPixelDeviceTest.actualPortraitMakeupUsesDetectedLipAndCheekLandmarks(GpuPixelDeviceTest.kt:485)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

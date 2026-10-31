@@ -32,6 +32,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private lateinit var effectWorkshop: EffectWorkshopController
     private lateinit var workshop: StickerWorkshopController
     private var stickerPreferencesReady = false
+    private var sticker3DSelection = 0
     private val stickerPreferences by lazy { getSharedPreferences("camera_stickers",MODE_PRIVATE) }
     // 演示背景仅初始化一次，非视频帧转换；SDK也接受宿主解码后的任意图片。
     private val sceneBackground by lazy {
@@ -46,6 +47,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     private var updatingExtended=false
     private var requested = true
     private var lens = CameraLens.FRONT
+    private var captureResolution=DemoCaptureResolution.SD
     private var trackingText = ""
     // 仅保留最近事件；页面限频统计不是逐帧事件总线，不把超时/错误当作离开。
     private var facePresent = false
@@ -81,13 +83,17 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        captureResolution=DemoCaptureResolution.fromName(savedInstanceState?.getString("capture_resolution")
+            ?:stickerPreferences.getString("capture_resolution",null))
         requested = savedInstanceState?.getBoolean("camera_requested") ?: true
         lens = if (savedInstanceState?.getBoolean("back_camera") == true) CameraLens.BACK else CameraLens.FRONT
         effectCategory=savedInstanceState?.getInt("effect_category",0)?.coerceIn(0,7)?:0
         adjusting=savedInstanceState?.getBoolean("effect_adjusting",false)?:false
         restorePanelSection=savedInstanceState?.takeIf{it.getBoolean("effect_panel_open",false)}?.getInt("effect_panel_section",0)
-        restoredGestureEnabled=savedInstanceState?.getBoolean("gesture_detection_enabled",true)?:true
-        faceDetectionEnabled=savedInstanceState?.getBoolean("face_detection_enabled",true)?:true
+        restoredGestureEnabled=savedInstanceState?.getBoolean("gesture_detection_enabled")
+            ?:stickerPreferences.getBoolean("gesture_detection_enabled",true)
+        faceDetectionEnabled=savedInstanceState?.getBoolean("face_detection_enabled")
+            ?:stickerPreferences.getBoolean("face_detection_enabled",true)
         super.onCreate(savedInstanceState)
     }
     override fun initView() {
@@ -128,6 +134,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
                 .setMessage(R.string.camera_reset_all_message)
                 .setNegativeButton(android.R.string.cancel,null)
                 .setPositiveButton(R.string.camera_reset_all) { _,_ ->
+                    binding.cameraSticker3d.check(R.id.camera_sticker_3d_none)
                     workshop.disable()
                     effectWorkshop.clear()
                     binding.cameraGlasses.isChecked=false
@@ -184,6 +191,11 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
                 image.width,image.height,image.processingMs,milliseconds(snapshot.durationNs),
                 milliseconds(snapshot.resultAgeNs),snapshot.landmarkCount)
             binding.cameraPerformance.text=getString(R.string.camera_performance_compact,fps,image.processingMs)
+            val analysisSize=if(image.analysisWidth>0 && image.analysisHeight>0)
+                getString(R.string.camera_resolution_dimensions,image.analysisWidth,image.analysisHeight)
+                else getString(R.string.demo_unavailable)
+            binding.cameraResolution.text=getString(R.string.camera_resolution_status,
+                image.requestedWidth,image.requestedHeight,image.width,image.height,analysisSize)
             val error = snapshot.error
             if (error != null) showError(error)
             else if (snapshot.state == DemoTrackingState.READY || snapshot.state == DemoTrackingState.NO_FACE)
@@ -229,6 +241,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             binding.cameraGestureStatus.text=getString(R.string.camera_callback_gesture_display,gestureState,callback)
         }
         binding.cameraGestureEnabled.setOnCheckedChangeListener { _,checked ->
+            stickerPreferences.edit().putBoolean("gesture_detection_enabled",checked).apply()
             lastGestureCallback="";lastGestureEventId=0L
             binding.cameraHandSummary.setText(if(checked)R.string.camera_hand_wait else R.string.camera_hand_off)
             binding.cameraGestureStatus.setText(if(checked)R.string.camera_gesture_loading else R.string.camera_gesture_off)
@@ -265,6 +278,17 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         binding.cameraGlasses.isChecked=stickerPreferences.getBoolean("glasses",false)
         binding.cameraMoustache.isChecked=stickerPreferences.getBoolean("moustache",false)
         binding.cameraHat.isChecked=stickerPreferences.getBoolean("hat",false)
+        sticker3DSelection=stickerPreferences.getInt("sticker_3d",0).coerceIn(0,6)
+        binding.cameraSticker3d.check(when(sticker3DSelection){1->R.id.camera_sticker_3d_glasses;2->R.id.camera_sticker_3d_hat;3->R.id.camera_sticker_3d_crown;4->R.id.camera_sticker_3d_cat;5->R.id.camera_sticker_3d_headphones;6->R.id.camera_sticker_3d_cap;else->R.id.camera_sticker_3d_none})
+        binding.cameraStickerMode2d.setOnClickListener {binding.cameraSticker3d.check(R.id.camera_sticker_3d_none)}
+        binding.cameraStickerMode3d.setOnClickListener {if(sticker3DSelection==0)binding.cameraSticker3d.check(R.id.camera_sticker_3d_cap)}
+        binding.cameraSticker3d.setOnCheckedChangeListener { _,id ->
+            val was3D=sticker3DSelection!=0
+            sticker3DSelection=when(id){R.id.camera_sticker_3d_glasses->1;R.id.camera_sticker_3d_hat->2;R.id.camera_sticker_3d_crown->3;R.id.camera_sticker_3d_cat->4;R.id.camera_sticker_3d_headphones->5;R.id.camera_sticker_3d_cap->6;else->0}
+            updateEffects()
+            if(!was3D&&sticker3DSelection!=0)android.widget.Toast.makeText(this,R.string.ui_3d_paused,android.widget.Toast.LENGTH_SHORT).show()
+            if(settingsDialog?.isShowing==true)openSettings(if(effectCategory==4)1 else 0)
+        }
         stickerPreferencesReady=true
         binding.cameraStart.setOnClickListener {
             requested = true
@@ -350,6 +374,10 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
                     11 -> extended.copy(mouthSize=value-1f)
                     else -> extended.copy(eyelashes=value)
                 }
+                val parameterKeys=listOf("beauty.rosy","color.brightness","color.contrast","color.saturation","color.sharpening",
+                    "reshape.slimFace","reshape.bigEyes","makeup.lipstick","makeup.blusher","reshape.slimNose","reshape.chinLength","reshape.mouthSize","makeup.eyelashes")
+                val key=parameterKeys[binding.cameraExtendedParameter.selectedItemPosition.coerceAtLeast(0)]
+                if(::resourceCenter.isInitialized)resourceCenter.parameter(key,com.beautysdk.resources.BeautyParameters.read(BeautySettings(adjustments=extended)).getValue(key))
                 if(extended.needsFace) binding.cameraBackend.setSelection(DemoBackend.MEDIAPIPE.ordinal)
                 binding.cameraBeauty.isChecked=true
                 showExtended();updateEffects()
@@ -383,12 +411,16 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             resetDialog = androidx.appcompat.app.AlertDialog.Builder(this).setTitle(R.string.camera_reset_confirm)
                 .setMessage(if(effectCategory==7)R.string.camera_reset_theme_message else R.string.camera_reset_confirm_message)
                 .setNegativeButton(android.R.string.cancel,null)
-                .setPositiveButton(R.string.camera_reset_category_short){_,_->if(::resourceCenter.isInitialized)resourceCenter.resetCategory()}.create().also { dialog ->
+                .setPositiveButton(R.string.camera_reset_category_short){_,_->
+                    if(!gestureCategorySelected && effectCategory==4)binding.cameraSticker3d.check(R.id.camera_sticker_3d_none)
+                    if(::resourceCenter.isInitialized)resourceCenter.resetCategory()
+                }.create().also { dialog ->
                     dialog.setOnDismissListener { resetDialog = null }
                     dialog.show()
                 }
         }
         binding.cameraClearStickers.setOnClickListener {
+            binding.cameraSticker3d.check(R.id.camera_sticker_3d_none)
             if(::resourceCenter.isInitialized)resourceCenter.clearStickers()
             workshop.disable()
             if(::effectWorkshop.isInitialized && effectWorkshop.theme!=null) effectWorkshop.clear()
@@ -396,11 +428,22 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             binding.cameraMoustache.isChecked = false
             binding.cameraHat.isChecked = false
         }
+        for(index in 0 until binding.cameraSticker3d.childCount) {
+            (binding.cameraSticker3d.getChildAt(index) as? ToggleStickerRadioButton)?.onReselect={
+                binding.cameraClearStickers.performClick()
+            }
+        }
         buildStickerCards()
         binding.cameraStickerGrid.visibility=View.GONE
         binding.cameraSettingsClose.setOnClickListener { settingsDialog?.dismiss() }
         val listener = object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) = updateEffects()
+            override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if(fromUser && !applyingResource && ::resourceCenter.isInitialized) {
+                    val key=if(bar?.id==R.id.camera_smoothing)"beauty.smoothing" else "beauty.whitening"
+                    resourceCenter.parameter(key,progress/100f)
+                }
+                updateEffects()
+            }
             override fun onStartTrackingTouch(bar: SeekBar?) = Unit
             override fun onStopTrackingTouch(bar: SeekBar?) = Unit
         }
@@ -426,6 +469,11 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             applyingResource=false
             updateEffects()
         }
+        resourceCenter.onDisableCategory={category->
+            if(category==com.beautysdk.resources.ResourceCategory.STICKER)binding.cameraClearStickers.performClick()
+            if(category==com.beautysdk.resources.ResourceCategory.THEME&&effectWorkshop.theme!=null)effectWorkshop.clear()
+        }
+        resourceCenter.onGestureApplied={binding.cameraGestureEnabled.isChecked=true}
         resourceCenter.start()
         workshop.restoreDraft()
     }
@@ -437,10 +485,10 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         titles.forEachIndexed { index,title ->
             val tab=android.widget.TextView(this).apply {
                 setText(title);setTextColor(ContextCompat.getColor(this@CameraTestActivity,R.color.camera_text))
-                textSize=14f;gravity=android.view.Gravity.CENTER
+                textSize=13f;includeFontPadding=false;gravity=android.view.Gravity.CENTER
                 setTextColor(ContextCompat.getColorStateList(this@CameraTestActivity,R.color.effect_label))
                 setBackgroundResource(R.drawable.bg_effect_category);isClickable=true;isFocusable=true
-                val dp=resources.displayMetrics.density;setPadding((14*dp).toInt(),0,(14*dp).toInt(),0)
+                val dp=resources.displayMetrics.density;setPadding((10*dp).toInt(),0,(10*dp).toInt(),0)
                 layoutParams=android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,(48*dp).toInt())
                 setOnClickListener { selectEffectCategory(index) }
             }
@@ -457,7 +505,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
                 tag="camera_gesture_category"
                 val dp=resources.displayMetrics.density
                 layoutParams=android.widget.LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,(48*dp).toInt())
-                setPadding((14*dp).toInt(),0,(14*dp).toInt(),0)
+                setPadding((10*dp).toInt(),0,(10*dp).toInt(),0)
                 setOnClickListener{gestureCategorySelected=true;adjusting=false;openSettings(0)}
             }.also{gestureCategoryView=it}).apply{text=resourceCenter.gestureCategoryName()}
         }else null
@@ -520,7 +568,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         binding.cameraAdjust.visibility=if(editable)View.VISIBLE else View.GONE
         binding.cameraPresets.isSelected=!adjusting;binding.cameraAdjust.isSelected=adjusting
         binding.cameraBeauty.visibility=View.GONE
-        binding.cameraClearStickers.visibility=if(effectCategory==4)View.VISIBLE else View.GONE
+        binding.cameraClearStickers.visibility=View.GONE
         binding.cameraPanelHint.visibility=View.GONE
         binding.cameraPanelHint.setText(if(adjusting&&editable)R.string.camera_adjust_hint else R.string.camera_presets_hint)
         if(section==3) binding.workshopSection.visibility=View.GONE
@@ -538,8 +586,18 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             binding.cameraClearStickers.visibility=View.GONE
             binding.cameraPanelTitle.text=resourceCenter.gestureCategoryName()
             categoryViews.forEach{it.isSelected=false}
-        }else binding.resourceCenter.resourceNone.visibility=View.VISIBLE
+        }else binding.resourceCenter.resourceNone.visibility=View.GONE
         gestureCategoryView?.isSelected=gestureCategorySelected
+        for(i in 0 until binding.cameraSticker3d.childCount)binding.cameraSticker3d.getChildAt(i).isSelected=binding.cameraSticker3d.getChildAt(i).id==binding.cameraSticker3d.checkedRadioButtonId
+        binding.cameraStickerMode2d.isSelected=sticker3DSelection==0
+        binding.cameraStickerMode3d.isSelected=sticker3DSelection!=0
+        binding.cameraSticker3dScroll.visibility=if(sticker3DSelection!=0)View.VISIBLE else View.GONE
+        resourceCenter.presentation3D(sticker3DSelection!=0)
+        binding.cameraPanelHint.visibility=View.GONE
+        binding.cameraModeBar.visibility=if(section!=2&&editable)View.VISIBLE else View.GONE
+        binding.controlsScroll.visibility=if(binding.beautySection.visibility==View.VISIBLE||section==2)View.VISIBLE else View.GONE
+        binding.stickerSection.visibility=if(!gestureCategorySelected&&effectCategory==4&&section!=2)View.VISIBLE else View.GONE
+        binding.resourceCenter.root.visibility=if(section==2||binding.beautySection.visibility==View.VISIBLE||(effectCategory==4&&sticker3DSelection!=0&&!gestureCategorySelected))View.GONE else View.VISIBLE
         effectPanel.show()
     }
 
@@ -618,10 +676,12 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         val glasses=binding.cameraGlassesStyle.selectedItemPosition
         val head=binding.cameraHeadStyle.selectedItemPosition
         if(values.all { (key,value) -> stickerPreferences.getBoolean(key,false)==value } &&
-            stickerPreferences.getInt("glasses_style",1)==glasses && stickerPreferences.getInt("head_style",1)==head) return
+            stickerPreferences.getInt("glasses_style",1)==glasses && stickerPreferences.getInt("head_style",1)==head &&
+            stickerPreferences.getInt("sticker_3d",0)==sticker3DSelection) return
         stickerPreferences.edit().apply {
             values.forEach { (key,value) -> putBoolean(key,value) }
             putInt("glasses_style",glasses);putInt("head_style",head)
+            putInt("sticker_3d",sticker3DSelection)
         }.apply()
     }
     private fun sceneFromControls():BeautyScene {
@@ -639,8 +699,8 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
     }
     private fun updateEffects() {
         if(applyingResource)return
-        if(::resourceCenter.isInitialized) resourceCenter.manual(com.beautysdk.BeautySettings(smoothing=binding.cameraSmoothing.progress/100f,whitening=binding.cameraWhitening.progress/100f,adjustments=extended))
         saveStickerSelection()
+        binding.cameraSticker3dHint.visibility=View.GONE
         binding.cameraSmoothingValue.text = getString(R.string.camera_intensity,binding.cameraSmoothing.progress)
         binding.cameraWhiteningValue.text = getString(R.string.camera_intensity,binding.cameraWhitening.progress)
         stickerCards.forEach { (view,active) -> view.isSelected = active() }
@@ -658,7 +718,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         binding.cameraThemeExit.visibility=if(resourceActive && unifiedSettings==null) View.VISIBLE else View.GONE
         listOf(binding.cameraSmoothing,binding.cameraWhitening,binding.cameraExtendedStrength,binding.cameraBackground,binding.cameraMotion).forEach { it.isEnabled=!resourceActive || unifiedSettings!=null }
 
-        controller.options = CameraDemoOptions(if(themeSettings?.requiresFaceAnalysis==true || resourcePacks.any { it.applyTo(BeautySettings()).requiresFaceAnalysis }) DemoBackend.MEDIAPIPE else DemoBackend.entries[binding.cameraBackend.selectedItemPosition],
+        controller.options = CameraDemoOptions(if(sticker3DSelection!=0 || themeSettings?.requiresFaceAnalysis==true || resourcePacks.any { it.applyTo(BeautySettings()).requiresFaceAnalysis }) DemoBackend.MEDIAPIPE else DemoBackend.entries[binding.cameraBackend.selectedItemPosition],
             DemoEffects(if (beauty) binding.cameraSmoothing.progress / 100f else 0f,if (beauty) binding.cameraWhitening.progress / 100f else 0f,false,
                 binding.cameraGlasses.isChecked,binding.cameraMoustache.isChecked,binding.cameraHat.isChecked,binding.cameraGlassesStyle.selectedItemPosition,binding.cameraHeadStyle.selectedItemPosition,
                 if(beauty) extended else BeautyAdjustments(),
@@ -668,7 +728,8 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             mediaPipeGpu = binding.cameraMediapipeGpu.isChecked,
             frameTracking = binding.cameraFrameTracking.isChecked,
             gestureEnabled = binding.cameraGestureEnabled.isChecked,
-            observeFaces = true, faceAnalysisEnabled = faceDetectionEnabled)
+            observeFaces = true, faceAnalysisEnabled = faceDetectionEnabled,
+            sticker3D=when(sticker3DSelection){1->BuiltInStickers3D.glasses();2->BuiltInStickers3D.topHat();3->BuiltInStickers3D.crown();4->BuiltInStickers3D.pearlCatEars();5->BuiltInStickers3D.headphones();6->BuiltInStickers3D.baseballCap();else->null})
         controller.requestRender()
     }
     /** 单一参数滑杆避免面板堆叠；中性值按参数分别显示，未选项的强度保持不变。 */
@@ -740,10 +801,24 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
             menu.add(0,R.id.camera_gesture_enabled,6,R.string.camera_gesture_toggle).apply {
                 isCheckable=true;isChecked=binding.cameraGestureEnabled.isChecked
             }
+            menu.addSubMenu(0,R.id.camera_resolution,7,R.string.camera_resolution_test).apply {
+                val ids=listOf(R.id.camera_resolution_sd,R.id.camera_resolution_hd,R.id.camera_resolution_full_hd)
+                DemoCaptureResolution.entries.forEachIndexed { index,resolution ->
+                    add(R.id.camera_resolution,ids[index],index,
+                        getString(R.string.camera_resolution_option,resolution.width,resolution.height)).apply {
+                        isCheckable=true;isChecked=resolution==captureResolution
+                    }
+                }
+                setGroupCheckable(R.id.camera_resolution,true,true)
+            }
             setOnMenuItemClickListener {item ->
                 when(item.itemId) {
+                    R.id.camera_resolution_sd -> selectCaptureResolution(DemoCaptureResolution.SD)
+                    R.id.camera_resolution_hd -> selectCaptureResolution(DemoCaptureResolution.HD)
+                    R.id.camera_resolution_full_hd -> selectCaptureResolution(DemoCaptureResolution.FULL_HD)
                     R.id.camera_face_summary -> {
                         faceDetectionEnabled=!faceDetectionEnabled
+                        stickerPreferences.edit().putBoolean("face_detection_enabled",faceDetectionEnabled).apply()
                         binding.cameraFaceSummary.setText(if(faceDetectionEnabled)R.string.camera_face_idle else R.string.camera_face_off)
                         updateEffects()
                     }
@@ -810,9 +885,18 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         dialog.show();androidx.core.view.ViewCompat.requestApplyInsets(details)
     }
     private fun hasPermission() = ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    private fun selectCaptureResolution(value:DemoCaptureResolution) {
+        if(value==captureResolution)return
+        captureResolution=value
+        stickerPreferences.edit().putString("capture_resolution",value.name).apply()
+        if(requested && hasPermission()) startCamera()
+    }
     private fun startCamera() {
-        if (lifecycle.currentState != androidx.lifecycle.Lifecycle.State.DESTROYED)
+        if (lifecycle.currentState != androidx.lifecycle.Lifecycle.State.DESTROYED) {
+            controller.captureResolution=captureResolution
+            binding.cameraResolution.text=getString(R.string.camera_resolution_waiting,captureResolution.width,captureResolution.height)
             controller.start(this,lens)
+        }
     }
     override fun onStart() {
         super.onStart()
@@ -838,6 +922,7 @@ class CameraTestActivity : BaseActivity<ActivityCameraTestBinding>() {
         super.onStop()
     }
     override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("capture_resolution",captureResolution.name)
         outState.putBoolean("face_detection_enabled",faceDetectionEnabled)
         outState.putBoolean("gesture_detection_enabled",binding.cameraGestureEnabled.isChecked)
         outState.putBoolean("camera_requested",requested)

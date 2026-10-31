@@ -1,0 +1,439 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest:
+INSTRUMENTATION_STATUS: test=preferredBackendKeepsSoftMasksAcrossResetsWithReal3DFaceAnalysis
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=preferredBackendKeepsSoftMasksAcrossResetsWithReal3DFaceAnalysis
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=explicitGpuReportsKnownIncompatibilityWithoutNativeAbort
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=explicitGpuReportsKnownIncompatibilityWithoutNativeAbort
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=throwingTimingAndErrorCallbacksDoNotStopNextFrameOrClose
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ForegroundMaskCompatibilityDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=throwingTimingAndErrorCallbacksDoNotStopNextFrameOrClose
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GestureEffectsDeviceTest:
+INSTRUMENTATION_STATUS: test=combinedPixelBudgetRejectsBeforeBitmapDecodeAndAcceptsBoundary
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=combinedPixelBudgetRejectsBeforeBitmapDecodeAndAcceptsBoundary
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=importRequiresApplyAndRestoresAcrossReopening
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=importRequiresApplyAndRestoresAcrossReopening
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=malformedManifestAndArchiveRejectWithoutFallback
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=malformedManifestAndArchiveRejectWithoutFallback
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=actualWebExportParsesBothModesAndPreservesPlacement
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=actualWebExportParsesBothModesAndPreservesPlacement
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=realGpuAlphaFrameAdvanceExpiryAndUprightPositions
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureEffectsDeviceTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realGpuAlphaFrameAdvanceExpiryAndUprightPositions
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.Sticker3DDeviceTest:
+INSTRUMENTATION_STATUS: test=repeatedDetectionFramesStayIdenticalThenExpireAndRecover
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=9
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=repeatedDetectionFramesStayIdenticalThenExpireAndRecover
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=restoresHostDepthVaoFramebufferAndViewport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=10
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=restoresHostDepthVaoFramebufferAndViewport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=headVolumeHidesAboveFaceRearGeometryAndKeepsFrontAndExpiry
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=11
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=headVolumeHidesAboveFaceRearGeometryAndKeepsFrontAndExpiry
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=existingMediaPipeModelOutputsReal3DOnlyWhenRequested
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=12
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=existingMediaPipeModelOutputsReal3DOnlyWhenRequested
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=realDepthOccludesRearTrianglesAndPreservesVideoAlpha
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=13
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realDepthOccludesRearTrianglesAndPreservesVideoAlpha
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rigidMeshesTurnInDepthAndCanSwitchRepeatedly
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=14
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rigidMeshesTurnInDepthAndCanSwitchRepeatedly
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=curvedBuiltInsKeepShadingAndDepthAcrossThreeViews
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=15
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=curvedBuiltInsKeepShadingAndDepthAcrossThreeViews
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rotationsMirrorsAndFboResizePreserveProjection
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=16
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rotationsMirrorsAndFboResizePreserveProjection
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=baseballCapHasFrontSideBackAndInteriorWithEstimatedHead
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=17
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=baseballCapHasFrontSideBackAndInteriorWithEstimatedHead
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=nativeBeautyAndFinalCameraMotionComposeWith3D
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.Sticker3DDeviceTest
+INSTRUMENTATION_STATUS: current=18
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=nativeBeautyAndFinalCameraMotionComposeWith3D
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.PreviewCallbackSafetyDeviceTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.PreviewCallbackSafetyDeviceTest:
+INSTRUMENTATION_STATUS: test=failingObserverAndErrorHandlerDoNotCrashOrBlockOtherObservers
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.PreviewCallbackSafetyDeviceTest
+INSTRUMENTATION_STATUS: current=19
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=failingObserverAndErrorHandlerDoNotCrashOrBlockOtherObservers
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GestureResourceLibraryDeviceTest:
+INSTRUMENTATION_STATUS: test=installsNineCategoryLibraryAndCombinesFourValidatedAnimations
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GestureResourceLibraryDeviceTest
+INSTRUMENTATION_STATUS: current=20
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=installsNineCategoryLibraryAndCombinesFourValidatedAnimations
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.ResourceCenterUiDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=21
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stack=java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda7.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: stream=
+Error in rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest):
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda7.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: test=rapidParametersKeepResourceCardsAndCallerInputStable
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=22
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=deletingBuiltinDoesNotReinstallItOnReopen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.ResourceCenterUiDeviceTest
+INSTRUMENTATION_STATUS: current=23
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=23
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$6(ResourceCenterUiDeviceTest.kt:107)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$sqV79BxcmfLWTyIA1XqkFxt42Xs(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda17.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: stream=
+Error in independentPageInstallsSelectsAndPersistsWithoutCamera(com.beautysdk.demo.ResourceCenterUiDeviceTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$6(ResourceCenterUiDeviceTest.kt:107)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$sqV79BxcmfLWTyIA1XqkFxt42Xs(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda17.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: test=independentPageInstallsSelectsAndPersistsWithoutCamera
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 30.818
+There were 2 failures:
+1) rapidParametersKeepResourceCardsAndCallerInputStable(com.beautysdk.demo.ResourceCenterUiDeviceTest)
+java.lang.NullPointerException: getChildAt(...) must not be null
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.rapidParametersKeepResourceCardsAndCallerInputStable$lambda$5(ResourceCenterUiDeviceTest.kt:34)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$QflK7InVjI1FY-3avrmrlDCq_-Y(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda7.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+2) independentPageInstallsSelectsAndPersistsWithoutCamera(com.beautysdk.demo.ResourceCenterUiDeviceTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.independentPageInstallsSelectsAndPersistsWithoutCamera$lambda$6(ResourceCenterUiDeviceTest.kt:107)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest.$r8$lambda$sqV79BxcmfLWTyIA1XqkFxt42Xs(Unknown Source:0)
+	at com.beautysdk.demo.ResourceCenterUiDeviceTest$$ExternalSyntheticLambda17.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+FAILURES!!!
+Tests run: 23,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,151 @@
+{
+  "elf": [
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/arm64-v8a/libbeauty_rgb_input.so",
+      "bytes": 321408,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 83920,
+          "vaddr": 100304,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/armeabi-v7a/libbeauty_rgb_input.so",
+      "bytes": 287580,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 63344,
+          "vaddr": 79728,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/x86/libbeauty_rgb_input.so",
+      "bytes": 306556,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 93584,
+          "vaddr": 109968,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/x86_64/libbeauty_rgb_input.so",
+      "bytes": 319936,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 88224,
+          "vaddr": 104608,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/arm64-v8a/libbeauty_rgb_input.so",
+      "bytes": 317000,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 83648,
+          "vaddr": 100032,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/armeabi-v7a/libbeauty_rgb_input.so",
+      "bytes": 283588,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 63328,
+          "vaddr": 79712,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/x86/libbeauty_rgb_input.so",
+      "bytes": 302632,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 93584,
+          "vaddr": 109968,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/x86_64/libbeauty_rgb_input.so",
+      "bytes": 315560,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 87920,
+          "vaddr": 104304,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    }
+  ],
+  "zipalign": [
+    {
+      "apk": "app/build/outputs/apk/debug/app-debug.apk",
+      "zipalign16KBExitCode": 0
+    },
+    {
+      "apk": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "zipalign16KBExitCode": 0
+    }
+  ],
+  "scope": "Static alignment only; no 16KB-page runtime test."
+}

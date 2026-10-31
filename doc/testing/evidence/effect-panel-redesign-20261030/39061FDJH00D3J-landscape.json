@@ -1,0 +1,18 @@
+{
+  "device": "39061FDJH00D3J",
+  "mode": "landscape",
+  "before": {
+    "font_scale": "1.0",
+    "accelerometer_rotation": "1",
+    "user_rotation": "0"
+  },
+  "passed": true,
+  "count": 3,
+  "resourceBackupRestored": true,
+  "after": {
+    "font_scale": "1.0",
+    "accelerometer_rotation": "1",
+    "user_rotation": "0"
+  },
+  "settingsRestored": true
+}

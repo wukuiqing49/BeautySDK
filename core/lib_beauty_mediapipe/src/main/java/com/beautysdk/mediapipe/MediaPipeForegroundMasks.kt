@@ -3,6 +3,8 @@ package com.beautysdk.mediapipe
 import com.beautysdk.license.BeautyLicensing
 import com.beautysdk.license.LicensedFeature
 import android.content.Context
+import android.os.Build
+import android.util.Log
 import com.beautysdk.*
 import com.google.mediapipe.framework.image.ByteBufferImageBuilder
 import com.google.mediapipe.framework.image.ByteBufferExtractor
@@ -55,8 +57,9 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
     private var generation=0L
     private var closed=false
     private var enabled=false
-    private var result:ForegroundMask?=null
-    private var unalignedResult:ForegroundMask?=null
+    private data class MaskSample(val aligned:ForegroundMask,val original:ForegroundMask)
+    // 独立小图可能先于视频到达：保留三次真实结果，选不晚于当前视频的最新一次。
+    private val maskHistory=ArrayDeque<MaskSample>()
     /** 仅同视场、等宽高比宿主可显式开启；默认继续严格拒绝不同尺寸。 */
     var allowScaledFrames=false
     private var mappedSource:ForegroundMask?=null
@@ -65,6 +68,8 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
     private val maskConverter=NativeMaskConverter()
     /** 实验性有校验的全局平移补偿。默认关闭，不替代非刚性光流或人像matting模型。 */
     @Volatile var enableMotionAlignment=false
+    /** 静止区域按颜色/置信度变化抑制小幅闪烁；运动突变采用新结果，不延长有效期。 */
+    @Volatile var enableTemporalStabilization=true
     private var motionInput:ByteBuffer?=null
     /** 开关变化清除旧结果和在途发布，不影响人脸分析器。 */
     fun setEnabled(value:Boolean) = synchronized(lock) {
@@ -73,14 +78,14 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
     /** 换源、停机、尺寸变化由宿主显式调用；旧任务完成后不会发布。 */
     fun reset() = synchronized(lock) { invalidate() }
     private fun invalidate() {
-        generation++;result=null;unalignedResult=null;pending=null;lastSubmitted=null;lastCompletedNs=null
+        generation++;maskHistory.clear();pending=null;lastSubmitted=null;lastCompletedNs=null
         mappedSource=null;mappedResult=null
     }
     override fun snapshot(info:FrameInfo):ForegroundMask? = synchronized(lock) {
         if (!BeautyLicensing.allows(LicensedFeature.BACKGROUND)) return@synchronized null
-        val latest=result
-        // 独立RGBA小图可能比当前视频纹理更新：回到同一次模型的原始像素，避免提前应用位移或闪回原背景。
-        val source=if(latest!=null && info.timestampNs<latest.alignmentTimestampNs)unalignedResult else latest
+        val sample=maskHistory.lastOrNull{it.aligned.info.timestampNs<=info.timestampNs}
+        val latest=sample?.aligned
+        val source=if(latest!=null && info.timestampNs<latest.alignmentTimestampNs)sample.original else latest
         if(closed || !enabled || source==null)return@synchronized null
         if(source.isUsable(info))return@synchronized source
         if(!allowScaledFrames)return@synchronized null
@@ -126,7 +131,7 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
                 pending=null;active=next;next
             }
             try {process(slot)} catch(error:Exception) {
-                if(synchronized(lock){!closed&&enabled&&generation==slot.generation})onError(error)
+                if(synchronized(lock){!closed&&enabled&&generation==slot.generation})notifyError(error)
             } finally {synchronized(lock){active=null}}
         }
     }
@@ -173,7 +178,9 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
                 }
                 val alignmentCompleted=System.nanoTime()
                 // 在masks关闭前完成同步原生读取；转到原始采样空间，保留模型真实采样时间。
-                val converted=maskConverter.prepare(extracted,mask.width,mask.height,info.rotationDegrees,info.mirrored)
+                val converted=if(enableTemporalStabilization)maskConverter.prepareStable(extracted,mask.width,mask.height,
+                    info,slot.generation,slot.buffer,slot.rgb.width,slot.rgb.height,slot.rgb.rowStrideBytes)
+                    else maskConverter.prepare(extracted,mask.width,mask.height,info.rotationDegrees,info.mirrored)
                 val conversionCompleted=System.nanoTime()
                 // 校正留给GPU采样，避免CPU再重采样整张浮点图；位移先从模型正向坐标逆变换。
                 val dx=(correction?.get(0)?:0f)*(if(info.mirrored)-1f else 1f)
@@ -184,19 +191,39 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
                 val completed=System.nanoTime()
                 val timing=synchronized(lock) {
                     if(closed||!enabled||generation!=slot.generation)null else {
-                        result=next
-                        unalignedResult=next.withoutMotionAlignment()
+                        publishMask(next)
                         ForegroundMaskTiming(info.timestampNs,slot.copyNs,queueNs,inferStarted-preparing,inferred-inferStarted,
                             completed-inferred,lastCompletedNs?.let{completed-it},effectiveExecution,
                             extractionCompleted-inferred,conversionCompleted-alignmentCompleted,completed-conversionCompleted,
                             alignmentCompleted-alignmentStarted,correction?.get(2)?:0f,alignedTime).also{lastCompletedNs=completed}
                     }
                 }
-                timing?.let{onTiming(it)}
+                timing?.let {
+                    try { onTiming(it) } catch(error:Exception) { notifyError(error) }
+                }
             } finally{masks.forEach{it.close()}}
         } finally{image.close()}
     }
-    /** GPU仅在所属worker创建。优先模式初始化失败回退CPU，显式GPU模式仍报告错误。 */
+    /** 调用者持有发布锁；历史只含不可变小蒙版，不保存输入视频或RGB。 */
+    private fun publishMask(next:ForegroundMask) {
+        if(maskHistory.lastOrNull()?.aligned?.info?.let{it.copy(timestampNs=next.info.timestampNs)!=next.info}==true)
+            maskHistory.clear()
+        if(maskHistory.size==3)maskHistory.removeFirst()
+        maskHistory.addLast(MaskSample(next,next.withoutMotionAlignment()))
+        mappedSource=null;mappedResult=null
+    }
+    /** 宿主诊断回调失败仅记录，不递归调用错误回调或破坏worker调度。 */
+    private fun notifyError(error:Exception) {
+        try { onError(error) } catch(callbackError:Exception) {
+            Log.e("BeautySegmentation","Error callback failed while handling ${error.javaClass.simpleName}",callbackError)
+        }
+    }
+    /** 此设备的0.10.32 GPU置信度输出会在PacketGetter内SIGABRT，不能用try/catch兜底。 */
+    private fun hasUnsafeGpuConfidenceOutput():Boolean =
+        Build.MANUFACTURER.equals("OPPO",ignoreCase=true) &&
+            Build.DEVICE.equals("OP46B1",ignoreCase=true) && Build.VERSION.SDK_INT==30
+
+    /** GPU仅在所属worker创建；已知原生不兼容设备提前选择CPU，显式GPU则报告错误。 */
     private fun createSegmenter():ImageSegmenter {
         fun create(delegate:Execution):ImageSegmenter {
             val detector=ImageSegmenter.createFromOptions(app,ImageSegmenter.ImageSegmenterOptions.builder()
@@ -205,12 +232,30 @@ class MediaPipeForegroundMasks(context:Context,private val onError:(Exception)->
                 .setRunningMode(RunningMode.IMAGE).setOutputConfidenceMasks(true).setOutputCategoryMask(false).build())
             effectiveExecution=delegate;return detector
         }
-        return if(execution==Execution.GPU_PREFERRED)try{create(Execution.GPU)}catch(error:Exception){create(Execution.CPU)}else create(execution)
+        if(execution!=Execution.CPU && hasUnsafeGpuConfidenceOutput()) {
+            check(execution!=Execution.GPU) {
+                "MediaPipe 0.10.32 GPU confidence masks are unsupported on OPPO OP46B1 / Android 11; use CPU or GPU_PREFERRED"
+            }
+            Log.w("BeautySegmentation","GPU confidence masks are incompatible on OPPO OP46B1 / Android 11; using CPU")
+            return create(Execution.CPU)
+        }
+        return if(execution==Execution.GPU_PREFERRED)try{create(Execution.GPU)}catch(error:Exception){
+            Log.w("BeautySegmentation","GPU initialization failed; using CPU",error)
+            create(Execution.CPU)
+        }else create(execution)
     }
     /** 不等待在途推理；释放任务在同一worker最后执行，停止后结果不再可见。 */
     override fun close() {
         synchronized(lock) { if(closed) return;closed=true;enabled=false;invalidate()
-            worker.execute { segmenter?.close();segmenter=null;maskConverter.clear();motionInput=null;slots.forEach{it.rgb.clear();it.oriented=ByteArray(0)} }
+            worker.execute {
+                val detector=segmenter;segmenter=null
+                try { detector?.close() } catch(error:Exception) { notifyError(error) }
+                finally {
+                    maskConverter.clear();motionInput=null
+                    slots.forEach{it.rgb.clear();it.oriented=ByteArray(0)}
+                    synchronized(lock){active=null;pending=null;scheduled=false}
+                }
+            }
             worker.shutdown()
         }
     }

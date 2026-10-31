@@ -1,0 +1,11 @@
+// 仅供增量测量，发行产物写入隔离的本地目录。
+gradle.projectsEvaluated {
+    rootProject.subprojects.each { p ->
+        def publishing = p.extensions.findByName('publishing')
+        if (publishing != null) {
+            publishing.repositories.findAll { it.name == 'localBuild' }.each {
+                it.url = rootProject.file('build/sdk-size-probe/repo').toURI()
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+I/BeautyContent(13469): lens=FRONT request=SD identity=1.0000000000000024 best=1.0000000000000024 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0
+I/BeautyContent(13469): lens=FRONT request=HD identity=1.0 best=1.0 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0
+I/BeautyContent(13469): lens=FRONT request=FULL_HD identity=1.0 best=1.0 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0
+I/BeautyContent(13469): lens=BACK request=SD identity=1.0 best=1.0 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0
+I/BeautyContent(13469): lens=BACK request=HD identity=1.0000000000000036 best=1.0000000000000036 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0
+I/BeautyContent(13469): lens=BACK request=FULL_HD identity=1.0000000000000033 best=1.0000000000000033 scaleX=1.0 scaleY=1.0 timestampDeltaMs=0.0

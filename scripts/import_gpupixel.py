@@ -35,9 +35,13 @@ def main():
         # Git 在 Windows 可能检出 CRLF；文本按 LF 校验，PNG 按原始字节校验。
         canonical = data if name.endswith('.png') else data.replace(b'\r\n', b'\n')
         hashes[name] = hashlib.sha256(canonical).hexdigest()
-        target = assets / Path(name).name if '/res/' in name else vendor / name
+        target = assets / Path(name).name if '/res/' in name and name != 'src/res/mouth.png' else vendor / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
+    # 口红仅留上游参考副本，不再随AAR/APK打包。
+    legacy_mouth = assets / 'mouth.png'
+    if legacy_mouth.exists():
+        legacy_mouth.unlink()
     text = (source / files[1]).read_text(encoding='utf-8')
     def shader(name):
         return re.search(r'const std::string ' + name + r' = R"\((.*?)\)";', text, re.S).group(1)
@@ -59,13 +63,13 @@ Source: https://github.com/pixpark/gpupixel
 Revision: ''' + REVISION + '''
 License: Apache-2.0 (see LICENSE).
 BeautySDK adapts the beauty shaders, radius-4 box blur, high-pass difference, LUT assets,
-curveWarp/enlargeEye, lipstick/blusher textures and multiply blending.
+curveWarp/enlargeEye and the blusher texture. Lip coloring is procedural RGB shading.
 BeautySDK maps localized lip triangles and cheek quads to MediaPipe-478;
 the lip interior is excluded and input alpha is preserved.
 The EGL owner, JNI bridge and texture pipeline are implemented by BeautySDK;
 the complete GPUPixel runtime, detector and model files are not included.
 ''', encoding='utf-8')
-    print('已导入固定版本 Shader、参考源码、四张 LUT、口红与腮红贴图 与许可证。')
+    print('已导入固定版本 Shader、参考源码、四张 LUT、腮红贴图与许可证；口红图仅保留上游参考。')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,44 @@
+10-31 12:59:06.057 30850 31789 F libc    : Fatal signal 7 (SIGBUS), code 2 (BUS_ADRERR), fault addr 0x721caec924 in tid 31789 (drishti_gl_runn), pid 30850 (.beautysdk.demo)
+10-31 12:59:06.717 32020 32020 F DEBUG   : Process name is com.beautysdk.demo, not key_process
+10-31 12:59:06.717 32020 32020 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+10-31 12:59:06.717 32020 32020 F DEBUG   : Build fingerprint: 'OPPO/PCAM00/OP46B1:11/RKQ1.201217.002/1736421576479:user/release-keys'
+10-31 12:59:06.717 32020 32020 F DEBUG   : Revision: '0'
+10-31 12:59:06.717 32020 32020 F DEBUG   : ABI: 'arm64'
+10-31 12:59:06.718 32020 32020 F DEBUG   : Timestamp: 2026-10-31 12:59:06+0800
+10-31 12:59:06.718 32020 32020 F DEBUG   : pid: 30850, tid: 31789, name: drishti_gl_runn  >>> com.beautysdk.demo <<<
+10-31 12:59:06.718 32020 32020 F DEBUG   : uid: 10269
+10-31 12:59:06.718 32020 32020 F DEBUG   : signal 7 (SIGBUS), code 2 (BUS_ADRERR), fault addr 0x721caec924
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x0  00000000000001b0  x1  0000000000000004  x2  0000000000000000  x3  000000721476aa78
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x4  0000000000000000  x5  0000007274544300  x6  00000072b8cd4600  x7  00000072b8cd4640
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x8  000000721caec924  x9  0000000000000000  x10 0000000000000003  x11 0000000000000033
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x12 000000729ebe78e8  x13 00000000000001db  x14 ff00000000000000  x15 aaaaaaaaaaaaaaab
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x16 00000072af8c7d60  x17 00000073c3f7f480  x18 0000007214418000  x19 0000007274544300
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x20 0000007225e515d0  x21 0000007334d83f80  x22 000000000000008f  x23 000000721476c000
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x24 000000721476c000  x25 00000072aef95606  x26 00000072947cba20  x27 0000007334d83f80
+10-31 12:59:06.718 32020 32020 F DEBUG   :     x28 000000721476aa30  x29 00000072c0b90ee0
+10-31 12:59:06.718 32020 32020 F DEBUG   :     lr  00000072af46ba3c  sp  000000721476a780  pc  00000072af46ba44  pst 0000000060000000
+10-31 12:59:06.730 32020 32020 F DEBUG   : backtrace:
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #00 pc 0000000000567a44  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #01 pc 00000000003bbf98  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #02 pc 00000000003bb24c  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #03 pc 00000000003b5f74  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #04 pc 00000000003b6844  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #05 pc 00000000008393d8  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #06 pc 0000000000838e00  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #07 pc 00000000003b6590  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #08 pc 000000000083dfac  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #09 pc 000000000083e530  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #10 pc 000000000082e1a0  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #11 pc 00000000003b6448  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #12 pc 00000000003b3e68  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #13 pc 00000000003ae3dc  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #14 pc 000000000058aca8  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #15 pc 000000000058821c  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #16 pc 00000000003ad60c  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #17 pc 00000000003ad374  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #18 pc 00000000005904a4  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #19 pc 000000000057f6d4  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #20 pc 000000000058adb8  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #21 pc 0000000000587c18  /data/app/~~Rf393N8KdAZLrTWFVei_Gw==/com.beautysdk.demo-tE2Q3s9yJU8WwpADLhPW-A==/base.apk!libmediapipe_tasks_vision_jni.so (offset 0xa0c000) (BuildId: f91d3cebee5cfa58ec6b207d25959f23)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #22 pc 00000000000da278  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+64) (BuildId: e81bf516b888e895d4e757da439c8117)
+10-31 12:59:06.731 32020 32020 F DEBUG   :       #23 pc 000000000007a448  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+64) (BuildId: e81bf516b888e895d4e757da439c8117)

@@ -1,0 +1,109 @@
+{
+  "measurementVersion": 2,
+  "qualificationRequested": false,
+  "deviceModel": "PCAM00",
+  "apiLevel": 30,
+  "results": [
+    {
+      "mode": "original",
+      "seconds": 5.440225571,
+      "previewFrames": 164,
+      "previewFps": 30.145808819808586,
+      "startPssKiB": 262091,
+      "maxPssKiB": 272231,
+      "endPssKiB": 272303,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 0,
+      "samplingIntervals": 5,
+      "faceCoverage": 0,
+      "peakThermalStatus": 0,
+      "pssSamplesKiB": [
+        264127,
+        266015,
+        267859,
+        269823,
+        272231
+      ],
+      "previewFrameDeltas": [
+        35,
+        32,
+        32,
+        33,
+        32
+      ],
+      "stalledIntervals": 0,
+      "maxConsecutiveStalledIntervals": 0
+    },
+    {
+      "mode": "face_and_gesture",
+      "seconds": 5.356274373,
+      "previewFrames": 160,
+      "previewFps": 29.871509347342393,
+      "startPssKiB": 256075,
+      "maxPssKiB": 286447,
+      "endPssKiB": 278751,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 5,
+      "cpuSubmissionP50Ms": 0.097865,
+      "cpuSubmissionP95Ms": 0.101667,
+      "samplingIntervals": 5,
+      "faceCoverage": 0,
+      "peakThermalStatus": 0,
+      "pssSamplesKiB": [
+        272655,
+        279787,
+        286447,
+        283391,
+        278611
+      ],
+      "previewFrameDeltas": [
+        33,
+        32,
+        31,
+        32,
+        32
+      ],
+      "stalledIntervals": 0,
+      "maxConsecutiveStalledIntervals": 0
+    },
+    {
+      "mode": "face_and_gesture_beauty",
+      "seconds": 5.339044738,
+      "previewFrames": 160,
+      "previewFps": 29.967907716003857,
+      "startPssKiB": 285367,
+      "maxPssKiB": 302491,
+      "endPssKiB": 302507,
+      "thermalStart": 0,
+      "thermalEnd": 0,
+      "facePresentSamples": 0,
+      "cpuSampleCount": 5,
+      "cpuSubmissionP50Ms": 1.002917,
+      "cpuSubmissionP95Ms": 1.102447,
+      "samplingIntervals": 5,
+      "faceCoverage": 0,
+      "peakThermalStatus": 0,
+      "pssSamplesKiB": [
+        288459,
+        292607,
+        295847,
+        299319,
+        302491
+      ],
+      "previewFrameDeltas": [
+        34,
+        32,
+        31,
+        32,
+        31
+      ],
+      "stalledIntervals": 0,
+      "maxConsecutiveStalledIntervals": 0
+    }
+  ],
+  "limits": "Sampled CPU submission, not GPU\/remote latency; uncontrolled camera scene; no image saved. Passing face coverage does not qualify visual quality or overall performance."
+}

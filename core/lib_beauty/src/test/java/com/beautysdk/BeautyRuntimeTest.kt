@@ -54,6 +54,44 @@ class BeautyRuntimeTest {
             it.process(frame(8));assertEquals(3,renders)
         }
     }
+    @Test fun lateAnalysisCanRefreshSameVideoSampleWithoutResubmitting() {
+        val entered=CountDownLatch(1);val release=CountDownLatch(1);val completed=CountDownLatch(1)
+        val calls=AtomicInteger()
+        val expected=FaceObservation(FaceBounds(.2f,.2f,.8f,.8f))
+        val observed=mutableListOf<FaceObservation?>()
+        val factory=FaceAnalyzerFactory { object:FaceAnalyzer {
+            override val id="delayed-fixture";override val capabilities=emptySet<FaceCapability>()
+            override fun analyze(image:AnalysisImage):List<FaceObservation> {
+                calls.incrementAndGet();entered.countDown()
+                check(release.await(5,TimeUnit.SECONDS));return listOf(expected)
+            }
+            override fun close()=Unit
+        } }
+        val renderer=object:BeautyRenderer {
+            override fun render(frame:VideoFrame,settings:BeautySettings,face:FaceObservation?):VideoFrame {
+                observed.add(face);return frame
+            }
+            override fun close()=Unit
+        }
+        BeautyAnalysisRuntime(factory,onTiming={completed.countDown()}).use { runtime ->
+            runtime.setEnabled(true)
+            BeautySession(renderer=renderer,sharedAnalysis=runtime).use { session ->
+                session.start();session.settings=BeautySettings(glasses=true)
+                val input=frame(7)
+                try {
+                    assertTrue(runtime.submit(input));assertTrue(entered.await(5,TimeUnit.SECONDS))
+                    session.process(input);assertNull(observed.last())
+                    release.countDown();assertTrue(completed.await(5,TimeUnit.SECONDS))
+                    // 异步发布本身不改变已合成画面，宿主必须显式补画。
+                    assertNull(observed.last())
+                    assertSame(input,session.redraw(input));assertSame(expected,observed.last())
+                    assertEquals(7L,session.lastFrameAnalysis.result!!.info.timestampNs)
+                    assertEquals(0L,session.lastFrameAnalysis.resultAgeNs)
+                    assertEquals(1,calls.get())
+                } finally { release.countDown() }
+            }
+        }
+    }
     @Test fun borrowedRuntimeSurvivesRenderSessionClose() {
         val calls=AtomicInteger();val done=CountDownLatch(1)
         BeautyAnalysisRuntime(factory(calls),onTiming={done.countDown()}).use { runtime ->

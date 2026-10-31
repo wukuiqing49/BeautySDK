@@ -1,4 +1,654 @@
-# 2026-10-29 最新：0.2.0 应用授权
+## 2026-10-31 静止虚拟背景轮廓闪烁
+
+用户明确反馈“人不动时边缘也抖、忽明忽暗”。本轮增加内容约束的时序稳定，并修正分析小图超前视频时的蒙版选择；未将受控夹具结果描述为真人画质已经解决。
+
+- NativeMaskConverter在原C++量化/逆旋转循环内融合时序滤波。只在RGB颜色与置信度变化较小时使用历史，修正相对当前观测最多8/255；明显颜色/置信度变化、0/255端点立即跟随。缓存只属于分割worker；geometry/代次变化、倒退或超过150ms的采样间隔以及关闭滤波清除历史。提供enableTemporalStabilization默认true，可false对照；实验性全局运动校正仍默认false。
+- MediaPipeForegroundMasks原来只保存最新结果，分析采样可能超前当前视频而把仍有效旧结果挤掉，渲染因此退回原背景。现在最多保留3张不可变小蒙版，选不晚于视频的最新实际采样；位移尚未来临时使用同次未位移蒙版。仍严格250ms过期、换源/停用清空，不伪造时间戳。
+- OPPO PCAM00/API30设备19项通过：新稳定3、NativeMask方向/容量/不可变快照3、兼容和回调3、实际GL/场景7、调度/重置3。新夹具包含静止噪声、颜色/大置信度变化、时间/代次/镜像失效、旋转对照及超前结果/容量限制。类别独立进程；公开portrait与生成输入，不采集真人帧。受控静止总alpha波动232→57（约降低75.4%），不代表真人边缘或全SDK性能收益。
+- Pixel8开始设备测试前离线、未成功执行或安装本轮版本；OPPO覆盖安装，503份原私有文件/偏好恢复摘要一致。已知GPU置信度不兼容设备按现有规则选CPU；没有绕过保护运行明确GPU的运动基准。
+- Debug/test APK/lint、MediaPipe双ABI Release AAR、显式无正式签名app Release/R8通过；新增JNI名称/双ABI导出静态保留。自有4份Debug/Release ELF与两APK静态16KB通过，不代表Release或16KB系统运行。本轮未推进无关JVM历史基线、未重新发布Maven。
+- 剩余：真人静止复测、快速运动拖影/头发/遮挡/低光与持续CPU/热开销未验收；不是光流或神经视频matting。历史MediaPipe崩溃仍未关闭。无有效蒙版仍旁路，虚拟背景不是隐私遮挡保证。
+
+证据：[结果与源码摘要](evidence/background-stability-20261031/results.json)、[稳定回归](evidence/background-stability-20261031/5ef48cf2-ForegroundMaskStabilityDeviceTest.txt)、[完整设备](evidence/background-stability-20261031/5ef48cf2.txt)、[静态对齐](evidence/background-stability-20261031/native-alignment.json)。源码指纹d9681c0439e015749a1b53c2009d1f13be9b7589ef9d90cf29c705e4ce4239ef。
+
+## 2026-10-31 双级跟踪灰度预处理优化
+
+结论：开启唇部细节跟踪时，两次RGBA转灰度合并为一次JNI入口。整数嵌套采样格从细节灰度直接取原采样点；不嵌套的奇数/取整尺寸保持原RGBA采样路径。原采样位置、亮度公式、时间戳、方向/镜像和跟踪质量阈值不变。最长边不超过160时，两级同尺寸只保留一个自有灰度缓冲。不跨检测/跟踪线程共享可写缓存，不新增模型或线程。
+
+- MotionPreparationDeviceTest三项通过：六种大小（640×480、320×240、319×241、241×319、120×80、1×1）、padding与非零源position、两级输出逐字节对照旧单级JNI、源图不改写、旧参考独立和显式复用、同一估计器双线程独立缓冲；非法小目标/heap源在写入前拒绝。
+- Pixel8/API36 Debug原生步骤短测：640×480生成RGBA，160×120整脸+320×240细节；预热100对，9轮交替各200次，含反射/JNI。两次原入口中位329.45089μs→新入口272.32605μs，减少17.3394%（约57.12μs/次）。仅此设备/Debug/步骤测量，不是整体SDK、Release、真实直播FPS或端到端收益。
+- Pixel8共15项通过：新预处理3、连续移动/旋转缩放3、嘴部/唇形7、真实相机配置恢复1、公开portrait GPU妆面1。类别独立进程运行；新版覆盖安装，507份私有文件/偏好恢复一致，不保存用户画面。OPPO离线。
+- 宿主20项JVM本次通过；核心155项任务命中UP-TO-DATE（含1既有跳过），作为同源码历史校验，不记作本次新执行或推进核心基线。Debug/test APK/lint、MediaPipe双ABI Release AAR、显式无正式签名app Release/R8通过。R8产物静态保留新方法名及双ABI JNI导出。
+- 自有libbeauty_rgb_input Debug/Release双ABI共4份ELF与Debug/unsigned Release APK静态16KB对齐通过；未执行16KB系统或Release APK运行。未重新发布本地Maven或远程发行。历史MediaPipe SIGBUS/启动阻塞、真人动态画质与持续热稳态仍未关闭。
+
+证据：[结果/源码摘要/短测](evidence/motion-gray-20261031/results.json)、[预处理测试](evidence/motion-gray-20261031/39061FDJH00D3J-MotionPreparationDeviceTest.txt)、[设备全记录](evidence/motion-gray-20261031/39061FDJH00D3J.txt)、[静态对齐](evidence/motion-gray-20261031/native-alignment.json)。源码指纹58729f042b1eb7877610d66040d610d5047e6d9660f78bc5ca31b7a003a8e1a4。
+
+## 2026-10-31 跟踪参考图发布锁优化
+
+结论：检测侧生成灰度/唇部细节参考图从AsyncFaceAnalysis发布锁内移至同一检测worker的同步分析阶段。锁内只提交已准备参考，代次校验仍由原AsyncFaceAnalysis执行；不增加worker、视频队列、推理、外推或结果有效期。不更改公共API、native、Shader、资源协议或效果设置。
+
+- 根因：TrackedFaceAnalysis原onResult在分析发布锁内调用motion.prepare；渲染snapshot、采集submit和reset必须等待这项图像转换。新阻塞夹具旧代码确定发生Future TimeoutException，不依赖平均耗时猜测。
+- 两个并发回归覆盖阻塞转换时snapshot/submit/reset或close可返回，换源/关闭旧结果不发布，下一代真实结果正常且旧后端由worker释放。中间测试曾错误期待reset立刻释放模型，实际契约为下一任务延迟释放；修正测试等待顺序后通过，保留中间失败记录。
+- 核心155项（154通过、1既有跳过）与宿主20项通过，总计174通过、1跳过，无失败；Debug/test APK/lint通过。跟踪全10项覆盖连续接力、失败屏障、新模型恢复、代次与关闭。不沿用本轮未执行模块测试或旧发行结果作新基线。
+- Pixel 8/API36共12项通过：AdjacentMotion3、LipMotion7、真实相机妆色/强度恢复1、公开portrait GPU妆面1；各类独立进程。新版覆盖安装，507份私有文件/偏好恢复摘要一致，不保存用户相机帧。
+- 这是消除已复现的一处锁等待；未测真人端到端延迟/FPS收益、热稳态或长时直播。OPPO离线、历史MediaPipe SIGBUS/启动阻塞未关闭。本轮未重新发行Maven、未执行Release/R8，不引入新的发布结论。
+
+证据：[结果及源码摘要](evidence/tracking-lock-20261031/results.json)、[旧版超时](evidence/tracking-lock-20261031/before-jvm.log)、[中间测试假设修正](evidence/tracking-lock-20261031/intermediate-jvm.log)、[设备](evidence/tracking-lock-20261031/39061FDJH00D3J.txt)。源码指纹8439d69e4bb1089ef0a17107bdb10ffc3c53affa665a06fb5bdfb6a948b1e005。
+
+## 2026-10-31 SDK整体优化：独立妆色与可靠性增量
+
+本轮完成一批可回归优化，不代表全部功能缺口或商业资格关闭。完整待办见[执行清单](../SDK_OPTIMIZATION_PLAN.md)，选色API及协议见[独立妆色](../SDK_MAKEUP_COLORS.md)。
+
+- 口红/腮红新增独立RGB颜色，公共配置、GPUPixel/JNI、资源能力声明、Demo预设/自定义色号与恢复贯通。使用原有绘制通道；改色不隐式开启效果，不修改另一部位、强度或睫毛。资源必须声明makeup.colors.v1并限制所属部位。CMS/iOS编辑消费仍待补齐，未增加光泽质地或分割模型。
+- 状态文件写入V2，兼容读取V1；升级后旧SDK不能读取V2。读取改为64KiB有界输入。缺失睫毛资源只中性化该项，避免恢复成程序化睫毛，不重置其他效果。
+- AsyncFaceAnalysis在模型创建前后验证关闭状态/代次，避免初始化期间关闭或换源后额外执行旧任务。两个阻塞工厂并发回归通过；不等于历史MediaPipe SIGBUS/启动阻塞已解决。
+- 初次API检查发现PreparedResource旧构造描述符被改变，已恢复；保留BeautyAdjustments/BeautyResourceState旧构造与copy路径。检查器仅允许final到open的兼容放宽并排除编译器WhenMappings，新增4项测试；最终2387条JVM基线签名保留。不代表Kotlin元数据/native ABI/行为全面兼容。
+- JVM共194项：核心153（152通过、1既有跳过）、资源21、宿主20，无失败。Pixel 8/API36共18项通过：唇跟踪7、贴纸3、妆色资源/迁移2、相机恢复/字段隔离2、实际GPU分区选色/肤色强度/公开人像/OES4。各组独立进程执行，不能替代连续生命周期测试。
+- Debug/test APK/lint、本地五制品Maven发布通过；独立单入口消费者Debug与Release/R8通过。GPUPixel Debug/Release双ABI ELF和Debug APK静态16KB检查通过，不等于16KB系统运行。API守卫、源文件许可校验及架构/UI/i18n/代理结构门禁通过。
+- Pixel 8覆盖安装，507份私有文件/偏好恢复摘要一致。OPPO离线，未安装；不采集保存用户人脸帧。真人动态画质、多效果长测、热降级、历史原生崩溃及其他未实现功能仍待关闭。
+
+证据：[最终结果与源码摘要](evidence/commercial-upgrade-verified-20261031/results.json)、[设备日志](evidence/commercial-upgrade-verified-20261031/39061FDJH00D3J.txt)、[静态对齐](evidence/commercial-upgrade-verified-20261031/native-alignment.json)。源码指纹 c62813d5ac4ae1a37a5f9fcf78b6f7b7b922122509f43a46c42e1f3a8c72a724。
+
+## 2026-10-31 胡子移动拖后专项
+
+用户反馈眼部正常、胡子移动拖后且静止才对齐。本轮修正两处可确认的额外延迟来源，不宣称真人拖尾全部解决。
+
+- StickerPoseSmoother只将嘴部中心改为直接使用最新锚点，角度/尺度微抖抑制及眼睛/头饰策略保留，无脸仍隐藏、不延长有效期。新增连续小位移测试在旧代码失败，新代码通过，同时断言眼部平滑未取消。
+- PreviewRequest根据最终生效的UPPER_LIP图片或程序化胡子判定需求。单开嘴部贴纸在GPUPixel主线也优先GPU分析并允许已有检测完成同采样补画；空工坊覆盖、完整主题替代、原图、关检测及3D互斥均保留。每帧最多一次补画、不缓存排队视频、不等待模型。需求名改为needsFreshFaceRedraw，口红/睫毛原路径保留。
+- JVM32项通过：核心贴纸几何/平滑12、宿主需求/调度20；Debug/appAndroidTest/lint通过。Pixel8设备12项通过：唇部跟踪7（含16方向组合）、贴纸开关/隔离/恢复3、真实面板字段隔离1、公开人像GL美妆1。未新增C++、Shader、模型或改变嘴唇局部跟踪算法。
+- 新版已覆盖安装Pixel8，507份私有文件/偏好摘要恢复一致；未采集保存用户画面。OPPO离线，未安装；真人快速移动尾延迟/抖动权衡、长期性能和历史MediaPipe崩溃仍待验收。
+
+证据：[结果](evidence/moustache-follow-final-20261031/results.json)、[设备](evidence/moustache-follow-final-20261031/39061FDJH00D3J.txt)、[旧平滑回归失败](evidence/moustache-follow-final-20261031/before-jvm.log)。源码指纹 `566a17786b5a5ab2f38b909c74254a84f62c7cccf4684f7cdcd95c1f9eb03079`。
+
+## 2026-10-31 设置隔离重构与胡子翻转修复
+
+结论：本轮设置隔离与胡子方向修复通过资源/宿主36项JVM及Pixel8/API36共12项设备回归。未宣称全部SDK优化或商业验收完成；OPPO离线，历史MediaPipe SIGBUS/启动阻塞与持续性能仍未关闭。
+
+- 新增BeautyResourceEdits：纯状态操作，参数类别校验；关闭/删除按目标scope中性化，保留其他类型。Demo去除updateEffects全量参数反写与Controller基线推断，滑杆只提交显式字段。
+- 新增ResourceEffectApplication：贴纸、背景、运镜、美妆与旧协议各自处理所属字段；主题和独立资源共用LEGACY优先/slot排序，避免主题拆分后覆盖顺序变化。不增加逐帧线程、模型或GPU通道，不更改公共BeautySettings构造及资源文件格式。
+- NativeFaceMotion曾在原始坐标按x重排嘴角，破坏转正空间左右身份。新增设备测试修复前确定失败：rotation=0、mirror=true、local=false，方向点积-1（翻转180度）。修复后保留源锚点身份，4旋转×2镜像×2跟踪模式共16组合方向/跨度通过；不延长有效期。
+- 设备12项：LipMotionDeviceTest 7项（含上述方向与局部/连续跟随）；StickerToggleDeviceTest 3项（含胡子保留、调妆、删除睫毛中性化和重开）；真实面板字段隔离1项；公开portrait GL妆面1项。设备用例分组执行，不作为长时连续生命周期验收。
+- 构建Debug/appAndroidTest及lint通过；架构门禁通过，4条独立示例/测量工程提示；agent结构门禁通过。未新增native C++改动，未本轮执行Release/R8或16KB运行。
+- Pixel8覆盖安装，新版保留；私有files/shared_prefs共507份恢复摘要一致。测试只用生成图/公开夹具及配置，不保存用户相机帧。OPPO本轮未安装。
+
+证据：[最终结果](evidence/settings-isolation-final-20261031/results.json)、[设备日志](evidence/settings-isolation-final-20261031/39061FDJH00D3J.txt)、[修复前翻转](evidence/settings-moustache-before-20261031/39061FDJH00D3J-LipMotionDeviceTest%23moustacheOrientationSurvivesTrackingInEveryRotationAndMirror.txt)。源码指纹 `ca7f74f2a102fb2111fe1107c43f780dba7818aa42715ff2a76d6be1d2197a55`。
+
+## 2026-10-31 腮红圆斑妆形优化
+
+结论：保留原强度及加权RGB亮度保护，将妆形向外上方延展、展开柔边并降低集中峰值。Pixel8五项设备与GPUPixel七项JVM本次全部通过；Debug/testAPK/lint、GPUPixel Release AAR成功，自有双ABI Debug/RelWithDebInfo四个ELF及Debug APK静态16KB通过。OPPO仍离线，未给其安装新版；不将这些结果等同于真人自然度或持续性能验收。
+
+原因与改动：
+
+- 旧腮红在局部四边形内受小范围高峰蒙版限制，颜色集中成圆斑。MakeupGeometry将内/外宽度上限改为0.32/0.42眼距，仍受鼻侧/外轮廓限制；上下厚度限制为0.12/0.15眼距，轮廓端向上抬起最多0.10眼距且不超过眼颊间距的0.22。仍用每侧两个三角形，不宣称曲面网格。
+- Shader将覆盖色差由smoothstep改为平方根分布，保留较低覆盖率的外沿，椭圆羽化平缓区从0.18扩大到0.40，覆盖峰值0.70→0.48。固定玫瑰染色、加权RGB亮度/统一色域约束、用户0..1强度与资源状态保留，不新增模型/检测/逐帧分配/pass/等待。
+
+本次验证与证据：
+
+- 修复前Pixel8新增实际染色像素形状回归失败：主轴长短比1.3175，要求>1.8；[旧版失败记录](evidence/blush-shape-before-20261031/39061FDJH00D3J-GpuPixelDeviceTest%23blushPreservesSkinToneLuminanceAndStrengthOrder.txt)。最终同输入主轴比2.1579通过。RGB(150,125,100)满强度变化像素496→554，说明不仅是整体降低强度；这是控制纹理测量，不是自然度评分。
+- 保留深/中/浅/近白四肤色×三强度、黑/白各三强度，共18组亮度、暖色变化、强度递增及alpha断言。另跑局部口红/腮红宿主GL状态、OES契约、真实公开portrait与三款睫毛组合、相机三参数/预设绑定/新页面保存恢复，共5个方法，0失败。
+- GPUPixel7项JVM实际执行通过，含边界、单侧失效/旧顶点清除、口红睫毛缓冲保护、旋转镜像；未改变上轮核心跟踪策略。
+- 已查看公开portrait满强度对照：build/functional-test/blush-shape-final-20261031/public-blush-comparison.png（左原图/中旧/右新）；集中粉红斑点减弱、外上方分布更宽。该图仅为公开fixture，不保存用户帧，不能据单张正脸认定真人动态通过。
+- lint 0 Error/214 Warning；结构门禁/空白检查通过。构建日志build/blush-shape-{build,release}.log；Release为库AAR，不将历史宿主Release/R8升级为本轮通过。Pixel8设备原507个files/shared_prefs文件hash恢复一致，最终Debug已安装。
+
+[最终结果/源码指纹](evidence/blush-shape-final-20261031/results.json)、[Pixel8五项](evidence/blush-shape-final-20261031/39061FDJH00D3J.txt)、[静态对齐](evidence/blush-shape-final-20261031/native-alignment.json)。源码指纹 fcde2b9dcba2cf263639602eb9a54d5118c9b3d55373c484713439d75024eb0c。真人不同脸型/肤色、快速转头与遮挡、持续性能/温升、OPPO、实际直播厂商、16KB页系统及既有MediaPipe生命周期风险仍未由此轮关闭。
+
+## 2026-10-31 腮红保色与覆盖范围优化
+
+结论：最终GPUPixel JVM7项、Pixel8设备5项全部通过。OPPO在执行前断开，仅记录未执行，本轮未给OPPO安装新版。Debug/testAPK/lint及GPUPixel Release AAR通过；自有GPUPixel Debug/RelWithDebInfo双ABI四个ELF与Debug APK静态16KB检查通过，不代表16KB系统运行或真人效果验收。
+
+变更：
+
+- beauty_bridge.cpp：原浅粉白底素材RGB不再作为柔光目标，仅由其色差与alpha提取分布蒙版，配合椭圆羽化。固定玫瑰色差保持(.2126,.7152,.0722)加权编码RGB亮度，按原像素色域余量共同收缩后混合，避免白底提亮、各通道裁剪或黑/白区域产生假色块；这是编码RGB权重，不宣称线性光照校正/肤色分割。
+- MakeupGeometry.kt：在双眼/下巴方向基础上，分别使用鼻点1与外缘234/454约束内外宽度、眼颊/颊下巴投影约束上下高度。单侧脸颊点无效清空该侧旧顶点，另一侧仍可绘制。仍是每侧两个三角形，不是稠密曲面/3D遮挡，不新增局部跟踪或时间平滑。
+- 原公共强度/资源协议、固定1440浮点缓冲、FBO和局部绘制数保留；PNG仍只初始化上传一次，没有逐帧Bitmap/新模型/读回/同步等待。不增加可选色号或自动换资源，不以此声明持续性能通过。
+
+证据与验证：
+
+- 修复前Pixel8真实Shader控制纹理回归失败，变化像素平均加权亮度误差11.2329/255，保留[旧实现断言失败](evidence/blush-before-20261031/39061FDJH00D3J-GpuPixelDeviceTest%23localMakeupPreservesMouthInteriorAlphaAndHostState.txt)。最终该原回归通过，要求平均误差<1.5，同时保留强度递增、视频alpha、GL混合状态、纹理变换及局部边界检查。
+- 新增blushPreservesSkinToneLuminanceAndStrengthOrder：四种受控肤色×0.25/0.6/1.0强度、纯黑/纯白各三强度，共18组；四肤色均有可见暖色变化，强度递增，黑白完全不变，平均亮度误差范围0.1729～0.2709/255。不能把合成颜色范围当作真人肤色验收。
+- Pixel8另执行OES输入、公开portrait实际MediaPipe+组合渲染与相机口红/睫毛/腮红字段隔离/保存回归，总计5个设备方法。OES夹具补充与眼睛/下巴上下分离的有效脸颊点，以实际进入腮红分支，保持原契约断言。公开人像对照仅保存在build/functional-test/blush-final-20261031/public-blush-face.png，已查看，无用户画面。
+- 新增BlusherGeometryTest3项：鼻/眼/外缘边界、口红睫毛缓冲保护、单侧失效清旧网格、90度/镜像非方帧等价；既有4项睫毛JVM通过。初版测试夹具尝试构造NaN FacePoint被公共契约拒绝（3项失败），改为合法有限但越界点后重新执行7项全通过，未放宽生产校验或断言。
+- lint 0 Error/214 Warning，结构门禁、diff空白检查通过。构建日志build/blush-verified-build.log、build/blush-release-final.log。首轮Release/lint进程无最终成功信息即退出；一次重试因PowerShell拆分-D参数而失败，最终使用--max-workers=2 --no-parallel完成；不沿用失败进程作为通过证据。
+- 设备原files/shared_prefs共507文件hash恢复一致，最终Debug留在Pixel8。测试只处理生成纹理/公开portrait，不记录保存真人图像；原配置不清空。
+
+[最终结果与源码摘要](evidence/blush-final-20261031/results.json)、[Pixel8五项](evidence/blush-final-20261031/39061FDJH00D3J.txt)、[静态对齐](evidence/blush-final-20261031/native-alignment.json)。源码指纹 0a7ac3efbd797ca9ebb9fb4d7f744f8de4ff5ad390ca5229d5032b2c208948dc。旧MediaPipe生命周期SIGBUS/启动阻塞、真人快速转头/遮挡自然度、持续性能/温升、OPPO本轮验证、宿主Release/R8、实际直播厂商和16KB页系统仍未由此轮完成。
+
+## 2026-10-31 美妆预设/微调错绑修复
+
+结论：修复前 OPPO 在真实相机面板复现“先调睫毛、再点击口红预设，微调仍绑定睫毛”的断言失败。修复后 OPPO/Pixel 8 各3项、合计6项通过，0失败；用户真人复核尚未完成，不能据此把之前的闪烁或生命周期风险标记解决。
+
+原因与修改：预设仅修改资源，ResourceParameterPanel保留旧selection，没有按预设scope切换微调对象；用户再次拖动时实际修改上一次的部位。ResourceCenterController点击单参数预设时传入相同参数ID，面板在下一次渲染绑定对应按钮/标签/滑杆/重置；已有参数按钮使用当前绑定回调，避免持有首次render闭包。直接点击口红/腮红/睫毛参数按钮的ID与数值隔离断言在修复前也已通过，没有证据表明native参数顺序接反。本增量仅修改两个Demo UI文件，未修改SDK着色器、检测或跟踪策略。
+
+本次验证：
+
+- 新增CameraConfigurationDeviceTest.makeupPanelEditsOnlyNamedFieldAndPresetFocusMatches：真实按钮+SeekBar用户输入，轮流调睫毛/口红/腮红/口红归零，逐次核对三个字段、相机最终options及材质。停在睫毛微调后实际点击口红预设、重新进入微调，确认绑定口红；再调整口红至0.66，睫毛0.43/腮红0.38与原睫毛素材保留。退出并创建新页面后再次核对三项。
+- 既有makeupToggleAndDisablePreserveOtherEffectAcrossReopen、actualPortraitMakeupUsesDetectedLipAndCheekLandmarks通过，覆盖单项取消/恢复与公开人像GL组合、三款睫毛亚像素移动夹具。两机按方法独立instrumentation进程运行，不代表长时生命周期通过。
+- Debug/testAPK与lint构建通过（lint 0 Error/214 Warning）；UI静态门禁0 warning；git diff --check通过。本轮不重复Release/native ABI验证，因为SDK/native/build配置未由此增量修改。
+- 两机已安装最终Debug，设备私有files/shared_prefs恢复hash一致（OPPO503、Pixel8 507文件）。不卸载/清数据、不保存真人画面。构建日志build/makeup-controls-{final-build,test-build}.log。
+
+证据：[结果/源码摘要](evidence/makeup-controls-final-20261031/results.json)、[OPPO](evidence/makeup-controls-final-20261031/5ef48cf2.txt)、[Pixel8](evidence/makeup-controls-final-20261031/39061FDJH00D3J.txt)、[修复前失败](evidence/makeup-controls-before-20261031/5ef48cf2-CameraConfigurationDeviceTest%23makeupPanelEditsOnlyNamedFieldAndPresetFocusMatches.txt)。源码指纹 13a15f62e58c0aecb1dc2484a5baf2094689fc8bc20a4d8641aeed553d989118。未覆盖：横屏/字体完整矩阵、强杀未落盘、真人观感和持续性能；既有MediaPipe SIGBUS/启动阻塞原因仍待处理。
+
+## 2026-10-31 前轮睫毛闪烁验证补记
+
+前轮已完成但被用户“美妆错乱”反馈中断汇报：TrackedFaceAnalysis新增边界回归先失败后通过；核心150、GPUPixel4、宿主19项JVM执行通过；最终两机各11项、共22项通过，证据见[evidence/lash-flicker-verified-20261031/results.json](evidence/lash-flicker-verified-20261031/results.json)。仅允许不早于最后有效匹配的真实新模型在可选匹配失败时继续使用，不延长模型年龄；没有新增眼睑跟踪。初次OPPO执行前11项通过后相机配置类启动未进入测试，主动停止并恢复，记录见evidence/lash-flicker-final-20261031。实时聚合日志不足以唯一归因用户的每次闪烁，用户尚未确认完全解决，保留该限制。前轮Release/R8及静态16KB验证不能替代真人/持续性能/16KB系统运行验收。
+
+## 2026-10-31 口红与睫毛状态/合成隔离
+
+结论：针对性回归最终双机各15项，共30项通过、0项断言失败，资源JVM13项通过；不能据此关闭生命周期稳定性。首轮实现双机全量各20项通过。最终同进程OPPO复跑21项时，20项已完成，资源类末尾发生MediaPipe SIGBUS；后续分离配置/图形类复跑时，图形类在1280×720唇轮廓输出后长时间未完成，主动强停并恢复配置，原因未确定。最终按类/关键GL方法独立进程验证，失败和未完成记录均保留，不覆盖或升级其通过基线。
+
+变更：
+
+- beauty_bridge.cpp：口红仍为40点直接RGB染色；腮红、图片/程序化睫毛各自输出目标RGB及coverage，以SRC_ALPHA/ONE_MINUS_SRC_ALPHA局部混合。alpha使用ZERO/ONE保留原视频。透明网格不再把已画妆面恢复原图。仅Makeup保存/恢复混合因子与方程，基础调色不支付新增查询；继续共用FBO/VBO，不新增全屏pass、纹理读回、模型或眼睑局部跟踪。输入支持既有2D/OES。
+- BeautyResourceState/ResourceModels：旧LEGACY资源先作为底层，再应用独立槽位，最后用户参数，不依赖JSON插入顺序；旧资源没有eyeMakeup时保留已有材质。
+- ResourceCenterModel/Controller：相机美妆已选卡片再次点击独立取消，并将该资源scope的手动参数置中性，避免清掉图片后仍以旧强度回退程序化睫毛；另一个美妆槽位保留。整类“无”仍明确关闭全部美妆。管理页显式取消同样清该scope；公共SDK保留无图片时可用的程序化睫毛能力。
+
+验证：
+
+- CameraConfigurationDeviceTest 5项：新增同开口红/睫毛、重复选睫毛取消、口红保留、新页面恢复；再次启用睫毛后单独取消口红、睫毛保留及恢复。另保留参数合并、选择顺序、真实SeekBar输入和手势/帽子记忆回归。新增单项取消验证通过Model入口，不冒充卡片实际点击/字体布局矩阵。
+- GpuPixelDeviceTest 4个关键方法：actualPortraitMakeupUsesDetectedLipAndCheekLandmarks新增三款APK图片睫毛+口红同时开启的分区像素对照、回到口红单开无材质残留、人工透明眼睑网格覆盖唇部仍保留口红；localMakeupPreservesMouthInteriorAlphaAndHostState新增六项宿主混合因子/方程及开关恢复；另执行texturePipelinePreservesTransformAlphaAndHostState、oesReshapeAndColorUseSharedTextureContract。新增组合像素夹具为2D公开portrait.jpg，OES是既有状态/形变回归，不代表新增组合已覆盖全部OES矩阵。
+- ResourceLibraryDeviceTest 6项：新增V3旧整套+V4独立睫毛两种插入顺序、显式参数覆盖；原有完整库与UI/兼容用例保留。资源JVM ResourceCompositionTest 9+ResourceCapabilitiesTest 4通过，新用例检查无眼材质旧资源不清掉已选图片。JVM初建实际执行，最终同源码构建UP-TO-DATE。
+- Debug APK/test APK/lint成功，lint 0 Error/214 Warning；GPUPixel Release AAR及显式-PrequireReleaseSigning=false app Release/R8成功。GPUPixel Debug/RelWithDebInfo双ABI四个ELF LOAD对齐和Debug/Release APK zipalign静态16KB通过；未在16KB页系统运行。结构/config/UI门禁、git diff --check通过。
+- 每轮先备份设备私有files/shared_prefs；最终OPPO503、Pixel8 507个文件hash恢复一致。最新Debug已安装到两机。无卸载/pm clear，不保存或采集真人画面；图形测试只使用公开人像/合成纹理。
+
+证据：[最终结果与源码摘要](evidence/makeup-isolation-targeted-20261031/results.json)、[OPPO最终15项](evidence/makeup-isolation-targeted-20261031/5ef48cf2.txt)、[Pixel8最终15项](evidence/makeup-isolation-targeted-20261031/39061FDJH00D3J.txt)、[静态native对齐](evidence/makeup-isolation-targeted-20261031/native-alignment.json)、[OPPO失败记录](evidence/makeup-isolation-final-20261031/5ef48cf2.txt)、[MediaPipe堆栈](evidence/makeup-isolation-final-20261031/5ef48cf2-native-crash.txt)、[未完成图形类](evidence/makeup-isolation-verified-20261031/5ef48cf2-GpuPixelDeviceTest.txt)。源码指纹aaa08bf4fb77718d906ddf45b7527afc9e388c99231a44fd4778fa48eeea9780。构建原始日志在build/makeup-isolation-{build,final-build,release}.log。
+
+限制：未修改检测器生命周期、唇部/眼睑跟踪；真人眨眼/侧脸贴合、长时性能、历史及本轮MediaPipe崩溃、图形长时间未完成原因、强杀未落盘、真实直播引擎、iOS和正式签名发行均未通过本轮验收。完整主题内部子资源仍按包声明顺序组合，本轮新增确定性顺序针对多独立槽位。
+
+## 2026-10-31 睫毛可见度与调参保存队列
+
+用户确认上一版口红效果很好，本轮仅处理“睫毛不显示；重开后效果或强度丢失”，保留口红直接染色、跟踪和同采样补画。
+
+定位与边界：原有actualPortraitMakeupUsesDetectedLipAndCheekLandmarks只判断少量任意像素变化，归一化舍入也可能满足；加强为眼周RGB总变化大于24的可见像素，并增加APK resource_delivery.zip内真实三款素材。公开人像320×400的小眼区中，程序化睫毛有19个明显变化像素，图片自然款为0；纹理512px细毛在mipmap缩小时alpha被平均得过淡。shader图片睫毛分支现按UV导数计算缩小足迹，用clamp(sqrt(footprint),1,6)有界补偿alpha（1-pow(1-a,gain)），透明底仍0，原尺寸/放大不增益；不删除mipmap，不改素材、眼睑几何、口红、背景alpha或公开API。双机三款图片睫毛分别31/49/37可见像素，APK内置与旧独立测试包一致。仅公开人像夹具证明可见度提高，不等于真人自然度、遮挡或动态贴合通过。共享2D/OES shader编译及既有OES状态回归通过，新增眼周可见度测量为2D输入。
+
+保存：普通选资源/模型参数/退出重开在旧代码已经通过，不能声称复现全部用户丢失路径。另以阻塞IO夹具确认81次参数更新原来产生81次loading发布及独立IO任务。ResourceCenterModel现只将等待执行的相邻参数操作按字段合并为最新值，worker取走后才形成下一批；选择资源、开关、重置等task封闭前一批，保持操作先后顺序。输入防御复制，退出后已接受批次仍由共享串行IO执行，新页面排队读；无主线程落盘或等待。新夹具验证81次输入合为一次loading，在IO阻塞时退出，再恢复IO并重开，最终口红0.80/睫毛0.61恢复；另验证参数→选睫毛预设→参数的边界顺序，以及真实fromUser滑杆输入0.63/口红0.72、图片睫毛选择、GPUPixel和人脸分析需求在新页面恢复。未模拟进程在IO落盘前被强杀，不能宣称任何时刻断电/强杀不丢配置。
+
+失败记录保留：初次强阈值也施加程序化小眼区，19像素低于20，后限定强阈值于用户问题对应的图片睫毛；实际图片自然款仍为0明确失败。UI测试首次因控件已移到Dialog而取Activity空根NPE，修正测试定位和键盘步长后通过。alpha上限4时图片自然款16像素未通过既有20阈值，上限6后31像素通过，未降低图片阈值。保存合并夹具旧代码expected1/actual81明确失败。不是把以上失败统计成最终通过；证据分别在lash-visible-before、lash-ui-before、lash-fix-probe、makeup-save-before目录。
+
+最终验证：OPPO PCAM00/API30和Pixel8/API36各30项，合计60次设备执行、0失败；CameraConfiguration4、GpuPixel10、MakeupCamera1、TextureBridge8、StickerToggle2、ResourceLibrary5。包含口红完整轮廓/口腔排除、GL状态/alpha/旋转镜像、快速调参、资源选择恢复与PBO生命周期。OPPO81.759秒，Pixel39.469秒；覆盖安装后APK摘要一致，私有files/shared_prefs原样恢复503/507文件，未卸载/清数据。公开夹具在内存生成/比对，未采集或保存用户画面。
+
+构建：Debug/测试APK、lint0错误/214警告、GPUPixel Release AAR和显式无正式签名Release/R8通过。资源JVM12项本轮执行通过；GPUPixel4及feature19项任务UP-TO-DATE为历史有效结果未新执行；app:testDebugUnitTest为NO-SOURCE。自有libbeauty_gpupixel.so双ABI×Debug/RelWithDebInfo共4份ELF LOAD16KB与Debug/Release APK zipalign静态通过，非16KB设备运行/全部第三方库证明。额外片元操作仅图片睫毛区域，持续GPU成本/温升未测，不宣称零开销。
+
+证据：[结果与源码摘要](evidence/lash-save-final-20261031/results.json)、[OPPO](evidence/lash-save-final-20261031/5ef48cf2.txt)、[Pixel8](evidence/lash-save-final-20261031/39061FDJH00D3J.txt)、[native静态检查](evidence/lash-save-final-20261031/native-alignment.json)。源码指纹0d0a7adb531320daf331341cafb3175b98dfd6029dcc2d2b0871f8397e6df33c。新版已安装，真人睫毛观感和用户原丢失场景仍待复测；实际直播引擎、长时温升、历史GPU重建SIGBUS及分辨率偶发超时未由本轮关闭。
+
+## 2026-10-31 跟随拖尾：同采样完成后按需补画
+
+用户确认上一版光流有改善但仍拖尾，本轮不将算法夹具通过当作真人通过。只读metadata复现记录中仅一个有脸聚合窗口（ready=17、tracked=2、stale=3，最大结果年龄44.60ms），其余多为无脸；不能将这些日志当完整15秒的有脸测量，也不能据此认定唯一根因。未采集或保存用户画面。
+
+代码确认的额外等待：相机RENDERMODE_WHEN_DIRTY只由新帧/UI唤醒，模型/跟踪onTiming完成后只记录日志，即使当前采样的点已发布也要等待下一相机回调。GpuBeautyPreview现对有美妆需求、成功有脸且完成时间戳严格等于当前视频采样的结果requestRender；AnalysisRedrawGate合并两支路回调，每个采样最多补画一次，已绘制同采样结果不再唤醒。过时/未来结果、原图、关闭分析、非美妆、停止后均不补画。新帧正常优先消费；补画沿既有onRedraw路径，不推进视频时间、不再次检测或改写关键点时间戳。无新模型/native/队列或渲染线程等待。
+
+这项变更属于Demo预览调度，公共SDK既有redraw能力通过受控延迟后端验证：初次合成无点→结果发布不自动改变已合成帧→显式redraw取得同时间戳新点、年龄0、检测仅一次。不能让直播引擎未经约定异步重复交帧，也不保证首遍输出同帧。额外补画增加高清合成工作，GPU增量/温升及真人端到端延迟尚未测量，不宣称零开销、专业级跟随或消除模型内部平滑滞后。
+
+本轮验证：核心JVM148通过/1跳过，feature JVM19通过；新增同采样晚到结果契约1项与补画合并/失效3项。Debug/测试APK、lint通过（0错误、214警告）。OPPO PCAM00/API30、Pixel8/API36各13项通过，合计26次设备执行、0失败：美妆GPU/快速调参1、配置记忆1、贴纸开关2、PBO纹理桥8、回调异常隔离1。没有真人输入的设备冒烟不证明补画路径真人效果。两机APK摘要一致，私有配置503/507文件恢复一致；无卸载/清数据。本轮未改native，未重跑Release/R8或16KB审计，保留上一轮原生证据边界。
+
+新版已覆盖安装；用户随后确认口红“效果很好”，并另报睫毛不显示、重开效果或强度丢失。此为用户观感确认，不是agent真人测量。证据：[本轮结果](evidence/live-follow-redraw-20261031/results.json)、[OPPO](evidence/live-follow-redraw-20261031/5ef48cf2.txt)、[Pixel8](evidence/live-follow-redraw-20261031/39061FDJH00D3J.txt)、[复现metadata](evidence/live-follow-redraw-20261031/oppo-user-tail-metadata.log)。源码指纹54692ac2d932c8b5b0f54ab062acfc5ea473d90dc99fa6e899c89459c3c49409。持续性能、真实快速三维转头/唇形变化、遮挡/模糊、厂商远端及历史GPU重建SIGBUS风险仍未验收。
+
+## 2026-10-31 动态跟随：大位移捕获与金字塔光流
+
+用户反馈：上一轮降低运算成本后真人跟随仍差；用户已按要求在OPPO复现。本轮先读已有metadata日志，不采集/保存画面，再建立失败夹具。未将上一轮微基准提速当作动态问题解决。
+
+证据与边界：原生有脸稳态窗口的GPU推理均值约25.6～29.0ms，部分排队窗口最高约19～32ms；约25帧窗口只有7～13帧使用tracked结果。日志同时包含启动约10秒/无脸段，且初始采集包含logcat最后200行历史，不能将所有行精确等同于用户15秒动作，不用它独立证明唯一根因。metadata见[evidence/live-follow-diagnosis-20261031/oppo-metadata.log](evidence/live-follow-diagnosis-20261031/oppo-metadata.log)。可确定的受控缺陷：240×300公开人像相邻输入横移24px，旧全局160最长边、±12整数搜索返回null；旧版fastPortraitTranslationMustNotLoseTracking在OPPO明确失败，12px成功、24px失败。此失败保留，不放宽断言。
+
+实现：face_motion.cpp的全局locate替换为有界细层捕获＋最多3层稀疏零均值Lucas–Kanade式光流。小运动先在原层±5捕获，候选落到边界或质量不足才进入粗层±6捕获；各层参考梯度/Hessian只计算一次，最多12次迭代，每次增量/纹理/矩阵条件受限，最终保留归一化残差、前后向误差1.6px、相似变换一致性及原缩放/角度限制。双金字塔使用固定栈存储（两份各2×80×80字节），最多16锚点，无全图稠密流、新模型、OpenCV/ONNX依赖、额外队列或渲染等待。局部唇部仍是原20采样点残差＋40轮廓传播，不把全局光流描述为专用唇部解析或三维非刚性跟踪。NativeFaceMotion仅更新实现说明，公共构造/JNI/API未改；颜色渲染、资源包及150/300ms有效期不改。
+
+开发失败记录：首版纯粗到细在生成纹理连续运动step4回归，两机各1失败；据此增加原层可靠捕获，保持生成细节，而非删除测试/修改阈值。修正后两机8/8 probe通过。另一次编译因遗留未使用SEARCH常量触发-Werror，删除无用常量后构建通过。旧算法1次失败＋首版16次执行14通过/2失败＋修正probe16通过＋最终64通过，共97次执行94通过/3次历史失败；最终版本零失败，不能把历史失败统计成通过。
+
+最终验证：OPPO PCAM00/API30与Pixel8/API36各32项，64次设备执行通过。覆盖LipMotion6、AdjacentMotion3、GpuPixel10、MakeupCamera1、TextureBridge8、内容对齐1、配置恢复1、取消2。fastPortraitTranslationMustNotLoseTracking在12/24/36px全部通过（33.33ms采样间隔），并拒绝完全黑色/弱纹理图；portraitRotationAndScaleStayAligned为±0.1rad平面旋转、1.04倍缩放及(12,-6)平移，完整40唇点平均误差0.201/0.253px，两机一致。这不是快速三维侧脸/遮挡或运动模糊测试。公开人像8帧接力最大鼻点误差2.3266→0.5361px。生成局部唇动连续8帧最大平均轮廓误差0.1304px（上一轮0.1292px），均在既有3px界内；不声称每个指标严格不变。最终估计均耗时OPPO1.603640ms、Pixel1.614878ms，仅短夹具，不代表全链路延迟；新大位移单次测量约2.25～3.93ms，保留噪声，不选择probe最好值替代最终。
+
+构建/所有权：Debug/测试APK、lint0错误/214警告、MediaPipe Release AAR和无正式签名Release/R8通过；核心147通过/1跳过、GPUPixel4项JVM任务UP-TO-DATE，明确为历史有效结果未新执行。MediaPipe自有libbeauty_rgb_input.so双ABI×Debug/RelWithDebInfo四份ELF LOAD16KB、Debug/Release APK zipalign静态通过，不代表16KB设备运行或全部第三方库。最终OPPO64.127秒、Pixel37.503秒；两机已覆盖安装，APK摘要与本地一致，私有配置503/507文件恢复摘要一致；未卸载/清数据。公开人像变换只在内存生成，不读用户画面。
+
+证据：[最终结果](evidence/live-follow-flow-final-20261031/results.json)、[OPPO](evidence/live-follow-flow-final-20261031/5ef48cf2.txt)、[Pixel](evidence/live-follow-flow-final-20261031/39061FDJH00D3J.txt)。失败在live-follow-failure-20261031、live-follow-flow-probe1-20261031；修正probe在live-follow-flow-probe-20261031。工作区指纹`efbca8c79d716b56135e737a7b658b046ce3aa935d08412a98282418e6f877ec`；仅最终32个方法/设备推进基线。命令：gradlew.bat :app:assembleDebug :app:assembleDebugAndroidTest；:core:lib_beauty:testDebugUnitTest :core:lib_beauty_gpupixel:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug；:core:lib_beauty_mediapipe:assembleRelease :app:assembleRelease -PrequireReleaseSigning=false；adb -s <serial> shell am instrument -w -r -e class <八类> com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner。
+
+真人验收：用户确认新跟踪算法“有改善，但仍拖尾”，动态质量未通过。严格同帧渲染、模型平滑造成的滞后、真实三维转头/嘴部非刚性/遮挡与模糊、长时温升及直播厂商远端仍未验收；历史GPU重建SIGBUS/分辨率偶发超时未关闭。本次修复一个可复现的捕获范围缺陷，不认定全部真人跟随问题已解决。
+
+## 2026-10-31 直播热路径精简与跟踪效率
+
+结论：完成现有直接染色链路的成本优化，未增加模型/推理依赖或公共API。最终OPPO PCAM00/API30与Pixel8/API36各30项、共60次设备执行通过，0失败；前置基线14次及首轮probe58次也通过，共132次执行，不是132个不同用例。新版Debug已覆盖安装，两机安装APK摘要与本地一致，私有files/shared_prefs恢复摘要一致（503/507文件），未卸载/清数据/保存用户画面。真人快速转头跟随仍未验收，不宣称“最高效率”或已解决动态贴合。
+
+修改范围：
+- NativeFaceMotion/face_motion.cpp：整脸与局部搜索共用ReferencePatch；每个参考块只提取一次49像素、求一次均值/方差，候选点用有界整数累加后保持原浮点评分；局部弱纹理提前拒绝。搜索范围、顺序、双向/低纹理/阈值/网格退化检查不放宽，不用时钟预测。Kotlin复用固定锚点索引、去掉478点map后的二次列表复制和嘴角临时排序列表；估计器仍无共享可写图像缓存。
+- GlTextureAnalysisBridge：去掉中间cpu DirectByteBuffer及一次整幅小RGBA暂存复制，在PBO映射有效期内将只读借用缓冲交给同步复制型submit；回调返回/抛错后finally重新绑定对应PBO并unmap，释放槽位并恢复GL状态。每个异步worker仍独立复制到其有界所有权缓冲，不能称为零拷贝。未新增glFinish或等待推理；现有fence零超时轮询保留，驱动map/GL状态查询不保证零耗时。
+- GpuBeautyPreview：删除每帧先查询analysis.snapshot再被覆盖的路径，状态统一使用实际公共pipeline.lastFrameAnalysis。错误/原图仍明确旁路。Session/Connector承担线程、借用、交回与生命周期契约，未为减少层数而删除这些边界。
+
+对照：同一生成图像8帧连续平移＋局部唇动、相同320分析尺寸，OPPO meanEstimateMs 3.204010→2.776035（下降13.36%），Pixel 2.970098→2.106221（下降29.09%）。两机maxMeanContourErrorPx仍0.129159；局部平移、张嘴、旋转镜像、单角遮挡既有误差值与基线一致。首轮probe OPPO2.439277ms，最终2.776035ms，存在短测波动，不选择最好值代替最终结果。此为顺序执行短夹具对照，不是直播全链路延迟/热稳态/真人精度证据，未单独量化删除PBO暂存复制的收益。
+
+验证：8类30项/机＝局部运动6＋公开人像相邻跟踪1＋GPUPixel10＋真实美妆相机1＋纹理桥8＋内容对齐1＋配置恢复1＋贴纸取消2。新增TextureBridgeDeviceTest#workerOwnsFrameWhileMappedPboSlotsAreReused：阻塞首帧worker，多次覆盖PBO和pending后读到首帧71及最新帧99，中间帧不积压；#borrowedPboFailureUnmapsAndLaterSamplesRecover：借用缓冲只读、消费者异常可见，随后3次投递恢复且GL无错误。既有2D/OES/变换/过期/启停/状态恢复保留。真实相机测试允许NO_FACE，不代表测试时有人脸或快速运动通过。
+
+核心JVM148项（147通过/1跳过）、GPUPixel4项通过；Debug/测试APK、app lint0错误/214警告、MediaPipe Release AAR及无正式签名Release/R8构建通过。MediaPipe自有libbeauty_rgb_input.so双ABI×Debug/RelWithDebInfo共4份ELF LOAD16KB及Debug/Release APK zipalign静态通过，不代表全部第三方库或16KB设备运行。结构/config门禁及diff检查通过。
+
+证据：[最终结果](evidence/live-motion-efficient-20261031/results.json)、[OPPO](evidence/live-motion-efficient-20261031/5ef48cf2.txt)、[Pixel](evidence/live-motion-efficient-20261031/39061FDJH00D3J.txt)；before与probe分别位于evidence/live-motion-before-20261031和live-motion-efficient-probe-20261031。工作区指纹`1954e401ec9846fc74e89ed55e5813ebfd3f8bc09e16e0a3238779e280b57d40`；基线仅推进最终30个实际通过方法/设备。命令：gradlew.bat :core:lib_beauty:testDebugUnitTest :core:lib_beauty_gpupixel:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug；:app:assembleDebugAndroidTest（新增所有权夹具后重建）；:core:lib_beauty_mediapipe:assembleRelease :app:assembleRelease -PrequireReleaseSigning=false；adb -s <serial> shell am instrument -w -r -e class <八类> com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner。
+
+剩余：未新增专用唇部分割、金字塔光流、视频帧延迟缓存或严格同帧合成；未解决模型/跟踪结果与当前视频天然存在的时间差。持续真人、温升/尾延迟、真实直播厂商远端、MediaPipe GPU重建历史SIGBUS和OPPO分辨率历史偶发超时仍待验证。Release未设备运行；不得把本轮成本降低表述为专业美妆动态质量验收。
+
+## 2026-10-31 口红改为唇部网格直接RGB染色
+
+结论：已按用户要求移除口红PNG的运行依赖，直接在40点唇部环带网格内由RGB uniform染色；默认(.90,.32,.38)，原强度滑杆继续生效。OPPO及Pixel每机21项、共42次相关设备执行通过，0失败；新版覆盖安装，两机安装SHA256与本地Debug一致，私有配置恢复。此轮改变颜色来源，不包含新跟踪/分割模型，不能承诺快速移动和真实唇缘误差自动解决。
+
+实现：GpuPixelBeautyRenderer构造从六图片/12尺寸变为四LUT＋腮红共五图片/10尺寸；beauty_bridge.cpp同步创建/校验/释放数量，口红Shader以lipColor取代mouth.png采样，直接混合原视频亮度保留唇纹/明暗，保留强度、口腔留空、1像素内侧羽化与视频alpha。网格draw仍120顶点，无口红材质UV使用，无新FBO/截图/纹理读回/生产等待。共享Shader仍绑定腮红纹理维持采样器完整性，但口红分支不读取该纹理；腮红与睫毛各自纹理继续使用。没有新增颜色选择UI或公共颜色API，当前为内置玫红色。
+
+资源闭环：mouth.png从src/main/assets移到third_party/gpupixel/src/res仅保留上游参考，原SHA256不变。scripts/import_gpupixel.py、verify_gpupixel_sources.py与NOTICE同步。来源验证17份文件/2个原始Shader通过，两Python脚本AST语法通过；未实际重新执行上游导入。Debug/无正式签名Release APK及GPUPixel Release AAR的ZIP成员均确认不含mouth.png、仍有blusher.png，见[打包核对](evidence/lip-direct-color-20261031/package-assets.json)。
+
+验证：GpuPixelDeviceTest#fullLipContoursCoverInteriorWithoutLeakingAcrossEdges先断言目标APK内口红PNG不存在，再在真实缺图条件下渲染，三尺寸96×128/640×480/1280×720及张/闭嘴共6组Canvas参考覆盖通过；排除2像素边界后唇内>99%、唇外/口腔漏色0、alpha173。既有强度递增、输入变换、原视频明度、无脸/缺点旁路、肤色/美型/腮红/程序化与PNG睫毛组合、GL状态及OES路径回归通过。公开portrait.jpg检测贴妆通过，不保存用户帧，不代表真人观感。
+
+设备：[OPPO PCAM00/API30](evidence/lip-direct-color-20261031/5ef48cf2.txt)21/21，62.14秒；[Pixel8/API36](evidence/lip-direct-color-20261031/39061FDJH00D3J.txt)21/21，38.3秒。六类为GPUPixel10、实际美妆相机1、纹理桥6、实际内容对齐1、配置恢复1、取消贴纸2。没有复跑未改的局部运动/3D/背景/分辨率切换/长测类，不计入本轮通过。生成720p短测OPPO完成绘制中位3.629ms/P95 5.084ms，GPU中位1.623ms/disjoint0；Pixel完成中位2.190ms/P95 3.273ms，GPU多次disjoint32不作有效GPU对照。这些是非配对短测，不宣称较上版提速或持续相机性能。
+
+构建：GPUPixel JVM4/4；核心JVM任务UP-TO-DATE沿用有效148项结果（147通过/1跳过），不是新执行148项。Debug/测试APK、GPUPixel Release AAR、app lint（0错误/214警告）和无正式签名Release/R8构建通过。GPUPixel双ABI Debug/RelWithDebInfo四份自有ELF LOAD静态16KB、Debug/Release APK zipalign通过，不代表全部依赖或16KB设备运行。结构/workflow config门禁通过，diff --check无错误。Release未设备运行，未修改Gradle/manifest/公共参数或资源包。
+
+配置保护：每机覆盖安装前备份私有files/shared_prefs并恢复摘要一致，OPPO503/Pixel507份；未卸载/pm clear，未保存/上传相机画面。剩余真人唇缘/快速转头/模糊/遮挡、长期温升、历史MediaPipe GPU重建SIGBUS及OPPO分辨率切换偶发超时均未关闭；直播厂商/正式签名/16KB运行未验收。
+
+命令：`gradlew.bat :core:lib_beauty_gpupixel:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest`；`gradlew.bat :core:lib_beauty:testDebugUnitTest :core:lib_beauty_gpupixel:assembleRelease :app:lintDebug :app:assembleRelease -PrequireReleaseSigning=false`；`python -B scripts/verify_gpupixel_sources.py`；设备`adb -s <serial> shell am instrument -w -r -e class <六类> com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。未提交工作区指纹`16b5698f5bb38ab2646c68c9511a5a71ce335f460c537ff03468149eed3c2030`（本轮纳入scripts目录），逐文件/方法、native和安装证据见[本轮记录](evidence/lip-direct-color-20261031/results.json)，基线仅推进实测设备方法。
+
+---
+
+## 2026-10-31 快速移动退化：对照复现与修复
+
+结论：用户确认上一轮完整唇缘版快速移动退化。本轮用旧生产代码复现单嘴角遮挡导致局部校正整组撤销，并测到OPPO逐片元40边遍历的额外GPU成本；已修复这两处新增问题，完整40点唇缘仍保留。最终OPPO/Pixel各45项共90次设备执行通过，0最终失败，安装摘要一致且私有配置恢复。真人快速移动/转头尚未验收，不把该结论写成专业级动态问题已解决。
+
+原因与实现：
+
+- `NativeFaceMotion.kt`、`face_motion.cpp`：撤回上一轮40点全量块搜索及四个内外角必须同时成功的硬门控，恢复先前20点预算/至少14点的70%门槛。单点匹配的弱纹理/±4边界/前后向1.2px质量标准不变。未匹配的采样点使用原距离加权残差，其余20点按各自内/外环相邻采样点插值位移，保留模型原形和全局运动；所有40点仍参与最终翻折/面积保护。局部遮挡不再因一个角失败就必然撤销其他可靠形变，仍可能因证据/几何不足回全局结果。不是唇部分割或遮挡渲染保护。
+- `beauty_bridge.cpp`：完整内外40点改为20个环带四边形、120顶点三角网格；顶点Shader以gl_VertexID从40点生成位置，片元仅计算本段内/外两条边距离，替换逐像素40条边的射线/距离循环。保留1像素内侧羽化、素材色相/原始明度、口腔/alpha、2D/OES采样矩阵及宿主状态恢复；脸颊/睫毛原偏移不变，VBO1440/FBO容量不变，无新增纹理读回、生产glFinish或等待。前24个float历史包围框保留布局但新绘制不消费。
+- 模型、资源包、UI和公共API不变；不改相邻帧链、150/300ms有效期、真实时间戳、模型无脸/reset失效或有界调度。匹配预算减少不等于所有CPU阶段耗时稳定减半。
+
+复现与对照：
+
+- 同一`LipMotionDeviceTest#oneOccludedCornerKeepsSupportedLipDeformation`生成夹具，仅将单角19×19区域变无纹理、其他嘴部按已知展开；两机旧实现均失败：全部40点平均误差1.05324px，等于仅全局结果，说明局部整组被撤销。修复后同一断言（局部误差<全局65%）通过，平均误差0.05377px。原失败证据保留：[OPPO](evidence/lip-motion-regression-before-20261031/5ef48cf2.txt)、[Pixel](evidence/lip-motion-regression-before-20261031/39061FDJH00D3J.txt)。这不是标注真人误差，也不代表被遮挡点可准确识别。
+- 720p同一合成口红夹具，8次暖机＋40次完成绘制，`glFinish`仅在测试内使用。OPPO旧→最终：完整Renderer GPU中位8.416→1.137ms，完成绘制中位11.881→2.908ms，P95 15.232→3.448ms，GPU disjoint均0。一次按旧→新顺序的短测，含背景复制/Renderer工作，非纯口红片元、持续热性能、相机FPS或曝光到显示时延；不能消除频率/负载变化影响。中间专项复测GPU1.076ms，方向一致。Pixel完成绘制中位2.884→2.246ms，但EXT查询多次disjoint（旧39/最终27），其少量GPU值不作为性能提升结论。
+- 既有独立Canvas唇环覆盖测试6组（三尺寸96×128/640×480/1280×720、张/闭嘴）全部通过；排除2像素栅格边界后唇内>99%、唇外/口腔漏色0、alpha173。真实公开portrait夹具、腮红/睫毛/美型组合与输入变换回归通过，不是用户脸部视觉验收。
+- 新增`fastTranslationKeepsFullContourAcrossAdjacentFrames`：8帧各8px、间隔33ms、合计64px平移，叠加嘴部0/2px独立运动，每步匹配相邻帧；两机最大逐帧40点平均欧氏误差0.12916px，鼻点<2px检查通过，估计均值OPPO3.736ms/Pixel3.340ms。生成纹理非快速真实侧脸/模糊。原平移/张嘴/旋转镜像/静止/弱纹理和相邻模型校正测试保留。
+
+执行证据：
+
+- 最终[OPPO PCAM00/API30](evidence/lip-motion-regression-fixed-20261031/5ef48cf2.txt)45/45，131.631秒；[Pixel8/API36](evidence/lip-motion-regression-fixed-20261031/39061FDJH00D3J.txt)45/45，86.135秒。14类范围同本轮计划，短测原图/检测/检测美颜各5秒，仅功能冒烟，无真人覆盖不能当持续性能。
+- 修复前专项每机6项（5通过/1复现失败），修复后专项每机6/6通过，最终每机45/45通过。合计114次执行112通过/2次旧码预期复现失败，原日志不覆盖；不等于114个不同用例。基线只推进最终实测通过方法。
+- 核心148项中147通过/1跳过，GPUPixel4/4通过；Debug和测试APK、两个后端Release AAR、app lint（0错误/214警告）及无正式签名Release/R8构建通过；结构/workflow config门禁通过。自有native双ABI Debug/RelWithDebInfo共8份ELF LOAD静态16KB、Debug/Release APK zipalign通过，不代表全部依赖或16KB页设备运行。Release未设备运行。
+- 每轮覆盖安装均备份恢复私有files/shared_prefs，OPPO503/Pixel507份摘要一致，最终安装APK与本地Debug SHA256一致；未卸载/pm clear，未保存/上传相机画面。无UI更改，不借用字体/主题矩阵为本轮证据。
+
+剩余：真人快速转头/运动模糊/口型及遮挡、重定位跳变、端到端时延/长期温升仍未验收；历史MediaPipe GPU重建SIGBUS和OPPO切分辨率偶发超时根因仍未关闭，本轮未重跑分辨率切换类。通用模型点位和实验二维块匹配仍有能力边界，未引入专用唇部分割或实际直播厂商。
+
+命令：`gradlew.bat :core:lib_beauty:testDebugUnitTest :core:lib_beauty_gpupixel:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest`；`gradlew.bat :core:lib_beauty_gpupixel:assembleRelease :core:lib_beauty_mediapipe:assembleRelease :app:lintDebug :app:assembleRelease -PrequireReleaseSigning=false`；设备`adb -s <serial> shell am instrument -w -r -e class <14类/专项类> -e soakSeconds 5 com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。旧码专项不执行短测/不读取旧短测结果。未提交源码指纹`76744f7fbeeaf2594be484fe6a7c7c8b7fef7822d31ac0998a22ab08314672c5`，逐文件/方法、安装/native和前后量测见[本轮记录](evidence/lip-motion-regression-fixed-20261031/results.json)。旧生产/测试源码摘要见[evidence/lip-motion-regression-before-20261031/source.json](evidence/lip-motion-regression-before-20261031/source.json)。
+
+---
+
+## 2026-10-31 完整唇缘与嘴角贴合
+
+结论：按用户确认“覆盖大部分但唇边/嘴角不对”优化现有MediaPipe＋GPUPixel，不新增模型/依赖。OPPO与Pixel本轮各43项、合计86次设备执行通过，0失败；新版已覆盖安装，两机APK摘要与本地Debug一致。不能把生成轮廓正确等同于真人模型唇缘准确率通过。
+
+根因与修改：旧实现仅20个唇点（外12/内8），规范模板UV及mouth.png白底色度同时裁剪实际覆盖，容易限制嘴角和唇缘；局部跟踪也只更新该20点。现使用官方外20/内20完整轮廓，包围框仅限定片元范围，Shader以内外环有符号距离定义唇区、排除口腔并在内侧羽化1个输出像素；素材仅供代表色相，保留原唇明度。美妆仍在美型之前统一变形，并未把渲染顺序当成已证实的错误。JNI签名/公共参数/资源包不变，复用原1440数组、脸颊240/睫毛288偏移、FBO与VBO，无新增全分辨率中间图。
+
+跟踪：局部匹配补齐40点，至少28点及全部4个内外嘴角须通过图像/前后向检查；失败点仅在同一内/外轮廓内插值，原翻折/面积检查继续保留。全局运动、相邻帧接力、真实时间戳及150/300ms有效期不变。局部证据不足回原全局结果，未实现语义唇部分割、遮挡或三维跟踪。
+
+像素结果：新增GpuPixelDeviceTest#fullLipContoursCoverInteriorWithoutLeakingAcrossEdges，以独立Canvas偶奇填充为参考，覆盖倾斜非模板唇形、96×128/640×480/1280×720、张嘴/闭嘴6组；排除2像素栅格边界后，两机全部唇内覆盖>99.98%，唇外及口腔漏色0，alpha保持173。张嘴三尺寸分别402/402、19954/19954、63172/63172；闭嘴最差OPPO高清86809/86819，闭合退化内环唇缝存在少量差异，保留断言原门槛>99%，不宣称100%所有像素。现有公开portrait.jpg真实478点检测＋妆面合成通过；人工检查其对照图保留牙齿/口腔，但不代表用户人脸、侧脸或自然度验收。
+
+局部运动生成夹具（不是实际模型准确率）：两机40点平移平均误差0.01292px，相对原全局结果0.16285px；局部张嘴0.16938px，相对1.05935px；旋转镜像、静止与弱纹理拒绝通过。估计均值OPPO约3.00～3.24ms、Pixel约2.72～3.87ms，单次320灰度合成短测，不代表持续CPU/GPU或端到端。新增40线段Shader只在嘴唇包围框执行，仍有额外GPU成本；未做热稳态性能对照。
+
+执行：核心148项中147通过/1跳过，GPUPixel4/4通过；Debug及测试APK、两后端Release AAR、app lint通过（0错误/214警告），无正式签名Release/R8构建通过。两自有native双ABI Debug/RelWithDebInfo共8份ELF LOAD静态16KB及Debug/Release APK zipalign通过，不等于16KB设备运行或全部依赖认证。结构/workflow config门禁通过。无UI修改，不扩展到字体/主题矩阵。
+
+设备：[OPPO PCAM00/API30](evidence/lip-contour-20261031/5ef48cf2.txt)43/43，用时130.515秒；[Pixel8/API36](evidence/lip-contour-20261031/39061FDJH00D3J.txt)43/43，用时82.762秒。14类包括相邻帧链、唇部、美妆执行与实际相机、纹理桥、整脸运动、GPUPixel、内容对齐、回调隔离、取消贴纸、背景兼容、三组各5秒功能冒烟、3D及配置恢复。冒烟缺真人有效覆盖，不能当长测。私有files/shared_prefs摘要恢复一致：OPPO503、Pixel507；未卸载/pm clear，未保存/上传相机画面。仅读取既有公开portrait夹具测试产物。
+
+范围限制：上轮OPPO分辨率切换偶发超时未在本轮复跑或修复；历史MediaPipe GPU重建SIGBUS根因仍未关闭。真人唇缘、模糊/侧脸/遮挡、长时热性能、正式签名Release设备、16KB运行和直播厂商未验收。通用478点仍是当前精度上限，不能由轮廓渲染通过承诺专业级唇部分割效果。
+
+命令：`gradlew.bat :core:lib_beauty:testDebugUnitTest :core:lib_beauty_gpupixel:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest`；`gradlew.bat :core:lib_beauty_gpupixel:assembleRelease :core:lib_beauty_mediapipe:assembleRelease :app:lintDebug :app:assembleRelease -PrequireReleaseSigning=false`；设备`adb -s <serial> shell am instrument -w -r -e class <14类> -e soakSeconds 5 com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。未提交源码指纹`d21e3f6d0b8edcbc11d7054a031f9f425ccf7135ebed644cfbdde553b8ab58cf`，逐方法/文件摘要、native及安装核对见[本轮证据](evidence/lip-contour-20261031/results.json)。仅推进本次实际通过基线。
+
+---
+
+## 2026-10-31 相邻帧接力跟踪与晚到模型校正
+
+结论：本轮优化既有MediaPipe跟踪管线，没有新增模型/依赖/native/API或视频延迟缓冲。TrackedFaceAnalysis由旧模型参考直接匹配当前帧，改为相邻已处理帧接力；晚到模型通过最多8张独占灰度图重放到当前分析帧，成功才校正原连续链。明确匹配失败后不继续显示冻结旧位置，以STALE屏障等待新模型恢复。仍为实验性二维跟踪，不宣称真人快速转头已解决。
+
+实现与边界：环形槽只在worker内复用，不覆盖仍作为相邻帧参考的内存；新模型每份最多尝试一次重放，保留有界单在途/最新待处理槽。校正失败可继续仍有效的原连续链，原链失败后停止；保留真实模型时间及默认300ms校正期限、调用者150ms结果期限。模型无脸/错误/重置/方向和几何变化保持失效语义，不在采集或GL线程等待。新增历史最多8张小灰度图，NativeFaceMotion方形320细节+160整脸合计约1000KiB槽容量，另有原模型参考及RGBA支路，非进程总内存实测。画面仍使用当前视频帧，异步结果可能落后，尚未实现严格同帧显示；失败屏障可能短暂隐藏，不能把隐藏当准确率提高。
+
+源码：core/lib_beauty/src/main/java/com/beautysdk/TrackedFaceAnalysis.kt；对应JVM测试增加相邻小步累计位移、模型延迟重放、8槽复用、失败失效/新模型恢复，并保留原模型交接、无脸、reset、过期、背压及公共Session用例。新增app/src/androidTest/java/com/beautysdk/demo/AdjacentMotionDeviceTest.kt，用公开固定portrait.jpg的首帧真实MediaPipe关键点，8帧每帧横移4px、30ms间隔、后续不调用模型。每帧必须输出真实对应时间、模型仍为首帧，水平鼻点误差小于图宽1.5%。两机均累计32px位移、最大鼻点误差2.3266125px、末帧模型参考年龄240ms；不是唇部误差、真实速度测试或端到端时延。
+
+本次执行：核心148项中147通过、1跳过、0失败；Debug/APK/androidTest、核心Release AAR、lint通过（0错误、214警告）；app无正式签名Release/R8通过、未设备运行Release。结构/workflow config门禁通过。自有native ELF双ABI静态16KB LOAD与Debug/Release APK zipalign通过，源码未改native，不代表全部依赖16KB设备运行验收。
+
+设备执行与失败记录：
+
+- OPPO PCAM00/API30（5ef48cf2）完整15类45项：44通过、1失败，用时187.564秒。失败为CameraResolutionDeviceTest#presetsSwitchRealFramesBothLensesAndCanReturnToSd在SD/BACK等待超时，仍收到FRONT旧统计；过程未发生此次应用崩溃。原始[完整执行](evidence/motion-chain-20261031/5ef48cf2.txt)保留，不写成完整通过。
+- OPPO同源码单独重跑CameraResolutionDeviceTest，3/3通过，用时25.169秒，未改代码、超时或断言。[复测](evidence/motion-chain-isolated-20261031/5ef48cf2.txt)。单独通过不能关闭完整回归偶发切摄像头超时的根因。
+- Pixel8/API36（39061FDJH00D3J）完整45/45通过，用时93.457秒。[执行结果](evidence/motion-chain-20261031/39061FDJH00D3J.txt)。
+
+合计93次设备执行：92通过、1失败；不是93个不同用例。双机专项、既有唇部、模型/纹理桥、美妆相机、分辨率、贴纸、3D、背景兼容、配置恢复及3组各5秒原图/检测/检测美颜功能冒烟按上述范围执行。冒烟无有效真人覆盖，不能当持续性能。私有files/shared_prefs摘要恢复一致：OPPO503份、Pixel507份；未卸载/pm clear。最终Debug APK两机安装哈希与本机构建一致，见[安装核对](evidence/motion-chain-20261031/installed-apk.json)。未保存或上传相机图像。
+
+剩余：真人快速移动/转头/张嘴/遮挡及弱纹理/模糊、模型校正跳变和失败隐藏频率、曝光到显示延迟/尾延迟、长时温升、多设备质量矩阵、既有MediaPipe GPU重建SIGBUS，以及本次OPPO切摄像头超时根因均未关闭。未引入金字塔LK、专用唇部模型或分割；未接实际直播厂商。UI未改，不冒用历史全方向/字体矩阵结果。
+
+命令：`gradlew.bat :core:lib_beauty:testDebugUnitTest :core:lib_beauty:assembleRelease :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`；`gradlew.bat :app:assembleRelease -PrequireReleaseSigning=false`；设备`adb -s <serial> shell am instrument -w -r -e class <15类或CameraResolutionDeviceTest> -e soakSeconds 5 com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。工作区未提交，源码指纹`f64fb82a32ec3088c491f9cd865c1d5977740727954645d8c88c5a7ce2e38a9d`，逐文件摘要和逐方法/设备证据见[本轮记录](evidence/motion-chain-20261031/results.json)。基线仅推进本次实际通过的方法，原始完整失败仍保留。
+
+---
+
+## 2026-10-30 唇部局部运动补偿（现有模型）
+
+结论：按用户要求复用现有MediaPipe，新增嘴唇局部图像匹配，Demo显式开启，仍尊重实验跟踪开关及3D互斥。最终OPPO/API30与Pixel8/API36每机44项，共88次设备执行通过，0最终断言失败、0受阻，Debug覆盖安装，私有文件/偏好摘要恢复一致，未卸载/pm clear。重要剩余：首次完整OPPO执行在相机重建时发生MediaPipe GPU原生SIGBUS，后续单独重建及同源码OPPO完整44项重跑通过，根因仍未确定，不宣称崩溃已经修复。真人唇形/快速侧脸观感未验收。
+
+实现：NativeFaceMotion保留原160灰度整脸相似变换，增加默认false的enableLipTracking及兼容无参构造。开启时每个独占MotionImage附加最长边320灰度，仅在整脸匹配成功后，对20个唇部网格点在整脸预测附近±4像素匹配，使用弱纹理/搜索边界/前后向1.2像素检查。至少14点通过才插值缺失点；三角网格翻折或面积比超.25～3整组撤销，失败回原整脸结果。亚像素峰值拟合保留参考点小数，避免静止时吸附到像素网格。模型直接校正到新图，不串联积累漂移，不按时钟外推，不改150/300ms年龄。仅修改唇部点和相关嘴部锚点，整脸/其他区域使用原结果；无新模型或依赖，没有相机像素落盘。
+
+MotionImage开放继承以承载后端私有DetailedImage，保留原构造签名；公共NativeFaceMotion默认不开启局部补偿。新增灰度及局部匹配有额外CPU/内存成本，不宣称零成本、三维跟踪或唇部分割。大角度转头、模糊和弱纹理仍可能无法匹配。
+
+测试：新增LipMotionDeviceTest四项，生成纹理验证嘴部独立移动、上下唇展开、物理旋转并镜像输入，以及静止小数坐标/弱纹理遮挡拒绝/异常大坐标安全旁路。对照原算法，误差须小于原算法65%，头部锚点不应用局部残差。该夹具证明已知局部运动下接口与算法有效，不代表真人纹理或模型精度。首轮两机各4项（新增最初3项＋原FaceMotion1）通过，最终每机44项包含完整新增4项、原13类40项，覆盖真实美妆相机、分析代次、GL状态/时间戳、实际内容/分辨率、3D/背景/贴纸及配置恢复。
+
+局部估计数值（生成320纹理，误差为20个唇点平均像素差，时间为整体estimate含原整脸；每组8次）：
+
+5ef48cf2: LIP_LOCAL deform=false rotatedMirrored=false baselineErrorPx=0.16284561157226562 localErrorPx=0.01336822509765625 meanMs=3.3756185000000003 maxMs=3.592344
+5ef48cf2: LIP_LOCAL deform=false rotatedMirrored=true baselineErrorPx=0.16284561157226562 localErrorPx=0.01336822509765625 meanMs=2.7162824999999997 maxMs=2.857917
+5ef48cf2: LIP_LOCAL deform=true rotatedMirrored=false baselineErrorPx=1.129889678955078 localErrorPx=0.06167526245117187 meanMs=2.639811 maxMs=3.001458
+39061FDJH00D3J: LIP_LOCAL deform=false rotatedMirrored=false baselineErrorPx=0.16284561157226562 localErrorPx=0.01336822509765625 meanMs=2.7677052499999997 maxMs=3.310669
+39061FDJH00D3J: LIP_LOCAL deform=false rotatedMirrored=true baselineErrorPx=0.16284561157226562 localErrorPx=0.01336822509765625 meanMs=2.555073875 maxMs=2.597982
+39061FDJH00D3J: LIP_LOCAL deform=true rotatedMirrored=false baselineErrorPx=1.129889678955078 localErrorPx=0.06167526245117187 meanMs=2.662073625 maxMs=2.815796
+
+三组原图/检测/检测美颜各5秒冒烟数值保留于同目录soak.json，无有效真人覆盖，不能当持续性能或快速唇形画质通过。实际模型/纹理读回对照只作为共享链路回归，不将固定图样测量当端到端美妆延迟。
+
+执行`:core:lib_beauty:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`通过；核心147项146通过、1跳过、0失败，其他模块JVM本轮不冒用历史结果。`:core:lib_beauty_mediapipe:assembleRelease :app:assembleRelease -PrequireReleaseSigning=false`通过，Release/R8无正式签名、未设备执行。lint 0错误/214警告。代理结构与Android workflow config检查通过；布局未改，未新增全字体/方向/明暗UI矩阵。
+
+Native：双ABI Debug/Release libbeauty_rgb_input.so LOAD静态16KB对齐和Debug/Release APK zipalign检查通过，结果见[静态对齐](evidence/lip-local-delivery-20261030/native-alignment.json)，不代表16KB页设备验收。原生新增循环有有界搜索、直接缓冲容量检查，无全图光流或深度模型。
+
+失败与剩余：首次完整OPPO已完成25项后，在CameraResolutionDeviceTest#selectedResolutionSurvivesRecreationAndMenuRemainsChecked崩溃，原始栈位于MediaPipe drishti_gl_runn，SIGBUS，不在新增匹配代码；仅凭栈位置不能排除本次改动影响。[失败结果](evidence/lip-local-final-20261030/5ef48cf2.txt)与[崩溃栈](evidence/lip-local-final-20261030/oppo-crash.txt)保留，未推进通过基线；[单独重建复测](evidence/lip-local-recreate-20261030/5ef48cf2.txt)通过，随后同源码OPPO完整44项通过。该轮Pixel为42/44：分析桥接器初始化失败后，测试try范围未覆盖初始化，导致相机未finish并影响后续原图短测；已把finally扩展到初始化路径、保留原断言，加入JNI越界坐标拒绝后重新构建双机完整回归，最终88项通过。该偶发问题、真人快速转头/张嘴/遮挡、长时双分析性能及正式Release设备均未关闭资格，不因重试通过改变状态。
+
+工作区含未提交源码，指纹`6406a546ab96956e1e0d67e2cd04f8013f9c484a5a35493757d83547f3da4f2f`；HEAD、逐文件摘要、APK摘要、逐方法/设备结果和恢复摘要见[最终结果](evidence/lip-local-delivery-20261030/results.json)。新增本轮独立基线，历史用例不覆盖；私有备份只在build/functional-test对应目录。设备命令`adb -s <serial> shell am instrument -w -r -e class <14类> -e soakSeconds 5 com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。
+
+---
+
+## 2026-10-30 美妆快速移动跟随：减少分析链路延迟
+
+结论：针对用户确认的“移动/转头，口红跟不上嘴唇”，已优化等待与采样链路。OPPO/API30、Pixel8/API36每机40项，共80次最终设备执行通过，0失败、0受阻，Debug覆盖安装两机。两机私有文件/偏好摘要恢复一致，未卸载或pm clear；没有保存或上传相机画面。仍未通过真人快速侧脸/张嘴时的局部唇形贴合验收，不能把本轮通过表述为动态画质问题全部解决。
+
+原因和修改：原PBO只在下一视频帧取回，增加一个采集周期；33.33ms采样门槛遇到约33.327ms帧间隔会误降为隔帧。GlTextureAnalysisBridge新增同GL上下文poll，Demo每个真实采集帧尝试小图采样并在8ms后非等待轮询，不额外高清绘制。双PBO、检测及跟踪单执行＋单可替换最新待处理槽提供背压。局部美妆/3D自动优先GPU检测，自动GPU仅初始化失败回退CPU，公共默认CPU不变；正数强度变化及原图切换不反复重建检测偏好。保持真实采样时间与150ms/300ms年龄边界，不使用生产glFinish或等待推理，不修改原生运动算法。
+
+验证：新增跟踪队列替换、GPU需求判断JVM；两模块163项中162通过、1跳过、0失败，跳过不推进通过基线。设备13类40方法/机，包含公开人像CPU/GPU对照、真实相机GPU及20次强度变化不重建分析代次、TextureBridge6、FaceMotion1、GPUPixel9、内容对齐1、分辨率3、回调隔离1、贴纸取消2、背景兼容3、三组短测1、3D10、配置记忆1。早轮询夹具验证真实时间戳、GL状态恢复、禁用/reset/过期和33,327,109ns间隔三帧均采样；测试glFinish仅用于确定性功能断言，不进入耗时测量。双机前后摄三档内容比对严格同时间戳，缓存最多12份RAM灰度，相关性>.985/尺度改善<.01阈值不变。
+
+数值对照见下方原始摘要。READBACK使用640×360生成纹理缩至320小图、14份样本；只是桥接阶段，不是端到端嘴唇延迟。MAKEUP_EXECUTION使用公开256×320人像，CPU/GPU各25次去前5次；短样本受设备状态影响，不能保证所有手机相同加速。相机原图/人脸手势/人脸手势美颜三组各5秒，明确同GPU、跟踪关，无有效真人覆盖，故仅作为启动/运行冒烟，不能证明持续性能或真人负载FPS。
+
+5ef48cf2: MAKEUP_EXECUTION backend=CPU samples=20 meanMs=123.82722654999998 p50Ms=126.402135 p95Ms=141.302865
+5ef48cf2: MAKEUP_EXECUTION backend=GPU samples=20 meanMs=44.5307006 p50Ms=42.677135 p95Ms=54.213021
+5ef48cf2: READBACK mode=next_frame samples=14 meanMs=34.93502242857143 p50Ms=34.955417 p95Ms=35.456615
+5ef48cf2: READBACK mode=early_poll samples=14 meanMs=12.223236714285715 p50Ms=12.313802 p95Ms=12.691771
+39061FDJH00D3J: MAKEUP_EXECUTION backend=CPU samples=20 meanMs=108.6745932 p50Ms=105.056884 p95Ms=155.004924
+39061FDJH00D3J: MAKEUP_EXECUTION backend=GPU samples=20 meanMs=122.16084409999999 p50Ms=127.707642 p95Ms=140.256062
+39061FDJH00D3J: READBACK mode=next_frame samples=14 meanMs=35.089053 p50Ms=34.823975 p95Ms=36.094807
+39061FDJH00D3J: READBACK mode=early_poll samples=14 meanMs=12.141005857142858 p50Ms=12.083455 p95Ms=14.359294
+
+执行`:core:lib_beauty:testDebugUnitTest :feature:feature_app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`，以及`:app:assembleRelease -PrequireReleaseSigning=false`通过；Release/R8无正式签名、未设备执行。lint 0错误/214警告；UI/i18n门禁0警告，架构4项既有提醒。本轮无native变更，未复跑16KB页检查。设备命令`adb -s <serial> shell am instrument -w -r -e class <13类> -e soakSeconds 5 com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。
+
+失败过程保留：先前OPPO完整40项39通过/1失败，旧内容测试跨时间戳比较导致FRONT/HD相关性.86056，不能视作坐标通过。改用同时间戳样本、保持原阈值，再重新执行双机完整80项通过；先前日志在makeup-follow-20261030，不混入最终通过基线。该问题属于跨帧测试不能可靠区分内容错位和运动/曝光，并非以降低阈值规避失败。
+
+源码含未提交修改，HEAD、逐文件摘要、APK摘要、实际通过方法、双机完整日志及三组数值见[本轮证据](evidence/makeup-follow-verified-20261030/results.json)，工作区指纹`f6bb33168719e316934c64e772e01266cf4b1fb3eeadbd283b72345d4fdece15`。私有备份仅存build/functional-test/makeup-follow-verified-20261030。独立新增本轮基线，不覆盖其他历史用例。未验收：CPU初始化失败回退故障注入、局部非刚性嘴唇跟踪、真人快速转头/张嘴/遮挡、长时温升与双分析负载、其他机型及实际直播厂商；现有整脸二维相似变换无法完整描述上述局部变形。
+
+---
+
+## 2026-10-30 贴纸首次启用、再次点击关闭
+
+结论：已实现用户要求，相机2D贴纸卡片首次点击启用，再点同一张取消该槽位；3D六款再次点击关闭当前模型，并清除之前暂停的2D，避免旧贴纸恢复。取消结果持久化。OPPO/API30与Pixel8/API36每机7项，共14次设备执行全部通过、0失败、0受阻，Debug已覆盖安装两机。私有文件/偏好分别503/508份摘要恢复一致，未卸载或pm clear。
+
+修改：ResourceCenterController仅相机STICKER卡片显式传toggleSticker，ResourceCenterModel在既有串行IO队列中依据最新state判定，避免快速双击使用旧UI快照造成两次启用。管理页详情中的显式应用保持原语义。新增ToggleStickerRadioButton，仅替换既有6个3D控件类型，保留XML尺寸/样式/ID和RadioGroup程序化互斥/恢复；用户重复激活走既有统一清除入口，支持普通点击和无障碍ACTION_CLICK。贴纸卡片取消不再弹“已应用”提示，其他类别提示保持原行为。SDK、native和资源格式未改。
+
+测试：新增StickerToggleDeviceTest两项，真实卡片启用/取消及角标、连续快速双击、保留磨皮/美白值、关闭后冷重开，以及六款3D真实点击/无障碍点击、切换互斥、渲染options停用、清理2D残留和冷重开。回归Sticker3DUiDeviceTest 1、ResourceExperienceDeviceTest 3、CameraConfigurationDeviceTest 1，覆盖原3D记忆、2D/3D页面恢复、资源详情不自动应用、参数面板和手势重复点不误关。手势仍保留原语义，本轮只更改2D/3D贴纸。
+
+执行`:app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`通过；测试辅助代码初次编译的Dialog tag查询错误已修正后重建成功。lint 0错误/214警告；UI/i18n门禁0警告，架构4项既有standalone/probe提醒。设备命令为`adb -s <serial> shell am instrument -w -r -e class <上述4类> com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`。没有新增JVM测试，本轮不冒用前轮JVM/Release/16KB结果。
+
+源码含未提交修改，指纹`8449dfd0a0aabeda7133a36741e5b2f46832a11b6bab5fdcdf3f0b57853da19c`，逐文件摘要、APK摘要和实际通过方法见[本轮结果](evidence/sticker-toggle-20261030/results.json)，同目录保留双机完整结果、恢复和构建摘要。私有备份只在build/functional-test/sticker-toggle-20261030。未新增相机画面采集或上传，既有资源UI测试仅绘制面板View。
+
+本轮未复跑完整横屏/大字体/明暗矩阵（控件沿用原尺寸），未验收真人画质、持续性能或Release设备；这些不因点击回归通过而改变状态。
+
+---
+
+## 2026-10-30 高清静止贴纸错位：实际分析与显示内容统一
+
+结论：已修复Demo分析输入与显示纹理尺度不一致的来源。OPPO PCAM00/API30、Pixel8/API36前后摄SD/720p/1080p共12个内容对齐点通过；双机各28项加3次横屏/字体专项，共59次最终设备执行通过、0失败、0受阻。原有私有文件/偏好分别503/508份摘要一致，专项字体与旋转原样恢复，覆盖安装、未卸载或pm clear。最终Debug安装在两机。未保存或上传相机像素。
+
+### 根因与修改
+
+用户确认静止仍错位，排除仅以跟随延迟解释。前轮测试只检查宽高比及尺寸，不能证明独立ImageAnalysis RGBA与OES实际内容对应。本轮先核对sensor crop元数据，两路一致或仅舍入差；继而仅在RAM比较内容，旧输入在OPPO高清需要约1.33倍中心尺度补偿才对应，Pixel也存在较小差异。不能凭这些证据进一步断言特定CameraX/HAL内部实现原因，也不能用OPPO固定系数套所有设备。
+
+`GpuBeautyPreview.kt`改为从合成前同一OES纹理及normalize变换，经已有GlTextureAnalysisBridge最长边320缩图，向人脸/手势/背景运行时同步复制后异步处理。独立相机RGBA不再消费；CameraX低分辨率use case仍保留协商。双PBO/fence后续帧只轮询已完成小图，换源/分辨率切换重置，GL同上下文释放，context丢失不误删新句柄。不读回高清全图、不等待模型，不延长结果有效期；有GPU读回成本，不是零拷贝或性能提升证明。公共SDK默认契约未改，前轮磨皮短边归一化修改保留。
+
+### 实测结果
+
+- 新内容用例比较实际分析回调与独立参考采样，前后摄各三档；相关性必须>.985，中心尺度0.5～1.5搜索的改善必须<.01。最终12点最佳scaleX/scaleY均1.0：OPPO相关性0.99855～0.99957，Pixel0.99969～0.99991。保留真实时间戳，配对间隔约67～100ms；这是内容坐标证据，不是端到端延迟/FPS测量。
+- 8类设备回归每机28项：CameraContentAlignment 1、CameraResolution 3、CameraConfiguration 1、PreviewCallbackSafety 1、TextureBridge 4、Sticker3D 10、GestureEffects 5、ForegroundMaskCompatibility 3。覆盖旋转镜像/过期/真实ES3深度与动画、原图暂停、分辨率记忆/快速切换、回调隔离及背景消费者兼容；3D测试含合成脸/公开夹具，不等于真人帽子观感通过。
+- UI专项3次：OPPO字体1.0横屏、Pixel字体2.0竖屏/横屏，新会话记忆及诊断末行可达。未新增全系统明暗主题矩阵。
+- 本轮JVM三模块174项：173通过、1跳过、0失败；跳过不推进通过基线。Debug、测试APK、无正式签名Release/R8、lint通过，lint 0错误/214既有警告。UI/i18n门禁0警告，架构4项既有standalone/probe提醒，代理结构/config通过。本轮未修改native，未复跑静态16KB检查或Release设备运行。
+
+### 失败过程保留
+
+最初元数据/内容诊断的OK只证明采样完成，不能算旧版本对齐通过。首次新回归在无触摸采样时息屏，GL上下文检查失败；测试finally因此未finish相机，后续出现MediaPipe原生SIGBUS。已改为仅测试窗口保持唤醒，且GL清理异常也先finish相机再恢复文件。该发生顺序不能证明生产SIGBUS的唯一原因；后续完整回归未再出现。证据保留在sticker-alignment-fixed-20261030。
+
+第二次完整OPPO执行27/28通过，后摄FHD相关性0.984724低于0.985，最佳尺度已为1.0；参考160与实际320缩图带来不同高频混叠。改为同320参考采样，保持阈值不变，最终双机59次通过。失败证据保留在sticker-alignment-verified-20261030，不合并成最终通过数据。
+
+### 命令与证据
+
+执行`:app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease :app:lintDebug -PrequireReleaseSigning=false`，以及`:feature:feature_app:testDebugUnitTest :core:lib_camera:testDebugUnitTest :core:lib_beauty:testDebugUnitTest`。设备使用`adb -s <serial> shell am instrument -w -r -e class <上述8类> com.beautysdk.demo.test/androidx.test.runner.AndroidJUnitRunner`；专项使用CameraResolutionDeviceTest的selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead，附uiRotation/uiExpectedFont参数。
+
+源码含未提交修改，HEAD和逐文件指纹见[本轮结果](evidence/sticker-alignment-final-20261030/results.json)，工作区SHA256为`5492bbdcabc7a534350218f7cc04fd6783a84a92b4ab89b47aec8f3f3b1df836`。双机[OPPO内容数值](evidence/sticker-alignment-final-20261030/5ef48cf2-content.txt)、[Pixel内容数值](evidence/sticker-alignment-final-20261030/39061FDJH00D3J-content.txt)，同目录包含完整设备结果、尺寸、恢复摘要、matrix及构建摘要。原始日志/私有备份只在build/functional-test对应目录，未复制私有文件至Git。
+
+剩余未验收：真人贴纸静止观感、快速运动和长时3D闪烁、持续FPS/读回成本/温升、其他厂商、Release/16KB页设备、真实直播引擎。已建立本轮实际通过方法及设备的独立基线，不覆盖历史未复测用例。
+
+---
+
+# 2026-10-30：跨分辨率磨皮、档位记忆与诊断适配
+
+已完成：GPUPixel磨皮采样间距按输出短边相对480缩放，保留640×480原间距；相机更多菜单提供640×480/1280×720/1920×1080真实请求并重绑，独立分析继续请求320×240小图，共同视场crop后显示真实视频/分析尺寸。显式选择持久化到Demo私有偏好，首次SD；不重置效果参数，不改变SDK检测有效期。诊断卡受相机区域高度约束并可滚动，分辨率文字自然换行。
+
+最终OPPO/API30与Pixel8/API36各14项常规回归共28次通过，另OPPO默认字体横屏、Pixel2.0字体竖屏/横屏3次通过，共31次、最终0失败。包含前后摄三档/返回SD/快速重绑、小分析图和宽高比、原图暂停、重建/新会话记忆、诊断末行可达、手势3D记忆/回调隔离及全部9项GPUPixel用例。同一连续合成纹理640×360/1280×720/1920×1080归一化探针平均RGB差：OPPO0.1944/0.1508，Pixel0.2023/0.1740（0～255）；磨皮像素确有变化且alpha保留。不是用真人画面计算，也不是全效果画质验收。
+
+JVM四模块178项：177通过、1跳过、0失败。Debug/测试APK、显式无正式签名Release/R8构建成功；lint0错误214警告，UI/i18n0警告，架构4项既有独立示例/测量工程提醒。GPUPixel arm64/v7a Debug/Release四份ELF和Debug/Release两份APK的16KB静态对齐通过。最终Debug已安装两机；用户文件/偏好（OPPO503、Pixel508份文件）与矩阵字体/旋转设置恢复摘要一致，无卸载/pm clear/相机帧保存。
+
+过程记录：首轮ADB传输中断，重连并核对原备份后重跑。初始横屏测试实际仍竖屏，断言失败保留在matrix-initial及matrix-before-wake-fix；相机退出回到桌面/锁屏后，原测试只在整项之前设置旋转不足。测试修正为每次重开前唤醒/解锁并冻结旋转，保留真实方向及文本布局断言，随后专项与最终常规组全部通过。没有放宽画面可达断言。旧固定像素间距的高清磨皮摘要只属于历史实现，不沿用为本次输出基线。
+
+未执行/未验收：真人肤质/3D闪烁、不同视场/人脸占比的一致性、锐化等细节滤镜跨尺寸一致性、长时FPS/温升、其他机型协商/失败矩阵、OPPO2.0字体、完整系统明暗主题矩阵、Release设备运行、16KB页设备运行和真实直播引擎；不宣称提升FPS或正式可发布。
+
+使用与尺寸表见[Demo分辨率测试](../DEMO_RESOLUTION_TEST.md)，本次[结果、逐方法与源码指纹](evidence/resolution-adaptation-20261030/results.json)、[Native静态检查](evidence/resolution-adaptation-20261030/native-alignment.json)。本次工作区源码指纹95f67241965a760d3d8bdc8cd54b533f7fe7e6a093acb67ef1e0e6e1d6792d99。下面章节是历史证据，当前相关功能以本节为准。
+
+# 2026-10-30：演示相机分辨率测试入口
+
+更多菜单新增640×480/1280×720/1920×1080请求档位，真实重绑CameraX；主画面显示请求、实际视频crop、分析输入尺寸，配置重建保留选择，冷启动默认SD。预览按请求选择4:3/16:9，分析仍独立请求320×240，通过共同ViewPort保持同视场，避免OPPO原生16:9分析流升到720p。原图暂停时不显示旧分析尺寸；保留原有效果参数与SDK需求/有效期。
+
+最终OPPO和Pixel各4项、共8次设备回归通过，覆盖新增2项前后摄三档/返回SD/快速切换/重建菜单选择/分析暂停及已有手势3D记忆、回调故障隔离。OPPO三档实际640×480/1280×720/1920×1080，高清分析320×180；Pixel前摄三档实际640×480/1214×720/1822×1080，高清分析320×190；Pixel后摄与OPPO同尺寸，展示共同视场crop后的真实尺寸。首轮通过中发现OPPO高清分析流被放大，修正独立小图请求后最终整组通过，并加<=640设备断言；不沿用首轮源码基线。
+
+feature_app15＋camera13项JVM共28项通过，Debug/测试APK与lintDebug通过（0错误、212警告），UI/i18n/架构/结构配置门禁通过。两机用户私有文件/偏好按摘要恢复，最终Debug已安装，无相机图像保存。未验证本轮Release/R8、横屏字体完整矩阵、真人跨分辨率画质/3D与持续性能，不把请求尺寸等同于固定输出模拟。
+
+详见[使用与实际尺寸表](../DEMO_RESOLUTION_TEST.md)、[证据和指纹](evidence/resolution-demo-20261030/results.json)。
+
+# 2026-10-30：SDK纹理内存与组合链路优化
+
+GPUPixel改为按需分配全尺寸中间纹理，磨皮差分复用已消费槽位；仅美白/调色由五张降至两张（RGBA存储减少60%），磨皮由五张降至四张（减少20%）。1080p分别39.55→15.82/31.64MiB；不是进程/驱动总内存。组合背景、3D与美颜配置派生值按不可变实例缓存，减少逐帧分配；不降低画质、模型精度或有效期。新增默认关闭的四槽异步GPU计时与缓存纹理字节诊断；不等待GPU，宿主已有同类计时跳过，disjoint结果丢弃并计数。核心Pipeline的GPU字段仍不代表该局部数据。
+
+最终双机各29项，共58次设备测试通过；24组固定输入输出SHA256与优化前逐组相同。核心/GPUPixel JVM150项：149通过、1项既有跳过，失败/错误0。Debug/测试APK、本地未签名Release/R8和lintDebug通过（0错误、212警告）；四个新增编译GPUPixel ELF及两个APK静态16KB对齐通过，未做16KB页/Release设备运行验收。用户文件与偏好恢复摘要一致，最终Debug已安装OPPO与Pixel。
+
+**收益限定为中间纹理存储和重复配置分配减少。耗时短测有升有降，含明显回退组，不能宣称FPS提升或持续性能通过。** Pixel首轮28/29因测试误要求disjoint时也有有效GPU时间；补失效计数与零计数位支持检查，保留像素/宿主查询断言后双机整组通过。独立测量辅助进程重叠恢复的未完成尝试单独记录，不计通过。真人3D闪烁、多模型联合长测/温升、厂商推流仍未完成。
+
+详见[改动、完整数据和限制](PERFORMANCE_OPTIMIZATION_20261030.md)、[结果与工作区指纹](evidence/gpu-memory-20261030/results.json)。
+
+# 2026-10-30：第三方SDK接入增量实测
+
+使用隔离本地Maven仓库发布当前五个同版制品，逐文件核对AAR来源摘要；平台Activity最小宿主共用源码，构建空宿主/完整SDK/SDK＋当前完整资源ZIP三个Release变体，均R8＋资源压缩。测量专用keep防止无调用空宿主裁掉SDK，数字为保守全量口径，不建议客户照搬全量keep。
+
+减去空宿主后，arm64-v8a完整SDK＋传递依赖/内置模型增加20.72MiB，加资源包合计22.92MiB；armeabi-v7a分别17.62/19.82MiB；两种ARM ABI通用包分别27.93/30.13MiB。完整资源ZIP的额外增量均约2.20MiB。确认目标ABI、无Demo/WKQ/CameraX宿主依赖，排除模拟器SO。隔离发布、Release/R8及依赖解析通过；未安装执行测量宿主，不推进运行功能基线，不代表正式签名、授权、模型/渲染或16KiB设备验收。正式业务/构建配置未改。
+
+详见[接入增量与适用范围](SDK_APK_INCREMENT_20261030.md)、[数据与来源摘要](evidence/sdk-increment-20261030/results.json)。
+
+# 2026-10-30：包体测量（无业务源码变更）
+
+当前工作区实际构建分ABI Debug与本地未签名Release（启用R8/资源压缩），arm64-v8a分别35.55/26.48MiB，armeabi-v7a分别32.19/23.15MiB。随后恢复原有双ARM ABI配置实际重建，Debug43.19MiB、Release34.09MiB；逐一核对ABI与对应SO字节一致。临时分包脚本的四ABI universal产物不作为当前项目通用包数据。无正式Gradle配置/业务源码改动，测量APK未安装，功能基线不推进。恢复重建时初次R8遇Windows文件占用，重试成功；没有把首次失败记为通过。此处仅包体与构建结论，不代表Release功能/授权/16KiB运行已验收。
+
+详见[包体实测与构成](PACKAGE_SIZE_20261030.md)、[字节数/ABI/SHA256证据](evidence/package-size-20261030/sizes.json)。
+
+# 2026-10-30：崩溃风险加固与双机回归
+
+根据源码审计修复四条风险链路：手势组合加载逐包传递剩余像素预算，超限包在Bitmap/ARGB分配前拒绝，避免原先最多八包全部解码后才拒绝；旧GestureEffectArchive.loadZip(InputStream)保持，新增预算重载。背景分割onTiming/onError回调异常隔离并记录，错误回调不递归；关闭分割器使用finally继续清理。GpuBeautyPreview对各UI观察者独立保护，错误回调失败记录日志，代次/运行状态仍限制交付；GL释放逐项继续。资源缩略图增加最多32项/8MiB的LRU保留上限，逐出不recycle仍可能由View持有的Bitmap；已有删除清理保留。
+
+核心/资源/feature Debug JVM共173项：172通过、1项既有跳过，失败/错误0。app Debug与androidTest构建、lintDebug通过（0错误、212警告），代理结构/配置门禁通过，定向diff空白检查通过。无native源码、Gradle、Manifest或依赖版本变更。
+
+OPPO PCAM00/API30与Pixel8/API36各最终23项全部通过，共46次、23个不同用例。包括新增3项：资源像素预算0/不足/准确边界，分割onTiming＋onError连续三帧故障注入且后续快照继续，真实相机预览观察者＋错误回调故障注入、其他观察者继续及Activity真正销毁后无UI交付。其余覆盖原后端兼容与真实3D人脸组合、手势包/ES3动画、公共四组手势组合、3D全部10项、资源页3项安装/选择/参数/持久化/删除回归。用户文件与偏好按文件摘要核对恢复（OPPO503、Pixel508个文件），未卸载/pm clear、未采集保存相机画面。最终APK已安装双机。
+
+保留失败过程：首轮OPPO18/19，新测试在finish请求后、实际销毁前断言回调停止，改为等待isDestroyed后保留原断言；扩展轮OPPO21/23，两项旧资源测试默认进入本地列表，实际页面默认为在线页，补上显式本地页签步骤，未放宽业务断言。最终两机同组整批通过。测试准备时OPPO拒绝pm grant，但既有相机权限已授予；改用既有权限。旧toybox不支持本次管道tar原地覆盖，恢复工具改为逐文件摘要比较与复制，已核对原始备份一致。这些尝试不记为通过基线。
+
+未执行Release/R8、真实底层segmenter.close抛异常的故障注入、极端OOM实验、长时间内存/温升测试或其他机型矩阵。组合解码与缩略图有预算不代表整个进程有统一内存硬上限：预览字节、压缩包、当前效果、纹理等仍会并存。SDK不捕获OOM/native SIGABRT，不延长真实人脸有效期；3D真人闪烁仍待验收。未提交/push。
+
+证据：[结果与源码指纹](evidence/crash-hardening-20261030/results.json)、[OPPO最终回归](evidence/crash-hardening-20261030/5ef48cf2.txt)、[Pixel最终回归](evidence/crash-hardening-20261030/39061FDJH00D3J.txt)、[原始审计与后续状态](CRASH_RISK_AUDIT_20261030.md)。
+
+# 2026-10-30：OPPO背景分割GPU原生崩溃兼容修复
+
+用户报告崩溃。OPPO在13:49:42的堆栈明确为SIGABRT：MediaPipe image_frame.cc:298 Invalid format: UNKNOWN，经PacketGetter.nativeGetImageWidthFromImageList进入ImageSegmenter输出转换；不是Java/Kotlin姿态缓存异常。用安装中的旧APK执行公开portrait GPU分割合成用例，独立复现同类原生崩溃（instrumentation进程退出，未算通过），并恢复用户资源/偏好与系统设置。
+
+MediaPipeForegroundMasks对已确认设备OPPO OP46B1（PCAM00、Android11/API30、当前Tasks0.10.32）在GPU任务创建前处理兼容：GPU_PREFERRED直接使用CPU并输出实际执行后端；显式GPU通过onError报告不支持，避免进入无法catch的原生终止路径。其他设备仍原选择与初始化失败回退逻辑。背景功能、连续置信度/软边、真实采样时间、250ms过期、重置与有界队列保留；不是修补上游SO，也不将所有OPPO/GPU描述为有同一问题。公开GL合成测试改用与Demo一致的GPU_PREFERRED，新增用例在Pixel验证实际GPU、在OPPO验证实际CPU，并独立验证显式GPU拒绝/成功分支。
+
+最终assembleDebug、assembleDebugAndroidTest与lintDebug通过（0错误、212警告），代理结构检查通过。OPPO及Pixel各完整20项设备通过，共40次、20个不同用例：新增2项兼容/真实GPU三维人脸与分割组合，每轮12个公开夹具采样、3次reset、连续置信度与过期；场景7项真实模型/公开GL合成/OES/纹理桥/边缘/状态；三维10项；实际相机场景控件1项。OPPO实际相机日志确认兼容警告、execution=CPU及连续蒙版产出，原崩溃公开用例通过。测试后资源/偏好及字体/旋转前后核对恢复。新版已安装双机，未卸载/清空、未保存相机画面。
+
+本轮未重复JVM（修改位于Android平台分割后端、已双机执行对应分支），未执行Release/R8、长期温升或多机型矩阵。3D帽子真人闪烁仍是独立未验收问题，不能用本次崩溃回归称其已解决。未提交/push。
+
+证据：[结果与源码指纹](evidence/segmenter-crash-20261030/results.json)、[修复前公开夹具复现](evidence/segmenter-crash-20261030/gpu-reproduction-instrumentation.txt)、[原生堆栈](evidence/segmenter-crash-20261030/crash-current-day.txt)、[OPPO最终回归](evidence/segmenter-crash-20261030/5ef48cf2.txt)、[实际分割后端日志](evidence/segmenter-crash-20261030/after-segmentation.txt)。
+
+# 2026-10-30：三维姿态与遮挡上传复用优化
+
+用户确认上一版GPU优先候选仍闪烁，继续要求优化。当前OPPO诊断缓冲未包含对应新版三维GPU复现窗口，不能把旧CPU过期观察当作此次已确认根因。代码确认同一真实检测结果跨视频帧时仍重复计算姿态并上传遮挡顶点，本轮在SDK内部新增单条姿态缓存，GlSticker3DRenderer仅在姿态对象变化时上传遮挡网格；减少重复分配/计算及GL上传，不以此宣称闪烁根因已解决或给出未测的性能提升数字。
+
+缓存以不可变三维观测引用、输出几何、贴纸设置为条件；每帧先检查真实采样年龄，未来/无脸/过期清除，关闭三维清除，保持150ms与无脸隐藏契约。新增JVM覆盖复用边界、失效、不同姿态/尺寸/参数；真实ES3新增连续帧像素一致、150ms边界、过期隐藏、新检测恢复及关闭重开回归。原多视角/头部遮挡/旋转镜像/FBO/GL状态/模型三维输出回归保留。
+
+核心JVM146项（145通过、1项既有跳过），失败/错误0；assembleDebug、assembleDebugAndroidTest及lintDebug通过。OPPO与Pixel8各完整10项设备通过，资源/偏好及临时字体/旋转均恢复，未卸载或清空。新版已安装双机。未执行Release/R8、持续热稳定测试，也未取得本优化后的真人闪烁验收；上一版用户失败记录保留，自动夹具通过不能代替真人通过。未提交/push。
+
+证据：[结果与工作区源码指纹](evidence/sticker3d-cache-20261030/results.json)、[OPPO](evidence/sticker3d-cache-20261030/5ef48cf2.txt)、[Pixel](evidence/sticker3d-cache-20261030/39061FDJH00D3J.txt)。
+
+# 2026-10-30：3D帽子因检测延迟过期而闪烁的修复候选
+
+用户确认整顶帽子间歇消失，随后复现期间实时日志12:47:13～16显示有脸窗口ready24/stale1/noFace0，maxAge约160.54ms，超过150ms有效期，触发隐藏后新检测恢复。此前持续NO_FACE的观察不能代表此次复现。原始实时工具输出的关键值转录进results.json，未保存相机画面；环形日志后续导出见before文件，不将其冒充完整复现录制。
+
+OPPO同一公开portrait夹具CPU/GPU各25帧，排除前5帧，CPU平均127.19ms/P95 154.76ms，GPU平均49.11ms/P95 61.69ms。串行短测受负载/温度影响，不能直接当相机端到端耗时或持续性能。基于该结果，仅Demo GpuBeautyPreview三维分析优先GPU，在所属worker创建/使用/释放；GPU初始化异常回退CPU并日志记录实际执行后端。二维原执行选择、SDK公共默认/模型/构造、150ms有效期与无脸/错误/过期隐藏均未更改。
+
+最终feature JVM15/15、assembleDebug/assembleDebugAndroidTest/lintDebug通过。最终OPPO12/12、Pixel8十二项整批通过，覆盖真实ES3帽子视角/遮挡/GL状态、失效隐藏、公开模型三维输出、配置新实例恢复、2D返回及手势GL动画。另OPPO执行后端夹具1项通过。设备资源/偏好备份恢复、系统字体/旋转核对通过，未清空/卸载。GPU初始化失败回退分支未故障注入。已安装双机。
+
+用户随后复测反馈“已测试，仍会闪烁”：该候选未通过真人视觉验收，问题仍开放。此次反馈时OPPO已回桌面，当前缓冲没有对应GPU三维复现窗口；已启动仅诊断日志的连续读取，等待同步复现以区分过期、无脸或渲染问题。不得把旧160.54ms观察当成此次闪烁的已确认原因，既有自动夹具通过不等于真人通过。未执行Release/R8、完整字体/横屏、热稳定长测、全背面跟踪或真实引擎。未提交/push。
+
+证据：[源码与结果](evidence/sticker3d-flicker-20261030/results.json)、[OPPO回归](evidence/sticker3d-flicker-20261030/5ef48cf2.txt)、[执行后端短测](evidence/sticker3d-flicker-20261030/benchmark-oppo.json)。
+
+# 2026-10-30：3D帽子间歇消失排查（待复现）
+
+用户确认现象为整顶帽子时有时无，而非表面闪动。检查 GlSticker3DRenderer/Sticker3DGeometry、BeautySession、FaceAnalysisHistory、TrackedFaceAnalysis 和 CameraX 时间戳：当前三维仅消费真实模型结果，结果过期/无脸/错误会隐藏。OPPO当前日志持续NO_FACE，所见结果年龄约67～100ms、未见STALE，无法由该观察确认用户佩戴期间的根因。未修改有效期、置信阈值或无脸隐藏契约，未宣称修复或新增测试通过；请求用户对镜头复现后再对照状态/时延。没有采集或保存相机画面，基线不推进。诊断文本见 [observation.txt](evidence/sticker3d-flicker-20261030/observation.txt)。
+
+# 2026-10-30：相机配置恢复与手势误关闭修复
+
+用户要求“配置哪个，下次显示哪个”。发现人脸/手势检测仅用savedInstanceState保存，重新进入会回默认；改为宿主私有偏好持久化，配置重建仍优先Bundle。保留现有3D款式、参数、资源与手势选择存档。相机手势卡片重复点击改为保持启用，增加“无”显式关闭；显式选择动画同时开启手势检测。相机详情隐藏删除操作，资源管理页仍保留确认删除。SDK检测与动画时序/过期契约未改动，不延长无脸挂件显示时间。
+
+最终 assembleDebug/assembleDebugAndroidTest/lintDebug通过，UI静态检查0警告。OPPO PCAM00(API30)中断批次前9项通过、剩余4项独立批次4/4，Pixel8(API36)完整13/13，共26次通过、13个不同用例。新增实际相机配置用例：选择棒球帽及手势、重复点击保持、自动开启检测、相机详情无删除、关闭后以新Activity/ViewModel读取相同帽子和手势包；再关闭人脸/手势检测，新实例保持关闭。既有两类手势包解析、篡改拒绝、真实GL动画alpha/换帧/过期/方向镜像、显式应用后重开恢复、手势库组合/默认/删除以及3D/资源页面回归通过。
+
+初轮两设备各11通过/2失败：旧测试仍查找改版前隐藏“应用”按钮与旧手势卡片tag。更新为现有可见更多菜单和资源详情应用路径，保留显式应用/恢复/删除断言。中间Pixel菜单文字节点不可点击，改为向父级定位可点击菜单项；同轮OPPO instrumentation未返回，主动force-stop结束并恢复备份，标记中断，不算通过。后续Pixel13/13，OPPO12/13（资源页保留在线页签，安装卡片不可达）；旧用例补显式选择“已安装”前置条件。最终Pixel完整13/13；OPPO最后整批等待期间主动中断，实际日志已完成前9项且均通过，剩余4项独立复验4/4。不能表述为OPPO完整批次稳定通过；中间日志保留。每批外层资源/偏好备份恢复，系统字体/旋转前后核对通过。未清空或卸载应用。
+
+本轮恢复使用新Activity/ViewModel且不传savedInstanceState，未模拟保存中强杀/断电。合成TRIGGER的GL通过不代表真人手势准确率；未复验真人帽子闪烁、全背面跟踪、完整横屏/大字体矩阵或长时性能。第一条“删除”的原始现象尚未得到用户进一步确认；仅已修复相机删除入口暴露及重复点击导致停用，不将其等同于已定位所有消失问题。已安装双机，未提交/push。
+
+证据：[结果与源码摘要](evidence/configuration-restore-20261030/results.json)、[OPPO日志](evidence/configuration-restore-20261030/5ef48cf2.txt)、[Pixel日志](evidence/configuration-restore-20261030/39061FDJH00D3J.txt)。
+
+# 2026-10-30：包头三维棒球帽与估算头部遮挡
+
+新增自有棒球帽网格：开放帽壳/内壁、弯曲帽檐、前徽章、侧标、后调节带。按已有 MediaPipe 额头及脸宽估算贴合，新增独立头部椭球深度通道；帽子偏移/缩放不移动虚拟头部。保留旧 StickerMesh3D 三参构造及 Sticker3D 构造/copy，新增显式 headOcclusion 重载；旧素材不启用头体积。独立 VAO/VBO/EBO 静态上传头部网格，渲染后恢复宿主 GL 状态；不新增模型、SO、联网或 CMS 三维格式。Demo 新增 3D 棒球帽，首次进入三维默认该款，原选择继续记忆。
+
+核心 Debug JVM：145 项，失败 0、错误 0、跳过 1；其中 Sticker3D 8/8。assembleDebug、assembleDebugAndroidTest、lintDebug 通过，UI/i18n 检查 0 警告。最终 OPPO PCAM00(API30) 13/13、Pixel 8(API36) 10/10，共23次通过、13个不同设备用例。覆盖六视角真 ES3 渲染、头部遮挡开关与前后深度、四方向/镜像、alpha、GL状态恢复、过期隐藏、素材切换/记忆/关闭及已有资源页面。双机资源/偏好备份恢复，系统字体/旋转核对恢复。
+
+保留初轮失败：两台各1项界面检查早于弹框/布局完成，其他底层用例通过；为设备测试增加最多5秒主线程可见/布局轮询，未删除或降低原断言，最终完整批次通过。初轮日志随证据保存，不累计中间通过数。
+
+目视检查 OPPO 正面/侧面/合成背面/内侧渲染；预览由真实 GL 合成纹理截图裁剪拼接，不含相机人像。头部为估算椭球，不是实测头型/头发/手部遮挡；背面为合成姿态，不代表 MediaPipe 完全背对镜头仍能跟踪。真人佩戴适配、快速大角度运动、持续性能、完整字体/横屏矩阵及 Release/R8 本轮未验收。已覆盖安装双机，未提交/push。
+
+证据：[六视角预览](evidence/baseball-cap-20261030/preview.png)、[结果与源码摘要](evidence/baseball-cap-20261030/results.json)、[SDK说明](../SDK_3D_STICKERS.md)。
+
+# 2026-10-30：Apple 设计原则下的效果面板交互与裁剪修复
+
+固定显示 2D/3D 切换，三维素材列表单独滚动；从最末耳机选项仍可直接点击 2D，关闭三维并恢复二维资源页。选中状态覆盖全部三维选项。卡片底色收敛为深色中性底，封面/描边/点击遮罩统一 12dp 圆角；图片自身 Path 裁剪同时覆盖软件截图与硬件绘制，不擦除父背景。保留 8dp 列间距/12dp 行间距与 16dp 页面边线。
+
+卡片不再增加生效/暂停文字行，相机保存忙碌状态不插入内容流；预设应用与三维开启只发一次短提示，错误仍提示，管理页保留总体进度。微调区可纵向滚动，标签固定两行，滑杆左右 16dp/高度 48dp、底部 12dp；持续复用同一滑杆。
+
+最终 assembleDebug、assembleDebugAndroidTest、lintDebug 通过，UI/i18n 各 0 警告。最终 APK：OPPO 常规 14/14；Pixel 实际系统字体 1.3 竖屏微调隔离 1/1、3D返回2D隔离 1/1、横屏三项 3/3，共 19 次通过，覆盖 14 个不同用例。新增滑杆完整可见和调参前后矩形相等断言，2D按钮可见/完整宽度、三维关闭及二维网格恢复断言。原逐帧面板位置/尺寸、参数复用/重置、资源详情不自动应用与末卡可达断言保留。各批资源与偏好备份恢复，字体/自动旋转/方向恢复核对通过。
+
+保留失败：初轮 Pixel 字体1.3竖屏三项批次 2/3，贴纸初次自动打开超时（既有批次启动问题）；最终同断言隔离通过，没有证明完整竖屏批次稳定。初次代码编译的方向常量、style父级修复后重建；中间圆角控件软件绘制产生黑角，替换为直接裁剪后复验。所有通过数以最终证据为准，不将中间重复执行累加。
+
+目视检查最终 OPPO 微调/二维/三维与 Pixel 横屏页面；截图仅绘制 UI View，不保存相机帧。未验证 OPPO 大字体、完整日夜/超大字体/小屏矩阵、真人效果、持续性能和 Release/R8；未修改 SDK 渲染器、CMS 或三维资源协议。
+
+证据：[页面预览](evidence/effect-panel-redesign-20261030/preview.png)、[源码及结果](evidence/effect-panel-redesign-20261030/results.json)、[最终构建](evidence/effect-panel-redesign-20261030/build.txt)。设计说明见 [EFFECT_PANEL_DESIGN.md](../EFFECT_PANEL_DESIGN.md)。已安装双机，未提交/push。
+
+# 2026-10-30：新增三款内置 3D 试戴素材与标识
+
+新增香槟金皇冠、珍珠猫耳、薄荷色耳机，均为自有不透明顶点色三角网格；原眼镜、礼帽保留。相机贴纸入口横向滑动，每个三维选项带立方体和 3D 名称，普通 PNG 资源不伪标三维。选择记忆扩展到五款。未扩展 CMS/ZIP/GLB 格式。
+
+最终 assembleDebug、assembleDebugAndroidTest、lintDebug 通过；UI/i18n 静态检查各 0 警告。Sticker3D JVM 7/7 通过（含五款网格的真实深度/分析需求）。OPPO 三项设备测试 3/3 通过：全部素材重复切换与侧转、五款三视角覆盖/曲面色阶/alpha/GL 错误、面板新选项启用及关闭/恢复。新版已覆盖安装 OPPO，未清除应用数据。预览为合成输入纹理，不含相机人像。
+
+未验证真人佩戴适配、头发/手部遮挡、持续性能、多设备与横屏/大字体完整矩阵；本轮不修改渲染器。首轮构建后补充猫耳深度和测试列表，首次视觉检查发现耳机头梁被脸部近似遮挡，调整头梁高度与深度后重新构建并复测，以上述最终证据为准。
+
+证据：[三视角预览](evidence/sticker3d-new-20261030/preview.png)、[设备日志](evidence/sticker3d-new-20261030/oppo.txt)、[构建](evidence/sticker3d-new-20261030/build.txt)、[源码与结果](evidence/sticker3d-new-20261030/results.json)。
+
+# 2026-10-30：卡片预览图片铺满修复
+
+ResourceCardAdapter 与 item_effect_preset.xml 将图片缩放改为 CENTER_CROP，等比铺满并居中裁剪；符号和关闭卡片显式保留 FIT_CENTER 与原内边距，避免列表复用时继承错误缩放。详情大图保持完整显示。
+
+本轮 assembleDebug、lintDebug 通过，UI 静态检查 0 警告。新版成功覆盖安装到 OPPO 5ef48cf2 并启动首页；未执行本轮设备自动化或截图视觉验收，未重跑横屏、大字体、小屏和生命周期矩阵。构建日志：build/functional-test/thumbnail-fill-build.txt。
+
+# 2026-10-30 最新：紧凑布局与内边距收敛
+
+效果卡片默认四列、54dp封面/26dp符号/12sp单行标题，资源中心默认三列、80dp封面/32dp符号/13sp最多两行标题；大字体和宽度自适应换列。取消空白状态行和短标题的强制双行，勾选角标表达选择，暂停使用短标且保留完整可访问性说明；下载状态保留。网格外侧不叠加卡片margin，内部8dp间隔、行尾12dp，与16dp页面边线对齐；更新列数时失效旧装饰边距缓存。
+
+微调参数选项固定48dp，不再按剩余空间拉伸；数值、滑杆与重置保持复用。竖屏默认面板约42%并按320dp最低内容/字体需求保底，预设与微调仍同高、可展开。模式按钮保留48dp点击范围但缩小底色；3D选择压至56dp，统一来源/分类/内容边距。SDK和3D渲染不在本轮修改。
+
+最终assembleDebug、assembleDebugAndroidTest、lintDebug通过，UI/i18n检查0警告。OPPO常规14/14、默认字体横屏3/3；Pixel实际系统字体1.3横屏3/3、竖屏批次2/3，同一最终APK的失败项原断言隔离1/1通过。共23次通过、1次最终批次失败，覆盖14个不同用例，不能表述为所有批次通过。新增断言防止参数选项随面板拉伸；原详情应用、末卡完整可达、参数更新/重置、预设默认/展开/重开、3D暂停及资源记忆断言保留。每批资源备份、字体/自动旋转/方向恢复均核对通过。
+
+保留未通过尝试：Pixel早期横/竖屏批次各有一项初始贴纸弹框尚未可用；增加可见弹框有界等待、整批锁定方向后，最终横屏3/3，但竖屏仍有初始贴纸弹框等待超时，未降低交互断言。相同最终APK隔离该项1/1通过，根因尚未完整定位，不宣称竖屏批次稳定性通过；日志保留。OPPO真机普通/微调和Pixel横屏资源截图已目视检查，均为UI View绘制，不保存相机帧。
+
+未验证：OPPO大字体、Pixel全14项批次、完整超大字体/日夜/小屏矩阵，未新增JVM或执行Release/R8、真人效果和持续性能。既有3D和授权结果是历史基线，不能算本轮通过。
+
+证据：[前后对比](evidence/ui-compact-20261030/before-after.png)、[结果与源码摘要](evidence/ui-compact-20261030/results.json)、[最终构建](evidence/ui-compact-20261030/verified-build.txt)。新版已安装双机；未提交/push或发布网站。
+
+以下为历史轮次。
+
+# 2026-10-30 最新：3D饰品模型与光照改进
+
+针对验证素材缺乏体积感的问题，重做内置眼镜双层镂空框、金色包边、铰链和曲线镜腿；礼帽改为连续卷边帽檐、收腰帽冠、缎带和金属扣，并调整佩戴高度。GlSticker3DRenderer仅在网格上传时生成面积加权平滑法线，GPU增加方向主辅光、高光和弱轮廓光；公共网格API、模型/SO、弱透视和深度/alpha契约不变。这是3D饰品质感改进，不是三维美型。
+
+最终核心Debug JVM 143通过、1项Release专用测试按预期跳过，无失败；assembleDebug、assembleDebugAndroidTest、lintDebug通过。OPPO PCAM00 API30、Pixel8 API36最终各8项通过，共16次执行、8个不同设备用例。覆盖深度遮挡/alpha、左右转头、GL状态恢复、四方向镜像/FBO尺寸、原生美颜与运镜、原模型三维输出和UI选择记忆；新增512px三视图夹具验证覆盖、明暗变化、姿态变化与视频alpha。首轮双机8项通过后，目视发现帽子偏低，调整佩戴位置并完整重跑上述最终检查，没有沿用首轮作为最终结果。
+
+已目视检查实际OPPO ES3导出的正面/左右侧转图。对照图是纯合成纹理，深度测试使用不可见的模拟脸部扇形，因此后方镜腿可能分段隐藏；不是缺失模型，也不代表真人头部遮挡已验收。真实头发、耳朵、手和后脑勺不在现有遮挡模型范围。截图合成仅裁切/缩放同一实际渲染输出，没有生成或保存摄像头人像。
+
+限制：仍是顶点色风格化着色，不含PBR、环境反射、真实投影或透明镜片；没有GLB/骨骼/CMS三维资源支持，未解决弱透视/精细遮挡、未验收真人佩戴观感、快速动作、长时性能、Release正向授权、iOS或直播引擎。设备执行通过不能表述为商业素材质量通过。
+
+证据：[结果与源码摘要](evidence/sticker3d-polish-20261030/results.json)、[三视图](evidence/sticker3d-polish-20261030/showcase-final.png)、[最终构建](evidence/sticker3d-polish-20261030/final-build.txt)。已安装双机；未提交/push、发布Maven或部署CMS。
+
+以下为历史轮次。
+
+# 2026-10-30 最新：条目图标与文字优化
+
+五款内置美颜预设使用不同的统一线性图标，补齐beauty_bare/beauty_fresh真实ID，替换带小字旧封面；其他实际素材预览保留。标题竖屏固定两行区域，横屏单行省略；隐藏普通已安装状态，保留选中/暂停/下载信息。同名条目按当前列表顺序编号区分，不修改资源协议、原名或删除用户资源。关闭图标提高对比，并根据资源选择、参数中性值和场景状态反馈选中；单独的全分类关闭状态矩阵未执行。
+
+最终assembleDebug、assembleDebugAndroidTest、lintDebug通过；UI与i18n检查0警告。OPPO API30默认字体竖屏3/3，Pixel8 API36实际系统字体1.3横屏3/3，通过的是同一组3个不同ResourceExperienceDeviceTest用例，两设备共6次执行。覆盖详情显式使用、末卡完整可达、单滑杆/展开/重开和3D暂停恢复；设备资源备份与字体/旋转均恢复。OPPO新版预设UI-only截图已目视核对。未复跑上一轮14项全套，不以其历史结果替代本轮；未执行Release/R8、完整字体矩阵、真人或长时性能验收。
+
+证据：[结果与源码摘要](evidence/resource-cards-20261030/results.json)、[新版条目截图](evidence/resource-cards-20261030/presets-review.png)。已安装两台设备；未提交或push。
+
+以下为历史轮次。
+
+# 2026-10-30 最新：效果面板与资源中心整体优化
+
+效果弹框统一预设/微调、单滑杆和单项重置，支持展开并保持模式切换高度；3D暂停二维效果时明确展示状态。资源中心改为独立可滚动网格，安装/在线入口分离，卡片先查看详情再明确使用；删除、主题覆盖提供确认，导入摘要与低频管理操作收进更多菜单。新增横屏紧凑布局，修复大字体横屏最后一张卡无法完整显示的问题。SDK渲染和资源协议未改动。
+
+最终构建 assembleDebug、assembleDebugAndroidTest、lintDebug 通过。UI/i18n门禁0警告，架构检查通过并保留独立sample的两项既有提示。没有把历史JVM、Release/R8或性能结果算成本轮通过。
+
+OPPO PCAM00 API30：常规14/14、横屏3/3通过，共17次通过、14个不同用例。Pixel 8 API36：常规批次12/14通过，两项分别为布局采样超时与异步列表删除后的视图时序断言失败；同一APK、原断言分别隔离复跑2/2通过。Pixel实际系统字体1.3竖屏3/3、横屏3/3通过，共20次通过、14个不同用例。保留失败批次，不能声称Pixel整批稳定或零失败。测试资源备份和系统字体/旋转设置均已恢复。
+
+测试覆盖详情不隐式启用、显式使用、末卡完整可达、单滑杆状态更新、重置、预设默认、展开/重开、3D暂停及普通效果恢复、JSON参数和内置资源。UI截图仅绘制界面View，不含摄像头人像；已检查OPPO微调与Pixel大字体横屏资源截图。
+
+限制：OPPO系统拒绝ADB字体设置，未验收其1.3倍字体；Pixel上述两项批次时序波动仍需持续关注。未验收完整日夜/字体/设备矩阵、真人观感、长时性能、Release正向授权、直播引擎或iOS。此前验证尝试中的DiffUtil lint问题、测试配置/旋转恢复问题已修复；Gradle低并发重试通过，不将失败尝试记为通过。
+
+证据：[说明](evidence/ui-refresh-20261030/README.md)、[结果与工作区指纹](evidence/ui-refresh-20261030/results.json)、[最终构建](evidence/ui-refresh-20261030/build-responsive.txt)、[Pixel保留失败批次](evidence/ui-refresh-20261030/39061FDJH00D3J-normal.txt)、[原断言隔离复跑](evidence/ui-refresh-20261030/pixel-final-isolated.txt)。本轮未提交、push或部署网站。
+
+以下为历史轮次，不能替代本轮结论。
+
+# 2026-10-29 最新：实验性刚性3D贴纸
+
+已实现单人脸不透明三角网格、弱透视头部跟随、粗略脸部深度遮挡和内置3D眼镜/礼帽，Demo「相机→贴纸」可选并记忆。复用原MediaPipe模型/SO，无新增native依赖；3D期间明确暂停二维美型/贴纸/块匹配，保留原参数。默认关闭。旧构造/copy/factory JVM描述符通过重载保留，Release沿用FACE＋STICKER授权。
+
+本次最终通过：JVM **194项**、另1项Release专用用例在Debug按预期跳过；其中核心Debug143通过、核心Release授权/3D几何20、资源12、GPUPixel4、feature15。Pixel 8 API36 Debug **14项不同设备用例**通过（新增三维6＋UI1，原有GPU6＋运动匹配1）；UI同一用例额外在竖屏1.0字体、横屏1.3字体配置通过，恢复用户偏好及系统设置。设备覆盖真实深度遮挡/alpha、yaw、四方向×镜像、FBO尺寸变化、GL状态恢复、现有模型三维输出、美颜＋运镜，以及界面可见入口/关闭/重开记忆。合成PNG已目视检查，只保存合成纹理，不保存相机图像。
+
+最终Demo assembleDebug/assembleDebugAndroidTest/lintDebug通过并覆盖安装Pixel8；本地Maven5制品、4项发布契约、2300项JVM签名保留检查、独立消费者三classpath/Debug/Release-R8/lint通过。Release/R8是未正式签名构建，未做Release正向激活/GL验收。UI与i18n门禁0警告；代理配置通过；架构检查通过，独立sample未纳入根settings的两项既有提示保留。
+
+修复/未计通过的尝试：首次lint发现values-en缺5项翻译，补齐后通过；首次UI用Activity根查找已移入BottomSheet的控件而失败，改为在弹窗查找，保留可见/状态断言。一次误将依赖Debug开发模式的旧功能全量纳入未配置授权的Release测试，因按设计旁路引发断言失败后终止；最终Release仅执行授权契约与纯3D几何20项，未以降低授权或修改旧断言规避。原始尝试日志留在build/functional-test/sticker3d/{build-tests,device,final-build}.txt。
+
+未实现/未验收：GLB/PBR/纹理/骨骼动画、CMS三维制作与资源协议、多人脸、iOS、真人侧脸/俯仰/手和头发遮挡质量、多设备长时性能、正式网络发行和直播引擎。脸部遮挡仅鼻部到轮廓的扇形近似，不是精细深度或matting。横屏1.3字体用例不代表完整字体/日夜/设备矩阵。旧JVM描述符保留不等于Kotlin元数据/native ABI/全部行为兼容通过。
+
+证据：[本轮说明](evidence/sticker3d-20261029/README.md)、[逐项结果与工作区指纹](evidence/sticker3d-20261029/results.json)、[设备14项](evidence/sticker3d-20261029/device-regression.txt)、[最终Demo构建](evidence/sticker3d-20261029/final-app-build.txt)、[独立消费者](evidence/sticker3d-20261029/consumer.txt)。接入见[3D贴纸文档](../SDK_3D_STICKERS.md)。本轮未提交/push或部署CMS。
+
+以下为历史轮次，不能替代上述本轮结论。
+
+# 2026-10-29：0.2.0 应用授权
 
 已实现签名授权文件、首次联网激活、最长 7 天缓存租约、默认 24 小时刷新、重启复用退避计划、签名撤销、功能权限和未授权原帧旁路。提供 Node 服务、签发/续期/撤销 CLI、统一 Maven 初始化入口与开发文档。正式服务尚未部署。
 
@@ -1622,3 +2272,12 @@ JVM与完整构建命令见TEST_PLAN，主构建 `BUILD SUCCESSFUL in 1m 27s`。
 相邻BeautyStickerWorkshop新增受登录保护的授权生成、下载、一次性领取链接、续期/撤销/恢复及同源/v1/lease登记查询。Web94项、最终受影响后台/授权10项、实际bundle/workerd/D1/R2集成1项通过；原SDK services/license两组Node测试9项通过，CMS WebCrypto与SDK原工具的grant及4种租约逐字节一致。浏览器14项流程检查、1440px/360px布局及实际管理员登录验证通过，具体记录见相邻项目.site-audit/licensing-validation.md。
 
 本地签发器已初始化并由8090预览加载；密钥未写入SDK、未创建实际客户授权、未部署生产服务。原CLI JSON登记与CMS数据库不自动同步。未修改Android授权运行时，也未执行Android构建/R8/GPU/客户真机激活；先前这些证据不得替代本轮尚未执行的正式HTTPS与发行公钥验证。
+
+
+## 2026-10-30 素材预览简化（CMS生成端）
+
+用户要求普通贴纸/美妆预览简洁，套装封面更精致。相邻BeautyStickerWorkshop新增resource-cover.mjs共用无文字封面；320×320、中央安全区、透明素材有效边界裁剪、浅底深色图案，套装叠卡使用子项预览。贴纸/睫毛/效果/套装导出及新建参数预设复用；旧自定义封面保留。50份常规资源更新修订，保留历史文件；效果参数与实际贴纸原图不变。完整生成后刷新规格并可重复得到同一发行快照。
+
+验证：Web 94项测试通过；Chrome实际PNG生成、含嵌入PNG的套装SVG转PNG、透明边界读取通过，输出320×320；npm run build通过。完整生成与重复刷新得到r-9a48ce3597141710。通过既有release-library脚本同步app assets完整ZIP/清单/defaults/marker；:app:assembleDebug成功，含verifyBuiltinResources。预览总览位于相邻项目build/cover-contact-sheet.png，规则和验证详见相邻项目RESOURCE_COVERS.md。
+
+限制：未部署线上、未在真机安装本轮APK，未验收全部小屏/横屏/字体场景。Android旧选择和用户清单继续保留，新素材不会自动替代已选旧摘要；浏览器仅更新与历史发行字节相符的内置项，不覆盖自定义修改。不代表真人效果或持续性能通过。

@@ -1,0 +1,17 @@
+{
+  "cases": [
+    {
+      "name": "portrait",
+      "fontScale": "1.0",
+      "rotation": "0",
+      "passed": true
+    },
+    {
+      "name": "large-landscape",
+      "fontScale": "1.3",
+      "rotation": "1",
+      "passed": true
+    }
+  ],
+  "settingsRestored": true
+}

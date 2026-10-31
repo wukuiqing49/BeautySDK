@@ -1,0 +1,8 @@
+{
+  "measurementVersion": 2,
+  "qualificationRequested": false,
+  "deviceModel": "Pixel 8",
+  "apiLevel": 36,
+  "results": [],
+  "limits": "Sampled CPU submission, not GPU\/remote latency; uncontrolled camera scene; no image saved. Passing face coverage does not qualify visual quality or overall performance."
+}

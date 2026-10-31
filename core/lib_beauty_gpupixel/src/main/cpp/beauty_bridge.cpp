@@ -5,6 +5,7 @@
 #include <GLES3/gl3.h>
 #include <GLES2/gl2ext.h>
 #include <array>
+#include <algorithm>
 #include <cmath>
 #include <memory>
 #include <stdexcept>
@@ -20,12 +21,14 @@ constexpr std::array<GLenum, 8> kFlags = {GL_BLEND, GL_DEPTH_TEST, GL_STENCIL_TE
 struct State {
     GLint program{}, draw{}, read{}, active{}, vao{}, buffer{}, unpack{};
     GLint viewport[4]{}, store[4]{};
+    GLint blendSrcRgb{},blendDstRgb{},blendSrcAlpha{},blendDstAlpha{},blendEqRgb{},blendEqAlpha{};
     GLboolean mask[4]{};
     std::array<GLboolean, kFlags.size()> flags{};
     GLint textures[7]{}, samplers[7]{}, oes{};
     static constexpr GLenum stores[] = {GL_UNPACK_ALIGNMENT, GL_UNPACK_ROW_LENGTH,
         GL_UNPACK_SKIP_ROWS, GL_UNPACK_SKIP_PIXELS};
-    State() {
+    bool blendState{};
+    explicit State(bool saveBlend=false):blendState(saveBlend) {
         glGetIntegerv(GL_CURRENT_PROGRAM, &program);
         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &draw);
         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &read);
@@ -35,6 +38,11 @@ struct State {
         glGetIntegerv(GL_PIXEL_UNPACK_BUFFER_BINDING, &unpack);
         glGetIntegerv(GL_VIEWPORT, viewport);
         glGetBooleanv(GL_COLOR_WRITEMASK, mask);
+        if(blendState) {
+        glGetIntegerv(GL_BLEND_SRC_RGB,&blendSrcRgb);glGetIntegerv(GL_BLEND_DST_RGB,&blendDstRgb);
+        glGetIntegerv(GL_BLEND_SRC_ALPHA,&blendSrcAlpha);glGetIntegerv(GL_BLEND_DST_ALPHA,&blendDstAlpha);
+        glGetIntegerv(GL_BLEND_EQUATION_RGB,&blendEqRgb);glGetIntegerv(GL_BLEND_EQUATION_ALPHA,&blendEqAlpha);
+        }
         for (size_t i=0; i<kFlags.size(); ++i) flags[i] = glIsEnabled(kFlags[i]);
         for (int i=0; i<4; ++i) glGetIntegerv(stores[i], &store[i]);
         for (int i=0; i<7; ++i) {
@@ -54,6 +62,10 @@ struct State {
         for (int i=0; i<4; ++i) glPixelStorei(stores[i], store[i]);
         glViewport(viewport[0],viewport[1],viewport[2],viewport[3]);
         glColorMask(mask[0],mask[1],mask[2],mask[3]);
+        if(blendState) {
+            glBlendFuncSeparate(blendSrcRgb,blendDstRgb,blendSrcAlpha,blendDstAlpha);
+            glBlendEquationSeparate(blendEqRgb,blendEqAlpha);
+        }
         for (size_t i=0; i<kFlags.size(); ++i) {
             if (flags[i]) glEnable(kFlags[i]); else glDisable(kFlags[i]);
         }
@@ -82,7 +94,7 @@ GLuint Shader(GLenum type, const std::string& text) {
 struct Program {
     GLuint id{};
     GLint image{}, transform{}, step{}, image2{}, image3{}, smooth{}, white{}, width{}, height{}, sharpen{};
-    GLint lut[4]{}, controls{}, pairs{}, eyes{}, aspect{}, slim{}, big{}, intensity{}, makeupKind{}, regions{}, down{}, extra{};
+    GLint lut[4]{}, controls{}, pairs{}, eyes{}, aspect{}, slim{}, big{}, intensity{}, makeupKind{}, regions{}, down{}, extra{}, lipContour{}, frameSize{}, lipColor{}, blushColor{};
     void Init(const std::string& vertex, const std::string& fragment) {
         GLuint v=Shader(GL_VERTEX_SHADER,vertex), f=0;
         try {
@@ -107,6 +119,7 @@ struct Program {
         slim=glGetUniformLocation(id,"slim");big=glGetUniformLocation(id,"big");
         intensity=glGetUniformLocation(id,"intensity");
         makeupKind=glGetUniformLocation(id,"makeupKind");
+        lipContour=glGetUniformLocation(id,"lipContour[0]");frameSize=glGetUniformLocation(id,"frameSize");lipColor=glGetUniformLocation(id,"lipColor");blushColor=glGetUniformLocation(id,"blushColor");
         regions=glGetUniformLocation(id,"regions[0]");down=glGetUniformLocation(id,"faceDown");
         extra=glGetUniformLocation(id,"extra");
         const char* names[]={"lookUpGray","lookUpOrigin","lookUpSkin","lookUpCustom"};
@@ -214,69 +227,166 @@ vec2 warp(vec2 p){
 void main(){ color=texture(inputImageTexture,(transform*vec4(warp(uv),0.,1.)).xy); }
 )";
 
-// 局部网格贴妆：保留原始明暗细节，分开控制口红染色与腮红柔光；不改视频alpha。
+// 局部网格贴妆：保留原始明暗细节，分开控制口红与腮红染色；不改视频alpha。
 constexpr const char* kMakeupVertex=R"(#version 300 es
 in vec2 position; in vec2 inputTextureCoordinate;
+uniform highp int makeupKind; uniform vec2 lipContour[40];
 out vec2 uv; out vec2 sourceUv;
-void main(){gl_Position=vec4(position,0.,1.);uv=inputTextureCoordinate;sourceUv=position*.5+.5;}
+flat out vec4 lipOuterEdge; flat out vec4 lipInnerEdge;
+void main(){
+ uv=inputTextureCoordinate;sourceUv=position*.5+.5;
+ lipOuterEdge=vec4(0.);lipInnerEdge=vec4(0.);
+ if(makeupKind==0){
+  // 20个环形小四边形，每个仅绘制两三角形。完整40点仍由真实轮廓决定。
+  int i=gl_VertexID/6;int j=(i+1)%20;int corner=gl_VertexID%6;
+  int index=(corner==0)?i:((corner==1||corner==4)?j:((corner==2||corner==3)?20+i:20+j));
+  sourceUv=lipContour[index];
+  lipOuterEdge=vec4(lipContour[i],lipContour[j]);
+  lipInnerEdge=vec4(lipContour[20+i],lipContour[20+j]);
+ }
+ gl_Position=vec4(sourceUv*2.-1.,0.,1.);
+}
 )";
 constexpr const char* kMakeupBody=R"(
-uniform sampler2D inputImageTexture2; uniform float intensity; uniform int makeupKind;
+uniform sampler2D inputImageTexture2; uniform float intensity; uniform highp int makeupKind;
+uniform vec2 frameSize; uniform vec3 lipColor; uniform vec3 blushColor;
+flat in vec4 lipOuterEdge; flat in vec4 lipInnerEdge;
+// 三角网格已排除唇外/口腔；每片元只需本段内外边缘两次距离，不再遍历40边。
+float edgeDistance(vec2 p,vec4 segment){
+ vec2 a=segment.xy*frameSize;vec2 edge=(segment.zw-segment.xy)*frameSize;
+ float t=clamp(dot(p-a,edge)/max(dot(edge,edge),1.e-8),0.,1.);
+ return length(p-a-edge*t);
+}
 void main(){
  vec4 bg=texture(inputImageTexture,(transform*vec4(sourceUv,0.,1.)).xy);
+ if(makeupKind==0){
+  float distance=min(edgeDistance(sourceUv*frameSize,lipOuterEdge),edgeDistance(sourceUv*frameSize,lipInnerEdge));
+  float coverage=smoothstep(0.,1.,distance)*intensity*.72;
+  // 直接以RGB染色，不读取口红图片或材质UV；原视频仍提供明暗和唇纹。
+  vec3 tint=lipColor;
+  vec3 weights=vec3(.2126,.7152,.0722);
+  vec3 target=clamp(tint*(dot(bg.rgb,weights)/max(dot(tint,weights),.08)),0.,1.);
+  color=vec4(target,coverage);return;
+ }
  // 程序化睫毛沿眼睑生成细条曲面；导数抗锯齿，不需要逐帧Bitmap或额外贴图。
  if(makeupKind==2){
   float edge=abs(uv.x*2.-1.);
   float feather=max(fwidth(edge),.04);
   float coverage=1.-smoothstep(1.-feather,1.,edge);
   coverage*=1.-smoothstep(.86,1.,uv.y);
-  color=vec4(mix(bg.rgb,vec3(.035,.025,.025),coverage*intensity),bg.a);
+  color=vec4(vec3(.035,.025,.025),coverage*intensity);
   return;
  }
  vec4 fg=texture(inputImageTexture2,uv);
  // 资源素材为直通RGBA；保留输入透明度，使用连续网格而非刚性眼镜四边形。
- if(makeupKind==3){color=vec4(mix(bg.rgb,fg.rgb,fg.a*intensity),bg.a);return;}
- vec3 weights=vec3(.2126,.7152,.0722);
- float luminance=dot(bg.rgb,weights);
- // 白色是上游素材的中性区域，不能直接把白底当唇色覆盖。
- float chroma=max(fg.r,max(fg.g,fg.b))-min(fg.r,min(fg.g,fg.b));
- float coverage=fg.a*smoothstep(.015,.16,chroma);
- vec3 target;
- if(makeupKind==0){
-  // 用素材色相染色，明度来自原唇，避免乘色反复压暗；保留原唇明暗纹理。
-  float materialLuma=max(dot(fg.rgb,weights),.08);
-  target=clamp(fg.rgb*(luminance/materialLuma),0.,1.);
-  coverage*=.72;
- }else{
-  // 每半张腮红纹理对应一个脸颊；椭圆衰减避免矩形边界，柔光避免脏黑。
-  vec2 local=vec2(fract(uv.x*2.),uv.y)*2.-1.;
-  coverage*=1.-smoothstep(.25,1.,dot(local,local));
-  vec3 soft=(1.-2.*fg.rgb)*bg.rgb*bg.rgb+2.*fg.rgb*bg.rgb;
-  target=clamp(soft,0.,1.);
-  coverage*=.65;
+ if(makeupKind==3){
+  // 512px细毛缩到小眼睛时，mipmap平均alpha会使整款近乎透明。
+  // 仅在缩小时有界补偿细线不透明度；透明底仍为0，原尺寸/放大保持原值。
+  vec2 size=vec2(textureSize(inputImageTexture2,0));
+  float footprint=max(length(dFdx(uv)*size),length(dFdy(uv)*size));
+  float gain=clamp(sqrt(max(footprint,1.)),1.,6.);
+  float coverage=1.-pow(1.-fg.a,gain);
+  color=vec4(fg.rgb,coverage*intensity);return;
  }
- color=vec4(mix(bg.rgb,target,clamp(coverage*intensity,0.,1.)),bg.a);
+ float chroma=max(fg.r,max(fg.g,fg.b))-min(fg.r,min(fg.g,fg.b));
+ // 浅粉白底素材只提供分布蒙版，不再用白底RGB提亮皮肤。
+ // 展开低覆盖率的柔边，降低集中峰值；妆形由颧骨方向的局部几何决定。
+ float coverage=fg.a*sqrt(clamp(chroma/.12,0.,1.));
+ vec2 local=vec2(fract(uv.x*2.),uv.y)*2.-1.;
+ coverage*=1.-smoothstep(.40,1.,dot(local,local));
+ // 零亮度色差只改变血色；接近黑/白时按色域余量缩小，避免裁剪破坏明暗。
+ vec3 weights=vec3(.2126,.7152,.0722);
+ vec3 tint=blushColor;
+ vec3 delta=(tint-vec3(dot(tint,weights)))*.45;
+ vec3 room=mix(bg.rgb,vec3(1.)-bg.rgb,step(vec3(0.),delta));
+ vec3 limit=room/max(abs(delta),vec3(.00001));
+ float gamut=clamp(min(limit.r,min(limit.g,limit.b)),0.,1.);
+ vec3 target=bg.rgb+delta*gamut;
+ coverage*=.48;
+ color=vec4(target,clamp(coverage*intensity,0.,1.));
 }
 )";
 
-// FBO 按尺寸复用；五个槽分别存归一化输入、水平均值、均值、差分及最终结果。
-struct Target { GLuint texture{}, framebuffer{}; };
+// FBO 按需分配并按尺寸复用；槽1在垂直均值完成后可覆盖为差分/调色输出。
+struct Target { GLuint texture{}, framebuffer{}; int width{}, height{}; };
+// 可选GPU计时：固定四个查询槽，只读取已完成查询，绝不等待GPU。
+struct GpuTimer {
+    PFNGLGENQUERIESEXTPROC gen{};
+    PFNGLDELETEQUERIESEXTPROC destroy{};
+    PFNGLBEGINQUERYEXTPROC begin{};
+    PFNGLENDQUERYEXTPROC end{};
+    PFNGLGETQUERYIVEXTPROC getQuery{};
+    PFNGLGETQUERYOBJECTUIVEXTPROC get{};
+    PFNGLGETQUERYOBJECTUI64VEXTPROC get64{};
+    std::array<GLuint,4> ids{};
+    std::array<bool,4> pending{};
+    int active=-1;
+    int cursor=0;
+    bool enabled=false;
+    jlong latest=-1;
+    jlong disjointCount=0;
+    bool Enable(bool value) {
+        if(!value) { enabled=false;latest=-1;pending.fill(false);return true; }
+        bool supported=false; GLint count{};glGetIntegerv(GL_NUM_EXTENSIONS,&count);
+        for(GLint i=0;i<count;++i)
+            if(std::string(reinterpret_cast<const char*>(glGetStringi(GL_EXTENSIONS,i)))=="GL_EXT_disjoint_timer_query") supported=true;
+        if(!supported) return false;
+        gen=reinterpret_cast<PFNGLGENQUERIESEXTPROC>(eglGetProcAddress("glGenQueriesEXT"));
+        destroy=reinterpret_cast<PFNGLDELETEQUERIESEXTPROC>(eglGetProcAddress("glDeleteQueriesEXT"));
+        begin=reinterpret_cast<PFNGLBEGINQUERYEXTPROC>(eglGetProcAddress("glBeginQueryEXT"));
+        end=reinterpret_cast<PFNGLENDQUERYEXTPROC>(eglGetProcAddress("glEndQueryEXT"));
+        getQuery=reinterpret_cast<PFNGLGETQUERYIVEXTPROC>(eglGetProcAddress("glGetQueryivEXT"));
+        get=reinterpret_cast<PFNGLGETQUERYOBJECTUIVEXTPROC>(eglGetProcAddress("glGetQueryObjectuivEXT"));
+        get64=reinterpret_cast<PFNGLGETQUERYOBJECTUI64VEXTPROC>(eglGetProcAddress("glGetQueryObjectui64vEXT"));
+        if(!gen || !destroy || !begin || !end || !getQuery || !get || !get64) return false;
+        GLint bits{};getQuery(GL_TIME_ELAPSED_EXT,GL_QUERY_COUNTER_BITS_EXT,&bits);
+        if(bits==0) return false;
+        if(!ids[0]) gen(static_cast<GLsizei>(ids.size()),ids.data());
+        enabled=true;return true;
+    }
+    void Begin() {
+        if(!enabled) return;
+        GLint hostQuery{};getQuery(GL_TIME_ELAPSED_EXT,GL_CURRENT_QUERY_EXT,&hostQuery);
+        // GPU_DISJOINT是上下文共享的读取后清零标志；宿主计时期间连该标志也不读取。
+        if(hostQuery) { latest=-1;pending.fill(false);return; }
+        GLint disjoint{};glGetIntegerv(GL_GPU_DISJOINT_EXT,&disjoint);
+        if(disjoint) { ++disjointCount; latest=-1; pending.fill(false); }
+        for(int n=0;n<4;++n) {
+            const int i=(cursor+n)%4;
+            if(!pending[i]) continue;
+            GLuint ready{};get(ids[i],GL_QUERY_RESULT_AVAILABLE_EXT,&ready);
+            if(ready) { GLuint64 elapsed{};get64(ids[i],GL_QUERY_RESULT_EXT,&elapsed);
+                if(!disjoint) latest=static_cast<jlong>(elapsed);pending[i]=false; }
+        }
+        for(int n=0;n<4;++n) {
+            const int i=(cursor+n)%4;
+            if(!pending[i]) { active=i;begin(GL_TIME_ELAPSED_EXT,ids[i]);cursor=(i+1)%4;return; }
+        }
+    }
+    void End() {
+        if(active<0) return;
+        end(GL_TIME_ELAPSED_EXT);pending[active]=true;active=-1;
+    }
+    void Close() { if(destroy && ids[0]) destroy(static_cast<GLsizei>(ids.size()),ids.data()); }
+};
 struct Renderer {
     EGLContext context=eglGetCurrentContext();
     std::thread::id thread=std::this_thread::get_id();
     Program normalize2d, normalizeOes, blur, difference, beauty, adjust, warp2d, warpOes, makeup2d, makeupOes;
-    GLuint vao{}, vbo{}, meshVao{}, meshVbo{}, luts[6]{};
+    GLuint vao{}, vbo{}, meshVao{}, meshVbo{}, luts[5]{};
     std::array<Target,5> targets{};
     int width{}, height{};
     bool abandon=false;
+    GpuTimer timer;
     void Check() const {
         if (context==EGL_NO_CONTEXT || context!=eglGetCurrentContext() || thread!=std::this_thread::get_id())
             throw std::runtime_error("GPUPixel requires the creating EGL context/thread");
     }
     ~Renderer() {
         if (abandon) return;
+        timer.Close();
         for (auto* p : {&normalize2d,&normalizeOes,&blur,&difference,&beauty,&adjust,&warp2d,&warpOes,&makeup2d,&makeupOes}) if (p->id) glDeleteProgram(p->id);
-        glDeleteTextures(6,luts);
+        glDeleteTextures(5,luts);
         for (auto& t:targets) { glDeleteTextures(1,&t.texture); glDeleteFramebuffers(1,&t.framebuffer); }
         glDeleteBuffers(1,&vbo); glDeleteVertexArrays(1,&vao);
         glDeleteBuffers(1,&meshVbo); glDeleteVertexArrays(1,&meshVao);
@@ -314,9 +424,9 @@ struct Renderer {
         glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,4*sizeof(float),nullptr);
         glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,4*sizeof(float),reinterpret_cast<void*>(2*sizeof(float)));
         Prepare();
-        jint sizes[12]{}; env->GetIntArrayRegion(dimensions,0,12,sizes);
-        glGenTextures(6,luts);
-        for (int i=0; i<6; ++i) {
+        jint sizes[10]{}; env->GetIntArrayRegion(dimensions,0,10,sizes);
+        glGenTextures(5,luts);
+        for (int i=0; i<5; ++i) {
             auto buffer=env->GetObjectArrayElement(buffers,i);
             auto data=env->GetDirectBufferAddress(buffer);
             auto capacity=env->GetDirectBufferCapacity(buffer);
@@ -339,21 +449,33 @@ struct Renderer {
         if (width==w && height==h) return;
         GLint max{}; glGetIntegerv(GL_MAX_TEXTURE_SIZE,&max);
         if (w<=0 || h<=0 || w>max || h>max) throw std::runtime_error("Invalid GPUPixel frame dimensions");
-        for (auto& t:targets) {
-            if (!t.texture) { glGenTextures(1,&t.texture); glGenFramebuffers(1,&t.framebuffer); }
-            glActiveTexture(GL_TEXTURE0); glBindTexture(GL_TEXTURE_2D,t.texture); Parameters();
-            glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,w,h,0,GL_RGBA,GL_UNSIGNED_BYTE,nullptr);
-            glBindFramebuffer(GL_DRAW_FRAMEBUFFER,t.framebuffer);
-            glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,t.texture,0);
-            if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
-                throw std::runtime_error("Incomplete GPUPixel framebuffer");
-        }
         width=w; height=h;
+    }
+    void EnsureTarget(int index) {
+        auto& t=targets[index];
+        if(t.width==width && t.height==height) return;
+        // Draw可能位于纹理绑定之后；在当前单元分配并恢复绑定，不能覆盖Shader输入/LUT。
+        GLint binding{}; glGetIntegerv(GL_TEXTURE_BINDING_2D,&binding);
+        if(!t.texture) { glGenTextures(1,&t.texture); glGenFramebuffers(1,&t.framebuffer); }
+        glBindTexture(GL_TEXTURE_2D,t.texture); Parameters();
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,nullptr);
+        glBindTexture(GL_TEXTURE_2D,static_cast<GLuint>(binding));
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER,t.framebuffer);
+        glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,t.texture,0);
+        if(glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE)
+            throw std::runtime_error("Incomplete GPUPixel framebuffer");
+        t.width=width; t.height=height;
+    }
+    jlong IntermediateBytes() const {
+        Check(); jlong bytes=0;
+        for(const auto& t:targets) bytes+=static_cast<jlong>(t.width)*t.height*4;
+        return bytes;
     }
     static void Bind(const Program& p,GLuint texture,int unit,GLint location,GLenum target=GL_TEXTURE_2D) {
         glUseProgram(p.id); glActiveTexture(GL_TEXTURE0+unit); glBindTexture(target,texture); glUniform1i(location,unit);
     }
-    void Draw(int target) const {
+    void Draw(int target) {
+        EnsureTarget(target);
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER,targets[target].framebuffer);
         glViewport(0,0,width,height); glDrawArrays(GL_TRIANGLE_STRIP,0,4);
     }
@@ -376,13 +498,18 @@ struct Renderer {
         // 上游两条支路使用相同的 radius/spacing，这里共享均值，减少重复的两次 blur 绘制。
         // 只美白时最终 Shader 不读取 mean/variance，跳过磨皮的三个中间绘制。
         if (smoothing>0) {
-            Bind(blur,targets[0].texture,0,blur.image); glUniform2f(blur.step,4.f/w,0); Draw(1);
-            Bind(blur,targets[1].texture,0,blur.image); glUniform2f(blur.step,0,4.f/h); Draw(2);
+            // 以短边480为原有磨皮基准；同视场升分辨率时保持邻域相对大小。
+            // 独立检测图尺寸不参与计算，横竖屏交换尺寸不会改变物理采样半径。
+            const float spacing=4.f*std::min(w,h)/480.f;
+            Bind(blur,targets[0].texture,0,blur.image); glUniform2f(blur.step,spacing/w,0); Draw(1);
+            Bind(blur,targets[1].texture,0,blur.image); glUniform2f(blur.step,0,spacing/h); Draw(2);
             Bind(difference,targets[0].texture,0,difference.image);
-            Bind(difference,targets[2].texture,1,difference.image2); Draw(3);
+            Bind(difference,targets[2].texture,1,difference.image2); Draw(1);
         }
         Bind(beauty,targets[0].texture,0,beauty.image);
-        Bind(beauty,targets[2].texture,1,beauty.image2); Bind(beauty,targets[3].texture,2,beauty.image3);
+        // 只美白的分支不采样均值/差分，但仍绑定完整纹理，避免首次执行时采样器不完整。
+        Bind(beauty,smoothing>0 ? targets[2].texture : targets[0].texture,1,beauty.image2);
+        Bind(beauty,smoothing>0 ? targets[1].texture : targets[0].texture,2,beauty.image3);
         for (int i=0; i<4; ++i) Bind(beauty,luts[i],i+3,beauty.lut[i]);
         glUniform1f(beauty.smooth,smoothing>0 ? smoothing : -1.f);
         glUniform1f(beauty.white,whitening); glUniform1f(beauty.sharpen,0);
@@ -396,9 +523,9 @@ struct Renderer {
         }
         return result;
     }
-    // 先复制背景，再绘制局部网格；槽3差分已消费，复用而非增加全尺寸FBO。
-    GLuint Makeup(GLuint input,bool oes,int w,int h,const float* matrix,float lipstick,float blusher,float eyelashes,GLuint eyeTexture,const float* vertices) {
-        Check();State saved;Prepare();Allocate(w,h);
+    // 先复制背景，再绘制局部网格；槽3仅在实际贴妆时分配。
+    GLuint Makeup(GLuint input,bool oes,int w,int h,const float* matrix,float lipstick,float blusher,float eyelashes,GLuint eyeTexture,const float* vertices,const float* colors) {
+        Check();State saved(true);Prepare();Allocate(w,h);
         if(input==targets[3].texture) throw std::runtime_error("Makeup input aliases output");
         auto& normal=oes ? normalizeOes : normalize2d;
         const std::string extension=oes ? "#extension GL_OES_EGL_image_external_essl3 : require\n" : "";
@@ -413,11 +540,18 @@ struct Renderer {
             "precision highp float;in vec2 uv;in vec2 sourceUv;out vec4 color;uniform mat4 transform;\n"+sampler+kMakeupBody);
         Bind(p,input,0,p.image,oes ? GL_TEXTURE_EXTERNAL_OES : GL_TEXTURE_2D);
         glUniformMatrix4fv(p.transform,1,GL_FALSE,matrix);
+        // 局部输出颜色/覆盖率，由固定功能混合叠加；透明片元不擦掉此前效果。
+        // 保留原视频alpha，无新增全屏中间纹理或GPU读回。
+        glEnable(GL_BLEND);glBlendEquationSeparate(GL_FUNC_ADD,GL_FUNC_ADD);
+        glBlendFuncSeparate(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA,GL_ZERO,GL_ONE);
+        Bind(p,luts[4],1,p.image2); // 腮红/睫毛共享采样器；口红分支不采样。
         glBindVertexArray(meshVao);glBindBuffer(GL_ARRAY_BUFFER,meshVbo);
         // 未开启睫毛时只上传原贴妆网格，不为新增效果支付无效带宽。
         glBufferSubData(GL_ARRAY_BUFFER,0,(eyelashes>0 ? 1440 : 288)*sizeof(float),vertices);
-        if(blusher>0){glUniform1i(p.makeupKind,1);Bind(p,luts[5],1,p.image2);glUniform1f(p.intensity,blusher);glDrawArrays(GL_TRIANGLES,60,12);}
-        if(lipstick>0){glUniform1i(p.makeupKind,0);Bind(p,luts[4],1,p.image2);glUniform1f(p.intensity,lipstick);glDrawArrays(GL_TRIANGLES,0,60);}
+        if(blusher>0){glUniform3fv(p.blushColor,1,colors+3);glUniform1i(p.makeupKind,1);Bind(p,luts[4],1,p.image2);glUniform1f(p.intensity,blusher);glDrawArrays(GL_TRIANGLES,60,12);}
+        if(lipstick>0){glUniform1i(p.makeupKind,0);glUniform1f(p.intensity,lipstick);
+            glUniform3fv(p.lipColor,1,colors);
+            glUniform2fv(p.lipContour,40,vertices+24);glUniform2f(p.frameSize,float(w),float(h));glDrawArrays(GL_TRIANGLES,0,120);}
         if(eyelashes>0){if(eyeTexture) Bind(p,eyeTexture,1,p.image2);glUniform1i(p.makeupKind,eyeTexture ? 3 : 2);glUniform1f(p.intensity,eyelashes);glDrawArrays(GL_TRIANGLES,72,288);}
         return targets[3].texture;
     }
@@ -448,8 +582,8 @@ void Throw(JNIEnv* env,const std::exception& error) {
 extern "C" JNIEXPORT jlong JNICALL
 Java_com_beautysdk_gpupixel_NativeBeauty_create(JNIEnv* env,jobject,jobjectArray buffers,jintArray dimensions) {
     try {
-        if (!buffers || !dimensions || env->GetArrayLength(buffers)!=6 || env->GetArrayLength(dimensions)!=12)
-            throw std::runtime_error("GPUPixel requires four LUTs and two makeup textures");
+        if (!buffers || !dimensions || env->GetArrayLength(buffers)!=5 || env->GetArrayLength(dimensions)!=10)
+            throw std::runtime_error("GPUPixel requires four LUTs and one blusher texture");
         if (eglGetCurrentContext()==EGL_NO_CONTEXT) throw std::runtime_error("No current EGL context");
         State saved;
         auto renderer=std::make_unique<Renderer>(); renderer->Init(env,buffers,dimensions);
@@ -499,17 +633,18 @@ Java_com_beautysdk_gpupixel_NativeBeauty_reshapeNative(JNIEnv* env,jobject,jlong
 // 固定长度数组和有限数校验，防止不可信坐标越界访问native内存。
 extern "C" JNIEXPORT jint JNICALL
 Java_com_beautysdk_gpupixel_NativeBeauty_makeupNative(JNIEnv* env,jobject,jlong handle,jint texture,jboolean oes,
-    jint width,jint height,jfloatArray transform,jfloat lipstick,jfloat blusher,jfloat eyelashes,jint eyeTexture,jfloatArray vertices) {
+    jint width,jint height,jfloatArray transform,jfloat lipstick,jfloat blusher,jfloat eyelashes,jint eyeTexture,jfloatArray vertices,jfloatArray colors) {
     try {
         if(!handle || texture<=0 || !transform || env->GetArrayLength(transform)!=16 ||
-           eyeTexture<0 || !vertices || env->GetArrayLength(vertices)!=1440 || !std::isfinite(lipstick) || !std::isfinite(blusher) || !std::isfinite(eyelashes) ||
+           !colors || env->GetArrayLength(colors)!=6 || eyeTexture<0 || !vertices || env->GetArrayLength(vertices)!=1440 || !std::isfinite(lipstick) || !std::isfinite(blusher) || !std::isfinite(eyelashes) ||
            lipstick<0 || lipstick>1 || blusher<0 || blusher>1 || eyelashes<0 || eyelashes>1) throw std::runtime_error("Invalid makeup arguments");
-        float matrix[16],mesh[1440];env->GetFloatArrayRegion(transform,0,16,matrix);
+        float matrix[16],mesh[1440],tints[6];env->GetFloatArrayRegion(colors,0,6,tints);
+        for(float v:tints) if(!std::isfinite(v) || v<0 || v>1) throw std::runtime_error("Invalid makeup colors");env->GetFloatArrayRegion(transform,0,16,matrix);
         const int count=eyelashes>0 ? 1440 : 288;
         env->GetFloatArrayRegion(vertices,0,count,mesh);
         for(float v:matrix) if(!std::isfinite(v)) throw std::runtime_error("Non-finite transform");
         for(int i=0;i<count;++i) if(!std::isfinite(mesh[i])) throw std::runtime_error("Non-finite makeup vertex");
-        return static_cast<jint>(reinterpret_cast<Renderer*>(handle)->Makeup(texture,oes,width,height,matrix,lipstick,blusher,eyelashes,eyeTexture,mesh));
+        return static_cast<jint>(reinterpret_cast<Renderer*>(handle)->Makeup(texture,oes,width,height,matrix,lipstick,blusher,eyelashes,eyeTexture,mesh,tints));
     } catch(const std::exception& e) { Throw(env,e);return 0; }
 }
 
@@ -525,4 +660,32 @@ Java_com_beautysdk_gpupixel_NativeBeauty_release(JNIEnv* env,jobject,jlong handl
             renderer->Check(); State saved; delete renderer;
         }
     } catch (const std::exception& e) { Throw(env,e); }
+}
+
+extern "C" JNIEXPORT jlong JNICALL
+Java_com_beautysdk_gpupixel_NativeBeauty_intermediateTextureBytes(JNIEnv* env,jobject,jlong handle) {
+    try {
+        if(!handle) throw std::runtime_error("Renderer is closed");
+        return reinterpret_cast<Renderer*>(handle)->IntermediateBytes();
+    } catch(const std::exception& e) { Throw(env,e); return 0; }
+}
+
+// operation: 0关闭、1开启、2开始一帧、3结束一帧、4读取结果、5读取时钟失效次数。
+extern "C" JNIEXPORT jlong JNICALL
+Java_com_beautysdk_gpupixel_NativeBeauty_gpuTiming(JNIEnv* env,jobject,jlong handle,jint operation) {
+    try {
+        if(!handle) throw std::runtime_error("Renderer is closed");
+        auto* renderer=reinterpret_cast<Renderer*>(handle);renderer->Check();
+        auto& timer=renderer->timer;
+        switch(operation) {
+            case 0: return timer.Enable(false);
+            case 1: return timer.Enable(true);
+            case 2: timer.Begin();break;
+            case 3: timer.End();break;
+            case 4: break;
+            case 5: return timer.disjointCount;
+            default: throw std::runtime_error("Invalid timing operation");
+        }
+        return timer.latest;
+    } catch(const std::exception& e) { Throw(env,e); return -1; }
 }

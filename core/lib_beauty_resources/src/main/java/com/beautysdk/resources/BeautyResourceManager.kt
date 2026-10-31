@@ -102,8 +102,15 @@ class BeautyResourceManager(private val folder:File,private val transport:Resour
         require(hashes.size<=8&&hashes.toSet().size==hashes.size);if(hashes.isEmpty())return null
         com.beautysdk.license.BeautyLicensing.requireFeatures(setOf(com.beautysdk.license.LicensedFeature.GESTURE))
         val available=listGestureResources().associateBy{it.hash}
-        val rules=hashes.flatMap {hash->val r=requireNotNull(available[hash]);val data=File(gestureInstalled,"$hash/package.zip").readBytes();require(sha256(data)==r.hash);com.beautysdk.GestureEffectArchive.loadZip(data.inputStream()).rules}
-        require(rules.sumOf{it.image.width.toLong()*it.image.height}<=8388608){"GESTURE_PIXEL_BUDGET"}
+        var remainingPixels=8388608L
+        val rules=hashes.flatMap {hash->
+            val r=requireNotNull(available[hash])
+            val data=File(gestureInstalled,"$hash/package.zip").readBytes();require(sha256(data)==r.hash)
+            val next=com.beautysdk.GestureEffectArchive.loadZip(data.inputStream(),remainingPixels).rules
+            remainingPixels-=next.sumOf{it.image.width.toLong()*it.image.height}
+            require(remainingPixels>=0){"GESTURE_PIXEL_BUDGET"}
+            next
+        }
         return com.beautysdk.GestureEffectPack(rules)
     }
     @Synchronized fun deleteGestureResource(hash:String){require(hash.matches(Regex("[0-9a-f]{64}")));check(File(gestureInstalled,hash).deleteRecursively())}

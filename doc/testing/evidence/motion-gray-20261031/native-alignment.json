@@ -1,0 +1,83 @@
+{
+  "elf": [
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/arm64-v8a/libbeauty_rgb_input.so",
+      "bytes": 383664,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 95568,
+          "vaddr": 111952,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/Debug/2rn4z195/obj/armeabi-v7a/libbeauty_rgb_input.so",
+      "bytes": 342780,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 74480,
+          "vaddr": 90864,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/arm64-v8a/libbeauty_rgb_input.so",
+      "bytes": 379240,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 95280,
+          "vaddr": 111664,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_mediapipe/build/intermediates/cxx/RelWithDebInfo/3o4t1133/obj/armeabi-v7a/libbeauty_rgb_input.so",
+      "bytes": 338792,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 74464,
+          "vaddr": 90848,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    }
+  ],
+  "zipalign": [
+    {
+      "apk": "app/build/outputs/apk/debug/app-debug.apk",
+      "zipalign16KBExitCode": 0
+    },
+    {
+      "apk": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "zipalign16KBExitCode": 0
+    }
+  ],
+  "scope": "Static alignment only; no 16KB-page runtime test."
+}

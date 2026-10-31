@@ -12,6 +12,7 @@ class LicenseEnforcementTest {
         val frame = RgbaFrame(FrameInfo(2, 2, 1), ByteBuffer.allocateDirect(16), 8)
         val settings = BeautySettings(smoothing = .5f, whitening = .5f)
         assertFalse(BeautyLicensing.allowsSettings(settings))
+        assertFalse(BeautyLicensing.allowsSettings(BeautySettings(sticker3D=BuiltInStickers3D.glasses())))
         assertSame(frame, RgbaBeautyRenderer().render(frame, settings, null))
         var errors = 0
         val session = BeautySession(onError = { errors++ })

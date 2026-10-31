@@ -4,6 +4,48 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PreviewRequestTest {
+    @Test fun mouthStickerGetsFreshFramePathWithoutEnablingMakeupOrChangingEyes() {
+        fun pack(anchor:com.beautysdk.StickerAnchor)=com.beautysdk.StickerPack(listOf(com.beautysdk.ImageSticker(com.beautysdk.StickerImage(1,1,intArrayOf(-1)),anchor)))
+        val effects=DemoEffects(0f,0f,false,false,false)
+        val base=PreviewRequest(CameraDemoOptions(DemoBackend.MEDIAPIPE,effects,beautyBackend=DemoBeautyBackend.GPUPIXEL),false,0)
+        val mouth=pack(com.beautysdk.StickerAnchor.UPPER_LIP)
+        val cases=listOf(base.copy(options=base.options.copy(effects=effects.copy(moustache=true))),
+            base.copy(customPack=mouth),base.copy(options=base.options.copy(effects=effects.copy(themeSettings=com.beautysdk.BeautySettings(stickerPack=mouth)))))
+        for(request in cases) {
+            assertTrue(request.automaticGpuAnalysis);assertTrue(request.needsFreshFaceRedraw)
+            assertFalse(request.copy(original=true).needsFreshFaceRedraw)
+            assertFalse(request.copy(options=request.options.copy(faceAnalysisEnabled=false)).needsFreshFaceRedraw)
+        }
+        val eyes=base.copy(customPack=pack(com.beautysdk.StickerAnchor.EYES))
+        assertFalse(eyes.automaticGpuAnalysis);assertFalse(eyes.needsFreshFaceRedraw)
+        assertFalse(cases[0].copy(customPack=com.beautysdk.StickerPack(emptyList())).automaticGpuAnalysis)
+        assertFalse(cases[0].copy(options=cases[0].options.copy(effects=cases[0].options.effects.copy(themeSettings=com.beautysdk.BeautySettings()))).automaticGpuAnalysis)
+    }
+
+    @Test fun makeupPrefersGpuWithoutDependingOnSliderStrengthOrOriginalPreview() {
+        val options=CameraDemoOptions(DemoBackend.MEDIAPIPE,DemoEffects(0f,0f,false,false,false),beautyBackend=DemoBeautyBackend.GPUPIXEL)
+        val neutral=PreviewRequest(options,false,0)
+        assertFalse(neutral.automaticGpuAnalysis);assertFalse(neutral.prefersGpuAnalysis)
+        for(a in listOf(com.beautysdk.BeautyAdjustments(lipstick=.1f),com.beautysdk.BeautyAdjustments(lipstick=.9f),
+            com.beautysdk.BeautyAdjustments(blusher=.4f),com.beautysdk.BeautyAdjustments(eyelashes=.6f))) {
+            val manual=neutral.copy(options=options.copy(effects=options.effects.copy(adjustments=a)))
+            val theme=neutral.copy(options=options.copy(effects=options.effects.copy(themeSettings=com.beautysdk.BeautySettings(adjustments=a))))
+            assertTrue(manual.prefersGpuAnalysis);assertTrue(theme.prefersGpuAnalysis)
+            assertTrue("Long-press original must not change backend preference",theme.copy(original=true).prefersGpuAnalysis)
+            assertFalse(manual.copy(options=manual.options.copy(beautyBackend=DemoBeautyBackend.BASIC_GL)).automaticGpuAnalysis)
+        }
+        assertTrue(neutral.copy(options=options.copy(mediaPipeGpu=true)).prefersGpuAnalysis)
+    }
+    @Test fun threeDRequestsRealFaceAnalysisEvenWithAnEmptyTheme() {
+        val options=CameraDemoOptions(DemoBackend.MEDIAPIPE,
+            DemoEffects(0f,0f,false,false,false,themeSettings=com.beautysdk.BeautySettings()),
+            sticker3D=com.beautysdk.BuiltInStickers3D.glasses())
+        val request=PreviewRequest(options,false,0)
+        assertTrue(request.needsAnalysis)
+        assertFalse(request.copy(original=true).needsAnalysis)
+        assertFalse(request.copy(options=options.copy(faceAnalysisEnabled=false)).needsAnalysis)
+        assertFalse(request.copy(options=options.copy(sticker3D=null)).needsAnalysis)
+    }
     @Test fun explicitFaceObservationAndSwitchOverrideEffectDemand() {
         val options=CameraDemoOptions(DemoBackend.MEDIAPIPE,DemoEffects(0f,0f,false,false,false),observeFaces=true,gestureEnabled=true)
         val request=PreviewRequest(options,false,0)

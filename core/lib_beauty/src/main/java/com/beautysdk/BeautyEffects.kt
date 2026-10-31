@@ -8,7 +8,7 @@ enum class BeautyFilter { NONE, WARM, COOL }
  * brightness/chinLength/mouthSize为-1..1；contrast/saturation为0..2且1中性；其他强度0..1。
  * 红润是全图肤色倾向调色，不是人脸分割或腮红贴妆。
  */
-data class BeautyAdjustments @JvmOverloads constructor(
+data class BeautyAdjustments(
     val rosy: Float = 0f,
     val brightness: Float = 0f,
     val contrast: Float = 1f,
@@ -28,7 +28,15 @@ data class BeautyAdjustments @JvmOverloads constructor(
     val mouthSize: Float = 0f,
     /** 程序化上睫毛强度，需要稠密眼睑点；0关闭，仅GPUPixel后端支持。 */
     val eyelashes: Float = 0f,
+    val makeupColors: MakeupColors,
 ) {
+    @JvmOverloads constructor(rosy: Float = 0f, brightness: Float = 0f, contrast: Float = 1f, saturation: Float = 1f, sharpening: Float = 0f, slimFace: Float = 0f, bigEyes: Float = 0f, lipstick: Float = 0f, blusher: Float = 0f, slimNose: Float = 0f, chinLength: Float = 0f, mouthSize: Float = 0f, eyelashes: Float = 0f) :
+        this(rosy, brightness, contrast, saturation, sharpening, slimFace, bigEyes, lipstick, blusher, slimNose, chinLength, mouthSize, eyelashes, MakeupColors())
+
+    /** 保留旧copy描述符；修改强度时保留当前色号。 */
+    fun copy(rosy: Float = this.rosy, brightness: Float = this.brightness, contrast: Float = this.contrast, saturation: Float = this.saturation, sharpening: Float = this.sharpening, slimFace: Float = this.slimFace, bigEyes: Float = this.bigEyes, lipstick: Float = this.lipstick, blusher: Float = this.blusher, slimNose: Float = this.slimNose, chinLength: Float = this.chinLength, mouthSize: Float = this.mouthSize, eyelashes: Float = this.eyelashes):BeautyAdjustments =
+        BeautyAdjustments(rosy, brightness, contrast, saturation, sharpening, slimFace, bigEyes, lipstick, blusher, slimNose, chinLength, mouthSize, eyelashes, makeupColors)
+
     init {
         require(rosy in 0f..1f && brightness in -1f..1f && contrast in 0f..2f && saturation in 0f..2f &&
             sharpening in 0f..1f && slimFace in 0f..1f && bigEyes in 0f..1f &&
@@ -54,7 +62,7 @@ data class BeautyAdjustments @JvmOverloads constructor(
  * @property hat 程序化帽子开关，需要有效双眼锚点。
  * @property stickerPack 可选不可变图片素材包，按列表顺序叠加，缺锚点时隐藏。
  */
-data class BeautySettings @JvmOverloads constructor(
+data class BeautySettings(
     val smoothing: Float = 0f,
     val whitening: Float = 0f,
     val filter: BeautyFilter = BeautyFilter.NONE,
@@ -71,13 +79,29 @@ data class BeautySettings @JvmOverloads constructor(
     val scene: BeautyScene = BeautyScene(),
     /** 可选图片睫毛资源；强度由adjustments.eyelashes控制，未提供时保留程序化款。 */
     val eyeMakeup: EyeMakeup? = null,
+    /** 可选刚性三维网格；由GlSticker3DRenderer组合，默认不分配三维GL资源。 */
+    val sticker3D: Sticker3D?,
 ) {
+    /** 保留既有构造器和Kotlin默认参数JVM描述符；旧消费者不需要感知新增字段。 */
+    @JvmOverloads constructor(smoothing: Float = 0f, whitening: Float = 0f, filter: BeautyFilter = BeautyFilter.NONE,
+        glasses: Boolean = false, moustache: Boolean = false, animateStickers: Boolean = false,
+        hat: Boolean = false, stickerPack: StickerPack? = null, adjustments: BeautyAdjustments = BeautyAdjustments(),
+        scene: BeautyScene = BeautyScene(), eyeMakeup: EyeMakeup? = null) :
+        this(smoothing,whitening,filter,glasses,moustache,animateStickers,hat,stickerPack,adjustments,scene,eyeMakeup,null)
+
+    /** 旧copy调用保留当前三维选择；编译器生成的新copy同时允许显式替换sticker3D。 */
+    fun copy(smoothing: Float = this.smoothing, whitening: Float = this.whitening, filter: BeautyFilter = this.filter,
+        glasses: Boolean = this.glasses, moustache: Boolean = this.moustache, animateStickers: Boolean = this.animateStickers,
+        hat: Boolean = this.hat, stickerPack: StickerPack? = this.stickerPack, adjustments: BeautyAdjustments = this.adjustments,
+        scene: BeautyScene = this.scene, eyeMakeup: EyeMakeup? = this.eyeMakeup): BeautySettings =
+        BeautySettings(smoothing,whitening,filter,glasses,moustache,animateStickers,hat,stickerPack,adjustments,scene,eyeMakeup,sticker3D)
+
     init { require(smoothing in 0f..1f && whitening in 0f..1f) }
     /** 仅依赖人脸的效果触发分析；基础磨皮、美白、色调不需要关键点。 */
-    val requiresFaceAnalysis: Boolean get() = scene.needsFace || adjustments.needsFace || glasses || moustache || hat || !stickerPack?.layers.isNullOrEmpty()
+    val requiresFaceAnalysis: Boolean get() = sticker3D != null || scene.needsFace || adjustments.needsFace || glasses || moustache || hat || !stickerPack?.layers.isNullOrEmpty()
     /** 所有效果都关闭时走旁路；仅开动画但没有挂件仍属旁路。 */
     val isIdentity: Boolean get() = smoothing == 0f && whitening == 0f && filter == BeautyFilter.NONE &&
-        !glasses && !moustache && !hat && stickerPack?.layers.isNullOrEmpty() && adjustments.isIdentity && scene.isIdentity
+        !glasses && !moustache && !hat && stickerPack?.layers.isNullOrEmpty() && sticker3D == null && adjustments.isIdentity && scene.isIdentity
 }
 
 /** 挂件局部坐标：中心为原点，单位长度为双眼/嘴角距离，角度沿画面 y 向下。 */

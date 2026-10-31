@@ -1,0 +1,83 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraResolutionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.CameraResolutionDeviceTest:
+INSTRUMENTATION_STATUS: test=selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraResolutionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<2> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead$lambda$0(CameraResolutionDeviceTest.kt:147)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.$r8$lambda$gK7BT_iWu7yBkLdHECSazAZV-rA(Unknown Source:0)
+	at com.beautysdk.demo.CameraResolutionDeviceTest$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: stream=
+Error in selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead(com.beautysdk.demo.CameraResolutionDeviceTest):
+java.lang.AssertionError: expected:<2> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead$lambda$0(CameraResolutionDeviceTest.kt:147)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.$r8$lambda$gK7BT_iWu7yBkLdHECSazAZV-rA(Unknown Source:0)
+	at com.beautysdk.demo.CameraResolutionDeviceTest$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+INSTRUMENTATION_STATUS: test=selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.768
+There was 1 failure:
+1) selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead(com.beautysdk.demo.CameraResolutionDeviceTest)
+java.lang.AssertionError: expected:<2> but was:<1>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.selectionPersistsAcrossNewSessionAndDiagnosticsCanBeRead$lambda$0(CameraResolutionDeviceTest.kt:147)
+	at com.beautysdk.demo.CameraResolutionDeviceTest.$r8$lambda$gK7BT_iWu7yBkLdHECSazAZV-rA(Unknown Source:0)
+	at com.beautysdk.demo.CameraResolutionDeviceTest$$ExternalSyntheticLambda2.run(D8$$SyntheticClass:0)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:462)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2236)
+	at android.os.Handler.handleCallback(Handler.java:938)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:263)
+	at android.app.ActivityThread.main(ActivityThread.java:8296)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:612)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1006)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -2,7 +2,7 @@ package com.beautysdk.demo
 
 import android.content.Intent
 import android.view.View
-import android.widget.GridLayout
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.test.platform.app.InstrumentationRegistry
@@ -25,13 +25,16 @@ class ResourceCenterUiDeviceTest {
             error("Resource edits did not settle")
         }
         try {
-            inst.runOnMainSync{model=ViewModelProvider(activity)[ResourceCenterModel::class.java]}
-            ready()
+            inst.runOnMainSync{
+                model=ViewModelProvider(activity)[ResourceCenterModel::class.java]
+                activity.findViewById<View>(R.id.resource_local_tab).performClick()
+            }
+            ready();inst.waitForIdleSync();Thread.sleep(250)
             // 先展开可能已选中的主题，后续调参不应再产生资源目录变化。
             inst.runOnMainSync{model.parameters(mapOf("beauty.whitening" to .2f))};ready()
             lateinit var card:View;lateinit var before:ResourceCenterModel.Ui
             inst.runOnMainSync {
-                before=model.ui.value!!;card=activity.findViewById<GridLayout>(R.id.resource_grid).getChildAt(0)
+                before=model.ui.value!!;card=activity.findViewById<RecyclerView>(R.id.resource_grid).getChildAt(0)
                 repeat(40){model.parameters(mapOf("beauty.whitening" to it/100f))}
                 val callerInput=mutableMapOf("reshape.slimFace" to .37f)
                 model.parameters(callerInput);callerInput["reshape.slimFace"]=.91f
@@ -43,7 +46,7 @@ class ResourceCenterUiDeviceTest {
             assertTrue(after.enabled)
             assertSame(before.installed,after.installed)
             before.previews.forEach{(hash,bytes)->assertSame("Cover must remain stable: $hash",bytes,after.previews[hash])}
-            inst.runOnMainSync{assertSame("Slider edits must not rebuild resource cards",card,activity.findViewById<GridLayout>(R.id.resource_grid).getChildAt(0))}
+            inst.runOnMainSync{assertSame("Slider edits must not rebuild resource cards",card,activity.findViewById<RecyclerView>(R.id.resource_grid).getChildAt(0))}
             val saved=requireNotNull(com.beautysdk.resources.BeautyResourceStateStore(file).read())
             assertEquals(.39f,saved.parameters["beauty.whitening"]!!,0f)
             assertEquals(.37f,saved.parameters["reshape.slimFace"]!!,0f)
@@ -56,9 +59,10 @@ class ResourceCenterUiDeviceTest {
                 external.uninstall(resource.hash)
                 inst.runOnMainSync{model.refresh()}
                 val removed=ready()
+                inst.waitForIdleSync();Thread.sleep(200)
                 assertTrue(removed.installed.none{it.hash==resource.hash})
                 assertFalse(removed.previews.containsKey(resource.hash))
-                inst.runOnMainSync{assertNull(activity.findViewById<GridLayout>(R.id.resource_grid).findViewWithTag<View>("resource_${resource.hash}"))}
+                inst.runOnMainSync{assertNull(activity.findViewById<RecyclerView>(R.id.resource_grid).findViewWithTag<View>("resource_${resource.hash}"))}
             } finally {external.install(bytes.inputStream())}
             inst.runOnMainSync{model.refresh()}
             val restored=ready()
@@ -76,6 +80,8 @@ class ResourceCenterUiDeviceTest {
         try {
             activity=inst.startActivitySync(Intent(context,ResourceCenterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) as ResourceCenterActivity
             val a=activity
+            // 资源页默认展示在线目录；本用例验证已安装资源，必须显式切换本地页签。
+            inst.runOnMainSync {a.findViewById<View>(R.id.resource_local_tab).performClick()}
             fun waitReady() {
                 val end=System.nanoTime()+15_000_000_000L
                 while(System.nanoTime()<end) {
@@ -97,12 +103,19 @@ class ResourceCenterUiDeviceTest {
             var selectedHash=""
             inst.runOnMainSync {
                 assertNull(a.findViewById<View>(R.id.camera_gpu_preview))
-                assertEquals(View.VISIBLE,a.findViewById<View>(R.id.resource_management).visibility)
+                assertEquals(View.GONE,a.findViewById<View>(R.id.resource_official).visibility)
                 val tabs=a.findViewById<LinearLayout>(R.id.resource_categories);assertEquals(9,tabs.childCount)
                 tabs.getChildAt(2).performClick()
-                val grid=a.findViewById<GridLayout>(R.id.resource_grid);assertTrue(grid.childCount>=3)
+            }
+            inst.waitForIdleSync();Thread.sleep(250)
+            inst.runOnMainSync {
+                val grid=a.findViewById<RecyclerView>(R.id.resource_grid);assertTrue(grid.childCount>=2)
                 selectedHash=grid.getChildAt(0).tag.toString().removePrefix("resource_")
                 grid.getChildAt(0).performClick()
+                val controller=ResourceCenterActivity::class.java.getDeclaredField("center").apply{isAccessible=true}.get(a)
+                val dialog=ResourceCenterController::class.java.getDeclaredField("detail").apply{isAccessible=true}.get(controller) as androidx.appcompat.app.AlertDialog
+                assertEquals("Opening details must not apply",selection,ViewModelProvider(a)[ResourceCenterModel::class.java].ui.value!!.selection)
+                dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick()
             }
             waitReady();assertTrue(state.readText().contains(selectedHash))
             inst.uiAutomation.takeScreenshot()?.let {screen ->

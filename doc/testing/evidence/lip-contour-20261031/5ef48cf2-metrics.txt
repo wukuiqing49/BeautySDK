@@ -1,0 +1,2 @@
+I/BeautyResolution(29936): smoothing cross-resolution MAE[1]=0.19444444444444497
+I/BeautyResolution(29936): smoothing cross-resolution MAE[2]=0.1508246527777766

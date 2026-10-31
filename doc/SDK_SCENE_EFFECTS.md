@@ -68,6 +68,8 @@ masks.submit(rgbaFrame)
 
 新增显式Execution.CPU/GPU/GPU_PREFERRED。公共库默认CPU；Demo使用GPU_PREFERRED，在worker初始化GPU失败时回退CPU，运行期推理错误仍上报，不承诺所有错误自动恢复。GPU仍有输入复制及置信度输出，不等于纹理零拷贝。onTiming提供复制、排队、准备（首次含模型创建）、推理、后处理和结果间隔；Demo Debug限频记录BeautySegmentation及即时BeautyMaskAge，不保存图像。
 
+2026-10-30兼容修正：MediaPipe 0.10.32在OPPO OP46B1（PCAM00，Android 11/API30）的GPU置信度输出可在PacketGetter读取宽度时以Invalid format: UNKNOWN触发SIGABRT，公开夹具已复现。该机型的GPU_PREFERRED在进入原生GPU任务前选择CPU，并通过日志及onTiming报告实际后端；显式GPU通过onError报告不支持。其他设备选择逻辑不变。此为已确认设备的后端兼容处理，不表示修复上游原生库，也不代表所有OPPO/所有GPU均有问题。CPU依然输出原有连续置信度蒙版，250ms有效期及后台释放契约不变。
+
 Pixel 8短测固定公开人像、各5次预热及20次采样，CPU/GPU推理中位数约89.54/42.26ms；顺序执行、温度及负载未控制，不是持续直播对比。最终Demo短日志确认GPU，某窗口推理均值16.32ms、结果间隔最大115.70ms，单点可用蒙版年龄41.60ms；不能据此宣称稳定30FPS或所有帧低延迟。蒙版仍保留真实采样时间和250ms有效期；没有位置预测、蒙版运动补偿或延迟整个视频。快速移动、细发丝、遮挡和持续温升仍待真人验收。
 
 ## 2026-10-28 蒙版原生后处理
@@ -89,3 +91,9 @@ ForegroundMaskTiming增加extractionNs/conversionNs/packagingNs，分别覆盖�
 ForegroundMask.info.timestampNs保持模型原采样时间；alignmentTimestampNs记录校正目标输入时刻，offsetX/offsetY为原始归一化空间位移。pixels()保留原始模型像素，消费方需按p-offset采样；BeautySceneRenderer已支持。原ByteArray/ByteBuffer调用继续兼容。forScaledOutput保留位移、校正时刻及真实采样年龄。若当前视频纹理早于校正小图，运行时使用同一次模型的withoutMotionAlignment只读共享快照，避免提前应用未来位移或闪回原背景；新模型结果尚未采样到时仍严格拒绝。
 
 对照结果有波动，补偿有额外CPU成本，未稳定改善延迟，因此没有默认启用。最终一对短测模型结果年龄约66.66→99.97ms，校正目标画面年龄66.66→66.24ms，二值IoU约0.710→0.722；更早一对观察到0.700→0.759与目标年龄66.67→33.35ms，但不能挑选较好一轮作为稳定收益。此IoU以同模型当前位置为参考，非人工真值。真正的快速转头、头发摆动及遮挡仍未通过视觉验收；详见测试报告。
+
+## 2026-10-31 静止轮廓稳定与视频时间选择
+
+MediaPipeForegroundMasks.enableTemporalStabilization默认true：分割worker在原生转换循环内比较两次真实采样的RGB和置信度，静止区域抑制小幅变化；明显变化直接使用当前值，修正相对当前alpha最多8/255。设置false可比较原路径。相邻采样须同geometry/代次且间隔不超过150ms，否则不沿用历史。模型真实时间与250ms结果期限均保留，未延长画面或预测人像位置。
+
+最多3张不可变小蒙版用于选取不晚于当前视频的真实观测，防止独立分析支路超前时频繁退回原画面；reset/停用仍立即清理发布历史。滤波额外历史只在worker内存中保存每蒙版像素RGB+alpha（256×256约256KiB），close清理，不写磁盘或联网；不是完整视频帧历史。明显运动虽绕过滤波，低纹理缓慢运动仍可能有边缘偏差，必须验收；该能力不是光流、发丝matting或隐私遮挡保证。OPPO本轮19项设备回归和受控静止抑制通过，真人效果/持续性能未验收，见TEST_REPORT。

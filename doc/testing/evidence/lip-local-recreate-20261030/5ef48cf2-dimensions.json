@@ -1,0 +1,16 @@
+[
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 10
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "FRONT",
+    "renderedFrames": 10
+  }
+]

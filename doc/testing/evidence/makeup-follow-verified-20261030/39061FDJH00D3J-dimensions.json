@@ -1,0 +1,93 @@
+[
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "FRONT",
+    "renderedFrames": 7
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1214x720",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 8
+  },
+  {
+    "requested": "1920x1080",
+    "actual": "1822x1080",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 7
+  },
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "FRONT",
+    "renderedFrames": 7
+  },
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "BACK",
+    "renderedFrames": 12
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1280x720",
+    "analysis": "320x180",
+    "lens": "BACK",
+    "renderedFrames": 5
+  },
+  {
+    "requested": "1920x1080",
+    "actual": "1920x1080",
+    "analysis": "320x180",
+    "lens": "BACK",
+    "renderedFrames": 5
+  },
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "BACK",
+    "renderedFrames": 5
+  },
+  {
+    "requested": "640x480",
+    "actual": "640x480",
+    "analysis": "320x240",
+    "lens": "BACK",
+    "renderedFrames": 5
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1214x720",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 9
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1214x720",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 15
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1214x720",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 15
+  },
+  {
+    "requested": "1280x720",
+    "actual": "1214x720",
+    "analysis": "320x190",
+    "lens": "FRONT",
+    "renderedFrames": 8
+  }
+]

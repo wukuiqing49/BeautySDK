@@ -44,6 +44,7 @@ class DemoBuiltinLibraryDeviceTest {
                 assertTrue(panel.findViewWithTag<SeekBar>("library_parameter_makeup.lipstick").isShown)
                 panel.findViewById<LinearLayout>(R.id.effect_categories).getChildAt(1).performClick()
                 panel.findViewById<View>(R.id.camera_adjust).performClick()
+                panel.findViewWithTag<View>("reshape.slimNose").performClick()
                 assertTrue(panel.findViewWithTag<SeekBar>("library_parameter_reshape.slimNose").isShown)
                 model.parameters(mapOf("reshape.slimNose" to .31f))
             }
@@ -56,7 +57,10 @@ class DemoBuiltinLibraryDeviceTest {
             inst.runOnMainSync{
                 val tab=panel.findViewWithTag<View>("camera_gesture_category")
                 assertNotNull("Camera must expose gesture category",tab);tab.performClick()
-                val card=panel.findViewWithTag<View>("gesture_resource_${gesture.hash}")
+            }
+            inst.waitForIdleSync();Thread.sleep(250)
+            inst.runOnMainSync{
+                val card=panel.findViewWithTag<View>("resource_${gesture.hash}")
                 assertNotNull("Gesture resource card missing",card);assertTrue(card.isShown)
                 if(gesture.hash !in model.ui.value!!.gestureSelection)card.performClick()
             }

@@ -15,27 +15,41 @@ class BeautySceneRenderer(private val delegate: BeautyRenderer,
     private var backgroundPass: SceneGlPass?=null
     private var motionPass: SceneGlPass?=null
     private val motion=CameraMotionController()
+    private val identityScene=BeautyScene()
+    private val fullCrop=floatArrayOf(0f,0f,1f,1f)
+    private var settingsSource: BeautySettings?=null
+    private var delegateSettings: BeautySettings?=null
+    private var motionScene: BeautyScene?=null
     override fun render(frame: VideoFrame,settings: BeautySettings,face: FaceObservation?): VideoFrame {
         if (!BeautyLicensing.allowsSettings(settings)) return frame
         require(frame is TextureFrame)
         val scene=settings.scene
-        if(scene.isIdentity) { motion.reset();return delegate.render(frame,settings,face) }
+        if(scene.isIdentity) {
+            settingsSource=null;delegateSettings=null;motionScene=null
+            motion.reset();return delegate.render(frame,settings,face)
+        }
+        if(settingsSource !== settings) {
+            delegateSettings=settings.copy(scene=identityScene)
+            motionScene=scene.copy(background=BackgroundMode.NONE)
+            settingsSource=settings
+        }
         var input=frame
         if(scene.needsSegmentation) {
             val mask=masks?.snapshot(frame.info)?.takeIf { it.isUsable(frame.info) }
             if(mask!=null) input=(backgroundPass ?: SceneGlPass().also { backgroundPass=it }).render(
-                frame,scene,mask,floatArrayOf(0f,0f,1f,1f))
+                frame,scene,mask,fullCrop)
         }
-        val image=delegate.render(input,settings.copy(scene=BeautyScene()),face) as TextureFrame
+        val image=delegate.render(input,checkNotNull(delegateSettings),face) as TextureFrame
         if(scene.motion==CameraMotion.NONE) { motion.reset();return image }
         return (motionPass ?: SceneGlPass().also { motionPass=it }).render(image,
-            scene.copy(background=BackgroundMode.NONE),null,motion.crop(frame.info,scene,face))
+            checkNotNull(motionScene),null,motion.crop(frame.info,scene,face))
     }
     /** 必须在所属GL线程换源；蒙版运行时另行reset。 */
     fun reset() { motion.reset() }
     override fun close() {
         try { backgroundPass?.close();motionPass?.close() } finally { delegate.close() }
         backgroundPass=null;motionPass=null;motion.reset()
+        settingsSource=null;delegateSettings=null;motionScene=null
     }
 }
 

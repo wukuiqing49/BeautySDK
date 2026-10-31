@@ -61,6 +61,19 @@ data class AnalysisFrameMapping(val source: FrameGeometry, val target: FrameGeom
         if(right<=left || bottom<=top) return null
         return FaceObservation(FaceBounds(left,top,right,bottom),
             face.anchors.filterValues { sourceRegion.contains(upright(it)) }.mapValues { map(it.value) },
-            face.landmarks.map(::map))
+            face.landmarks.map(::map), map3D(face.geometry3D))
+    }
+
+    // 只有等比例像素映射才保留三维度量；非等比拉伸仍支持二维，但不能伪造刚性三维姿态。
+    private fun map3D(geometry: FaceGeometry3D?): FaceGeometry3D? {
+        if (geometry == null) return null
+        val o = map(FacePoint(0f, 0f)); val x = map(FacePoint(1f, 0f)); val y = map(FacePoint(0f, 1f))
+        fun distance(p: FacePoint) = kotlin.math.hypot((p.x-o.x)*target.width, (p.y-o.y)*target.height)
+        val sx = distance(x)/source.width; val sy = distance(y)/source.height
+        if (kotlin.math.abs(sx-sy) > maxOf(sx,sy)*.02f) return null
+        return geometry.map { point ->
+            val p = map(FacePoint(point.x, point.y))
+            FacePoint3D(p.x, p.y, point.z * source.width * sx / target.width)
+        }
     }
 }

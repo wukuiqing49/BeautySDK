@@ -1,0 +1,158 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=fullLipContoursCoverInteriorWithoutLeakingAcrossEdges
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 96x128 closed=false interior=402/402 outside=0/9976
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 96x128 closed=true interior=817/817 outside=0/9830
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 640x480 closed=false interior=19954/19954 outside=0/276879
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 640x480 closed=true interior=27996/28005 outside=0/270052
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_RENDER_720P samples=40 completedMedianMs=11.88099 completedP95Ms=15.232187 gpuSupported=true gpuMedianMs=8.416146 disjoint=0
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 1280x720 closed=false interior=63172/63172 outside=0/839287
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+LIP_CONTOUR 1280x720 closed=true interior=86809/86819 outside=0/817658
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fullLipContoursCoverInteriorWithoutLeakingAcrossEdges
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.LipMotionDeviceTest:
+INSTRUMENTATION_STATUS: test=blankMouthRejectsLocalCorrectionAndStaticDoesNotSnap
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=blankMouthRejectsLocalCorrectionAndStaticDoesNotSnap
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=oneOccludedCornerKeepsSupportedLipDeformation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: local lip error 1.0532386779785157 vs baseline 1.0532386779785157
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion(LipMotionDeviceTest.kt:57)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion$default(LipMotionDeviceTest.kt:31)
+	at com.beautysdk.demo.LipMotionDeviceTest.oneOccludedCornerKeepsSupportedLipDeformation(LipMotionDeviceTest.kt:61)
+
+INSTRUMENTATION_STATUS: stream=
+Error in oneOccludedCornerKeepsSupportedLipDeformation(com.beautysdk.demo.LipMotionDeviceTest):
+java.lang.AssertionError: local lip error 1.0532386779785157 vs baseline 1.0532386779785157
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion(LipMotionDeviceTest.kt:57)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion$default(LipMotionDeviceTest.kt:31)
+	at com.beautysdk.demo.LipMotionDeviceTest.oneOccludedCornerKeepsSupportedLipDeformation(LipMotionDeviceTest.kt:61)
+
+INSTRUMENTATION_STATUS: test=oneOccludedCornerKeepsSupportedLipDeformation
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=lipsMoveWithoutMovingTheHead
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LIP_LOCAL deform=false rotatedMirrored=false occludedCorner=false baselineErrorPx=0.16284599304199218 localErrorPx=0.012918853759765625 meanMs=3.1319726250000004 maxMs=3.475469
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=lipsMoveWithoutMovingTheHead
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=localTrackingRespectsRotatedMirroredInputs
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LIP_LOCAL deform=false rotatedMirrored=true occludedCorner=false baselineErrorPx=0.16284599304199218 localErrorPx=0.012918853759765625 meanMs=3.0889976249999997 maxMs=3.241198
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=localTrackingRespectsRotatedMirroredInputs
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=lipsDeformWithoutMovingTheHead
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+LIP_LOCAL deform=true rotatedMirrored=false occludedCorner=false baselineErrorPx=1.0593544006347657 localErrorPx=0.16937828063964844 meanMs=2.9780013749999994 maxMs=3.330938
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.LipMotionDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=lipsDeformWithoutMovingTheHead
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 6.274
+There was 1 failure:
+1) oneOccludedCornerKeepsSupportedLipDeformation(com.beautysdk.demo.LipMotionDeviceTest)
+java.lang.AssertionError: local lip error 1.0532386779785157 vs baseline 1.0532386779785157
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion(LipMotionDeviceTest.kt:57)
+	at com.beautysdk.demo.LipMotionDeviceTest.runMotion$default(LipMotionDeviceTest.kt:31)
+	at com.beautysdk.demo.LipMotionDeviceTest.oneOccludedCornerKeepsSupportedLipDeformation(LipMotionDeviceTest.kt:61)
+
+FAILURES!!!
+Tests run: 6,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

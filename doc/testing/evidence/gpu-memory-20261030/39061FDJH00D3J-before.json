@@ -1,0 +1,98 @@
+[
+  {
+    "width": 64,
+    "height": 64,
+    "case": 0,
+    "sha256": "102348f7aef51043754acf8124ce93de5ca4baf69afd6db4caf2554591823adf",
+    "completedWallMeanNs": 993670.65,
+    "completedWallP95Ns": 1889648
+  },
+  {
+    "width": 64,
+    "height": 64,
+    "case": 1,
+    "sha256": "56fbdc1a7ab76ba162e6d4a82e7890c8476e8dc5eb22d475d3aa82f6e4b7d37a",
+    "completedWallMeanNs": 841133.75,
+    "completedWallP95Ns": 1056803
+  },
+  {
+    "width": 64,
+    "height": 64,
+    "case": 2,
+    "sha256": "ed4397c758cfdab692551a42413161f9fd0b788dda3e8ab33a60fd04501bb49f",
+    "completedWallMeanNs": 1252004.2,
+    "completedWallP95Ns": 1641235
+  },
+  {
+    "width": 64,
+    "height": 64,
+    "case": 3,
+    "sha256": "85730eab73586f6f8cf2779ecf81294c2c5c1aae431d9fe2cf581b9e6a898dcb",
+    "completedWallMeanNs": 1844022.55,
+    "completedWallP95Ns": 2886271
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "case": 0,
+    "sha256": "453e42ecc9d357122d7624aed6bdb2e79cf479a7072c7592eb9181240b9f5982",
+    "completedWallMeanNs": 3089593.55,
+    "completedWallP95Ns": 5716553
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "case": 1,
+    "sha256": "43d515f879d8c07d25fb3dfc8592bcc3b4d43a6e28f0e75916c1729d294ba7f4",
+    "completedWallMeanNs": 2090356.35,
+    "completedWallP95Ns": 3222778
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "case": 2,
+    "sha256": "f1177e3dbc0a24bbcbe747439671999f6ed479b18ce81770864d1fab2e85cc11",
+    "completedWallMeanNs": 3560422.8,
+    "completedWallP95Ns": 5253703
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "case": 3,
+    "sha256": "b38acfd570206b56af39a87f810344aff3b08d64c5223bcac687087cf0c5b70e",
+    "completedWallMeanNs": 4140694.1,
+    "completedWallP95Ns": 5312541
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "case": 0,
+    "sha256": "fe37d9e9e83e90670784fd0fda71ec28e6ac1d2249e93d623bdf6a657689af94",
+    "completedWallMeanNs": 4043979.95,
+    "completedWallP95Ns": 5386312
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "case": 1,
+    "sha256": "d8bca9b61f85e3d8ad93688cf6318c6ffc814472e143996267008331f746ebc7",
+    "completedWallMeanNs": 2196567.95,
+    "completedWallP95Ns": 3197957
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "case": 2,
+    "sha256": "e17a2aa251a02f4a5a516c5ffe61874b7960860056bdb105b3cc7f272a3f0710",
+    "completedWallMeanNs": 3977445.65,
+    "completedWallP95Ns": 4894735
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "case": 3,
+    "sha256": "5ff107adf6c430b3d0c3780eeff125f2c854068b9cbec0285bce114bb2317fe8",
+    "completedWallMeanNs": 7276175.9,
+    "completedWallP95Ns": 7758952
+  }
+]

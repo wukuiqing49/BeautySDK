@@ -1,0 +1,7 @@
+<resources>
+    <string name="camera_resolution_test">分辨率测试</string>
+    <string name="camera_resolution_option">%1$d × %2$d</string>
+    <string name="camera_resolution_dimensions">%1$d×%2$d</string>
+    <string name="camera_resolution_status">请求 %1$d×%2$d\n实际 %3$d×%4$d\n分析 %5$s</string>
+    <string name="camera_resolution_waiting">请求 %1$d×%2$d\n实际 等待画面\n分析 —</string>
+</resources>

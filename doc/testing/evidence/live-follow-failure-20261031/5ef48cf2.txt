@@ -1,0 +1,52 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.AdjacentMotionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.AdjacentMotionDeviceTest:
+INSTRUMENTATION_STATUS: test=fastPortraitTranslationMustNotLoseTracking
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+FAST_PORTRAIT dx=12 tracked=true estimateMs=5.22526
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+FAST_PORTRAIT dx=24 tracked=false estimateMs=0.894115
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.AdjacentMotionDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Fast translation dx=24 lost tracking
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at com.beautysdk.demo.AdjacentMotionDeviceTest.fastPortraitTranslationMustNotLoseTracking(AdjacentMotionDeviceTest.kt:40)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fastPortraitTranslationMustNotLoseTracking(com.beautysdk.demo.AdjacentMotionDeviceTest):
+java.lang.AssertionError: Fast translation dx=24 lost tracking
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at com.beautysdk.demo.AdjacentMotionDeviceTest.fastPortraitTranslationMustNotLoseTracking(AdjacentMotionDeviceTest.kt:40)
+
+INSTRUMENTATION_STATUS: test=fastPortraitTranslationMustNotLoseTracking
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 0.587
+There was 1 failure:
+1) fastPortraitTranslationMustNotLoseTracking(com.beautysdk.demo.AdjacentMotionDeviceTest)
+java.lang.AssertionError: Fast translation dx=24 lost tracking
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at com.beautysdk.demo.AdjacentMotionDeviceTest.fastPortraitTranslationMustNotLoseTracking(AdjacentMotionDeviceTest.kt:40)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -99,12 +99,18 @@ class CustomCameraController @JvmOverloads constructor(
                 provider = cameraProvider
                 val selector = selector(config.lens)
                 check(cameraProvider.hasCamera(selector)) { "Requested camera is unavailable: ${config.lens}" }
+                val wide=kotlin.math.abs(config.width.toDouble()/config.height-16.0/9)<
+                    kotlin.math.abs(config.width.toDouble()/config.height-4.0/3)
+                val aspect=if(wide) AspectRatioStrategy.RATIO_16_9_FALLBACK_AUTO_STRATEGY
+                    else AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY
                 val resolution = ResolutionSelector.Builder()
-                    .setAspectRatioStrategy(AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY)
+                    .setAspectRatioStrategy(aspect)
                     .setResolutionStrategy(ResolutionStrategy(Size(config.width,config.height),
                         ResolutionStrategy.FALLBACK_RULE_CLOSEST_LOWER_THEN_HIGHER)).build()
                 val p = Preview.Builder().setTargetRotation(rotation).setResolutionSelector(resolution).build()
                 val analysisResolution = if (surfaceProvider == null) resolution else ResolutionSelector.Builder()
+                    // 独立分析支路保留低分辨率4:3请求，再由共同ViewPort裁出同视场。
+                    // 部分设备的原生16:9流最低为720p，不能随高清视频请求放大分析流。
                     .setAspectRatioStrategy(AspectRatioStrategy.RATIO_4_3_FALLBACK_AUTO_STRATEGY)
                     .setResolutionStrategy(ResolutionStrategy(Size(320,240),ResolutionStrategy.FALLBACK_RULE_CLOSEST_LOWER_THEN_HIGHER)).build()
                 val a = ImageAnalysis.Builder().setTargetRotation(rotation).setResolutionSelector(analysisResolution)
@@ -153,7 +159,8 @@ class CustomCameraController @JvmOverloads constructor(
                 val camera = if (surfaceProvider == null) cameraProvider.bindToLifecycle(owner,selector,p,a)
                 else {
                     // 同一 ViewPort 保证分析 crop 与预览 crop 对应同一传感器区域。
-                    val ratio = if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) Rational(3,4) else Rational(4,3)
+                    val ratio = if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180)
+                        Rational(config.height,config.width) else Rational(config.width,config.height)
                     val group = UseCaseGroup.Builder().addUseCase(p).addUseCase(a)
                         .setViewPort(ViewPort.Builder(ratio,rotation).setScaleType(ViewPort.FIT).build()).build()
                     cameraProvider.bindToLifecycle(owner,selector,group)

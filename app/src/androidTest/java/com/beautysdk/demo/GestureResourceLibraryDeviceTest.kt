@@ -68,7 +68,7 @@ class GestureResourceLibraryDeviceTest {
             while(System.nanoTime()<until){var ui:ResourceCenterModel.Ui?=null;inst.runOnMainSync{ui=model.ui.value};ui?.let{if(!it.busy&&it.settings!=null){assertNull(it.error);if(check(it))return it}};Thread.sleep(25)}
             error("Gesture library UI timeout")
         }
-        fun open(){activity=inst.startActivitySync(Intent(context,ResourceCenterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) as ResourceCenterActivity;inst.runOnMainSync{model=ViewModelProvider(activity!!)[ResourceCenterModel::class.java]};ready()}
+        fun open(){activity=inst.startActivitySync(Intent(context,ResourceCenterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) as ResourceCenterActivity;inst.runOnMainSync{model=ViewModelProvider(activity!!)[ResourceCenterModel::class.java];activity!!.findViewById<View>(R.id.resource_local_tab).performClick()};ready()}
         fun close(){inst.runOnMainSync{activity?.finish()};inst.waitForIdleSync();activity=null}
         try{
             open();inst.runOnMainSync{model.clearGestureEffects()};ready{it.gestureEffects==null}
@@ -76,7 +76,18 @@ class GestureResourceLibraryDeviceTest {
             assertNull(imported.gestureEffects);assertTrue(imported.gestureSelection.isEmpty())
             val hashes=imported.library!!.gestureResources.take(2).map{it.sha256}
             inst.runOnMainSync{activity!!.findViewById<View>(android.R.id.content).findViewWithTag<View>("gesture_category").performClick()};inst.waitForIdleSync()
-            for(hash in hashes){inst.runOnMainSync{activity!!.findViewById<View>(android.R.id.content).findViewWithTag<View>("gesture_resource_$hash").performClick()};ready{hash in it.gestureSelection}}
+            for(hash in hashes){
+                val until=System.nanoTime()+5_000_000_000L
+                var card:View?=null
+                while(card==null&&System.nanoTime()<until){inst.runOnMainSync{card=activity!!.findViewById<View>(android.R.id.content).findViewWithTag<View>("resource_$hash")};if(card==null)Thread.sleep(25)}
+                inst.runOnMainSync{
+                    assertNotNull("Installed gesture card must be reachable",card);card!!.performClick()
+                    val center=ResourceCenterActivity::class.java.getDeclaredField("center").apply{isAccessible=true}.get(activity)
+                    val dialog=ResourceCenterController::class.java.getDeclaredField("detail").apply{isAccessible=true}.get(center) as androidx.appcompat.app.AlertDialog
+                    assertTrue(dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).isShown)
+                    dialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick()
+                };ready{hash in it.gestureSelection}
+            }
             assertEquals(2,ready().gestureEffects!!.rules.size)
             close();open();assertEquals(hashes.toSet(),ready{it.gestureSelection.size==2}.gestureSelection)
             inst.runOnMainSync{model.applyDeliveryDefaults()};val defaults=ready{it.gestureSelection.size==1};assertEquals(setOf(hashes.first()),defaults.gestureSelection)

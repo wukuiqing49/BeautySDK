@@ -25,17 +25,27 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
     private val geometry=FloatArray(56)
     private val reshapeControls=FloatArray(5)
     private val makeupVertices=FloatArray(1440)
+    private val makeupColors=FloatArray(6)
     private val neutral=BeautyAdjustments()
+    private var overlaySettingsSource: BeautySettings? = null
+    private var overlaySettings: BeautySettings? = null
     private var eyeImage: EyeMakeup? = null
     private var eyeTexture=0
+    private var gpuTimingEnabled=false
+    // Debug宿主限频聚合，仅记录显示条件，不记录关键点坐标或图像。
+    private val eyelashDiagnostic=(context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE)!=0
+    private val eyelashCounts=IntArray(5)
+    private var eyelashLogNs=0L
+    private var eyelashMinSpan=Float.POSITIVE_INFINITY
+    private var eyelashMaxSpan=0f
 
     init {
         check(egl != EGL14.EGL_NO_CONTEXT) { "A current EGL context is required" }
         check(GLES30.glGetString(GLES30.GL_VERSION)?.contains("OpenGL ES 3") == true) {
             "OpenGL ES 3.0 is required"
         }
-        val dimensions = IntArray(12)
-        val buffers = arrayOf("lookup_gray", "lookup_origin", "lookup_skin", "lookup_light", "mouth", "blusher")
+        val dimensions = IntArray(10)
+        val buffers = arrayOf("lookup_gray", "lookup_origin", "lookup_skin", "lookup_light", "blusher")
             .mapIndexed { index, name ->
                 val bitmap = context.assets.open("gpupixel/res/$name.png").use {
                     requireNotNull(BitmapFactory.decodeStream(it)) { "Invalid GPUPixel LUT: $name" }
@@ -64,14 +74,20 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
     /** 先执行 GPUPixel 磨皮/美白，再执行原有色调和贴纸；不会重复应用基础磨皮、美白。 */
     override fun render(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
         if (!BeautyLicensing.allowsSettings(settings)) return frame
+        if(gpuTimingEnabled) { checkOwner();NativeBeauty.gpuTiming(handle,2) }
         return try { renderLicensed(frame, settings, face) } catch (_: LicenseException) { frame }
+        finally { if(gpuTimingEnabled) NativeBeauty.gpuTiming(handle,3) }
     }
 
     private fun renderLicensed(frame: VideoFrame, settings: BeautySettings, face: FaceObservation?): VideoFrame {
         checkOwner(); check(handle != 0L) { "Renderer is closed" }
         require(frame is TextureFrame) { "GPUPixel only accepts TextureFrame" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }
-        if (settings.isIdentity) return frame
+        require(settings.sticker3D == null) { "Use GlSticker3DRenderer for 3D stickers" }
+        if (settings.isIdentity) {
+            overlaySettingsSource=null;overlaySettings=null
+            return frame
+        }
         val a=settings.adjustments
         controls[0]=a.rosy;controls[1]=a.brightness;controls[2]=a.contrast
         controls[3]=a.saturation;controls[4]=a.sharpening
@@ -88,18 +104,26 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
             val material=settings.eyeMakeup
             val lashValid=if(a.eyelashes<=0f) false else if(material!=null)
                 texturedEyelashGeometry(face,frame.info,material,makeupVertices) else eyelashGeometry(face,frame.info,makeupVertices)
+            if(eyelashDiagnostic && a.eyelashes>0f) recordEyelash(face,frame.info,material,lashValid)
             val lashes=if(lashValid) a.eyelashes else 0f
             val texture=if(lashes>0f && material!=null) uploadEyeImage(material) else 0
             val lips=if(valid and 1 != 0) a.lipstick else 0f
             val cheeks=if(valid and 2 != 0) a.blusher else 0f
             if(lips>0f || cheeks>0f || lashes>0f) {
+                val colors=a.makeupColors
+                makeupColors[0]=colors.lipstick.red;makeupColors[1]=colors.lipstick.green;makeupColors[2]=colors.lipstick.blue
+                makeupColors[3]=colors.blusher.red;makeupColors[4]=colors.blusher.green;makeupColors[5]=colors.blusher.blue
                 val texture=NativeBeauty.makeup(handle,image.textureId,image.target==TextureTarget.EXTERNAL_OES,
-                    image.info.width,image.info.height,image.copyTransform(),lips,cheeks,lashes,texture,makeupVertices)
+                    image.info.width,image.info.height,image.copyTransform(),lips,cheeks,lashes,texture,makeupVertices,makeupColors)
                 image=TextureFrame(frame.info,texture,TextureTarget.TEXTURE_2D,IDENTITY)
             }
         }
         // 先叠加原坐标贴纸，再让画面和贴纸一起形变，避免眼镜仍停在形变前的位置。
-        val composite=overlays.render(image,settings.copy(smoothing=0f,whitening=0f,adjustments=neutral),face) as TextureFrame
+        if(overlaySettingsSource !== settings) {
+            overlaySettings=settings.copy(smoothing=0f,whitening=0f,adjustments=neutral)
+            overlaySettingsSource=settings
+        }
+        val composite=overlays.render(image,checkNotNull(overlaySettings),face) as TextureFrame
         if(!a.hasReshape) return composite
         val legacyValid=(a.slimFace>0f || a.bigEyes>0f) && reshapeGeometry(face,frame.info,geometry)
         val regions=if(a.slimNose>0f || a.chinLength!=0f || a.mouthSize!=0f)
@@ -113,6 +137,24 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
         val texture=NativeBeauty.reshape(handle,composite.textureId,composite.target==TextureTarget.EXTERNAL_OES,
             composite.info.width,composite.info.height,composite.copyTransform(),reshapeControls,geometry)
         return TextureFrame(frame.info,texture,TextureTarget.TEXTURE_2D,IDENTITY)
+    }
+
+    private fun recordEyelash(face:FaceObservation?,info:FrameInfo,material:EyeMakeup?,draw:Boolean) {
+        eyelashCounts[0]++
+        if(face==null)eyelashCounts[1]++ else if(face.landmarks.size<478)eyelashCounts[2]++ else {
+            if(!draw)eyelashCounts[3]++
+            for(eye in 0..1) {
+                val a=face.landmarks[if(eye==0)33 else 263];val b=face.landmarks[if(eye==0)133 else 362]
+                val span=kotlin.math.hypot((b.x-a.x)*info.width,(b.y-a.y)*info.height)
+                if(span.isFinite()){eyelashMinSpan=minOf(eyelashMinSpan,span);eyelashMaxSpan=maxOf(eyelashMaxSpan,span)}
+            }
+        }
+        if(draw)eyelashCounts[4]++
+        val now=System.nanoTime()
+        if(now-eyelashLogNs>=1_000_000_000L) {
+            android.util.Log.d("BeautyEyelash","n=${eyelashCounts[0]} noFace=${eyelashCounts[1]} missingPoints=${eyelashCounts[2]} invalidEyes=${eyelashCounts[3]} submitted=${eyelashCounts[4]} image=${material!=null} spanMin=$eyelashMinSpan spanMax=$eyelashMaxSpan")
+            eyelashCounts.fill(0);eyelashMinSpan=Float.POSITIVE_INFINITY;eyelashMaxSpan=0f;eyelashLogNs=now
+        }
     }
 
     /** 素材切换时上传一次直通RGBA；恢复宿主的纹理、PBO与像素解包状态。 */
@@ -146,10 +188,37 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
         eyeTexture=next[0];eyeImage=pack;return eyeTexture
     }
 
+    /** 当前缓存的中间RGBA纹理字节数；不含LUT、驱动开销及其他渲染器。仅创建线程/上下文调用。 */
+    fun intermediateTextureBytes(): Long {
+        checkOwner();check(handle!=0L) { "Renderer is closed" }
+        return NativeBeauty.intermediateTextureBytes(handle)
+    }
+
+    /** 可选EXT计时，默认关闭；不支持时返回false。四槽轮询不等待，不干预宿主已有计时查询。 */
+    fun setGpuTimingEnabled(enabled: Boolean): Boolean {
+        checkOwner();check(handle!=0L) { "Renderer is closed" }
+        val accepted=NativeBeauty.gpuTiming(handle,if(enabled) 1 else 0)==1L
+        gpuTimingEnabled=enabled && accepted
+        return accepted
+    }
+
+    /** 本渲染器最近完成的GPU时间；不含外层3D/背景、分析和推流。尚无有效查询/时钟失效时为null。 */
+    fun latestGpuExecutionNs(): Long? {
+        checkOwner();check(handle!=0L) { "Renderer is closed" }
+        return NativeBeauty.gpuTiming(handle,4).takeIf { it>=0L }
+    }
+
+    /** 本实例观察到的GPU计时时钟失效次数。移动GPU休眠/频率变化可能导致计时结果被丢弃。 */
+    fun gpuTimingDisjointCount(): Long {
+        checkOwner();check(handle!=0L) { "Renderer is closed" }
+        return NativeBeauty.gpuTiming(handle,5)
+    }
+
     /** 正常关闭必须使用资源创建时的 EGL 上下文；GL 句柄与 native 内存同步释放。 */
     override fun close() {
         checkOwner()
         if (handle == 0L) return
+        overlaySettingsSource=null;overlaySettings=null
         try { overlays.close() } finally {
             if(eyeTexture!=0) GLES30.glDeleteTextures(1,intArrayOf(eyeTexture),0)
             eyeTexture=0;eyeImage=null;NativeBeauty.release(handle, false); handle = 0
@@ -161,6 +230,7 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
         // GLSurfaceView 也可能重建 GL 线程；确认旧上下文已退出后允许新线程清理 native 元数据。
         check(EGL14.eglGetCurrentContext() != egl) { "Use close while the owning context is current" }
         if (handle != 0L) { NativeBeauty.release(handle, true); handle = 0;eyeTexture=0;eyeImage=null }
+        overlaySettingsSource=null;overlaySettings=null
     }
 
     /** 线程和上下文同时匹配才允许访问 GPU 资源。 */
@@ -177,6 +247,8 @@ class GpuPixelBeautyRenderer(context: Context) : BeautyRenderer {
 
 /** JNI 内部桥接；native 端检查尺寸、矩阵、线程和 EGL，并把异常转成 Java 异常。 */
 internal object NativeBeauty {
+    external fun gpuTiming(handle: Long, operation: Int): Long
+    external fun intermediateTextureBytes(handle: Long): Long
     init { System.loadLibrary("beauty_gpupixel") }
     external fun create(luts: Array<ByteBuffer>, dimensions: IntArray): Long
     private external fun renderNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
@@ -184,7 +256,7 @@ internal object NativeBeauty {
     private external fun reshapeNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
         transform: FloatArray, strengths: FloatArray, geometry: FloatArray): Int
     private external fun makeupNative(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
-        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray): Int
+        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray, colors: FloatArray): Int
     fun render(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
         transform: FloatArray, smoothing: Float, whitening: Float, controls: FloatArray): Int {
         require(controls.size == 5)
@@ -197,10 +269,14 @@ internal object NativeBeauty {
         if (!BeautyLicensing.allows(LicensedFeature.RESHAPE) || !BeautyLicensing.allows(LicensedFeature.FACE)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.RESHAPE, LicensedFeature.FACE))
         return reshapeNative(handle, texture, oes, width, height, transform, strengths, geometry)
     }
+    /** 保留旧JVM入口；主渲染器使用复用颜色数组的新重载。 */
     fun makeup(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
-        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray): Int {
+        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray): Int =
+        makeup(handle,texture,oes,width,height,transform,lipstick,blusher,eyelashes,eyeTexture,vertices,floatArrayOf(.90f,.32f,.38f,.80f,.28f,.36f))
+    fun makeup(handle: Long, texture: Int, oes: Boolean, width: Int, height: Int,
+        transform: FloatArray, lipstick: Float, blusher: Float, eyelashes: Float, eyeTexture: Int, vertices: FloatArray, colors: FloatArray): Int {
         if (!BeautyLicensing.allows(LicensedFeature.MAKEUP) || !BeautyLicensing.allows(LicensedFeature.FACE)) throw LicenseException("LICENSE_FEATURE_UNAVAILABLE", setOf(LicensedFeature.MAKEUP, LicensedFeature.FACE))
-        return makeupNative(handle, texture, oes, width, height, transform, lipstick, blusher, eyelashes, eyeTexture, vertices)
+        return makeupNative(handle, texture, oes, width, height, transform, lipstick, blusher, eyelashes, eyeTexture, vertices, colors)
     }
     external fun release(handle: Long, abandon: Boolean)
 }

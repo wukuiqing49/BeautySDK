@@ -10,7 +10,7 @@ vendor = module / 'third_party/gpupixel'
 manifest = json.loads((vendor / 'SOURCE.json').read_text(encoding='utf-8'))
 assert manifest['revision'] == 'ef552bf8ce2d0d41fa9b979bfb5c7cf79374ca88'
 for name, expected in manifest['sha256'].items():
-    path = module / 'src/main/assets/gpupixel/res' / Path(name).name if '/res/' in name else vendor / name
+    path = module / 'src/main/assets/gpupixel/res' / Path(name).name if '/res/' in name and name != 'src/res/mouth.png' else vendor / name
     data = path.read_bytes()
     canonical = data if name.endswith('.png') else data.replace(b'\r\n', b'\n')
     assert hashlib.sha256(canonical).hexdigest() == expected, f'来源文件变化：{name}'

@@ -5,7 +5,12 @@ import org.json.JSONObject
 import java.io.File
 
 /** 用户保存显式null表示关闭；只有用户更改过的字段覆盖默认值。 */
-data class BeautyResourceState(val parameters:Map<String,Float> = emptyMap(),val selections:Map<String,String?> = emptyMap(),val enabled:Boolean=true)
+data class BeautyResourceState(val parameters:Map<String,Float> = emptyMap(),val selections:Map<String,String?> = emptyMap(),val enabled:Boolean=true,val makeupColors:Map<String,MakeupColor>) {
+    constructor():this(emptyMap(),emptyMap(),true,emptyMap())
+    constructor(parameters:Map<String,Float> = emptyMap(),selections:Map<String,String?> = emptyMap(),enabled:Boolean=true):this(parameters,selections,enabled,emptyMap())
+    fun copy(parameters:Map<String,Float> = this.parameters,selections:Map<String,String?> = this.selections,enabled:Boolean=this.enabled):BeautyResourceState =
+        BeautyResourceState(parameters,selections,enabled,makeupColors)
+}
 data class BeautyResourceDefaults(val locale:String,val followHost:Boolean,val state:BeautyResourceState,val categoryOrder:List<ResourceCategory>) {
     fun merge(saved:BeautyResourceState?,host:BeautyResourceState?=null,installed:List<InstalledResource> = emptyList()):BeautyResourceState {
         var s=state
@@ -18,7 +23,7 @@ data class BeautyResourceDefaults(val locale:String,val followHost:Boolean,val s
                 next.selections.keys.any{it!="theme"}->s.selections-"theme"
                 else->s.selections
             }
-            s=BeautyResourceState((s.parameters-scope)+next.parameters,inherited+next.selections,next.enabled)
+            s=BeautyResourceState((s.parameters-scope)+next.parameters,inherited+next.selections,next.enabled,(s.makeupColors-scope.map {it.removePrefix("makeup.")}.toSet())+next.makeupColors)
         }
         return s
     }
@@ -42,17 +47,25 @@ data class ResourceRestoreResult(val state:BeautyResourceState,val missingSlots:
 fun BeautyResourceState.resolveInstalled(installed:List<InstalledResource>):ResourceRestoreResult {
     val available=installed.associateBy{it.hash}
     val missing=selections.filter{(slot,hash)->hash!=null&&available[hash]?.descriptor?.slot!=slot}.keys
-    return ResourceRestoreResult(copy(selections=selections.mapValues{(slot,hash)->if(slot in missing)null else hash}),missing)
+    // 素材缺失不能隐式回退程序化睫毛；只关闭已知缺失妆区，其他手动参数保留。
+    val neutral=missing.mapNotNull {slot->when(slot) {
+        "makeup.eyelash"->"makeup.eyelashes" to 0f
+        "makeup.lipstick"->"makeup.lipstick" to 0f
+        "makeup.blusher"->"makeup.blusher" to 0f
+        else->null
+    }}.toMap()
+    return ResourceRestoreResult(copy(parameters=parameters+neutral,
+        selections=selections.mapValues{(slot,hash)->if(slot in missing)null else hash}),missing)
 }
 
 /** 仅配置变化时落盘；保存成功后调用者再发布，失败不切换当前状态。 */
 class BeautyResourceStateStore(private val file:File) {
     fun read():BeautyResourceState? {
         if(!file.exists())return null
-        val bytes=file.readBytes();require(bytes.size<=65536);val o=JSONObject(bytes.toString(Charsets.UTF_8));o.fields("stateVersion","parameters","selections","enabled");o.integer("stateVersion",1,1);require(o.get("enabled") is Boolean)
-        return BeautyResourceState(parseParameters(o.getJSONObject("parameters")),BeautyResourceDefaults.readSelections(o.getJSONObject("selections")),o.getBoolean("enabled"))
+        val bytes=file.inputStream().use {bounded(it,65536)};val o=JSONObject(bytes.toString(Charsets.UTF_8));val version=o.integer("stateVersion",1,2);o.fields(*if(version==1)arrayOf("stateVersion","parameters","selections","enabled")else arrayOf("stateVersion","parameters","selections","enabled","makeupColors"));require(o.get("enabled") is Boolean)
+        return BeautyResourceState(parseParameters(o.getJSONObject("parameters")),BeautyResourceDefaults.readSelections(o.getJSONObject("selections")),o.getBoolean("enabled"),if(version==2)MakeupColorOverrides.read(o.getJSONObject("makeupColors"))else emptyMap())
     }
-    fun write(s:BeautyResourceState) {BeautyParameters.validate(s.parameters);BeautyResourceDefaults.readSelections(JSONObject(s.selections.mapValues{it.value?:JSONObject.NULL}));BeautyResourceManager.atomic(file,JSONObject().put("stateVersion",1).put("parameters",JSONObject(s.parameters)).put("selections",JSONObject(s.selections.mapValues{it.value?:JSONObject.NULL})).put("enabled",s.enabled).toString().toByteArray())}
+    fun write(s:BeautyResourceState) {BeautyParameters.validate(s.parameters);BeautyResourceDefaults.readSelections(JSONObject(s.selections.mapValues{it.value?:JSONObject.NULL}));BeautyResourceManager.atomic(file,JSONObject().put("stateVersion",2).put("makeupColors",MakeupColorOverrides.json(s.makeupColors)).put("parameters",JSONObject(s.parameters)).put("selections",JSONObject(s.selections.mapValues{it.value?:JSONObject.NULL})).put("enabled",s.enabled).toString().toByteArray())}
 }
 /** 先准备所有资源再得到不可变快照；失败关闭本次新句柄，原快照仍有效。 */
 class BeautyEffectComposer(private val manager:BeautyResourceManager,private val capabilities:ResourceCapabilities) {
@@ -66,9 +79,11 @@ class BeautyEffectComposer(private val manager:BeautyResourceManager,private val
             for((slot,hash)in selected) {
                 val lease=manager.acquire(requireNotNull(hash));leases+=lease
                 require(lease.resource.descriptor.slot==slot){"SLOT_MISMATCH"}
-                settings=lease.resource.applyTo(settings,capabilities)
             }
-            settings=BeautyParameters.apply(settings,state.parameters)
+            // 旧整套参数先作底层，独立槽位随后覆盖；不依赖选择/JSON键的插入顺序。
+            for(resource in ResourceEffectApplication.ordered(leases.map{it.resource}))
+                settings=resource.applyTo(settings,capabilities)
+            settings=MakeupColorOverrides.apply(BeautyParameters.apply(settings,state.parameters),state.makeupColors)
             if(!state.enabled)settings=settings.copy(smoothing=0f,whitening=0f,filter=BeautyFilter.NONE,adjustments=BeautyAdjustments(),eyeMakeup=null)
             return ComposedBeauty(settings,leases)
         }catch(t:Throwable){leases.forEach{it.close()};throw t}
@@ -80,7 +95,7 @@ class BeautyEffectComposer(private val manager:BeautyResourceManager,private val
         val editable=materialize(state)
         val selections=editable.selections.filterKeys{it!="theme"}+ (d.slot to resource.hash)
         val parameters=editable.parameters.filterKeys {it !in d.scope}
-        return editable.copy(parameters=parameters,selections=selections)
+        return editable.copy(parameters=parameters,selections=selections,makeupColors=editable.makeupColors-d.scope.map {it.removePrefix("makeup.")}.toSet())
     }
     /** 套装转自定义：拆分并固定全部子项，不丢失其他已搭配效果。 */
     fun materialize(state:BeautyResourceState):BeautyResourceState {

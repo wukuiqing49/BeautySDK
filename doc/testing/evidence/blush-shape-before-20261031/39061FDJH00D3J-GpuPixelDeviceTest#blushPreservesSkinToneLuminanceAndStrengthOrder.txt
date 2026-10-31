@@ -1,0 +1,73 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.GpuPixelDeviceTest:
+INSTRUMENTATION_STATUS: test=blushPreservesSkinToneLuminanceAndStrengthOrder
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=
+BLUSH rgb=65, 43, 32 strength=0.25 changed=407 meanLumaError=0.2008805896805893
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+BLUSH rgb=65, 43, 32 strength=0.6 changed=456 meanLumaError=0.23036184210526342
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+BLUSH rgb=65, 43, 32 strength=1.0 changed=496 meanLumaError=0.17285645161290306
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+BLUSH rgb=150, 125, 100 strength=0.25 changed=407 meanLumaError=0.20139017199017162
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=
+BLUSH rgb=150, 125, 100 strength=0.6 changed=456 meanLumaError=0.23145263157894758
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.GpuPixelDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Blush must spread along the cheekbone, not form a circular spot: aspect=1.3175041089139607
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$yBB_hjR7SHN9lWdrMWRz_ovwULU(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda2.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:791)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder(GpuPixelDeviceTest.kt:510)
+
+INSTRUMENTATION_STATUS: stream=
+Error in blushPreservesSkinToneLuminanceAndStrengthOrder(com.beautysdk.demo.GpuPixelDeviceTest):
+java.lang.AssertionError: Blush must spread along the cheekbone, not form a circular spot: aspect=1.3175041089139607
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$yBB_hjR7SHN9lWdrMWRz_ovwULU(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda2.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:791)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder(GpuPixelDeviceTest.kt:510)
+
+INSTRUMENTATION_STATUS: test=blushPreservesSkinToneLuminanceAndStrengthOrder
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 0.408
+There was 1 failure:
+1) blushPreservesSkinToneLuminanceAndStrengthOrder(com.beautysdk.demo.GpuPixelDeviceTest)
+java.lang.AssertionError: Blush must spread along the cheekbone, not form a circular spot: aspect=1.3175041089139607
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder$lambda$0(GpuPixelDeviceTest.kt:559)
+	at com.beautysdk.demo.GpuPixelDeviceTest.$r8$lambda$yBB_hjR7SHN9lWdrMWRz_ovwULU(GpuPixelDeviceTest.kt:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest$$ExternalSyntheticLambda2.invoke(D8$$SyntheticClass:0)
+	at com.beautysdk.demo.GpuPixelDeviceTest.withEgl(GpuPixelDeviceTest.kt:791)
+	at com.beautysdk.demo.GpuPixelDeviceTest.blushPreservesSkinToneLuminanceAndStrengthOrder(GpuPixelDeviceTest.kt:510)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

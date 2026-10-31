@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="makeup_color_value">色号 %1$s</string>
+    <string name="makeup_color_title">美妆颜色</string>
+    <string name="makeup_color_invalid">请输入例如 #C45060 的颜色</string>
+    <string-array name="makeup_color_names"><item>玫瑰</item><item>莓果</item><item>珊瑚</item><item>豆沙</item><item>裸色</item><item>自定义颜色…</item></string-array>
+</resources>

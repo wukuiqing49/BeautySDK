@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong
 /** 相机演示的整体配置快照，将检测后端与效果参数一起替换，避免读取部分更新。 */
 data class CameraDemoOptions(val backend: DemoBackend, val effects: DemoEffects,
     val beautyBackend: DemoBeautyBackend = DemoBeautyBackend.BASIC_GL,
-    /** 实时 GPU 预览的检测选项；静态图和旧 CPU 参考控制器仍使用 CPU。 */
+    /** 实时预览显式优先GPU；3D/局部美妆另有自动GPU优先。静态图和旧CPU参考控制器仍用CPU。 */
     val mediaPipeGpu: Boolean = false,
     /** 图像匹配跟踪为可选实验配置，不影响检测后端选择。 */
     val frameTracking: Boolean = false,
@@ -25,7 +25,9 @@ data class CameraDemoOptions(val backend: DemoBackend, val effects: DemoEffects,
     /** 宿主演示显式观察人脸，即使没有依赖人脸的效果。 */
     val observeFaces: Boolean = false,
     /** 显式关闭时，效果也不能隐式重新开启人脸分析。 */
-    val faceAnalysisEnabled: Boolean = true)
+    val faceAnalysisEnabled: Boolean = true,
+    /** 可选刚性三维饰品，仅GPU主线支持。 */
+    val sticker3D: Sticker3D? = null)
 /** 美颜执行后端与人脸检测后端独立；CPU 参考控制器不使用此 GPU 选项。 */
 enum class DemoBeautyBackend { BASIC_GL, GPUPIXEL }
 /** 页面诊断状态，区分未启用、加载/处理中、有效、无人脸、过期与异常。 */

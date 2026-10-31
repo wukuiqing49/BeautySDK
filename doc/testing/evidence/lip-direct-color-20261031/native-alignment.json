@@ -1,0 +1,103 @@
+{
+  "elf": [
+    {
+      "path": "core/lib_beauty_gpupixel/build/intermediates/cxx/Debug/5a2a3gp3/obj/arm64-v8a/libbeauty_gpupixel.so",
+      "bytes": 791216,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 417120,
+          "vaddr": 433504,
+          "alignment": 16384
+        },
+        {
+          "offset": 434408,
+          "vaddr": 467176,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_gpupixel/build/intermediates/cxx/Debug/5a2a3gp3/obj/armeabi-v7a/libbeauty_gpupixel.so",
+      "bytes": 593332,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 257664,
+          "vaddr": 274048,
+          "alignment": 16384
+        },
+        {
+          "offset": 266304,
+          "vaddr": 299072,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_gpupixel/build/intermediates/cxx/RelWithDebInfo/2lv39562/obj/arm64-v8a/libbeauty_gpupixel.so",
+      "bytes": 834264,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 355920,
+          "vaddr": 372304,
+          "alignment": 16384
+        },
+        {
+          "offset": 373136,
+          "vaddr": 405904,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    },
+    {
+      "path": "core/lib_beauty_gpupixel/build/intermediates/cxx/RelWithDebInfo/2lv39562/obj/armeabi-v7a/libbeauty_gpupixel.so",
+      "bytes": 609736,
+      "loadSegments": [
+        {
+          "offset": 0,
+          "vaddr": 0,
+          "alignment": 16384
+        },
+        {
+          "offset": 225872,
+          "vaddr": 242256,
+          "alignment": 16384
+        },
+        {
+          "offset": 234480,
+          "vaddr": 267248,
+          "alignment": 16384
+        }
+      ],
+      "elf16KB": true
+    }
+  ],
+  "zipalign": [
+    {
+      "apk": "app/build/outputs/apk/debug/app-debug.apk",
+      "zipalign16KBExitCode": 0
+    },
+    {
+      "apk": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "zipalign16KBExitCode": 0
+    }
+  ],
+  "scope": "Static alignment only; no 16KB-page runtime test."
+}

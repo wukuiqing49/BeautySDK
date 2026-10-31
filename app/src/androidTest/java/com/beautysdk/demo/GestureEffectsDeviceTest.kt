@@ -19,6 +19,18 @@ class GestureEffectsDeviceTest {
   assertTrue(animation.image.copyArgb().any{it ushr 24>0})
   val sticker=p.rules.single{!it.animated};assertEquals(GestureKind.THUMB_UP,sticker.gesture);assertEquals(.18f,sticker.x);assertEquals(.25f,sticker.width)
  }
+ @Test fun combinedPixelBudgetRejectsBeforeBitmapDecodeAndAcceptsBoundary() {
+  val bytes=archive(files())
+  val pack=GestureEffectArchive.loadZip(bytes.inputStream())
+  val pixels=pack.rules.map{it.image}.distinct().sumOf{it.width.toLong()*it.height}
+  assertEquals(pack.rules.size,GestureEffectArchive.loadZip(bytes.inputStream(),pixels).rules.size)
+  for(budget in listOf(0L,pixels-1)) {
+   val error=assertThrows(IllegalArgumentException::class.java){GestureEffectArchive.loadZip(bytes.inputStream(),budget)}
+   assertEquals("GESTURE_PIXEL_BUDGET",error.message)
+  }
+  // 第一个包已占用预算时，第二个包必须使用剩余预算，不能先按单包上限解码。
+  assertThrows(IllegalArgumentException::class.java){GestureEffectArchive.loadZip(bytes.inputStream(),pixels/2)}
+ }
  @Test fun malformedManifestAndArchiveRejectWithoutFallback() {
   val original=files()
   val mutations:List<(JSONObject)->Unit> = listOf(
@@ -66,7 +78,12 @@ class GestureEffectsDeviceTest {
   fun open(){activity=inst.startActivitySync(android.content.Intent(context,ResourceCenterActivity::class.java).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)) as ResourceCenterActivity;inst.runOnMainSync{model=androidx.lifecycle.ViewModelProvider(activity!!)[ResourceCenterModel::class.java]};waitFor{it.settings!=null}}
   try {open();inst.runOnMainSync{model.clearGestureEffects()};waitFor{it.gestureEffects==null&&!it.pendingGestureEffects}
    inst.runOnMainSync{model.import(android.net.Uri.fromFile(input))};assertNull(waitFor{it.pendingGestureEffects}.gestureEffects)
-   inst.runOnMainSync{val button=activity!!.findViewById<android.view.View>(R.id.resource_gesture_apply);assertTrue(button.isShown);button.performClick()}
+   inst.runOnMainSync{activity!!.findViewById<android.view.View>(R.id.resource_more).performClick()}
+   inst.waitForIdleSync()
+   var menuItem=inst.uiAutomation.rootInActiveWindow.findAccessibilityNodeInfosByText(context.getString(R.string.resources_gesture_apply)).single{it.text?.toString()==context.getString(R.string.resources_gesture_apply)}
+   while(!menuItem.isClickable&&menuItem.parent!=null)menuItem=menuItem.parent
+   assertTrue("Current apply menu item must be clickable",menuItem.isClickable)
+   assertTrue(menuItem.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK))
    assertEquals(2,waitFor{it.gestureEffects!=null&&!it.pendingGestureEffects}.gestureEffects!!.rules.size)
    close();open();assertEquals(2,waitFor{it.gestureEffects!=null}.gestureEffects!!.rules.size)
    inst.runOnMainSync{model.clearGestureEffects()};waitFor{it.gestureEffects==null&&!it.pendingGestureEffects}

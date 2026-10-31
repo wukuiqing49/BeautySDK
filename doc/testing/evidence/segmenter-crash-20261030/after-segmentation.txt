@@ -1,0 +1,10 @@
+--------- beginning of crash
+--------- beginning of system
+--------- beginning of main
+10-30 13:56:26.941 19157 19451 W BeautySegmentation: GPU confidence masks are incompatible on OPPO OP46B1 / Android 11; using CPU
+10-30 13:56:27.043 19157 19399 D BeautyMaskAge: sourceAgeMs=null ready=false
+10-30 13:56:27.121 19157 19451 D BeautySegmentation: execution=CPU n=1 copyMeanMs=2.209896 queueMaxMs=0.703021 prepareMaxMs=125.986198 inferMeanMs=51.215729 inferMaxMs=51.215729 completedIntervalMaxMs=0.0 extractMeanMs=0.184375 convertMeanMs=1.434688 packMeanMs=0.297968 alignmentMeanMs=0.002812 aligned=0
+10-30 13:56:28.046 19157 19399 D BeautyMaskAge: sourceAgeMs=80.270886 ready=true
+10-30 13:56:28.142 19157 19451 D BeautySegmentation: execution=CPU n=15 copyMeanMs=1.7123401333333332 queueMaxMs=44.732344 prepareMaxMs=0.112813 inferMeanMs=58.5248054 inferMaxMs=81.53552 completedIntervalMaxMs=187.117969 extractMeanMs=0.07098273333333334 convertMeanMs=0.6238089333333333 packMeanMs=0.14948613333333333 alignmentMeanMs=0.0018196 aligned=0
+10-30 13:56:29.048 19157 19399 D BeautyMaskAge: sourceAgeMs=40.135416 ready=true
+10-30 13:56:29.179 19157 19451 D BeautySegmentation: execution=CPU n=16 copyMeanMs=1.3892220625 queueMaxMs=62.709167 prepareMaxMs=0.105573 inferMeanMs=56.55311825 inferMaxMs=83.267813 completedIntervalMaxMs=133.479114 extractMeanMs=0.15213875 convertMeanMs=0.6002506875 packMeanMs=0.125791 alignmentMeanMs=0.0021354375 aligned=0

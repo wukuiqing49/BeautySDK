@@ -1,0 +1,2 @@
+I/BeautyContent(15631): lens=FRONT request=SD identity=0.9995059070045788 best=0.9995059070045788 scaleX=1.0 scaleY=1.0 timestampDeltaMs=-99.981355
+I/BeautyContent(15631): lens=FRONT request=HD identity=0.8605649071537487 best=0.8610969139618353 scaleX=1.0625 scaleY=1.125 timestampDeltaMs=-120.406355

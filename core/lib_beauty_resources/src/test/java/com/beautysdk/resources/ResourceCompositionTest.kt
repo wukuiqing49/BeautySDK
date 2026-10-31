@@ -28,4 +28,15 @@ class ResourceCompositionTest {
         assertEquals(.2f,defaults.merge(saved,installed=installed).parameters["beauty.whitening"])
         assertEquals(.6f,defaults.merge(saved.copy(parameters=mapOf("beauty.smoothing" to .6f)),installed=installed).parameters["beauty.smoothing"])
     }
+
+    @Test fun legacyBeautyWithoutEyeMaterialPreservesSelectedLashes(){
+        val material=EyeMakeup(StickerImage(1,1,intArrayOf(0x80000000.toInt())),(0..8).map{FacePoint(it/8f,.8f)})
+        val legacy=PreparedResource(descriptor(ResourceCategory.BEAUTY,"LEGACY",setOf("beauty.smoothing")),byteArrayOf(),mapOf("beauty.smoothing" to .3f),BeautySettings())
+        val base=BeautySettings(eyeMakeup=material,adjustments=BeautyAdjustments(lipstick=.7f,eyelashes=.6f))
+        val result=legacy.applyTo(base,ResourceCapabilities(emptySet()))
+        assertSame(material,result.eyeMakeup)
+        assertEquals(.7f,result.adjustments.lipstick)
+        assertEquals(.6f,result.adjustments.eyelashes)
+        assertEquals(.3f,result.smoothing)
+    }
 }

@@ -1,0 +1,167 @@
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preBaseReleaseBuild UP-TO-DATE
+> Task :app:mergeBaseReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeBaseReleaseNativeLibs NO-SOURCE
+> Task :app:stripBaseReleaseDebugSymbols NO-SOURCE
+> Task :app:extractBaseReleaseNativeSymbolTables NO-SOURCE
+> Task :app:mergeBaseReleaseNativeDebugMetadata NO-SOURCE
+> Task :app:checkBaseReleaseDuplicateClasses UP-TO-DATE
+> Task :app:javaPreCompileBaseRelease UP-TO-DATE
+> Task :app:checkBaseReleaseAarMetadata UP-TO-DATE
+> Task :app:processBaseReleaseNavigationResources UP-TO-DATE
+> Task :app:compileBaseReleaseNavigationResources UP-TO-DATE
+> Task :app:generateBaseReleaseResValues UP-TO-DATE
+> Task :app:mapBaseReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateBaseReleaseResources UP-TO-DATE
+> Task :app:mergeBaseReleaseResources UP-TO-DATE
+> Task :app:packageBaseReleaseResources UP-TO-DATE
+> Task :app:parseBaseReleaseLocalResources UP-TO-DATE
+> Task :app:createBaseReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksBaseRelease UP-TO-DATE
+> Task :app:processBaseReleaseMainManifest UP-TO-DATE
+> Task :app:processBaseReleaseManifest UP-TO-DATE
+> Task :app:processBaseReleaseManifestForPackage UP-TO-DATE
+> Task :app:processBaseReleaseResources UP-TO-DATE
+> Task :app:compileBaseReleaseJavaWithJavac UP-TO-DATE
+> Task :app:mergeBaseReleaseArtProfile UP-TO-DATE
+> Task :app:expandBaseReleaseArtProfileWildcards UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeBaseReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processBaseReleaseJavaRes NO-SOURCE
+> Task :app:mergeBaseReleaseJavaResource UP-TO-DATE
+> Task :app:mergeBaseReleaseStartupProfile UP-TO-DATE
+> Task :app:minifyBaseReleaseWithR8 UP-TO-DATE
+> Task :app:compileBaseReleaseArtProfile UP-TO-DATE
+> Task :app:mergeBaseReleaseShaders UP-TO-DATE
+> Task :app:compileBaseReleaseShaders NO-SOURCE
+> Task :app:generateBaseReleaseAssets UP-TO-DATE
+> Task :app:mergeBaseReleaseAssets UP-TO-DATE
+> Task :app:compressBaseReleaseAssets UP-TO-DATE
+> Task :app:extractBaseReleaseVersionControlInfo UP-TO-DATE
+> Task :app:generateBaseReleaseLintVitalReportModel
+> Task :app:convertShrunkResourcesToBinaryBaseRelease UP-TO-DATE
+> Task :app:optimizeBaseReleaseResources UP-TO-DATE
+> Task :app:collectBaseReleaseDependencies UP-TO-DATE
+> Task :app:sdkBaseReleaseDependencyData UP-TO-DATE
+> Task :app:writeBaseReleaseAppMetadata UP-TO-DATE
+> Task :app:writeBaseReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:preBundleReleaseBuild UP-TO-DATE
+> Task :app:mergeBundleReleaseJniLibFolders UP-TO-DATE
+> Task :app:checkBundleReleaseDuplicateClasses UP-TO-DATE
+> Task :app:javaPreCompileBundleRelease UP-TO-DATE
+> Task :app:checkBundleReleaseAarMetadata UP-TO-DATE
+> Task :app:processBundleReleaseNavigationResources UP-TO-DATE
+> Task :app:compileBundleReleaseNavigationResources UP-TO-DATE
+> Task :app:generateBundleReleaseResValues UP-TO-DATE
+> Task :app:mapBundleReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateBundleReleaseResources UP-TO-DATE
+> Task :app:mergeBundleReleaseResources UP-TO-DATE
+> Task :app:packageBundleReleaseResources UP-TO-DATE
+> Task :app:parseBundleReleaseLocalResources UP-TO-DATE
+> Task :app:createBundleReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksBundleRelease UP-TO-DATE
+> Task :app:processBundleReleaseMainManifest UP-TO-DATE
+> Task :app:processBundleReleaseManifest UP-TO-DATE
+> Task :app:processBundleReleaseManifestForPackage UP-TO-DATE
+> Task :app:processBundleReleaseResources UP-TO-DATE
+> Task :app:compileBundleReleaseJavaWithJavac UP-TO-DATE
+> Task :app:mergeBundleReleaseArtProfile UP-TO-DATE
+> Task :app:expandBundleReleaseArtProfileWildcards UP-TO-DATE
+> Task :app:mergeBundleReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processBundleReleaseJavaRes NO-SOURCE
+> Task :app:mergeBundleReleaseJavaResource UP-TO-DATE
+> Task :app:mergeBundleReleaseStartupProfile UP-TO-DATE
+> Task :app:minifyBundleReleaseWithR8 UP-TO-DATE
+> Task :app:compileBundleReleaseArtProfile UP-TO-DATE
+> Task :app:mergeBundleReleaseShaders UP-TO-DATE
+> Task :app:compileBundleReleaseShaders NO-SOURCE
+> Task :app:generateBundleReleaseAssets UP-TO-DATE
+> Task :app:mergeBundleReleaseAssets UP-TO-DATE
+> Task :app:compressBundleReleaseAssets UP-TO-DATE
+> Task :app:extractBundleReleaseVersionControlInfo UP-TO-DATE
+> Task :app:mergeBundleReleaseNativeLibs
+> Task :app:generateBundleReleaseLintVitalReportModel
+> Task :app:stripBundleReleaseDebugSymbols
+> Task :app:convertShrunkResourcesToBinaryBundleRelease UP-TO-DATE
+> Task :app:optimizeBundleReleaseResources UP-TO-DATE
+> Task :app:collectBundleReleaseDependencies UP-TO-DATE
+> Task :app:sdkBundleReleaseDependencyData UP-TO-DATE
+> Task :app:writeBundleReleaseAppMetadata UP-TO-DATE
+> Task :app:writeBundleReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:preSdkReleaseBuild UP-TO-DATE
+> Task :app:mergeSdkReleaseJniLibFolders UP-TO-DATE
+> Task :app:checkSdkReleaseDuplicateClasses UP-TO-DATE
+> Task :app:javaPreCompileSdkRelease UP-TO-DATE
+> Task :app:checkSdkReleaseAarMetadata UP-TO-DATE
+> Task :app:processSdkReleaseNavigationResources UP-TO-DATE
+> Task :app:compileSdkReleaseNavigationResources UP-TO-DATE
+> Task :app:generateSdkReleaseResValues UP-TO-DATE
+> Task :app:mapSdkReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateSdkReleaseResources UP-TO-DATE
+> Task :app:mergeSdkReleaseResources UP-TO-DATE
+> Task :app:packageSdkReleaseResources UP-TO-DATE
+> Task :app:parseSdkReleaseLocalResources UP-TO-DATE
+> Task :app:createSdkReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksSdkRelease UP-TO-DATE
+> Task :app:processSdkReleaseMainManifest UP-TO-DATE
+> Task :app:processSdkReleaseManifest UP-TO-DATE
+> Task :app:processSdkReleaseManifestForPackage UP-TO-DATE
+> Task :app:extractBundleReleaseNativeSymbolTables
+> Task :app:processSdkReleaseResources UP-TO-DATE
+> Task :app:compileSdkReleaseJavaWithJavac UP-TO-DATE
+> Task :app:mergeSdkReleaseArtProfile UP-TO-DATE
+> Task :app:expandSdkReleaseArtProfileWildcards UP-TO-DATE
+> Task :app:mergeSdkReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processSdkReleaseJavaRes NO-SOURCE
+> Task :app:mergeSdkReleaseJavaResource UP-TO-DATE
+> Task :app:mergeSdkReleaseStartupProfile UP-TO-DATE
+> Task :app:minifySdkReleaseWithR8 UP-TO-DATE
+> Task :app:compileSdkReleaseArtProfile UP-TO-DATE
+> Task :app:mergeSdkReleaseShaders UP-TO-DATE
+> Task :app:compileSdkReleaseShaders NO-SOURCE
+> Task :app:generateSdkReleaseAssets UP-TO-DATE
+> Task :app:mergeSdkReleaseAssets UP-TO-DATE
+> Task :app:compressSdkReleaseAssets UP-TO-DATE
+> Task :app:extractSdkReleaseVersionControlInfo UP-TO-DATE
+> Task :app:mergeSdkReleaseNativeLibs
+> Task :app:generateSdkReleaseLintVitalReportModel
+> Task :app:stripSdkReleaseDebugSymbols
+> Task :app:convertShrunkResourcesToBinarySdkRelease UP-TO-DATE
+> Task :app:optimizeSdkReleaseResources UP-TO-DATE
+> Task :app:collectSdkReleaseDependencies UP-TO-DATE
+> Task :app:sdkSdkReleaseDependencyData UP-TO-DATE
+> Task :app:writeSdkReleaseAppMetadata UP-TO-DATE
+> Task :app:writeSdkReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:extractSdkReleaseNativeSymbolTables
+> Task :app:lintVitalAnalyzeBundleRelease
+> Task :app:lintVitalAnalyzeBaseRelease
+> Task :app:mergeBundleReleaseNativeDebugMetadata
+> Task :app:lintVitalReportBaseRelease
+> Task :app:lintVitalBaseRelease
+> Task :app:lintVitalReportBundleRelease
+> Task :app:packageBaseRelease UP-TO-DATE
+> Task :app:createBaseReleaseApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleBaseRelease UP-TO-DATE
+> Task :app:lintVitalBundleRelease
+> Task :app:lintVitalAnalyzeSdkRelease
+> Task :app:lintVitalReportSdkRelease
+> Task :app:mergeSdkReleaseNativeDebugMetadata
+> Task :app:packageBundleRelease
+> Task :app:createBundleReleaseApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleBundleRelease
+> Task :app:lintVitalSdkRelease
+> Task :app:packageSdkRelease
+> Task :app:createSdkReleaseApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleSdkRelease
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///C:/work/AI/BeautySDK/build/sdk-size-probe/host/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2s
+135 actionable tasks: 22 executed, 113 up-to-date

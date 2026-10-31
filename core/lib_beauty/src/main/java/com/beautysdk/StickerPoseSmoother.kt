@@ -7,6 +7,7 @@ import kotlin.math.hypot
 
 /** 渲染线程专用：只平滑三个挂件姿态，不复制人脸网格或图像，也不改变上游可见性。
  * 小幅变化采用约35ms时间常数；明显移动/旋转直接跟随，避免转头时长距离拖尾。
+ * 嘴部贴纸中心直接跟随最新上唇锚点，避免局部跟踪后再叠加位置低通；尺度/角度仍抑制微抖。
  * 这里不保活：缺锚点立即返回null，结果有效期仍由分析运行时决定。
  */
 internal class StickerPoseSmoother {
@@ -25,7 +26,7 @@ internal class StickerPoseSmoother {
         else {
             val alpha=(1.0-exp(-dt.toDouble()/35_000_000.0)).toFloat()
             StickerPlacement(blend(old.glasses,current.glasses,info,alpha),
-                blend(old.moustache,current.moustache,info,alpha),
+                blend(old.moustache,current.moustache,info,alpha)?.let { it.copy(center=current.moustache!!.center) },
                 blend(old.hat,current.hat,info,alpha))
         }
         previousInfo=info; previous=output

@@ -27,10 +27,11 @@ import javax.microedition.khronos.opengles.GL10
 /** GPU 提交耗时不是 GPU 执行时间；不含相机曝光到显示的端到端延迟。 */
 data class GpuDemoStats(val width: Int,val height: Int,val lens: CameraLens,val backend: DemoBackend,
     val faceCount: Int,val anchoredLayers: Int,val processingMs: Long,val analysis: DemoFaceStatus,
-    val renderedFrames: Long,val beautyBackend: DemoBeautyBackend = DemoBeautyBackend.BASIC_GL,val performance:BeautyPerformanceSnapshot?=null)
+    val renderedFrames: Long,val beautyBackend: DemoBeautyBackend = DemoBeautyBackend.BASIC_GL,val performance:BeautyPerformanceSnapshot?=null,
+    val analysisWidth:Int=0,val analysisHeight:Int=0,val requestedWidth:Int=0,val requestedHeight:Int=0)
 
 /** 单个 EGL context 同时绘制原图与效果图，避免跨 Surface 共享纹理及逐帧 Bitmap。
- * CameraX Preview -> OES -> BeautyEngineConnector/Pipeline -> FBO -> 屏幕；RGBA 分析走独立相机支路。
+ * CameraX Preview -> OES -> BeautyEngineConnector/Pipeline -> FBO -> 屏幕；同一原始纹理缩小后异步分析。
  * 所有 GL 资源仅在 GLSurfaceView 的线程创建、使用、释放。检测器由公共 SDK 的独立 worker 管理。
  */
 class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: AttributeSet? = null) : GLSurfaceView(context,attrs) {
@@ -46,6 +47,9 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
     var onStatus: (CameraStatus) -> Unit = {}
     /** 主线程接收当前有效会话的错误，宿主负责展示及后续处理。 */
     var onError: (Exception) -> Unit = {}
+    /** 仅影响下次start；由页面显式重绑，不能把请求尺寸冒充实际输出尺寸。 */
+    @Volatile var captureResolution=DemoCaptureResolution.SD
+    @Volatile private var analysisSize:Pair<Long,android.util.Size>?=null
     @Volatile private var request = PreviewRequest(CameraDemoOptions(DemoBackend.MEDIAPIPE,
         DemoEffects(.4f,.3f,false,false,false)), false, 0)
     var options: CameraDemoOptions
@@ -60,14 +64,17 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         val old = request
         request = next.copy(revision = old.revision + if (old.needsAnalysis != next.needsAnalysis ||
             old.options.backend != next.options.backend ||
-            old.options.mediaPipeGpu != next.options.mediaPipeGpu) 1 else 0)
+            old.options.mediaPipeGpu != next.options.mediaPipeGpu ||
+            old.prefersGpuAnalysis != next.prefersGpuAnalysis ||
+            (old.options.sticker3D == null) != (next.options.sticker3D == null)) 1 else 0)
         if (request.revision != old.revision) { analysis.reset(); foreground.reset() }
         if(old.needsGestures != next.needsGestures) gestures.setEnabled(next.needsGestures)
         foreground.setEnabled(next.needsSegmentation)
         analysis.setEnabled(next.needsAnalysis)
         desiredAssets=if(request.needsAnalysis && request.customPack==null) catalog.selectedIds(request.options.effects) else emptySet()
         requestAssets()
-        analysis.setTrackingEnabled(next.options.frameTracking && next.options.backend==DemoBackend.MEDIAPIPE)
+        // 现有块匹配只能更新二维坐标，不能冒充新的三维姿态；3D期间只使用真实模型采样。
+        analysis.setTrackingEnabled(next.options.sticker3D==null && next.options.frameTracking && next.options.backend==DemoBackend.MEDIAPIPE)
     }
     /** 最多一个IO任务，连续选材只保留最新需求，不随滑杆变化堆积任务。 */
     private fun requestAssets() {
@@ -107,6 +114,11 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
     @Volatile private var loadedAssets: Set<String> = emptySet()
     private val assetWorker=java.util.concurrent.Executors.newSingleThreadExecutor()
     private val gpu = Renderer()
+    private val analysisRedraw = AnalysisRedrawGate()
+    private fun refreshCompletedAnalysis(timing: FaceAnalysisTiming) {
+        if (running && !closed && request.needsFreshFaceRedraw && timing.faces > 0 &&
+            analysisRedraw.completed(timing.frameTimestampNs)) requestRender()
+    }
     // 仅可调试宿主输出聚合时序数据，不记录图像或人脸坐标。
     private val diagnosticLogging = context.applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE != 0
     private var lastAnalysisLogNs = 0L
@@ -143,17 +155,32 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
     private val analysis = BeautyAnalysisRuntime(FaceAnalyzerFactory {
         analysisWindow.clear()
         lastAnalysisLogNs = System.nanoTime()
-        analysisExecution = if (request.options.backend == DemoBackend.MEDIAPIPE && request.options.mediaPipeGpu) "GPU" else "CPU"
+        val active=request
+        val options=active.options
+        // 三维和局部美妆优先GPU降低真实关键点延迟，自动模式仅初始化失败时回退CPU。
+        val preferGpu=active.prefersGpuAnalysis
+        analysisExecution = if (options.backend == DemoBackend.MEDIAPIPE && preferGpu) "GPU" else "CPU"
         if (diagnosticLogging) Log.d("BeautyAnalysis", "initializing backend=${request.options.backend} execution=$analysisExecution")
-        when (request.options.backend) {
-            DemoBackend.MEDIAPIPE -> MediaPipeFaceAnalyzer.factory(context, execution =
-                if (request.options.mediaPipeGpu) MediaPipeFaceAnalyzer.Execution.GPU
-                else MediaPipeFaceAnalyzer.Execution.CPU).create()
+        when (options.backend) {
+            DemoBackend.MEDIAPIPE -> {
+                try {
+                    MediaPipeFaceAnalyzer.factory(context, execution =
+                        if(preferGpu) MediaPipeFaceAnalyzer.Execution.GPU else MediaPipeFaceAnalyzer.Execution.CPU,
+                        output3D=options.sticker3D!=null).create()
+                } catch(error:Exception) {
+                    if(!preferGpu || !active.automaticGpuAnalysis)throw error
+                    analysisExecution="CPU_FALLBACK"
+                    Log.w("BeautyAnalysis","Automatic GPU initialization failed; using CPU",error)
+                    MediaPipeFaceAnalyzer.factory(context,execution=MediaPipeFaceAnalyzer.Execution.CPU,output3D=options.sticker3D!=null).create()
+                }
+            }
             else -> error("Analysis backend disabled")
         }
-    }, motionEstimator = NativeFaceMotion(), allowScaledFrames = true, onTrackingTiming = { timing ->
+    }, motionEstimator = NativeFaceMotion(enableLipTracking=true), allowScaledFrames = true, onTrackingTiming = { timing ->
         if (diagnosticLogging) trackingWindow.add(timing)
+        refreshCompletedAnalysis(timing)
     }, onError = { report(it,epoch.get()) }, onTiming = { timing ->
+        refreshCompletedAnalysis(timing)
         val now = System.nanoTime()
         if (diagnosticLogging) analysisWindow.add(timing)
         if (diagnosticLogging && now-lastAnalysisLogNs >= 1_000_000_000L) {
@@ -169,23 +196,15 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         }
     })
     private val camera: CustomCameraController = CustomCameraController(context,object : CameraFrameListener {
-        /** 纯纹理基础美颜时跳过分析像素复制；只有检测方案启用且相机运行时才接收 RGBA。 */
+        /** 相机仍保留低分辨率use case协商，但Demo不消费它的RGBA内容。 */
         override fun acceptsBorrowedFrames() = true
-        override fun needsFrame() = running && !closed && (request.needsAnalysis || request.needsSegmentation || request.needsGestures)
-        /** 回调内仅批量复制借用帧；忙时丢帧，模型不阻塞相机或直播引擎回调。 */
+        // CameraX独立RGBA流的元数据视场不一定与OES实际内容一致，Demo统一从显示前纹理缩图。
+        override fun needsFrame() = false
+        /** 实际检测输入由GL线程的有界异步缩图桥提供。 */
         override fun onFrame(frame: CameraFrame) {
-            val token = analysis.generationToken()
-            val gestureToken = gestures.generationToken()
-            if (!running || closed || (!request.needsAnalysis && !request.needsSegmentation && !request.needsGestures) || !cameraCurrent(frame)) return
-            try {
-                val info = FrameInfo(frame.width,frame.height,frame.timestampNs,frame.rotationDegrees,frame.mirrored)
-                val input=RgbaFrame(info,frame.readOnlyPixels(),frame.rowStrideBytes)
-                if(request.needsAnalysis) analysis.submit(input,token)
-                if(request.needsSegmentation) foreground.submit(input)
-                if(request.needsGestures) gestures.submit(input,gestureToken)
-            } catch (error: Exception) { report(error,epoch.get()) }
+            // 不接收第二种检测来源，避免不同视场结果竞争。
         }
-    },{ onStatus(it) },{ onError(it) })
+    },{ status -> deliver(epoch.get()) { onStatus(status) } },{ report(it,epoch.get()) })
 
     init {
         setEGLContextClientVersion(3)
@@ -193,23 +212,32 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         setRenderer(gpu)
         renderMode = RENDERMODE_WHEN_DIRTY
     }
-    /** 检查分析帧是否仍属于当前采集会话，防止旧镜头结果晚到。 */
-    private fun cameraCurrent(frame: CameraFrame): Boolean = camera.isCurrent(frame)
+    /** UI回调单独隔离；一个观察者出错不阻止其他观察者更新，错误仍经统一入口报告。 */
+    private inline fun deliver(token:Long,callback:()->Unit) {
+        try { callback() } catch(error:Exception) { report(error,token) }
+    }
     /** 最多保留一个待交付错误，将当前有效代次的异常转到主线程。 */
     private fun report(error: Exception,token: Long) {
         if (!errorPending.compareAndSet(false,true)) return
         main.execute {
-            try { if (!closed && running && token == epoch.get()) onError(error) }
+            try { if (!closed && running && token == epoch.get()) {
+                try { onError(error) } catch(callbackError:Exception) {
+                    Log.e("BeautyPreview","Error callback failed while handling ${error.javaClass.simpleName}",callbackError)
+                }
+            } }
             finally { errorPending.set(false) }
         }
     }
     /** 接收相对预览区域的左上坐标小窗范围，复制边界并请求重绘，不处理像素。 */
     fun setEffectWindow(bounds: Rect) { small = Rect(bounds); requestRender() }
-    /** 主线程绑定相机纹理预览和独立分析支路；GL资源由 GL 线程创建，旧代次结果立即失效。 */
+    /** 主线程绑定相机纹理预览；GL线程从同一纹理产生检测小图，旧代次结果立即失效。 */
     fun start(owner: LifecycleOwner,lens: CameraLens = CameraLens.FRONT) {
         check(!closed)
+        analysisRedraw.clear()
         running = true; this.lens = lens; analysis.reset(); foreground.reset(); gestures.reset(); epoch.incrementAndGet()
         renderedFrames = 0; lastResultAgeNs = null
+        analysisSize=null
+        val resolution=captureResolution
         camera.startTexture(owner,Preview.SurfaceProvider { request ->
             val token = epoch.get()
             if (!running || closed) { request.willNotProvideSurface(); return@SurfaceProvider }
@@ -217,17 +245,19 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                 if (!running || closed || token != epoch.get()) { request.willNotProvideSurface(); return@queueEvent }
                 gpu.requestSurface(request,token)
             }
-        },display?.rotation ?: Surface.ROTATION_0,CameraConfig(lens,640,480,30))
+        },display?.rotation ?: Surface.ROTATION_0,CameraConfig(lens,resolution.width,resolution.height,30))
     }
     /** 只有相机确实发起切换后才递增代次及更新镜头，失败时保留原预览状态。 */
     fun switchCamera() {
         if (camera.trySwitchCamera()) {
+            analysisRedraw.clear()
             analysis.reset(); foreground.reset(); gestures.reset(); epoch.incrementAndGet()
             lens = if (lens == CameraLens.FRONT) CameraLens.BACK else CameraLens.FRONT
         }
     }
     /** 主线程停止相机并作废检测结果与统计，下一次重绘清空旧画面。 */
     fun stop() {
+        analysisRedraw.clear()
         running = false; epoch.incrementAndGet(); analysis.reset(); foreground.reset(); gestures.reset()
         renderedFrames = 0; lastResultAgeNs = null
         camera.stop(); requestRender()
@@ -267,6 +297,35 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         private var pipelineInfo: FrameInfo? = null
         private var gpuPixel: GpuPixelBeautyRenderer? = null
         private var gpuPixelFailure: String? = null
+        private var analysisBridge: GlTextureAnalysisBridge? = null
+        private val analysisPollHandler=android.os.Handler(android.os.Looper.getMainLooper())
+        private var analysisPollInfo:FrameInfo?=null
+        private var analysisPollStartedNs=0L
+        private var analysisPollEpoch=-1L
+        private var analysisPollContext=-1
+        // 只在GL线程读取/修改采样状态；主线程定时器仅负责把工作交回GL队列。
+        private val analysisPoll=Runnable {
+            queueEvent {
+                val info=analysisPollInfo
+                if(info!=null && ready && ownsCurrentContext() && running && !closed &&
+                    token==epoch.get() && analysisPollEpoch==token && analysisPollContext==contextVersion &&
+                    input?.timestamp==info.timestampNs && !request.original &&
+                    (request.needsAnalysis||request.needsSegmentation||request.needsGestures)) {
+                    try {
+                        // 观察时刻用于过期判断，绝不改写交付帧的真实采样时间。
+                        analysisBridge?.poll(info.timestampNs+(System.nanoTime()-analysisPollStartedNs).coerceAtLeast(0))
+                    } catch(error:Exception) {
+                        analysisBridge?.reset();analysis.reset();foreground.reset();gestures.reset();analysisSize=null
+                        report(error,token)
+                    }
+                }
+            }
+        }
+
+        private fun clearAnalysisPoll() {
+            analysisPollHandler.removeCallbacks(analysisPoll)
+            analysisPollInfo=null
+        }
         private var previousBeautyBackend: DemoBeautyBackend? = null
         private var contextVersion = 0
         private var ownedContext = EGL14.EGL_NO_CONTEXT
@@ -307,8 +366,11 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         private val displayMatrices = Array(8) { CameraTextureTransform.displayToRaw((it%4)*90,it >= 4) }
         /** 在新 EGL context 中创建效果渲染器及显示 Shader，处理待交付 Surface；旧句柄不可复用。 */
         override fun onSurfaceCreated(gl: GL10?,config: EGLConfig?) {
+            clearAnalysisPoll()
             // context 重建后旧句柄均已失效，不能在新 context 删除它们。
             gpuPixel?.abandonAfterContextLoss(); gpuPixel = null; gpuPixelFailure = null
+            // 旧context资源随context销毁，不能在新context调用其GL清理。
+            analysisBridge=null
             previousBeautyBackend = null
             sceneRenderer=null;pipeline=null; connector=null; deliveredFrame=null; pipelineProcessor=null; pipelineInfo=null; pipelineEpoch=-1
             contextVersion++
@@ -316,6 +378,19 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
             ready = true
             try {
                 renderer = GlBeautyRenderer(); input = null; texture = 0; hasFrame = false
+                // 每个真实采集帧均可尝试采样，避免33.33ms硬门槛把略快的30fps输入误降成隔帧检测。
+                // 双PBO和各worker的最新待处理槽负责背压，不等待或积压。
+                analysisBridge=GlTextureAnalysisBridge(maxSide=320,intervalNs=0,onAnalysisFrame={ frame,_ ->
+                    val active=request
+                    if(!running || closed || token!=epoch.get() || active.original) false else {
+                        analysisSize=token to android.util.Size(frame.info.width,frame.info.height)
+                        var accepted=false
+                        if(active.needsAnalysis) accepted=analysis.submit(frame,analysis.generationToken()) || accepted
+                        if(active.needsSegmentation) accepted=foreground.submit(frame) || accepted
+                        if(active.needsGestures) accepted=gestures.submit(frame,gestures.generationToken()) || accepted
+                        accepted
+                    }
+                })
                 oesProgram = program(true); imageProgram = program(false)
                 uniformLocations.clear()
                 for (id in listOf(oesProgram,imageProgram)) uniformLocations[id] = intArrayOf(
@@ -340,6 +415,8 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         }
         /** 创建 OES纹理、SurfaceTexture和相机Surface，接收裁剪方向信息；等CameraX使用完成后才释放生产者。 */
         private fun provide(request: androidx.camera.core.SurfaceRequest,generation: Long) {
+            clearAnalysisPoll()
+            analysisBridge?.reset()
             val version = contextVersion
             val ids = IntArray(1); GL.glGenTextures(1,ids,0)
             val id = ids[0]
@@ -376,7 +453,7 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                 }
             }
         }
-        /** 取最新相机纹理并读取有效检测快照，GPU合成后绘制主副画面；无GPU读回，不生成显示Bitmap。 */
+        /** 取最新纹理并异步读回检测小图，GPU合成主副画面；不读回高清全图，不生成显示Bitmap。 */
         override fun onDrawFrame(gl: GL10?) {
             if (!ready || !ownsCurrentContext()) return
             GL.glBindFramebuffer(GL.GL_FRAMEBUFFER,0)
@@ -396,11 +473,33 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                 val renderRequest = request
                 val selected = renderRequest.options
                 val original = renderRequest.original
-                var snapshot = if (!renderRequest.needsAnalysis) FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
-                    else analysis.snapshot(info,BeautyPipelineDefaults.MAX_RESULT_AGE_NS)
+                // 在提交小图前登记，避免快跟踪完成时漏掉同采样唤醒。
+                analysisRedraw.beginFrame(info.timestampNs,renderRequest.needsFreshFaceRedraw)
                 val raw = TextureFrame(info,texture,TextureTarget.EXTERNAL_OES,normalize)
+                // 必须采样特效之前的同一原始纹理/裁剪矩阵；双PBO只轮询已完成fence，不等待。
+                try {
+                    analysisBridge?.submit(raw,renderRequest.needsAnalysis || renderRequest.needsSegmentation || renderRequest.needsGestures)
+                    if(renderRequest.needsAnalysis||renderRequest.needsSegmentation||renderRequest.needsGestures) {
+                        if(analysisPollInfo?.timestampNs!=info.timestampNs) {
+                            analysisPollInfo=info;analysisPollStartedNs=System.nanoTime()
+                            analysisPollEpoch=token;analysisPollContext=contextVersion
+                            analysisPollHandler.removeCallbacks(analysisPoll)
+                            // 每个新视频帧至多一次提前轮询，不等待fence、不额外渲染高清画面。
+                            analysisPollHandler.postDelayed(analysisPoll,8)
+                        }
+                    } else clearAnalysisPoll()
+                } catch(error:Exception) {
+                    analysisBridge?.reset();analysis.reset();foreground.reset();gestures.reset();analysisSize=null
+                    report(error,token)
+                }
+                // 实际合成状态只从公共Pipeline读取一次，避免先查询一份马上被覆盖的分析快照。
+                var snapshot = FaceAnalysisSnapshot(FaceAnalysisState.DISABLED)
                 val settings = catalog.settings(selected.effects,renderRequest.customPack).let {
                     if(selected.beautyBackend==DemoBeautyBackend.GPUPIXEL) it else it.copy(adjustments=BeautyAdjustments())
+                }.let { base ->
+                    if(selected.sticker3D==null) base else base.copy(sticker3D=selected.sticker3D,
+                        glasses=false,moustache=false,hat=false,stickerPack=null,
+                        adjustments=base.adjustments.copy(slimFace=0f,bigEyes=0f,slimNose=0f,chinLength=0f,mouthSize=0f))
                 }
                 val started = System.nanoTime()
                 if (previousBeautyBackend != selected.beautyBackend) {
@@ -427,11 +526,11 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                     if(pipelineProcessor !== processor) {
                         connector?.close()
                         // 借用渲染器和跨线程分析运行时；切后端不关闭相机分析支路。
-                        val composed=BeautySceneRenderer(object: BeautyRenderer {
+                        val composed=BeautySceneRenderer(GlSticker3DRenderer(object: BeautyRenderer {
                             override fun render(frame: VideoFrame,settings: BeautySettings,face: FaceObservation?) =
                                 processor.render(frame,settings,face)
                             override fun close() = Unit
-                        },foreground).also { sceneRenderer=it }
+                        }),foreground).also { sceneRenderer=it }
                         val active=BeautyEnginePipeline(renderer=GestureEffectRenderer(composed,gesturePlayer),textureAnalysis=false,sharedAnalysis=analysis,onError={ report(it,token) })
                         pipeline=active
                         connector=BeautyEngineConnector(cameraAdapter,active,onError={ report(it,token) }).also { it.start() }
@@ -471,6 +570,7 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                     raw
                 }
                 val elapsed = System.nanoTime()-started
+                analysisRedraw.rendered(info.timestampNs,snapshot.result?.info?.timestampNs)
                 draw(if (effectIsMain && !original) effect else raw,Rect(0,0,screenWidth,screenHeight))
                 val window = small
                 if (!window.isEmpty) {
@@ -532,13 +632,18 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
                     val backgroundEnabled=!original && settings.scene.needsSegmentation
                     val backgroundReady=backgroundEnabled && foreground.snapshot(info)!=null
                     val publicationEpoch = token
+                    val analysisDimensions=analysisSize?.takeIf { it.first==token &&
+                        (renderRequest.needsAnalysis || renderRequest.needsSegmentation || renderRequest.needsGestures) }?.second
                     val stats = GpuDemoStats(info.width,info.height,lens,selected.backend,snapshot.result?.faces?.size ?: 0,
-                        layers,elapsed/1_000_000,DemoFaceStatus(state,snapshot.resultAgeNs,snapshot.durationNs,displayedFace?.landmarks?.size ?: 0,snapshot.error,snapshot.tracked),renderedFrames,selected.beautyBackend,pipeline?.performance)
+                        layers,elapsed/1_000_000,DemoFaceStatus(state,snapshot.resultAgeNs,snapshot.durationNs,displayedFace?.landmarks?.size ?: 0,snapshot.error,snapshot.tracked),renderedFrames,selected.beautyBackend,pipeline?.performance,
+                        analysisDimensions?.width ?: 0,analysisDimensions?.height ?: 0,captureResolution.width,captureResolution.height)
                     main.execute {
                         try { if (running && !closed && publicationEpoch == epoch.get()) {
-                            onImage(stats)
-                            onSceneStatus(backgroundEnabled,backgroundReady)
-                            if(gestureToken==gestures.generationToken()) onGestures(gestureSnapshot,gestureEvents)
+                            deliver(token) { onImage(stats) }
+                            if(running && !closed && publicationEpoch==epoch.get())
+                                deliver(token) { onSceneStatus(backgroundEnabled,backgroundReady) }
+                            if(running && !closed && publicationEpoch==epoch.get() && gestureToken==gestures.generationToken())
+                                deliver(token) { onGestures(gestureSnapshot,gestureEvents) }
                         } }
                         finally { uiPending.set(false) }
                     }
@@ -601,18 +706,27 @@ class GpuBeautyPreview @JvmOverloads constructor(context: Context,attrs: Attribu
         }
         /** 仅在资源所属EGL上下文仍current时显式删除GL对象；上下文失效后放弃旧句柄，由EGL回收，防止跨context误删。 */
         fun release() {
-            deferred?.first?.willNotProvideSurface(); deferred = null
+            clearAnalysisPoll()
+            fun cleanup(action:()->Unit) {
+                try { action() } catch(error:Exception) {
+                    Log.e("BeautyPreview","GL resource cleanup failed",error)
+                    report(error,epoch.get())
+                }
+            }
+            cleanup { deferred?.first?.willNotProvideSurface() }; deferred = null
             if (!ready) return
             // queueEvent 只保证线程，不保证 EGL 仍 current。上下文已销毁时由 EGL 回收旧资源，禁止删新 context 的同号句柄。
             if (ownsCurrentContext()) {
-                connector?.close()
-                gpuPixel?.close()
-                renderer?.close()
-                if (oesProgram != 0) GL.glDeleteProgram(oesProgram)
-                if (imageProgram != 0) GL.glDeleteProgram(imageProgram)
-                GL.glDeleteVertexArrays(1,intArrayOf(vao),0)
-            } else gpuPixel?.abandonAfterContextLoss()
+                cleanup { analysisBridge?.close() }
+                cleanup { connector?.close() }
+                cleanup { gpuPixel?.close() }
+                cleanup { renderer?.close() }
+                cleanup { if (oesProgram != 0) GL.glDeleteProgram(oesProgram) }
+                cleanup { if (imageProgram != 0) GL.glDeleteProgram(imageProgram) }
+                cleanup { GL.glDeleteVertexArrays(1,intArrayOf(vao),0) }
+            } else cleanup { gpuPixel?.abandonAfterContextLoss() }
             gpuPixel = null; gpuPixelFailure = null; previousBeautyBackend = null
+            analysisBridge=null
             sceneRenderer=null;pipeline=null; connector=null; deliveredFrame=null;pipelineProcessor=null;pipelineInfo=null;pipelineEpoch=-1
             renderer = null; ready = false; ownedContext = EGL14.EGL_NO_CONTEXT
             oesProgram = 0; imageProgram = 0; vao = 0; hasFrame = false

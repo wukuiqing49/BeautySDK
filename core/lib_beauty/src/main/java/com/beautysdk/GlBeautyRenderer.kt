@@ -39,6 +39,7 @@ class GlBeautyRenderer : BeautyRenderer {
         checkContext(); check(!closed)
         require(frame is TextureFrame) { "GlBeautyRenderer only accepts TextureFrame" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }
+        require(settings.sticker3D == null) { "Use GlSticker3DRenderer for 3D stickers" }
         require(settings.adjustments.isIdentity) { "Select GPUPixel for extended beauty adjustments" }
         if (settings.isIdentity) { stickerPoseSmoother.clear(); return frame }
         require(frame.target != TextureTarget.TEXTURE_2D || frame.textureId != texture) { "Cannot sample the output texture while rendering to it" }

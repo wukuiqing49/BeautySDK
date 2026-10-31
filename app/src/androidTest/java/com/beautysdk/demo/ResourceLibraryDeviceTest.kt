@@ -22,6 +22,27 @@ class ResourceLibraryDeviceTest {
     private fun bytes()=inst.context.assets.open("library_delivery.zip").use{it.readBytes()}
     private fun files():MutableMap<String,ByteArray> {val out=linkedMapOf<String,ByteArray>();ZipInputStream(bytes().inputStream()).use{z->while(true){val e=z.nextEntry?:break;out[e.name]=z.readBytes()}};return out}
     private fun rejected(action:()->Unit){try{action();fail("Invalid library accepted")}catch(e:IllegalArgumentException){}catch(e:java.util.zip.ZipException){}}
+    @Test fun explicitMakeupOverridesLegacyInEitherSelectionOrder(){
+        val folder=File(context.cacheDir,"makeup-order-"+System.nanoTime())
+        try {
+            val manager=BeautyResourceManager(folder)
+            val legacy=manager.install(inst.context.assets.open("effect_packs/beauty_v3.zip"))
+            val lash=manager.install(inst.context.assets.open("effect_packs/lash_dense.zip"))
+            val composer=BeautyEffectComposer(manager,ResourceCapabilities.androidGpuPixel())
+            for(selected in listOf(linkedMapOf(legacy.descriptor.slot to legacy.hash,lash.descriptor.slot to lash.hash),
+                linkedMapOf(lash.descriptor.slot to lash.hash,legacy.descriptor.slot to legacy.hash))) {
+                composer.prepare(BeautyResourceState(selections=selected)).use {
+                    assertNotNull(it.settings.eyeMakeup)
+                    assertTrue(it.settings.adjustments.eyelashes>0f)
+                    assertEquals(.45f,it.settings.adjustments.lipstick,0.0001f)
+                }
+                composer.prepare(BeautyResourceState(selections=selected,parameters=mapOf("makeup.eyelashes" to 0f,"makeup.lipstick" to .72f))).use {
+                    assertEquals(0f,it.settings.adjustments.eyelashes,0f)
+                    assertEquals(.72f,it.settings.adjustments.lipstick,0.0001f)
+                }
+            }
+        } finally {folder.deleteRecursively()}
+    }
     @Test fun classifiedDeliveryInstallsAndComposesWithLanguageFallback(){
         val pack=ResourceDeliveryPack.read(bytes());val library=requireNotNull(pack.library)
         assertEquals("美颜",library.text("category.BEAUTY","fr-FR"))
@@ -68,9 +89,9 @@ class ResourceLibraryDeviceTest {
                 val tabs=panel.findViewById<android.widget.LinearLayout>(R.id.effect_categories)
                 assertEquals("自定义美颜",(tabs.getChildAt(0) as android.widget.TextView).text.toString())
                 val bar=panel.findViewWithTag<SeekBar>("library_parameter_beauty.smoothing");assertTrue(bar.isShown)
-                assertTrue(((bar.parent as android.view.ViewGroup).getChildAt(0) as android.widget.TextView).text.startsWith("自定义磨皮"))
+                assertTrue(((bar.parent as android.view.ViewGroup).getChildAt(1) as android.view.ViewGroup).getChildAt(0).let{it as android.widget.TextView}.text.startsWith("自定义磨皮"))
                 assertFalse(panel.findViewById<android.view.View>(R.id.beauty_section).isShown)
-                ((bar.parent as android.view.ViewGroup).getChildAt(6) as android.widget.Button).performClick()
+                (bar.parent as android.view.ViewGroup).findViewWithTag<android.view.View>("reset_parameter").performClick()
             };ready{it.settings!!.smoothing==.47f}
             inst.runOnMainSync{
                 val preview=activity.findViewById<com.beautysdk.demo.feature.app.GpuBeautyPreview>(R.id.camera_gpu_preview)
@@ -101,7 +122,7 @@ class ResourceLibraryDeviceTest {
                 bar.onKeyDown(KeyEvent.KEYCODE_DPAD_RIGHT,KeyEvent(KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_DPAD_RIGHT))
             }
             ready{it.settings!!.smoothing>.25f}
-            inst.runOnMainSync{assertSame(bar,binding.root.findViewWithTag<SeekBar>("library_parameter_beauty.smoothing"));val container=bar.parent as android.view.ViewGroup;(container.getChildAt(container.childCount-1) as android.widget.Button).performClick()}
+            inst.runOnMainSync{assertSame(bar,binding.root.findViewWithTag<SeekBar>("library_parameter_beauty.smoothing"));val container=bar.parent as android.view.ViewGroup;container.findViewWithTag<android.view.View>("reset_parameter").performClick()}
             ready{it.settings!!.smoothing==.47f}
             inst.waitForIdleSync()
             inst.uiAutomation.waitForIdle(300,5000)

@@ -1,0 +1,17 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'dev.beauty.sizeprobe'
+    compileSdk 36
+    defaultConfig { applicationId 'dev.beauty.sizeprobe'; minSdk 24; targetSdk 36; versionCode 1; versionName '1.0' }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    flavorDimensions += 'content'
+    productFlavors { base { dimension 'content' }; sdk { dimension 'content' }; bundle { dimension 'content' } }
+    buildTypes { release { minifyEnabled true; shrinkResources true; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'keep-sdk.pro' } }
+    splits { abi { enable true; reset(); include 'arm64-v8a', 'armeabi-v7a'; universalApk true } }
+    // 通用包也仅统计两种ARM ABI，不混入上游附带的模拟器SO。
+    packaging { jniLibs { excludes += ['**/x86/**', '**/x86_64/**'] } }
+}
+dependencies {
+    sdkImplementation 'com.beautysdk:beautysdk:0.2.0'
+    bundleImplementation 'com.beautysdk:beautysdk:0.2.0'
+}

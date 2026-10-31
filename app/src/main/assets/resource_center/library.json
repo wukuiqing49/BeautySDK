@@ -362,7 +362,7 @@
   "resources": [
     {
       "id": "lash_natural",
-      "revision": 1,
+      "revision": 2,
       "category": "MAKEUP",
       "subcategory": "EYELASH",
       "name": "自然款睫毛",
@@ -374,7 +374,7 @@
     },
     {
       "id": "lash_dense",
-      "revision": 1,
+      "revision": 2,
       "category": "MAKEUP",
       "subcategory": "EYELASH",
       "name": "浓密款睫毛",
@@ -386,7 +386,7 @@
     },
     {
       "id": "lash_cat",
-      "revision": 1,
+      "revision": 2,
       "category": "MAKEUP",
       "subcategory": "EYELASH",
       "name": "眼尾款睫毛",
@@ -398,7 +398,7 @@
     },
     {
       "id": "beauty_daily",
-      "revision": 2,
+      "revision": 3,
       "category": "BEAUTY",
       "subcategory": "PRESET",
       "name": "日常美颜",
@@ -410,7 +410,7 @@
     },
     {
       "id": "beauty_clear",
-      "revision": 2,
+      "revision": 3,
       "category": "BEAUTY",
       "subcategory": "PRESET",
       "name": "清透美颜",
@@ -422,7 +422,7 @@
     },
     {
       "id": "beauty_soft",
-      "revision": 2,
+      "revision": 3,
       "category": "BEAUTY",
       "subcategory": "PRESET",
       "name": "柔光美颜",
@@ -434,7 +434,7 @@
     },
     {
       "id": "reshape_natural",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "自然美型",
@@ -446,7 +446,7 @@
     },
     {
       "id": "reshape_refined",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "精致轮廓",
@@ -458,7 +458,7 @@
     },
     {
       "id": "reshape_gentle",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "柔和比例",
@@ -470,7 +470,7 @@
     },
     {
       "id": "lipstick_daily",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "LIPSTICK",
       "name": "日常唇色",
@@ -482,7 +482,7 @@
     },
     {
       "id": "lipstick_light",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "LIPSTICK",
       "name": "轻透唇色",
@@ -494,7 +494,7 @@
     },
     {
       "id": "lipstick_defined",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "LIPSTICK",
       "name": "鲜明唇色",
@@ -506,7 +506,7 @@
     },
     {
       "id": "blusher_soft",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "BLUSHER",
       "name": "轻柔腮红",
@@ -518,7 +518,7 @@
     },
     {
       "id": "blusher_light",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "BLUSHER",
       "name": "清淡腮红",
@@ -530,7 +530,7 @@
     },
     {
       "id": "blusher_fresh",
-      "revision": 2,
+      "revision": 3,
       "category": "MAKEUP",
       "subcategory": "BLUSHER",
       "name": "元气腮红",
@@ -542,7 +542,7 @@
     },
     {
       "id": "filter_soft",
-      "revision": 2,
+      "revision": 3,
       "category": "FILTER",
       "subcategory": "PRESET",
       "name": "柔和调色",
@@ -554,7 +554,7 @@
     },
     {
       "id": "filter_clear",
-      "revision": 2,
+      "revision": 3,
       "category": "FILTER",
       "subcategory": "PRESET",
       "name": "清晰调色",
@@ -566,7 +566,7 @@
     },
     {
       "id": "filter_muted",
-      "revision": 2,
+      "revision": 3,
       "category": "FILTER",
       "subcategory": "PRESET",
       "name": "柔淡调色",
@@ -578,7 +578,7 @@
     },
     {
       "id": "beauty_bare",
-      "revision": 2,
+      "revision": 3,
       "category": "BEAUTY",
       "subcategory": "PRESET",
       "name": "轻裸肤感",
@@ -590,7 +590,7 @@
     },
     {
       "id": "beauty_fresh",
-      "revision": 2,
+      "revision": 3,
       "category": "BEAUTY",
       "subcategory": "PRESET",
       "name": "元气提亮",
@@ -602,7 +602,7 @@
     },
     {
       "id": "reshape_light",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "轻量轮廓",
@@ -614,7 +614,7 @@
     },
     {
       "id": "reshape_eyes",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "明眸比例",
@@ -626,7 +626,7 @@
     },
     {
       "id": "reshape_balance",
-      "revision": 2,
+      "revision": 3,
       "category": "RESHAPE",
       "subcategory": "PRESET",
       "name": "舒展比例",
@@ -638,7 +638,7 @@
     },
     {
       "id": "filter_warm",
-      "revision": 2,
+      "revision": 3,
       "category": "FILTER",
       "subcategory": "PRESET",
       "name": "暖调日常",
@@ -650,7 +650,7 @@
     },
     {
       "id": "filter_cinema",
-      "revision": 2,
+      "revision": 3,
       "category": "FILTER",
       "subcategory": "PRESET",
       "name": "低饱和对比",
@@ -662,7 +662,7 @@
     },
     {
       "id": "background_scene",
-      "revision": 1,
+      "revision": 2,
       "category": "BACKGROUND",
       "subcategory": "PRESET",
       "name": "山岚背景",
@@ -674,7 +674,7 @@
     },
     {
       "id": "blue_top_hat",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "HAT",
       "name": "Blue top hat",
@@ -686,7 +686,7 @@
     },
     {
       "id": "cat_ears",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "HAT",
       "name": "Cat ears",
@@ -698,7 +698,7 @@
     },
     {
       "id": "curled_moustache",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "MOUSTACHE",
       "name": "Curled moustache",
@@ -710,7 +710,7 @@
     },
     {
       "id": "gold_crown",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "HAT",
       "name": "Gold crown",
@@ -722,7 +722,7 @@
     },
     {
       "id": "heart_glasses",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "GLASSES",
       "name": "Heart glasses",
@@ -734,7 +734,7 @@
     },
     {
       "id": "motion_scene",
-      "revision": 1,
+      "revision": 2,
       "category": "MOTION",
       "subcategory": "PRESET",
       "name": "轻推近",
@@ -746,7 +746,7 @@
     },
     {
       "id": "round_glasses",
-      "revision": 2,
+      "revision": 3,
       "category": "STICKER",
       "subcategory": "GLASSES",
       "name": "Round glasses",
@@ -757,20 +757,8 @@
       "manifest": "sticker/round_glasses/manifest.json"
     },
     {
-      "id": "daily_theme",
-      "revision": 2,
-      "category": "THEME",
-      "subcategory": "PRESET",
-      "name": "日常组合",
-      "localizations": {},
-      "directory": "theme/daily_theme/",
-      "package": "theme/daily_theme/package.zip",
-      "preview": "theme/daily_theme/preview.png",
-      "manifest": "theme/daily_theme/manifest.json"
-    },
-    {
       "id": "background_lavender",
-      "revision": 1,
+      "revision": 2,
       "category": "BACKGROUND",
       "subcategory": "PRESET",
       "name": "柔紫摄影棚",
@@ -782,7 +770,7 @@
     },
     {
       "id": "background_window",
-      "revision": 1,
+      "revision": 2,
       "category": "BACKGROUND",
       "subcategory": "PRESET",
       "name": "暖光窗景",
@@ -794,7 +782,7 @@
     },
     {
       "id": "background_arch",
-      "revision": 1,
+      "revision": 2,
       "category": "BACKGROUND",
       "subcategory": "PRESET",
       "name": "薄荷拱门",
@@ -806,7 +794,7 @@
     },
     {
       "id": "background_night",
-      "revision": 1,
+      "revision": 2,
       "category": "BACKGROUND",
       "subcategory": "PRESET",
       "name": "午夜星幕",
@@ -818,7 +806,7 @@
     },
     {
       "id": "motion_pan",
-      "revision": 1,
+      "revision": 2,
       "category": "MOTION",
       "subcategory": "PRESET",
       "name": "缓慢横移",
@@ -830,7 +818,7 @@
     },
     {
       "id": "motion_breathe",
-      "revision": 1,
+      "revision": 2,
       "category": "MOTION",
       "subcategory": "PRESET",
       "name": "轻柔呼吸",
@@ -842,7 +830,7 @@
     },
     {
       "id": "motion_diagonal",
-      "revision": 1,
+      "revision": 2,
       "category": "MOTION",
       "subcategory": "PRESET",
       "name": "斜向掠影",
@@ -854,7 +842,7 @@
     },
     {
       "id": "motion_portrait",
-      "revision": 1,
+      "revision": 2,
       "category": "MOTION",
       "subcategory": "PRESET",
       "name": "人像推近回场",
@@ -866,7 +854,7 @@
     },
     {
       "id": "cheek_stars",
-      "revision": 1,
+      "revision": 2,
       "category": "STICKER",
       "subcategory": "DECORATION",
       "name": "星星脸颊",
@@ -878,7 +866,7 @@
     },
     {
       "id": "cheek_hearts",
-      "revision": 1,
+      "revision": 2,
       "category": "STICKER",
       "subcategory": "DECORATION",
       "name": "爱心脸颊",
@@ -890,7 +878,7 @@
     },
     {
       "id": "rabbit_ears",
-      "revision": 1,
+      "revision": 2,
       "category": "STICKER",
       "subcategory": "HAT",
       "name": "软萌兔耳",
@@ -902,7 +890,7 @@
     },
     {
       "id": "party_hat",
-      "revision": 1,
+      "revision": 2,
       "category": "STICKER",
       "subcategory": "HAT",
       "name": "彩纸派对帽",
@@ -913,8 +901,20 @@
       "manifest": "sticker/party_hat/manifest.json"
     },
     {
+      "id": "daily_theme",
+      "revision": 3,
+      "category": "THEME",
+      "subcategory": "PRESET",
+      "name": "日常组合",
+      "localizations": {},
+      "directory": "theme/daily_theme/",
+      "package": "theme/daily_theme/package.zip",
+      "preview": "theme/daily_theme/preview.png",
+      "manifest": "theme/daily_theme/manifest.json"
+    },
+    {
       "id": "theme_clear_live",
-      "revision": 1,
+      "revision": 2,
       "category": "THEME",
       "subcategory": "PRESET",
       "name": "清透直播",
@@ -926,7 +926,7 @@
     },
     {
       "id": "theme_warm_daily",
-      "revision": 1,
+      "revision": 2,
       "category": "THEME",
       "subcategory": "PRESET",
       "name": "暖光日常",
@@ -938,7 +938,7 @@
     },
     {
       "id": "theme_night_stars",
-      "revision": 1,
+      "revision": 2,
       "category": "THEME",
       "subcategory": "PRESET",
       "name": "星夜派对",
@@ -950,7 +950,7 @@
     },
     {
       "id": "theme_playful",
-      "revision": 1,
+      "revision": 2,
       "category": "THEME",
       "subcategory": "PRESET",
       "name": "薄荷兔兔",

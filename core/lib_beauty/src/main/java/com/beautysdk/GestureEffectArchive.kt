@@ -7,7 +7,11 @@ import java.util.zip.ZipInputStream
 
 /** IO线程严格读包；预算预检后一次解码，不在帧回调读取ZIP或Bitmap。 */
 object GestureEffectArchive {
-    fun loadZip(input:InputStream):GestureEffectPack {
+    fun loadZip(input:InputStream):GestureEffectPack = loadZip(input,8388608L)
+
+    /** 组合加载时传入剩余像素预算；在分配Bitmap/ARGB前拒绝，不改变旧入口。 */
+    fun loadZip(input:InputStream,maxPixels:Long):GestureEffectPack {
+        require(maxPixels in 0..8388608L){"GESTURE_PIXEL_BUDGET"}
         val files=linkedMapOf<String,ByteArray>();var total=0
         ZipInputStream(input).use{zip->while(true){val e=zip.nextEntry?:break
             require(!e.isDirectory && e.name.matches(Regex("gestures\\.json|asset_[0-6]\\.png")) && e.name !in files && files.size<8)
@@ -26,7 +30,7 @@ object GestureEffectArchive {
                 val bytes=requireNotNull(files[name]);StickerResourcePack.validateStaticPng(bytes)
                 val b=BitmapFactory.Options().apply{inJustDecodeBounds=true};BitmapFactory.decodeByteArray(bytes,0,bytes.size,b)
                 require(b.outWidth in 1..2048 && b.outHeight in 1..2048 && b.outMimeType=="image/png")
-                pixels+=b.outWidth.toLong()*b.outHeight;require(pixels<=8388608)
+                pixels+=b.outWidth.toLong()*b.outHeight;require(pixels<=maxPixels){"GESTURE_PIXEL_BUDGET"}
             }
         }
         require(files.keys==refs)

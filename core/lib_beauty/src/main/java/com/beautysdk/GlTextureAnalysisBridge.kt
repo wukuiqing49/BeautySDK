@@ -39,7 +39,6 @@ class GlTextureAnalysisBridge @JvmOverloads constructor(
     private var sampler = 0
     private var width = 0
     private var height = 0
-    private var cpu: ByteBuffer? = null
     private var geometry: FrameInfo? = null
     private var transform: FloatArray? = null
     private var lastTime = -1L
@@ -85,6 +84,17 @@ class GlTextureAnalysisBridge @JvmOverloads constructor(
         } finally { state.restore() }
     }
 
+    /** 在同一GL线程/上下文非等待轮询已排队小图，不采样、不绘制，也不启停分析。
+     * nowNs属于输入时间线，仅用于读回过期判断；交付帧保留原采样时间。
+     * 宿主可在下一视频帧到来前调用，避免额外等待一个采集周期。
+     */
+    fun poll(nowNs: Long): Boolean {
+        checkOwner();check(!closed);require(nowNs>=0)
+        if(!enabled || nowNs<lastTime)return false
+        val state=State()
+        return try {consume(nowNs)} finally {state.restore()}
+    }
+
     /** 只取最新已完成结果，保留真实采样时间；过期及旧会话结果在CPU复制前丢弃。 */
     private fun consume(now: Long): Boolean {
         var newest: Slot? = null
@@ -106,16 +116,18 @@ class GlTextureAnalysisBridge @JvmOverloads constructor(
         try {
             val mapped = GL.glMapBufferRange(GL.GL_PIXEL_PACK_BUFFER, 0, selected.size, GL.GL_MAP_READ_BIT) as? ByteBuffer
                 ?: error("Analysis readback mapping failed")
-            val storage = cpu?.takeIf { it.capacity() >= selected.size }
-                ?: ByteBuffer.allocateDirect(selected.size).also { cpu = it }
+            // PBO映射区仅在回调期间借用；各异步worker的submit已同步复制到自己的有界缓冲。
+            // 去掉中间CPU暂存层的一次整图复制，不把映射指针交给异步任务持有。
             try {
-                storage.clear(); storage.limit(selected.size)
-                mapped.position(0); mapped.limit(selected.size); storage.put(mapped); storage.flip()
-            } finally { check(GL.glUnmapBuffer(GL.GL_PIXEL_PACK_BUFFER)) { "Analysis readback data invalid" } }
-            val info = checkNotNull(selected.info)
-            val frame=RgbaFrame(info,storage,info.width*4)
-            return onAnalysisFrame?.invoke(frame,checkNotNull(selected.sourceInfo))
-                ?: checkNotNull(analysis).submit(frame,selected.generation)
+                mapped.position(0);mapped.limit(selected.size)
+                val info=checkNotNull(selected.info)
+                val frame=RgbaFrame(info,mapped.asReadOnlyBuffer(),info.width*4)
+                return onAnalysisFrame?.invoke(frame,checkNotNull(selected.sourceInfo))
+                    ?: checkNotNull(analysis).submit(frame,selected.generation)
+            } finally {
+                GL.glBindBuffer(GL.GL_PIXEL_PACK_BUFFER,selected.pbo)
+                check(GL.glUnmapBuffer(GL.GL_PIXEL_PACK_BUFFER)) { "Analysis readback data invalid" }
+            }
         } finally { release(selected) }
     }
 
@@ -187,7 +199,7 @@ class GlTextureAnalysisBridge @JvmOverloads constructor(
         if (fbo != 0) GL.glDeleteFramebuffers(1, intArrayOf(fbo), 0)
         if (vao != 0) GL.glDeleteVertexArrays(1, intArrayOf(vao), 0)
         if (sampler != 0) GL.glDeleteSamplers(1, intArrayOf(sampler), 0)
-        cpu = null; closed = true
+        closed = true
     }
     private fun checkOwner() { check(Thread.currentThread() === owner && EGL14.eglGetCurrentContext() == context) }
     private fun generate(action: (IntArray) -> Unit) = IntArray(1).also(action)[0].also { check(it != 0) }

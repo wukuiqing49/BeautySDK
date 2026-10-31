@@ -165,4 +165,16 @@
     <string name="resources_gesture_active">已启用 · %1$s</string>
     <string name="resources_gesture_available">点击启用 · %1$s</string>
     <string name="resources_list_separator">、</string>
+    <string name="sticker_3d_title">3D 贴纸（实验）</string>
+    <string name="sticker_3d_none">关闭</string>
+    <string name="sticker_3d_glasses">3D 眼镜</string>
+    <string name="sticker_3d_hat">3D 礼帽</string>
+    <string name="sticker_3d_hint">随头部转动，支持粗略脸部遮挡。开启期间暂停二维贴纸、美型和二维运动跟踪，原参数保留。</string>
+    <string name="sticker_3d_crown">3D 皇冠</string>
+    <string name="sticker_3d_cat">3D 猫耳</string>
+    <string name="sticker_3d_headphones">3D 耳机</string>
+    <string name="sticker_mode_2d">2D 贴纸</string>
+    <string name="sticker_mode_3d">3D 贴纸</string>
+    <string name="ui_effect_applied">已应用</string>
+    <string name="sticker_3d_cap">3D 棒球帽</string>
 </resources>

@@ -87,26 +87,31 @@ class AsyncFaceAnalysis @JvmOverloads constructor(
                     val copyNs = current.copyNs
                     val started = System.nanoTime()
                     try {
-                        if (analyzerGeneration != token) {
-                            analyzer?.close(); analyzer = null
-                            analyzerGeneration = token
+                        // 已关闭或被换源替代的任务不再创建/重建模型。
+                        if (synchronized(lock) { !closed && token == generation }) {
+                            if (analyzerGeneration != token) {
+                                analyzer?.close(); analyzer = null
+                                analyzerGeneration = token
+                            }
+                            val detector = analyzer ?: factory.create().also { analyzer = it }
+                            // 初始化可能很慢；返回后再次检查，防止关闭期间仍启动一次原生推理。
+                            if (synchronized(lock) { !closed && token == generation }) {
+                            val faces = detector.analyzeRgba(image,maxSide).toList()
+                            val timing = synchronized(lock) {
+                                if (!closed && token == generation) {
+                                    onResult(image,faces)
+                                    val finished = System.nanoTime()
+                                    history.publish(image.info, faces, finished - started)
+                                    val interval = lastCompletedNs?.let { finished-it }
+                                    lastCompletedNs = finished
+                                    FaceAnalysisTiming(image.info.timestampNs,copyNs,
+                                        started-submittedAt,finished-started,interval,faces.size,detector.lastTiming)
+                                } else null
+                            }
+                            // 回调不占用渲染/提交锁；诊断异常不能把成功检测改写为错误。
+                            if (timing != null) try { onTiming(timing) } catch (_: Exception) { }
+                            }
                         }
-                        val detector = analyzer ?: factory.create().also { analyzer = it }
-                        val faces = detector.analyzeRgba(image,maxSide).toList()
-                        val timing = synchronized(lock) {
-                            if (!closed && token == generation) {
-                                onResult(image,faces)
-                                val finished = System.nanoTime()
-                                history.publish(image.info, faces, finished - started)
-                                val interval = lastCompletedNs?.let { finished-it }
-                                lastCompletedNs = finished
-                                FaceAnalysisTiming(image.info.timestampNs,copyNs,
-                                    started-submittedAt,finished-started,interval,faces.size,detector.lastTiming)
-                            } else null
-                        }
-                        // 回调不占用渲染/提交锁；诊断异常不能把成功检测改写为错误。
-                        if (timing != null) try { onTiming(timing) } catch (_: Exception) { }
-
                     } catch (error: Exception) {
                         val active = synchronized(lock) {
                             if (!closed && token == generation) {

@@ -41,7 +41,8 @@ class CameraStabilitySoakDeviceTest {
                 inst.runOnMainSync {
                     preview.showOriginal=mode=="original"
                     val settings=if(mode.endsWith("beauty"))BeautySettings(smoothing=.35f,whitening=.2f,adjustments=BeautyAdjustments(slimFace=.15f,lipstick=.2f))else BeautySettings()
-                    preview.options=preview.options.copy(backend=DemoBackend.MEDIAPIPE,beautyBackend=DemoBeautyBackend.GPUPIXEL,gestureEnabled=mode!="original",observeFaces=mode!="original",faceAnalysisEnabled=true,frameTracking=false,effects=preview.options.effects.copy(themeSettings=settings))
+                    preview.setCustomStickerPack(null)
+                    preview.options=preview.options.copy(backend=DemoBackend.MEDIAPIPE,beautyBackend=DemoBeautyBackend.GPUPIXEL,sticker3D=null,mediaPipeGpu=true,gestureEnabled=mode!="original",observeFaces=mode!="original",faceAnalysisEnabled=true,frameTracking=false,effects=preview.options.effects.copy(themeSettings=settings))
                     preview.setGestureEffects(null)
                 }
                 Thread.sleep(2000)

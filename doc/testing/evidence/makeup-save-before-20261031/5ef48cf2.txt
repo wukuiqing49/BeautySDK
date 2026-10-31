@@ -1,0 +1,44 @@
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraConfigurationDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.beautysdk.demo.CameraConfigurationDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.beautysdk.demo.CameraConfigurationDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: One blocked save batch must publish loading only once expected:<1> but was:<81>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit(CameraConfigurationDeviceTest.kt:48)
+
+INSTRUMENTATION_STATUS: stream=
+Error in rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit(com.beautysdk.demo.CameraConfigurationDeviceTest):
+java.lang.AssertionError: One blocked save batch must publish loading only once expected:<1> but was:<81>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit(CameraConfigurationDeviceTest.kt:48)
+
+INSTRUMENTATION_STATUS: test=rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.103
+There was 1 failure:
+1) rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit(com.beautysdk.demo.CameraConfigurationDeviceTest)
+java.lang.AssertionError: One blocked save batch must publish loading only once expected:<1> but was:<81>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at com.beautysdk.demo.CameraConfigurationDeviceTest.rapidMakeupEditsCoalesceAndPersistAcrossImmediateExit(CameraConfigurationDeviceTest.kt:48)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

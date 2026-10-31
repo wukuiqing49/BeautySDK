@@ -1,0 +1,2 @@
+I/BeautyResolution( 5401): smoothing cross-resolution MAE[1]=0.2023111979166664
+I/BeautyResolution( 5401): smoothing cross-resolution MAE[2]=0.17404513888888676

@@ -53,7 +53,7 @@ object BeautyLicensing {
             (!(s.filter != BeautyFilter.NONE || a.brightness != 0f || a.contrast != 1f || a.saturation != 1f || a.sharpening != 0f) || allows(LicensedFeature.FILTER)) &&
             (!a.hasReshape || allows(LicensedFeature.RESHAPE)) &&
             (!(a.hasMakeup || s.eyeMakeup != null) || allows(LicensedFeature.MAKEUP)) &&
-            (!(s.glasses || s.moustache || s.hat || !s.stickerPack?.layers.isNullOrEmpty()) || allows(LicensedFeature.STICKER)) &&
+            (!(s.sticker3D != null || s.glasses || s.moustache || s.hat || !s.stickerPack?.layers.isNullOrEmpty()) || allows(LicensedFeature.STICKER)) &&
             (!s.scene.needsSegmentation || allows(LicensedFeature.BACKGROUND)) &&
             (s.scene.motion == CameraMotion.NONE || allows(LicensedFeature.MOTION)) &&
             (!s.requiresFaceAnalysis || allows(LicensedFeature.FACE))

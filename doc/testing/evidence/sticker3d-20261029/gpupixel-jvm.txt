@@ -1,0 +1,51 @@
+> Task :core:lib_beauty:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty:generateBeautyProvenance UP-TO-DATE
+> Task :core:lib_beauty:preBuild UP-TO-DATE
+> Task :core:lib_beauty:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty:generateDebugBuildConfig UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty:compileDebugJavaWithJavac UP-TO-DATE
+> Task :core:lib_beauty:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:lib_beauty_gpupixel:generateBeautyProvenance UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preDebugBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResValues UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:packageDebugResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugNavigationResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:parseDebugLocalResources UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugRFile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugKotlin UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_gpupixel:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:preDebugUnitTestBuild UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:generateDebugUnitTestStubRFile UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugUnitTestKotlin
+> Task :core:lib_beauty_gpupixel:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :core:lib_beauty_gpupixel:processDebugJavaRes UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:processDebugUnitTestJavaRes UP-TO-DATE
+> Task :core:lib_beauty_gpupixel:testDebugUnitTest
+
+[Incubating] Problems report is available at: file:///<project>/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1s
+31 actionable tasks: 2 executed, 29 up-to-date

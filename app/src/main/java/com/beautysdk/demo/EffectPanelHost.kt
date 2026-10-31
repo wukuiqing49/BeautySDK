@@ -19,15 +19,20 @@ internal class EffectPanelHost(
     private val dismissed:()->Unit,
 ) {
     var dialog:BottomSheetDialog?=null;private set
+    private var expanded=false
     fun show() {
+        if(activity.isFinishing||activity.isDestroyed)return
         if(dialog?.isShowing==true){resize();return}
         (panel.parent as? ViewGroup)?.removeView(panel)
-        panel.visibility=View.VISIBLE;scroll.visibility=View.VISIBLE
+        panel.visibility=View.VISIBLE
         val next=BottomSheetDialog(activity);dialog=next
         next.setContentView(panel)
-        next.behavior.isDraggable=false;next.behavior.skipCollapsed=true
+        next.behavior.isDraggable=true;next.behavior.skipCollapsed=true
         next.behavior.state=BottomSheetBehavior.STATE_EXPANDED
         scroll.isNestedScrollingEnabled=false
+        panel.findViewById<View>(R.id.effect_panel_handle)?.apply{
+            setOnClickListener{expanded=!expanded;contentDescription=activity.getString(if(expanded)R.string.ui_collapse else R.string.ui_expand_panel);resize()}
+        }
         resize();next.setOnShowListener{resize()}
         next.setOnDismissListener {
             (panel.parent as? ViewGroup)?.removeView(panel)
@@ -47,11 +52,14 @@ internal class EffectPanelHost(
         val current=dialog?:return
         if(root.height<=0){root.doOnLayout{resize()};return}
         val landscape=root.width>root.height;val dp=activity.resources.displayMetrics.density
-        val height=maxOf((root.height*if(landscape).92f else .48f).toInt(),(240*dp).toInt()).coerceAtMost(root.height)
+        val minimum=if(landscape)240f else 320f+64f*(activity.resources.configuration.fontScale-1f).coerceIn(0f,.3f)
+        val height=maxOf((root.height*if(landscape).92f else if(expanded).78f else .42f).toInt(),(minimum*dp).toInt()).coerceAtMost(root.height)
         if(panel.layoutParams.height!=height)panel.layoutParams=panel.layoutParams.apply{this.height=height}
         current.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.let{sheet->
             if(sheet.layoutParams.height!=height)sheet.layoutParams=sheet.layoutParams.apply{this.height=height}
         }
+        current.behavior.peekHeight=height
+        if(!landscape){current.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);current.window?.setGravity(android.view.Gravity.BOTTOM)}
         if(landscape){current.window?.setLayout(minOf((420*dp).toInt(),(root.width*.56f).toInt()),ViewGroup.LayoutParams.MATCH_PARENT);current.window?.setGravity(android.view.Gravity.END or android.view.Gravity.BOTTOM)}
     }
 }

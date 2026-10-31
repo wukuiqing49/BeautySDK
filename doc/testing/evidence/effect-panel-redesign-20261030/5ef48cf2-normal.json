@@ -1,0 +1,18 @@
+{
+  "device": "5ef48cf2",
+  "mode": "normal",
+  "before": {
+    "font_scale": "1.0",
+    "accelerometer_rotation": "1",
+    "user_rotation": "1"
+  },
+  "passed": true,
+  "count": 14,
+  "resourceBackupRestored": true,
+  "after": {
+    "font_scale": "1.0",
+    "accelerometer_rotation": "1",
+    "user_rotation": "1"
+  },
+  "settingsRestored": true
+}

@@ -18,6 +18,7 @@ class RgbaBeautyRenderer : BeautyRenderer {
         if (!BeautyLicensing.allowsSettings(settings)) return frame
         require(frame is RgbaFrame) { "RgbaBeautyRenderer only accepts RGBA frames" }
         require(settings.scene.isIdentity) { "Use BeautySceneRenderer for scene effects" }
+        require(settings.sticker3D == null) { "3D stickers require GlSticker3DRenderer and texture input" }
         require(settings.adjustments.isIdentity) { "Select GPUPixel for extended beauty adjustments" }
         if (settings.isIdentity) return frame
         val info = frame.info; val w = info.width; val h = info.height
